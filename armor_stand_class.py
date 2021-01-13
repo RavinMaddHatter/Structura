@@ -77,7 +77,8 @@ class armorstand:
             self.bars[bar_name]["pivot"] = [0, 0, 0]
             self.bars[bar_name]["cubes"] = []
         self.bars[bar_name]["cubes"].append(
-            {"origin": origin, "size": size, "uv": uv})
+            {"origin": origin, "size": size, "uv": uv, "inflate": -0.03}) 
+            #Added inflate to make the cube a bit smaller so when a block it's place in its position avoid z-fighting
 
     def save_uv(self, name):
         # saves the texture file where you tell it to
@@ -91,9 +92,9 @@ class armorstand:
             "identifier": "geometry.armor_stand.ghost_blocks"}
         self.geometry["description"]["texture_width"] = 1
         self.geometry["description"]["visible_bounds_offset"] = [
-            0.0, 0.25, 0.0]
-        self.geometry["description"]["visible_bounds_width"] = 128
-        self.geometry["description"]["visible_bounds_height"] = 128
+            0.0, 1.5, 0.0]
+        self.geometry["description"]["visible_bounds_width"] = 5120 #Changed render distance of the block geometry
+        self.geometry["description"]["visible_bounds_height"] = 5120  #Changed render distance of the block geometry
         self.geometry["bones"] = []
         self.stand["minecraft:geometry"] = [self.geometry]
         self.geometry["bones"] = [
