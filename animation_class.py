@@ -1,5 +1,5 @@
 import json
-
+import os
 class animations:
     def __init__(self,path_to_default="Vanilla_Resource_Pack"):
         self.default_size={"format_version": "1.8.0",
@@ -24,20 +24,30 @@ class animations:
         self.poses[10]="animation.armor_stand.cancan_a_pose"
         self.poses[11]="animation.armor_stand.cancan_b_pose"
         self.poses[12]="animation.armor_stand.hero_pose"
-    def insert_into_layers(self,y):
+    def insert_layer(self,y):
         name="layer_{}".format(y)
-        self.sizing["animations"][self.poses[0]]["bones"][name]={"scale":16}
+        #self.sizing["animations"][self.poses[0]]["bones"][name]={"scale":16}
         for i in range(12):
-            if y%(i+1)==0:
-                self.sizing["animations"][self.poses[i+1]]["bones"][name]={"scale":16}
-            else:
-                self.sizing["animations"][self.poses[i]]["bones"][name]={"scale":0.01}
+            if y%(12)!=i:
+                #self.sizing["animations"][self.poses[i+1]]["bones"][name]={"scale":16}
+                self.sizing["animations"][self.poses[i+1]]["bones"][name]={"scale":0.08}
         
     def export(self,pack_name):
-        path_to_ani="{}/animations/armor_stand.animation.json".format(pack_folder)
-        os.makedirs(os.path.dirname(path_to_ani), exist_ok=True)
+        path_to_ani="{}/animations/armor_stand.animation.json".format(pack_name)
+        try:
+            
+            os.makedirs(os.path.dirname(path_to_ani), exist_ok=True)
+        except:
+            pass
         with open(path_to_ani,"w+") as json_file:
-            json.dump(self.stand,json_file,indent=2)
+            json.dump(self.sizing,json_file,indent=2)
+        path_to_rc="{}/animations/armor_stand.ghost_blocks.scale.animation.json".format(pack_name)
+        try:
+            os.makedirs(os.path.dirname(path_to_rc), exist_ok=True)
+        except:
+            pass
+        with open(path_to_rc,"w+") as json_file:
+            json.dump(self.default_size,json_file,indent=2)
 
 
 

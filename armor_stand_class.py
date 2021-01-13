@@ -79,8 +79,8 @@ class armorstand:
         self.geometry["description"]={"identifier" : "geometry.armor_stand.ghost_blocks"}
         self.geometry["description"]["texture_width"]= 1
         self.geometry["description"]["visible_bounds_offset"] = [ 0.0, 0.25, 0.0 ]
-        self.geometry["description"]["visible_bounds_width"] = 32
-        self.geometry["description"]["visible_bounds_height"] = 32
+        self.geometry["description"]["visible_bounds_width"] = 128
+        self.geometry["description"]["visible_bounds_height"] = 128
         self.geometry["bones"]=[]
         self.stand["minecraft:geometry"]=[self.geometry]
         self.geometry["bones"]=[{"name": "ghost_blocks","pivot": [-8, 0, 8]}]

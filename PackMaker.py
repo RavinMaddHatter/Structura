@@ -1,24 +1,45 @@
 import armor_stand_class
 import structure_reader
+import animation_class
 from tkinter import StringVar, Button,Label,Entry,Tk
 from tkinter import filedialog
-
-
-
+import manifest
+from shutil import copyfile
+import os
+from zipfile import ZipFile
+import glob
 
 def generate_pack(struct_name,pack_name):
+    manifest.export(pack_name)
     struct2make=structure_reader.process_structure(struct_name)
     armorstand=armor_stand_class.armorstand()
+    animation=animation_class.animations()
     [xlen,ylen,zlen]=struct2make.get_size()
     for y in range(ylen):
         armorstand.make_layer(y)
+        animation.insert_layer(y)
         for x in range(xlen):
             for z in range(zlen):
                 block=struct2make.get_block(x,y,z)
                 armorstand.make_block(x,y,z,block["name"].replace("minecraft:",""))
 
     armorstand.export(pack_name)
-
+    animation.export(pack_name)
+    copyfile("pack_icon.png", "{}/pack_icon.png".format(pack_name))
+    os.makedirs(os.path.dirname("{}/entity/armor_stand.entity.json".format(pack_name)), exist_ok=True)
+    copyfile("armor_stand.entity.json", "{}/entity/armor_stand.entity.json".format(pack_name))
+    rc="armor_stand.ghost_blocks.render_controllers.json"
+    rcpath="{}/render_controllers/{}".format(pack_name,rc)
+    os.makedirs(os.path.dirname(rcpath))
+    copyfile(rc,rcpath)
+    file_paths=[]
+    for directory,_,_ in os.walk(pack_name):
+        file_paths.extend(glob.glob(os.path.join(directory,"*.*")))
+    with ZipFile("{}.mcpack".format(pack_name),'x') as zip: 
+        # writing each file one by one 
+        for file in file_paths:
+            print(file)
+            zip.write(file)
 def runFromGui():
     FileGUI
     generate_pack(FileGUI.get(),packName.get())
