@@ -32,6 +32,11 @@ def generate_pack(struct_name, pack_name):
         "{}/entity/armor_stand.entity.json".format(pack_name)), exist_ok=True)
     copyfile("armor_stand.entity.json",
              "{}/entity/armor_stand.entity.json".format(pack_name))
+
+    # Adds to zip file a modified armor stand geometry to enlarge the render area of the entity
+    copyfile("armor_stand.larger_render.geo.json",
+             "{}/models/entity/armor_stand.larger_render.geo.json".format(pack_name))
+
     rc = "armor_stand.ghost_blocks.render_controllers.json"
     rcpath = "{}/render_controllers/{}".format(pack_name, rc)
     os.makedirs(os.path.dirname(rcpath))
