@@ -22,8 +22,19 @@ def generate_pack(struct_name, pack_name):
         for x in range(xlen):
             for z in range(zlen):
                 block = struct2make.get_block(x, y, z)
-                armorstand.make_block(
-                    x, y, z, block["name"].replace("minecraft:", ""))
+                rot = None
+                top = False
+                if "facing_direction" in block["states"].keys():
+                    rot = block["states"]["facing_direction"]
+
+                if "direction" in block["states"].keys():
+                    rot = block["states"]["direction"]
+                if "top_slot_bit" in block["states"].keys():
+                    top = bool(block["states"]["top_slot_bit"])
+                    print(top)
+
+                armorstand.make_block(x, y, z, block["name"].replace(
+                    "minecraft:", ""), rot=rot, top=top)
 
     armorstand.export(pack_name)
     animation.export(pack_name)
@@ -34,8 +45,9 @@ def generate_pack(struct_name, pack_name):
              "{}/entity/armor_stand.entity.json".format(pack_name))
 
     # Adds to zip file a modified armor stand geometry to enlarge the render area of the entity
-    copyfile("armor_stand.larger_render.geo.json",
-             "{}/models/entity/armor_stand.larger_render.geo.json".format(pack_name))
+    larger_render = "armor_stand.larger_render.geo.json"
+    larger_render_path = "{}/models/entity/{}".format(pack_name, larger_render)
+    copyfile(larger_render, larger_render_path)
 
     rc = "armor_stand.ghost_blocks.render_controllers.json"
     rcpath = "{}/render_controllers/{}".format(pack_name, rc)
