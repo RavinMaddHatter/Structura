@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "test 15",
+    "description": "Created by  \u00a7o\u00a75DrAv0011\u00a7r, \u00a7o\u00a79 FondUnicycle\u00a7r and\u00a7o\u00a75 RavinMaddHatter\u00a7r",
+    "uuid": "d7564f31-066a-411c-8518-712822fb1e0a",
+    "version": [
+      0,
+      0,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      16,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "922b988e-3711-4017-8e8d-96299cfcdfd6",
+      "version": [
+        0,
+        0,
+        1
+      ]
+    }
+  ]
+}

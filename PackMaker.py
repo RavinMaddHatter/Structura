@@ -21,7 +21,18 @@ def generate_pack(struct_name,pack_name):
         for x in range(xlen):
             for z in range(zlen):
                 block=struct2make.get_block(x,y,z)
-                armorstand.make_block(x,y,z,block["name"].replace("minecraft:",""))
+                rot=None
+                top=False
+                if "facing_direction" in block["states"].keys():
+                    rot=block["states"]["facing_direction"]
+                
+                if "direction" in block["states"].keys():
+                    rot=block["states"]["direction"]
+                if "top_slot_bit" in block["states"].keys():
+                    top=bool(block["states"]["top_slot_bit"])
+                    print(top)
+                    
+                armorstand.make_block(x,y,z,block["name"].replace("minecraft:",""),rot=rot,top=top)
 
     armorstand.export(pack_name)
     animation.export(pack_name)
@@ -32,6 +43,9 @@ def generate_pack(struct_name,pack_name):
     rcpath="{}/render_controllers/{}".format(pack_name,rc)
     os.makedirs(os.path.dirname(rcpath))
     copyfile(rc,rcpath)
+    biggeo="armor_stand.larger_render.geo.json"
+    biggeopath="{}/models/entity/{}".format(pack_name,biggeo)
+    copyfile(biggeo,biggeopath)
     file_paths=[]
     for directory,_,_ in os.walk(pack_name):
         file_paths.extend(glob.glob(os.path.join(directory,"*.*")))

@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Nether Core Left",
+    "description": "Created by  \u00a7o\u00a75DrAv0011\u00a7r, \u00a7o\u00a79 FondUnicycle\u00a7r and\u00a7o\u00a75 RavinMaddHatter\u00a7r",
+    "uuid": "971be0ac-0b88-4627-a46b-755b877a413e",
+    "version": [
+      0,
+      0,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      16,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "7e3bda29-8ee4-41bd-be9d-317de3ea5fc7",
+      "version": [
+        0,
+        0,
+        1
+      ]
+    }
+  ]
+}

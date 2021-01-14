@@ -1,0 +1,13 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.armor_stand.ghost_blocks.scale": {
+      "loop": true,
+      "bones": {
+        "ghost_blocks": {
+          "scale": 16.0
+        }
+      }
+    }
+  }
+}

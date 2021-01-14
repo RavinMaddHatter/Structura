@@ -12,19 +12,21 @@ class armorstand:
             self.blocks_def= json.load(f)
         with open("{}/textures/terrain_texture.json".format(self.ref_resource_pack)) as f:
             self.terrain_texture= json.load(f)
+        with open("block_roation.json") as f:
+            self.block_rotations = json.load(f)
         self.stand={}
         self.texture_list=[]
         self.geometry={}
         self.stand_init()
         self.uv_map={}
-        self.bars={}
+        self.blocks={}
         self.size=[]
         self.bones=[]
         self.uv_array=None
-        self.lower_objects=["powered_repeater","unpowered_repeater","activator_rail","detector_rail","golden_rail","rail","powered_comparator","spruce_pressure_plate","stone_pressure_plate","redstone_wire","frame","carpet"]
+        self.lower_objects=["powered_repeater","unpowered_repeater","unpowered_comparator","activator_rail","detector_rail","golden_rail","rail","powered_comparator","spruce_pressure_plate","stone_pressure_plate","redstone_wire","frame","carpet"]
         self.excluded=["air","structure_block"]
     def export(self,pack_folder):
-        self.add_bars_to_bones()
+        self.add_blocks_to_bones()
         self.geometry["description"]["texture_height"]=len(self.uv_map.keys())
         self.stand["minecraft:geometry"]=[self.geometry]
         path_to_geo="{}/models/entity/armor_stand.ghost_blocks.geo.json".format(pack_folder)
@@ -38,37 +40,69 @@ class armorstand:
         ##sets up a layer for us to refference in the animation controller later.
         layer_name="layer_{}".format(y)
         self.geometry["bones"].append({"name":layer_name,"pivot": [-8, 0, 8],"parent": "ghost_blocks"})
-    def make_block(self,x,y,z,block_name,top=False,trap_open=False,parent=None):
+    
+    def make_block(self,x,y,z,block_name,rot=None,top=False,trap_open=False,parent=None):
         ## call this to add a block to the a bar of blocks that will be rendered
-        slab= "slab" in block_name and "double" not in block_name
-        trapdoor="trapdoor" in block_name or block_name in self.lower_objects
-        uv=self.block_name_to_uv(block_name)
-        if slab:
-            size=[1,.5,1]
-            if top:
-                origin=[-1*(x+9),y+.5,z]
+        if block_name not in self.excluded: 
+            slab= "slab" in block_name and "double" not in block_name
+            wall= "wall" in block_name
+            trapdoor="trapdoor" in block_name or block_name in self.lower_objects
+            uv=self.block_name_to_uv(block_name)
+            if rot is not None:
+                
+                if block_name in self.block_rotations.keys():
+                    piv=self.block_rotations[block_name][str(int(rot))]
+
+                else:
+                    piv=[0,0,0]
+                    print("no rotation for {} found".format(block_name))
+            else:
+                piv=[0,0,0]
+            if slab:
+                size=[1,.5,1]
+                if top:
+                    origin=[-1*(x+9),y+.5,z]
+                else:
+                    origin=[-1*(x+9),y,z]
+            elif trapdoor:
+                if trap_open:
+                    size=[1,2/16,1]
+                else:
+                    size=[1 ,2/16,1]
+                if top:
+                    origin=[-1*(x+9),y+14/2,z]
+                else:
+                    origin=[-1*(x+9),y,z]
+            elif wall:
+                size=[.5,1,.5]
+                origin=[-1*(x+9)+.25,y,z+.25]
             else:
                 origin=[-1*(x+9),y,z]
-        elif trapdoor:
-            if trap_open:
-                size=[1,2/16,1]
-            else:
-                size=[1 ,2/16,1]
-            if top:
-                origin=[-1*(x+9),y+14/2,z]
-            else:
-                origin=[-1*(x+9),y,z]
+                size=[1,1,1]
+            block_name="block_{}_{}_{}".format(x,y,z)
+
+            self.blocks[block_name]={}
+            self.blocks[block_name]["name"]=block_name
+            self.blocks[block_name]["parent"]="layer_{}".format(y)
+            self.blocks[block_name]["pivot"]=[0,0,0]
+            self.blocks[block_name]["cubes"]=[]
+            self.blocks[block_name]["cubes"].append({"origin":origin,"size":size,"rotation":piv,"uv":uv})
+    def rotate_observer_like(self,rot):
+        if rot==0:
+            piv=[90,0,0]
+        elif rot==1:
+            piv=[270,0,0]
+        elif rot==2:
+            piv=[0,0,0]
+        elif rot==3:
+            piv=[0,180,0]
+        elif rot==4:
+            piv=[0,270,0]
+        elif rot==5:
+            piv=[0,90,0]
         else:
-            origin=[-1*(x+9),y,z]
-            size=[1,1,1]
-        bar_name="x_{}_{}".format(y,z)
-        if bar_name not in self.bars.keys():
-            self.bars[bar_name]={}
-            self.bars[bar_name]["name"]=bar_name
-            self.bars[bar_name]["parent"]="layer_{}".format(y)
-            self.bars[bar_name]["pivot"]=[0,0,0]
-            self.bars[bar_name]["cubes"]=[]
-        self.bars[bar_name]["cubes"].append({"origin":origin,"size":size,"uv":uv})
+            piv=[0,0,0]
+        return piv
     def save_uv(self,name):
         ## saves the texture file where you tell it to
         im = Image.fromarray(self.uv_array)
@@ -106,17 +140,21 @@ class armorstand:
         temp_uv={}
         if block_name not in self.excluded:  ## if you dont want a block to be rendered, exclude the UV
             texture_files=self.get_block_texture_paths(block_name,variant=0)
+            if block_name == "sticky_piston":
+                texture_files["up"]="textures/blocks/piston_top_sticky"
+            if block_name == "piston":
+                texture_files["up"]="textures/blocks/piston_top_normal"
             for key in texture_files.keys():
                 if texture_files[key] not in self.uv_map.keys():
                     self.extend_uv_image("{}/{}.png".format(self.ref_resource_pack,texture_files[key]))
                     self.uv_map[texture_files[key]]=len(self.uv_map.keys())
                 temp_uv[key]={"uv":[0,self.uv_map[texture_files[key]]],"uv_size":[1,1]}
-            
+
         return temp_uv
-    def add_bars_to_bones(self):
+    def add_blocks_to_bones(self):
         ## helper function for adding all of the bars, this is called during the writing step
-        for key in self.bars.keys():
-            self.geometry["bones"].append(self.bars[key])
+        for key in self.blocks.keys():
+            self.geometry["bones"].append(self.blocks[key])
     def get_block_texture_paths(self,blockName,variant=0):
         ## helper function for getting the texture locations from the vanilla files.
         textureLayout=self.blocks_def[blockName]["textures"]
