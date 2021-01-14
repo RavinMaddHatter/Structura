@@ -24,7 +24,7 @@ class armorstand:
         self.bones=[]
         self.uv_array=None
         self.lower_objects=["powered_repeater","unpowered_repeater","unpowered_comparator","activator_rail","detector_rail","golden_rail","rail","powered_comparator","spruce_pressure_plate","stone_pressure_plate","redstone_wire","frame","carpet"]
-        self.excluded=["air","structure_block"]
+        self.excluded=["air","grass","structure_block"]
     def export(self,pack_folder):
         self.add_blocks_to_bones()
         self.geometry["description"]["texture_height"]=len(self.uv_map.keys())
