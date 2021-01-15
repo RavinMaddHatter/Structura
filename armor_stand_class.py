@@ -34,6 +34,7 @@ class armorstand:
         self.stand["minecraft:geometry"] = [self.geometry]
         path_to_geo = "{}/models/entity/armor_stand.ghost_blocks.geo.json".format(
             pack_folder)
+
         os.makedirs(os.path.dirname(path_to_geo), exist_ok=True)
         with open(path_to_geo, "w+") as json_file:
             json.dump(self.stand, json_file, indent=2)
@@ -41,6 +42,7 @@ class armorstand:
             pack_folder)
         os.makedirs(os.path.dirname(texture_name), exist_ok=True)
         self.save_uv(texture_name)
+
 
     def make_layer(self, y):
         # sets up a layer for us to refference in the animation controller later.
@@ -115,6 +117,7 @@ class armorstand:
 
     def save_uv(self, name):
         # saves the texture file where you tell it to
+
         im = Image.fromarray(self.uv_array)
         im.save(name)
 
@@ -182,6 +185,7 @@ class armorstand:
         textureLayout = self.blocks_def[blockName]["textures"]
         texturedata = self.terrain_texture["texture_data"]
         textures = {}
+
         if type(textureLayout) is dict:
             if "side" in textureLayout.keys():
                 textures["east"] = textureLayout["side"]

@@ -6,7 +6,9 @@
       "min_engine_version": "1.8.0",
       "materials": {
         "default": "armor_stand",
+
         "ghost_blocks": "entity_alphablend" //Makes ghost_blocks render semi_transparent
+
       },
       "textures": {
         "default": "textures/entity/armor_stand",
@@ -45,8 +47,10 @@
         ]
       },
       "geometry": {
+
         "default": "geometry.armor_stand.larger_render", //Changes vanilla geometry to render further than it should
         "ghost_blocks": "geometry.armor_stand.ghost_blocks"
+
       },
       "render_controllers": [
         "controller.render.armor_stand",

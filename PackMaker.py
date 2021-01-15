@@ -21,6 +21,7 @@ def generate_pack(struct_name, pack_name):
         animation.insert_layer(y)
         for x in range(xlen):
             for z in range(zlen):
+
                 block = struct2make.get_block(x, y, z)
                 rot = None
                 top = False
@@ -35,6 +36,7 @@ def generate_pack(struct_name, pack_name):
 
                 armorstand.make_block(x, y, z, block["name"].replace(
                     "minecraft:", ""), rot=rot, top=top)
+
 
     armorstand.export(pack_name)
     animation.export(pack_name)
@@ -52,12 +54,17 @@ def generate_pack(struct_name, pack_name):
     rc = "armor_stand.ghost_blocks.render_controllers.json"
     rcpath = "{}/render_controllers/{}".format(pack_name, rc)
     os.makedirs(os.path.dirname(rcpath))
+    
     copyfile(rc, rcpath)
+    biggeo = "armor_stand.larger_render.geo.json"
+    biggeopath = "{}/models/entity/{}".format(pack_name,biggeo)
+    copyfile(biggeo, biggeopath)
     file_paths = []
-    for directory, _, _ in os.walk(pack_name):
+    for directory,_,_ in os.walk(pack_name):
         file_paths.extend(glob.glob(os.path.join(directory, "*.*")))
-    with ZipFile("{}.mcpack".format(pack_name), 'x') as zip:
-        # writing each file one by one
+    with ZipFile("{}.mcpack".format(pack_name), 'x') as zip: 
+        # writing each file one by one 
+
         for file in file_paths:
             print(file)
             zip.write(file)

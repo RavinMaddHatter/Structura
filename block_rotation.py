@@ -1,4 +1,5 @@
 import json
+
 blocks = {}
 blocks["observer"] = {}
 blocks["observer"]["0"] = [90, 0, 0]
