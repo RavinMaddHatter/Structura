@@ -3,8 +3,14 @@
 	"render_controllers": {
 		"controller.render.armor_stand.ghost_blocks": {
 			"geometry": "Geometry.ghost_blocks",
-			"materials": [ { "*": "Material.ghost_blocks" } ],
-			"textures": [ "Texture.ghost_blocks" ]
+			"materials": [
+				{
+					"*": "Material.ghost_blocks"
+				}
+			],
+			"textures": [
+				"Texture.ghost_blocks"
+			]
 		}
 	}
 }

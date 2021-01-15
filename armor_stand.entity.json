@@ -6,11 +6,13 @@
       "min_engine_version": "1.8.0",
       "materials": {
         "default": "armor_stand",
-		"ghost_blocks": "entity_alphablend"
+
+        "ghost_blocks": "entity_alphablend" //Makes ghost_blocks render semi_transparent
+
       },
       "textures": {
         "default": "textures/entity/armor_stand",
-		"ghost_blocks": "textures/entity/ghost_blocks"
+        "ghost_blocks": "textures/entity/ghost_blocks"
       },
       "animations": {
         "default_pose": "animation.armor_stand.default_pose",
@@ -29,9 +31,8 @@
         "wiggle": "animation.armor_stand.wiggle",
         "controller.pose": "controller.animation.armor_stand.pose",
         "controller.wiggling": "controller.animation.armor_stand.wiggle",
-		
-		// Ghost blocks animations
-		"scale": "animation.armor_stand.ghost_blocks.scale" // For scaling the blocks to full size.		
+        // Ghost blocks animations
+        "scale": "animation.armor_stand.ghost_blocks.scale" // For scaling the blocks to full size.		
       },
       "scripts": {
         "initialize": [
@@ -41,19 +42,20 @@
         "animate": [
           "controller.pose",
           "controller.wiggling",
-		  
-		  // Ghost blocks animations
-		  "scale" // For scaling the blocks to full size.
+          // Ghost blocks animations
+          "scale" // For scaling the blocks to full size.
         ]
       },
       "geometry": {
-        "default": "geometry.armor_stand.larger_render",
-		"ghost_blocks": "geometry.armor_stand.ghost_blocks"
+
+        "default": "geometry.armor_stand.larger_render", //Changes vanilla geometry to render further than it should
+        "ghost_blocks": "geometry.armor_stand.ghost_blocks"
+
       },
-      "render_controllers": [ 
-		"controller.render.armor_stand",
-		"controller.render.armor_stand.ghost_blocks" // For rendering the blocks
-	  ],
+      "render_controllers": [
+        "controller.render.armor_stand",
+        "controller.render.armor_stand.ghost_blocks" // For rendering the blocks
+      ],
       "enable_attachables": true
     }
   }
