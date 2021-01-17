@@ -27,7 +27,36 @@ def generate_pack(struct_name, pack_name):
                 top = False
                 variant="Default"
                 if "wall_block_type" in block["states"].keys():
-                    variant = block["states"]["wall_block_type"]
+                    variant = ["wall_block_type",block["states"]["wall_block_type"]]
+                if "wood_type" in block["states"].keys():
+                    variant = ["wood_type",block["states"]["wood_type"]]
+                    if block["name"] == "minecraft:wood":
+                        keys = block["states"]["wood_type"]
+                        if bool(block["states"]["stripped_bit"]):
+                            keys+="_stripped"
+                        variant = ["wood",keys]
+                if "old_log_type" in block["states"].keys():
+                    variant = ["old_log_type",block["states"]["old_log_type"]]
+                if "new_log_type" in block["states"].keys():
+                    variant = ["new_log_type",block["states"]["new_log_type"]]
+                if "stone_type" in block["states"].keys():
+                    variant = ["stone_type",block["states"]["stone_type"]]
+                if "prismarine_block_type" in block["states"].keys():
+                    variant = ["prismarine_block_type",block["states"]["prismarine_block_type"]]
+                if "stone_brick_type" in block["states"].keys():
+                    variant = ["stone_brick_type",block["states"]["stone_brick_type"]]
+                if "color" in block["states"].keys():
+                    variant = ["color",block["states"]["color"]]
+                if "sand_stone_type" in block["states"].keys():
+                    variant = ["sand_stone_type",block["states"]["sand_stone_type"]]
+                if "stone_slab_type" in block["states"].keys():
+                    variant = ["stone_slab_type",block["states"]["stone_slab_type"]]
+                if "stone_slab_type_2" in block["states"].keys():
+                    variant = ["stone_slab_type_2",block["states"]["stone_slab_type_2"]]
+                if "stone_slab_type_3" in block["states"].keys():
+                    variant = ["stone_slab_type_3",block["states"]["stone_slab_type_3"]]
+                if "stone_slab_type_4" in block["states"].keys():
+                    variant = ["stone_slab_type_4",block["states"]["stone_slab_type_4"]]
                 if "facing_direction" in block["states"].keys():
                     rot = block["states"]["facing_direction"]
 

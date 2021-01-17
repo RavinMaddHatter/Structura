@@ -14,6 +14,8 @@ class armorstand:
             self.terrain_texture = json.load(f)
         with open("block_rotation.json") as f:
             self.block_rotations = json.load(f)
+        with open("variants.json") as f:
+            self.block_variants = json.load(f)
         self.stand = {}
         self.texture_list = []
         self.geometry = {}
@@ -202,9 +204,9 @@ class armorstand:
     def stair(self, x, y, z, block_name,uv, rot=None,top=None):
         block_name = "block_{}_{}_{}".format(x, y, z)
         block1 = {}
-        offset = 7/16
+        offset = 0
         if top:
-            offset = 0.0
+            offset = 7/16
         block1["origin"] = [-1*(x+9), y + offset, z]
         block1["size"] = [1, 0.5, 1]
         block1["inflate"] = -0.03
@@ -215,13 +217,13 @@ class armorstand:
         block1uv["south"]["uv_size"] = [1, 0.5]
         block1["uv"]=block1uv
         if rot == 0:
-            rotation = [0, 180, 0]
-        elif rot == 1:
-            rotation = [0, 0, 0]
-        elif rot == 2:
             rotation = [0, 90, 0]
-        elif rot == 3:
+        elif rot == 1:
             rotation = [0, -90, 0]
+        elif rot == 2:
+            rotation = [0, 180, 0]
+        elif rot == 3:
+            rotation = [0, 0, 0]
 
         
         block2={}
@@ -295,6 +297,7 @@ class armorstand:
             self.uv_array = temp_new
 
     def block_name_to_uv(self, block_name, variant = ""):
+        
         # hellper function maps the the section of the uv file to the side of the block
         temp_uv = {}
         if block_name not in self.excluded:  # if you dont want a block to be rendered, exclude the UV
@@ -354,37 +357,9 @@ class armorstand:
             if type(texturedata[textures[key]]["textures"]) is str:
                 textures[key] = texturedata[textures[key]]["textures"]
             elif type(texturedata[textures[key]]["textures"]) is list:
-
-                index = 0
-                if variant == "cobblestone":
-                    index = 0
-                elif variant == "mossy_cobblestone":
-                    index = 1
-                elif variant == "granite":
-                    index = 2
-                elif variant == "diorite":
-                    index = 3
-                elif variant == "andesite":
-                    index = 4
-                elif variant == "sandstone":
-                    index = 5
-                elif variant == "brick":
-                   index = 6
-                elif variant == "stone_brick":
-                    index = 7
-                elif variant == "mossy_stone_brick":
-                    index = 8
-                elif variant == "nether_brick":
-                    index = 9
-                elif variant == "end_brick":
-                    index = 10
-                elif variant == "prismarine":
-                    index = 11
-                elif variant == "red_sandstone":
-                    index = 12
-                elif variant == "red_nether_brick":
-                    index = 13
-                    
+                index=0
+                if variant[0] in self.block_variants.keys():
+                    index=self.block_variants[variant[0]][variant[1] ]
                 textures[key] = texturedata[textures[key]]["textures"][index]
 
             
