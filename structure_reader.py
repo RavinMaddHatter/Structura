@@ -35,7 +35,7 @@ class process_structure:
                 if block_name in block_counter.keys():
                     block_counter[block_name] += 1
                 else:
-                    block_counter[block_name] = 0
+                    block_counter[block_name] = 1
         return block_counter
 
 # testFileName="test6.mcstructure"
