@@ -50,14 +50,19 @@ class armorstand:
         self.geometry["bones"].append(
             {"name": layer_name, "pivot": [-8, 0, 8], "parent": "ghost_blocks"})
 
-    def make_block(self, x, y, z, block_name, rot=None, top=False, trap_open=False, parent=None):
+    def make_block(self, x, y, z, block_name, rot=None, top=False, trap_open=False, parent=None,variant=None):
         # call this to add a block to the a bar of blocks that will be rendered
         if block_name not in self.excluded:
             slab = "slab" in block_name and "double" not in block_name
             wall = "wall" in block_name
+            torch = "torch" in block_name
+            lantern = "lantern" in block_name
+            stair = "stair" in block_name
+            hopper = "hopper" in block_name
             trapdoor = "trapdoor" in block_name or block_name in self.lower_objects
-            uv = self.block_name_to_uv(block_name)
-            if rot is not None:
+            uv = self.block_name_to_uv(block_name,variant=variant)
+            non_block=False
+            if rot is not None and not stair and not hopper:
 
                 if block_name in self.block_rotations.keys():
                     piv = self.block_rotations[block_name][str(int(rot))]
@@ -69,6 +74,10 @@ class armorstand:
                 piv = [0, 0, 0]
             if slab:
                 size = [1, .5, 1]
+                uv["east"]["uv_size"][1] = 0.5
+                uv["west"]["uv_size"][1] = 0.5
+                uv["north"]["uv_size"][1] = 0.5
+                uv["south"]["uv_size"][1] = 0.5
                 if top:
                     origin = [-1*(x+9), y+.5, z]
                 else:
@@ -85,36 +94,158 @@ class armorstand:
             elif wall:
                 size = [.5, 1, .5]
                 origin = [-1*(x+9)+.25, y, z+.25]
+                uv["east"]["uv_size"] = [0.5, 1]
+                uv["west"]["uv_size"] = [0.5, 1]
+                uv["north"]["uv_size"] = [0.5, 1]
+                uv["south"]["uv_size"] = [0.5, 1]
+            elif torch:
+                size = [3/16, 10/16, 3/16]
+                origin = [-1*(x+9) + (16-2)/32, y, z + (16-2)/32]
+                uv["east"]["uv"] = [7/16, uv["east"]["uv"][1]+6/16]
+                uv["east"]["uv_size"] = [2/16, 10/16]
+                uv["west"]["uv"] = [7/16, uv["west"]["uv"][1]+6/16]
+                uv["west"]["uv_size"] = [2/16, 10/16]
+                uv["north"]["uv"] = [7/16, uv["north"]["uv"][1]+6/16]
+                uv["north"]["uv_size"] = [2/16, 10/16]
+                uv["south"]["uv"] = [7/16, uv["south"]["uv"][1]+6/16]
+                uv["south"]["uv_size"] = [2/16, 10/16]
+                uv["up"]["uv"] = [7/16, uv["up"]["uv"][1]+6/16]
+                uv["up"]["uv_size"] = [2/16, 2/16]
+                uv["down"]["uv"] = [7/16, uv["down"]["uv"][1]+14/16]
+                uv["down"]["uv_size"] = [2/16,2/16]
+            elif lantern:
+                size = [6/16, 7/16, 6/16]
+                origin = [-1*(x+9) + (16-6)/32, y + (16-7)/32, z + (16-6)/32]
+                uv["east"]["uv"] = [0, uv["east"]["uv"][1]+2/16]
+                uv["east"]["uv_size"] = [6/16, 7/16]
+                uv["west"]["uv"] = [0, uv["west"]["uv"][1]+2/16]
+                uv["west"]["uv_size"] = [6/16, 7/16]
+                uv["north"]["uv"] = [0, uv["north"]["uv"][1]+2/16]
+                uv["north"]["uv_size"] = [6/16, 7/16]
+                uv["south"]["uv"] = [0, uv["south"]["uv"][1]+2/16]
+                uv["south"]["uv_size"] = [6/16, 7/16]
+                uv["up"]["uv"] = [0, uv["up"]["uv"][1]+9/16]
+                uv["up"]["uv_size"] = [6/16, 6/16]
+                uv["down"]["uv"] = [0, uv["down"]["uv"][1]+9/16]
+                uv["down"]["uv_size"] = [6/16, 6/16]
+            elif stair:
+                self.stair(x, y, z, block_name,uv, rot, top)
+                non_block=True
+            elif hopper:
+                self.make_hopper(x, y, z, block_name,uv, rot)
+                non_block=True
             else:
                 origin = [-1*(x+9), y, z]
                 size = [1, 1, 1]
-            block_name = "block_{}_{}_{}".format(x, y, z)
 
-            self.blocks[block_name] = {}
-            self.blocks[block_name]["name"] = block_name
-            self.blocks[block_name]["parent"] = "layer_{}".format(y)
-            self.blocks[block_name]["pivot"] = [0, 0, 0]
-            self.blocks[block_name]["cubes"] = []
-            self.blocks[block_name]["cubes"].append(
-                {"origin": origin, "size": size, "rotation": piv, "uv": uv, "inflate": -0.03})
+            if not non_block:
+                block_name = "block_{}_{}_{}".format(x, y, z)
 
-    def rotate_observer_like(self, rot):
+                self.blocks[block_name] = {}
+                self.blocks[block_name]["name"] = block_name
+                self.blocks[block_name]["parent"] = "layer_{}".format(y)
+                self.blocks[block_name]["pivot"] = [0, 0, 0]
+                self.blocks[block_name]["cubes"] = []
+                self.blocks[block_name]["cubes"].append(
+                    {"origin": origin, "size": size, "rotation": piv, "uv": uv, "inflate": -0.03})
+    def make_hopper(self, x, y, z, block_name,uv, rot=None):
+        block_name = "block_{}_{}_{}".format(x, y, z)
+        block1 = {}
+        block1["origin"] = [-1*(x+9), y+9/16, z]
+        block1["size"] = [1, 7/16, 1]
+        block1["inflate"] = -0.03
+        block1uv=dict(uv)
+        block1uv["east"]["uv_size"] = [1, 6/16]
+        block1uv["west"]["uv_size"] = [1, 6/16]
+        block1uv["north"]["uv_size"] = [1, 6/16]
+        block1uv["south"]["uv_size"] = [1, 6/16]
+        block1["uv"]=block1uv
+        block2={}
+        block2["origin"] = [-1*(x+9) + 0.25, y+4/16, z + 0.25]
+        block2["size"] = [.5, 6/16, 0.5]
+        block2["inflate"] = -0.03
+        block2uv=dict(uv)
+        block2uv["east"]["uv_size"] = [0.5, 6/16]
+        block2uv["west"]["uv_size"] = [0.5, 6/16]
+        block2uv["north"]["uv_size"] = [0.5, 6/16]
+        block2uv["south"]["uv_size"] = [0.5, 6/16]
+        block2["uv"]=block2uv
+        
+        block3={}
+        
+        block3["size"] = [4/16, 4/16, 4/16]
+        block3["inflate"] = -0.03
+        block3uv=dict(uv)
+        block3uv["east"]["uv_size"] = [4/16, 4/16]
+        block3uv["west"]["uv_size"] = [4/16, 4/16]
+        block3uv["north"]["uv_size"] = [4/16, 4/16]
+        block3uv["south"]["uv_size"] = [4/16, 4/16]
+        block3["uv"]=block2uv
         if rot == 0:
-            piv = [90, 0, 0]
-        elif rot == 1:
-            piv = [270, 0, 0]
-        elif rot == 2:
-            piv = [0, 0, 0]
-        elif rot == 3:
-            piv = [0, 180, 0]
-        elif rot == 4:
-            piv = [0, 270, 0]
+            block3["origin"] = [-1*(x+9) + 6/16, y+1/16, z + 6/16]
         elif rot == 5:
-            piv = [0, 90, 0]
-        else:
-            piv = [0, 0, 0]
-        return piv
+            block3["origin"] = [-1*(x+9) + 1/16, y + 5/16, z + 6/16]
+        elif rot == 2:
+            block3["origin"] = [-1*(x+9) + 6/16, y + 5/16, z + 1/16]
+        elif rot == 3:
+            block3["origin"] = [-1*(x+9) + 6/16, y + 5/16, z + 1 - 6/16]
+        elif rot == 4:
+            block3["origin"] = [-1*(x+9) + 1 - 6/16, y + 5/16, z + 6/16]
+            
+        self.blocks[block_name] = {}
+        self.blocks[block_name]["name"] = block_name
+        self.blocks[block_name]["parent"] = "layer_{}".format(y)
+        self.blocks[block_name]["pivot"] = [0, 0, 0]
+        self.blocks[block_name]["cubes"] = [block1]
+        self.blocks[block_name]["cubes"].append(block2)
+        self.blocks[block_name]["cubes"].append(block3)
+    def stair(self, x, y, z, block_name,uv, rot=None,top=None):
+        block_name = "block_{}_{}_{}".format(x, y, z)
+        block1 = {}
+        offset = 7/16
+        if top:
+            offset = 0.0
+        block1["origin"] = [-1*(x+9), y + offset, z]
+        block1["size"] = [1, 0.5, 1]
+        block1["inflate"] = -0.03
+        block1uv=dict(uv)
+        block1uv["east"]["uv_size"] = [1, 0.5]
+        block1uv["west"]["uv_size"] = [1, 0.5]
+        block1uv["north"]["uv_size"] = [1, 0.5]
+        block1uv["south"]["uv_size"] = [1, 0.5]
+        block1["uv"]=block1uv
+        if rot == 0:
+            rotation = [0, 180, 0]
+        elif rot == 1:
+            rotation = [0, 0, 0]
+        elif rot == 2:
+            rotation = [0, 90, 0]
+        elif rot == 3:
+            rotation = [0, -90, 0]
 
+        
+        block2={}
+        block2["origin"] = [-1*(x+9), y + 7/16 - offset, z]
+        block2["size"] = [1, 0.5, 0.5]
+        block2["rotation"]=rotation
+        block2["pivot"]=[-1*(x+9) + 0.5, y + 0.5 - offset, z + 0.5]
+        block2["inflate"] = -0.03
+        block2uv=dict(uv)
+        block2uv["east"]["uv_size"] = [1, 1]
+        block2uv["west"]["uv_size"] = [1, 1]
+        block2uv["north"]["uv_size"] = [1, 1]
+        block2uv["south"]["uv_size"] = [1, 1]
+        block2uv["up"]["uv_size"] = [1, 1]
+        block2uv["down"]["uv_size"] = [1, 1]
+        block2["uv"]=block2uv
+            
+        self.blocks[block_name] = {}
+        self.blocks[block_name]["name"] = block_name
+        self.blocks[block_name]["parent"] = "layer_{}".format(y)
+        self.blocks[block_name]["pivot"] = [0.5, 0.5, 0.5]
+        self.blocks[block_name]["cubes"] = [block1]
+        self.blocks[block_name]["cubes"].append(block2)
+        
     def save_uv(self, name):
         # saves the texture file where you tell it to
 
@@ -142,8 +273,15 @@ class armorstand:
         # helper function that just appends to the uv array to make things
         image = Image.open(new_image_filename)
         impt = np.array(image)
-        image_array = np.ones([impt.shape[0], impt.shape[1], 4])*255
-        image_array[0:impt.shape[0], 0:impt.shape[1], 0:impt.shape[2]] = impt
+        shape=list(impt.shape)
+        if shape[0]>16:
+            shape[0]=16
+            impt=impt[0:16,:,:]
+        if shape[1]>16:
+            shape[1]=16
+            impt=impt[:,0:16,:]
+        image_array = np.ones([16, 16, 4],np.uint8)*255
+        image_array[0:shape[0], 0:shape[1], 0:impt.shape[2]] = impt
         image_array[:, :, 3] = image_array[:, :, 3]*.8
         if type(self.uv_array) is type(None):
             self.uv_array = image_array
@@ -156,11 +294,11 @@ class armorstand:
             temp_new[startshape[0]:, :, :] = image_array
             self.uv_array = temp_new
 
-    def block_name_to_uv(self, block_name, variant=0):
+    def block_name_to_uv(self, block_name, variant = ""):
         # hellper function maps the the section of the uv file to the side of the block
         temp_uv = {}
         if block_name not in self.excluded:  # if you dont want a block to be rendered, exclude the UV
-            texture_files = self.get_block_texture_paths(block_name, variant=0)
+            texture_files = self.get_block_texture_paths(block_name, variant = variant)
             if block_name == "sticky_piston":
                 texture_files["up"] = "textures/blocks/piston_top_sticky"
             if block_name == "piston":
@@ -180,7 +318,7 @@ class armorstand:
         for key in self.blocks.keys():
             self.geometry["bones"].append(self.blocks[key])
 
-    def get_block_texture_paths(self, blockName, variant=0):
+    def get_block_texture_paths(self, blockName, variant = ""):
         # helper function for getting the texture locations from the vanilla files.
         textureLayout = self.blocks_def[blockName]["textures"]
         texturedata = self.terrain_texture["texture_data"]
@@ -212,10 +350,44 @@ class armorstand:
             textures["up"] = textureLayout
             textures["down"] = textureLayout
         for key in textures.keys():
+            
             if type(texturedata[textures[key]]["textures"]) is str:
                 textures[key] = texturedata[textures[key]]["textures"]
             elif type(texturedata[textures[key]]["textures"]) is list:
-                textures[key] = texturedata[textures[key]]["textures"][variant]
+
+                index = 0
+                if variant == "cobblestone":
+                    index = 0
+                elif variant == "mossy_cobblestone":
+                    index = 1
+                elif variant == "granite":
+                    index = 2
+                elif variant == "diorite":
+                    index = 3
+                elif variant == "andesite":
+                    index = 4
+                elif variant == "sandstone":
+                    index = 5
+                elif variant == "brick":
+                   index = 6
+                elif variant == "stone_brick":
+                    index = 7
+                elif variant == "mossy_stone_brick":
+                    index = 8
+                elif variant == "nether_brick":
+                    index = 9
+                elif variant == "end_brick":
+                    index = 10
+                elif variant == "prismarine":
+                    index = 11
+                elif variant == "red_sandstone":
+                    index = 12
+                elif variant == "red_nether_brick":
+                    index = 13
+                    
+                textures[key] = texturedata[textures[key]]["textures"][index]
+
+            
         return textures
 
     def loadbasefile(self, pathtofile):

@@ -1717,6 +1717,10 @@
       "piston_side" : {
          "textures" : [ "textures/blocks/piston_side" ]
       },
+      "piston_side_sticky" : {
+         "textures" : [ "textures/blocks/piston_side_sticky" ]
+      },
+	  
       "piston_top" : {
          "textures" : [ "textures/blocks/piston_inner" ]
       },
