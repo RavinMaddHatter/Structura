@@ -25,6 +25,9 @@ def generate_pack(struct_name, pack_name):
                 block = struct2make.get_block(x, y, z)
                 rot = None
                 top = False
+                variant="Default"
+                if "wall_block_type" in block["states"].keys():
+                    variant = block["states"]["wall_block_type"]
                 if "facing_direction" in block["states"].keys():
                     rot = block["states"]["facing_direction"]
 
@@ -32,10 +35,14 @@ def generate_pack(struct_name, pack_name):
                     rot = block["states"]["direction"]
                 if "top_slot_bit" in block["states"].keys():
                     top = bool(block["states"]["top_slot_bit"])
-                    print(top)
+                if "weirdo_direction" in block["states"].keys():
+                    rot = int(block["states"]["weirdo_direction"])
+                if "upside_down_bit" in block["states"].keys():
+                    top = bool(block["states"]["upside_down_bit"])
+
 
                 armorstand.make_block(x, y, z, block["name"].replace(
-                    "minecraft:", ""), rot=rot, top=top)
+                    "minecraft:", ""), rot = rot, top = top,variant = variant)
 
 
     armorstand.export(pack_name)
