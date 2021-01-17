@@ -76,24 +76,24 @@ def generate_pack(struct_name, pack_name):
 
     armorstand.export(pack_name)
     animation.export(pack_name)
-    copyfile("pack_icon.png", "{}/pack_icon.png".format(pack_name))
+    copyfile("lookups/pack_icon.png", "{}/pack_icon.png".format(pack_name))
     os.makedirs(os.path.dirname(
         "{}/entity/armor_stand.entity.json".format(pack_name)), exist_ok=True)
-    copyfile("armor_stand.entity.json",
+    copyfile("lookups/armor_stand.entity.json",
              "{}/entity/armor_stand.entity.json".format(pack_name))
 
     # Adds to zip file a modified armor stand geometry to enlarge the render area of the entity
-    larger_render = "armor_stand.larger_render.geo.json"
-    larger_render_path = "{}/models/entity/{}".format(pack_name, larger_render)
+    larger_render = "lookups/armor_stand.larger_render.geo.json"
+    larger_render_path = "{}/models/entity/{}".format(pack_name, "armor_stand.larger_render.geo.json")
     copyfile(larger_render, larger_render_path)
 
-    rc = "armor_stand.ghost_blocks.render_controllers.json"
+    rc = "lookups/armor_stand.ghost_blocks.render_controllers.json"
     rcpath = "{}/render_controllers/{}".format(pack_name, rc)
     os.makedirs(os.path.dirname(rcpath))
     
     copyfile(rc, rcpath)
-    biggeo = "armor_stand.larger_render.geo.json"
-    biggeopath = "{}/models/entity/{}".format(pack_name,biggeo)
+    biggeo = "lookups/armor_stand.larger_render.geo.json"
+    biggeopath = "{}/models/entity/{}".format(pack_name,"armor_stand.larger_render.geo.json")
     copyfile(biggeo, biggeopath)
     file_paths = []
     for directory,_,_ in os.walk(pack_name):

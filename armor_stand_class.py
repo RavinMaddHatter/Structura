@@ -12,9 +12,9 @@ class armorstand:
             self.blocks_def = json.load(f)
         with open("{}/textures/terrain_texture.json".format(self.ref_resource_pack)) as f:
             self.terrain_texture = json.load(f)
-        with open("block_rotation.json") as f:
+        with open("lookups/block_rotation.json") as f:
             self.block_rotations = json.load(f)
-        with open("variants.json") as f:
+        with open("lookups/variants.json") as f:
             self.block_variants = json.load(f)
         self.stand = {}
         self.texture_list = []
