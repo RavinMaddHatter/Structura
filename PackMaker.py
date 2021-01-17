@@ -8,9 +8,14 @@ from shutil import copyfile
 import os
 from zipfile import ZipFile
 import glob
+import shutil
+from tkinter import filedialog
 
 
 def generate_pack(struct_name, pack_name):
+    while os.path.isfile("{}.mcpack".format(pack_name)) or pack_name == "":
+        pack_name = filedialog.asksaveasfilename(initialdir = os.getcwd(),title = "Select a New Name",filetypes = (("pack files","*.mcpack"),("all files","*.*")))
+        
     manifest.export(pack_name)
     struct2make = structure_reader.process_structure(struct_name)
     armorstand = armor_stand_class.armorstand()
@@ -98,12 +103,15 @@ def generate_pack(struct_name, pack_name):
     file_paths = []
     for directory,_,_ in os.walk(pack_name):
         file_paths.extend(glob.glob(os.path.join(directory, "*.*")))
+    
+        
     with ZipFile("{}.mcpack".format(pack_name), 'x') as zip: 
         # writing each file one by one 
 
         for file in file_paths:
             print(file)
             zip.write(file)
+    shutil.rmtree(pack_name)
 
 
 def runFromGui():
@@ -114,7 +122,7 @@ def runFromGui():
 def browseStruct():
     FileGUI.set(filedialog.askopenfilename(filetypes=(
         ("Structure File", "*.mcstructure *.MCSTRUCTURE"), )))
-
+#def delete(pack_name):
 
 root = Tk()
 root.title("Bedrock Litematica Maker")
