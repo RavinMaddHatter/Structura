@@ -10,7 +10,7 @@ from zipfile import ZipFile
 import glob
 import shutil
 from tkinter import filedialog
-
+from tkinter import messagebox
 
 def generate_pack(struct_name, pack_name):
     while os.path.isfile("{}.mcpack".format(pack_name)) or pack_name == "":
@@ -74,10 +74,19 @@ def generate_pack(struct_name, pack_name):
                 if "upside_down_bit" in block["states"].keys():
                     top = bool(block["states"]["upside_down_bit"])
 
-
-                armorstand.make_block(x, y, z, block["name"].replace(
-                    "minecraft:", ""), rot = rot, top = top,variant = variant)
-
+                try:
+                    armorstand.make_block(x, y, z, block["name"].replace(
+                        "minecraft:", ""), rot = rot, top = top,variant = variant)
+                except:
+                    print("There is an unsuported block in this world and it was skipped")
+                    print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
+    allBlocks = struct2make.get_block_list()
+    fileName="{} block list.txt".format(pack_name)
+    with open(fileName,"w+") as text_file:
+        text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
+        for name in allBlocks.keys():
+            commonName = name.replace("minecraft:","")
+            text_file.write("{}: {}\n".format(commonName,allBlocks[name]))
 
     armorstand.export(pack_name)
     animation.export(pack_name)
@@ -115,8 +124,15 @@ def generate_pack(struct_name, pack_name):
 
 
 def runFromGui():
-    FileGUI
-    generate_pack(FileGUI.get(), packName.get())
+    stop = False
+    if len(FileGUI.get()) == 0:
+        stop = True
+        messagebox.showinfo("Error", "You need to browse for a structure file!")
+    if len(packName.get()) == 0:
+        stop = True
+        messagebox.showinfo("Error", "You need a Name")
+    if not stop:
+        generate_pack(FileGUI.get(), packName.get())
 
 
 def browseStruct():
