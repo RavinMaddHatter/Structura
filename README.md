@@ -2,7 +2,7 @@
 
 This tool is inspired by Litematica. It is a tool that generates Resource packs from .mcstructure files. In this resource pack the armor stands were modified to render when off screen, and have all the blocks from your structure file as bones in their model. Thes "ghost blocks" are used to show the user where to place the real blocks. 
 
-A youtube video will be linked here later explaining in full detail
+A Youtube video will be linked here later explaining in full detail.
 
 ## Generating an .mcstrucutre file
 
@@ -20,15 +20,15 @@ Next bows for your exported structure from earlier using browse button, or type 
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/browse_file.PNG?raw=true)
 Enter a name for you structura pack.
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/name.PNG?raw=true)
-** if you mistakenly name too files the same it will show you the prompt below to rename it
+** if you mistakenly name two files the same it will show you the prompt below to rename it
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/already_exists.PNG?raw=true)
-If everythign worked you should now have an mcpack file 
+If everything worked you should now have an mcpack file 
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/pack_made.PNG?raw=true)
 
 ## Using the pack
-This pack is like any texture pack to use it you must make sure it is active, enabling it in your global resources works well.
+This pack is like any texture pack. To use it you must make sure it is active, enabling it in your global resources works well.
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/make_pack_active.PNG?raw=true)
-The structure will appear around every armor stand in the worlds you load it is how we are able to make it work on any world. So get out an armor stand and place it down to see your structure.
+The structure will appear around every armor stand in the worlds you load. It is how we are able to make it work on any world. So get out an armor stand and place it down to see your structure.
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/example_full.png?raw=true)
 You can go through a structure layer by layer if you like by shift right clicking on the stand. This will minimize all layers except the "active" ones. I cant add poses without adding a behavior pack so for large structures there will be mutiple layers displayed at a time (12 blocks apart)
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/example_layer.png?raw=true)
