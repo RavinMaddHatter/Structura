@@ -8,13 +8,18 @@ import os
 class armorstand:
     def __init__(self, size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
         self.ref_resource_pack = ref_pack
+        ## we load all of these items containing the mapping of blocks to the some property that is either hidden, implied or just not clear
         with open("{}/blocks.json".format(self.ref_resource_pack)) as f:
+            ## defines the blocks from the NBT name tells us sides vs textures
             self.blocks_def = json.load(f)
         with open("{}/textures/terrain_texture.json".format(self.ref_resource_pack)) as f:
+            ##maps textures names to texture files.
             self.terrain_texture = json.load(f)
         with open("lookups/block_rotation.json") as f:
+            ## custom look up table i wrote to help with rotations, error messages dump if somehting has undefined rotations 
             self.block_rotations = json.load(f)
         with open("lookups/variants.json") as f:
+            ## custom lookup table mapping the assume array location in the terrian texture to the relevant blocks IE log2 index 2 implies a specific wood type not captured anywhere
             self.block_variants = json.load(f)
         self.stand = {}
         self.texture_list = []
@@ -24,19 +29,23 @@ class armorstand:
         self.blocks = {}
         self.size = []
         self.bones = []
+        self.errors={}
         self.uv_array = None
+        ## The stuff below is a horrible cludge that should get cleaned up. +1 karma to whomever has a better plan for this.
+        # this is how i determine if something should be thin. it is ugly, but kinda works
         self.lower_objects = ["powered_repeater", "unpowered_repeater", "unpowered_comparator", "activator_rail", "detector_rail",
                               "golden_rail", "rail", "powered_comparator", "spruce_pressure_plate", "stone_pressure_plate", "redstone_wire", "frame", "carpet"]
+        ## these blocks are either not needed, or cause issue. Grass is banned because the terrian_texture.json has a biome map in it. If someone wants to fix we can un-bann it
         self.excluded = ["air", "grass", "structure_block"]
 
     def export(self, pack_folder):
+        ## This exporter just packs up the armorstand json files and dumps them where it should go. as well as exports the UV file
         self.add_blocks_to_bones()
         self.geometry["description"]["texture_height"] = len(
             self.uv_map.keys())
-        self.stand["minecraft:geometry"] = [self.geometry]
+        self.stand["minecraft:geometry"] = [self.geometry] ## this is insuring the geometries are imported, there is an implied refference other places.
         path_to_geo = "{}/models/entity/armor_stand.ghost_blocks.geo.json".format(
             pack_folder)
-
         os.makedirs(os.path.dirname(path_to_geo), exist_ok=True)
         with open(path_to_geo, "w+") as json_file:
             json.dump(self.stand, json_file, indent=2)
@@ -47,13 +56,13 @@ class armorstand:
 
 
     def make_layer(self, y):
-        # sets up a layer for us to refference in the animation controller later.
+        # sets up a layer for us to refference in the animation controller later. Layers are moved during the poses 
         layer_name = "layer_{}".format(y)
         self.geometry["bones"].append(
             {"name": layer_name, "pivot": [-8, 0, 8], "parent": "ghost_blocks"})
 
     def make_block(self, x, y, z, block_name, rot=None, top=False, trap_open=False, parent=None,variant=None):
-        # call this to add a block to the a bar of blocks that will be rendered
+        # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
         if block_name not in self.excluded:
             slab = "slab" in block_name and "double" not in block_name
             wall = "wall" in block_name
@@ -65,15 +74,20 @@ class armorstand:
             uv = self.block_name_to_uv(block_name,variant=variant)
             non_block=False
             if rot is not None and not stair and not hopper:
-
-                if block_name in self.block_rotations.keys():
-                    piv = self.block_rotations[block_name][str(int(rot))]
+                if "trapdoor" in block_name:
+                    rot_name = "trapdoor"
+                else:
+                    rot_name = block_name
+                if rot_name in self.block_rotations.keys():
+                    piv = self.block_rotations[rot_name][str(int(rot))]
 
                 else:
                     piv = [0, 0, 0]
                     print("no rotation for {} found".format(block_name))
             else:
                 piv = [0, 0, 0]
+            pivot_point = None
+            #the section below is the hardcoded block geometries. This likely should be broken into helper functions. It will make it easier to maintain....
             if slab:
                 size = [1, .5, 1]
                 uv["east"]["uv_size"][1] = 0.5
@@ -85,14 +99,16 @@ class armorstand:
                 else:
                     origin = [-1*(x+9), y, z]
             elif trapdoor:
-                if trap_open:
-                    size = [1, 2/16, 1]
-                else:
-                    size = [1, 2/16, 1]
-                if top:
-                    origin = [-1*(x+9), y+14/2, z]
+                if top and not trap_open:
+                    origin = [-1*(x+9), y+14/16, z]
                 else:
                     origin = [-1*(x+9), y, z]
+                
+                if trap_open:
+                    pivot_point=[-1*(x+9)+.5, y+.5, z+.5]
+                    size = [1, 1, 2/16]
+                else:
+                    size = [1, 2/16, 1]
             elif wall:
                 size = [.5, 1, .5]
                 origin = [-1*(x+9)+.25, y, z+.25]
@@ -139,7 +155,9 @@ class armorstand:
             else:
                 origin = [-1*(x+9), y, z]
                 size = [1, 1, 1]
-
+            ## the code below assumes 1 cube, the helper functions for hoppers and stairs handle proper blocks,
+            ## Probably should just move all this to helper functions for each block geo
+                
             if not non_block:
                 block_name = "block_{}_{}_{}".format(x, y, z)
 
@@ -148,9 +166,17 @@ class armorstand:
                 self.blocks[block_name]["parent"] = "layer_{}".format(y)
                 self.blocks[block_name]["pivot"] = [0, 0, 0]
                 self.blocks[block_name]["cubes"] = []
-                self.blocks[block_name]["cubes"].append(
-                    {"origin": origin, "size": size, "rotation": piv, "uv": uv, "inflate": -0.03})
+                if pivot_point is not None:
+                    self.blocks[block_name]["cubes"].append(
+                        {"origin": origin, "size": size, "rotation": piv, "uv": uv, "inflate": -0.03,"pivot":pivot_point})
+                else:
+                    self.blocks[block_name]["cubes"].append(
+                        {"origin": origin, "size": size, "rotation": piv, "uv": uv, "inflate": -0.03})
+                
+                    
+                
     def make_hopper(self, x, y, z, block_name,uv, rot=None):
+        ## helper function for hoppers. it is a bit ugly, but it works
         block_name = "block_{}_{}_{}".format(x, y, z)
         block1 = {}
         block1["origin"] = [-1*(x+9), y+9/16, z]
@@ -202,6 +228,7 @@ class armorstand:
         self.blocks[block_name]["cubes"].append(block2)
         self.blocks[block_name]["cubes"].append(block3)
     def stair(self, x, y, z, block_name,uv, rot=None,top=None):
+        ##helper function for stair creation. currently does not support corner stairs. 
         block_name = "block_{}_{}_{}".format(x, y, z)
         block1 = {}
         offset = 0
@@ -250,7 +277,6 @@ class armorstand:
         
     def save_uv(self, name):
         # saves the texture file where you tell it to
-
         im = Image.fromarray(self.uv_array)
         im.save(name)
 
@@ -298,7 +324,7 @@ class armorstand:
 
     def block_name_to_uv(self, block_name, variant = ""):
         
-        # hellper function maps the the section of the uv file to the side of the block
+        # helper function maps the the section of the uv file to the side of the block
         temp_uv = {}
         if block_name not in self.excluded:  # if you dont want a block to be rendered, exclude the UV
             texture_files = self.get_block_texture_paths(block_name, variant = variant)
@@ -364,10 +390,3 @@ class armorstand:
 
             
         return textures
-
-    def loadbasefile(self, pathtofile):
-        # unused function for loading an armorstand.
-        with open(pathtofile) as f:
-            self.stand = json.load(f)
-        self.geometry = self.stand["minecraft:geometry"][0]
-        self.stand["minecraft:geometry"] = [self.geometry]
