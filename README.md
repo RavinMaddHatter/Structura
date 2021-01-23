@@ -3,6 +3,9 @@
 This tool is inspired by Litematica. It is a tool that generates Resource packs from .mcstructure files. In this resource pack the armor stands were modified to render when off screen, and have all the blocks from your structure file as bones in their model. Thes "ghost blocks" are used to show the user where to place the real blocks. 
 
 A Youtube video will be linked here later explaining in full detail.
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/IdKT925LKMM/0.jpg)](https://www.youtube.com/watch?v=IdKT925LKMM)
+
+
 
 ## Generating an .mcstrucutre file
 
