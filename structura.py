@@ -2,7 +2,7 @@ import armor_stand_class
 import structure_reader
 import animation_class
 from tkinter import StringVar, Button, Label, Entry, Tk
-from tkinter import filedialog
+from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar
 import manifest
 from shutil import copyfile
 import os
@@ -12,7 +12,7 @@ import shutil
 from tkinter import filedialog
 from tkinter import messagebox
 
-def generate_pack(struct_name, pack_name):
+def generate_pack(struct_name, pack_name,opacity,offset=[9,0,0]):
     # check that the pack name is not already used
     while os.path.isfile("{}.mcpack".format(pack_name)) or pack_name == "":
         pack_name = filedialog.asksaveasfilename(initialdir = os.getcwd(),
@@ -26,7 +26,7 @@ def generate_pack(struct_name, pack_name):
     #reads structure
     struct2make = structure_reader.process_structure(struct_name)
     #creates a base armorstand class for us to insert blocks
-    armorstand = armor_stand_class.armorstand()
+    armorstand = armor_stand_class.armorstand(alpha = opacity,offsets=offset)
     #creats a base animation controller for us to put pose changes into
     animation = animation_class.animations()
     #gets the shape for looping
@@ -96,8 +96,6 @@ def generate_pack(struct_name, pack_name):
                     armorstand.make_block(x, y, z, block["name"].replace(
                         "minecraft:", ""), rot = rot, top = top,variant = variant, trap_open=open_bit)
                 except:
-                    armorstand.make_block(x, y, z, block["name"].replace(
-                        "minecraft:", ""), rot = rot, top = top,variant = variant, trap_open=open_bit)
                     print("There is an unsuported block in this world and it was skipped")
                     print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
     ## this is a quick hack to get block lists, doesnt consider vairants.... so be careful                
@@ -157,29 +155,53 @@ def runFromGui():
     if len(packName.get()) == 0:
         stop = True
         messagebox.showinfo("Error", "You need a Name")
+    opacity=(100-sliderVar.get())/100
+    offset=[xvar.get(),yvar.get(),zvar.get()]
     if not stop:
-        generate_pack(FileGUI.get(), packName.get())
+        generate_pack(FileGUI.get(), packName.get(),opacity,offset=offset)
 
 
 def browseStruct():
     #brows for a structure file.
     FileGUI.set(filedialog.askopenfilename(filetypes=(
         ("Structure File", "*.mcstructure *.MCSTRUCTURE"), )))
-
+##def validate(self, action, index, value_if_allowed,
+##                   prior_value, text, validation_type, trigger_type, widget_name):
+##    if value_if_allowed:
+##        try:
+##            float(value_if_allowed)
+##            return True
+##        except ValueError:
+##            return False
+##    else:
+##        return False
+    
 
 root = Tk()
 root.title("Structura")
 
-
+#vcmd = (root.register(validate),'%d', '%i', '%P', '%s', '%S', '%v', '%V', '%W')
 FileGUI = StringVar()
 packName = StringVar()
+sliderVar = DoubleVar()
+xvar = IntVar()
+yvar = IntVar()
+zvar = IntVar()
+sliderVar.set(20)
+
 file_entry = Entry(root, textvariable=FileGUI)
 packName_entry = Entry(root, textvariable=packName)
+cord_lb = Label(root, text="offset")
+x_entry = Entry(root, textvariable=xvar, width=5)
+y_entry = Entry(root, textvariable=yvar, width=5)
+z_entry = Entry(root, textvariable=zvar, width=5)
 file_lb = Label(root, text="Structure file")
 packName_lb = Label(root, text="Pack Name")
 packButton = Button(root, text="Browse", command=browseStruct)
 
 saveButton = Button(root, text="Make Pack", command=runFromGui)
+transparency_lb = Label(root, text="Transparency")
+transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,tickinterval=10,orient=HORIZONTAL)
 r = 0
 file_lb.grid(row=r, column=0)
 file_entry.grid(row=r, column=1)
@@ -188,7 +210,17 @@ r += 1
 packName_lb.grid(row=r, column=0)
 packName_entry.grid(row=r, column=1)
 r += 1
+cord_lb.grid(row=r, column=0,columnspan=3)
+r += 1
+x_entry.grid(row=r, column=0)
+y_entry.grid(row=r, column=1)
+z_entry.grid(row=r, column=2)
+r += 1
+transparency_lb.grid(row=r, column=0)
+transparency_entry.grid(row=r, column=1,columnspan=2)
+r += 1
 saveButton.grid(row=r, column=2)
 
 
 root.mainloop()
+root.quit()

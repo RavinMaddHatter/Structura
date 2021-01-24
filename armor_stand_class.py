@@ -6,7 +6,7 @@ import os
 
 
 class armorstand:
-    def __init__(self, size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
+    def __init__(self, alpha = 0.8,offsets=[9,0,0], size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
         self.ref_resource_pack = ref_pack
         ## we load all of these items containing the mapping of blocks to the some property that is either hidden, implied or just not clear
         with open("{}/blocks.json".format(self.ref_resource_pack)) as f:
@@ -22,6 +22,8 @@ class armorstand:
             ## custom lookup table mapping the assume array location in the terrian texture to the relevant blocks IE log2 index 2 implies a specific wood type not captured anywhere
             self.block_variants = json.load(f)
         self.stand = {}
+        self.offsets = offsets
+        self.alpha=alpha
         self.texture_list = []
         self.geometry = {}
         self.stand_init()
@@ -64,7 +66,7 @@ class armorstand:
     def make_block(self, x, y, z, block_name, rot=None, top=False, trap_open=False, parent=None,variant=None):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
         if block_name not in self.excluded:
-            slab = "slab" in block_name and "double" not in block_name
+            slab = ("slab" in block_name and "double" not in block_name) or "daylight_detector" in block_name
             wall = "wall" in block_name
             torch = "torch" in block_name
             lantern = "lantern" in block_name
@@ -95,30 +97,30 @@ class armorstand:
                 uv["north"]["uv_size"][1] = 0.5
                 uv["south"]["uv_size"][1] = 0.5
                 if top:
-                    origin = [-1*(x+9), y+.5, z]
+                    origin = [-1*(x + self.offsets[0]), y + 0.5 + self.offsets[1], z + self.offsets[2]]
                 else:
-                    origin = [-1*(x+9), y, z]
+                    origin = [-1*(x + self.offsets[0]), y + self.offsets[1], z + self.offsets[2]]
             elif trapdoor:
                 if top and not trap_open:
-                    origin = [-1*(x+9), y+14/16, z]
+                    origin = [-1*(x + self.offsets[0]), y + 14/16 + self.offsets[1], z + self.offsets[2]]
                 else:
-                    origin = [-1*(x+9), y, z]
+                    origin = [-1*(x + self.offsets[0]), y + self.offsets[1], z + self.offsets[2]]
                 
                 if trap_open:
-                    pivot_point=[-1*(x+9)+.5, y+.5, z+.5]
+                    pivot_point=[-1*(x + self.offsets[0])+.5, y + 0.5  + self.offsets[1], z + 0.5 + self.offsets[2]]
                     size = [1, 1, 2/16]
                 else:
                     size = [1, 2/16, 1]
             elif wall:
                 size = [.5, 1, .5]
-                origin = [-1*(x+9)+.25, y, z+.25]
+                origin = [-1 * (x + self.offsets[0]) + 0.25, y + self.offsets[1], z + 0.25 + self.offsets[2]]
                 uv["east"]["uv_size"] = [0.5, 1]
                 uv["west"]["uv_size"] = [0.5, 1]
                 uv["north"]["uv_size"] = [0.5, 1]
                 uv["south"]["uv_size"] = [0.5, 1]
             elif torch:
                 size = [3/16, 10/16, 3/16]
-                origin = [-1*(x+9) + (16-2)/32, y, z + (16-2)/32]
+                origin = [-1 * (x + self.offsets[0]) + (16-2)/32, y + self.offsets[1], z + (16-2)/32 + self.offsets[2]]
                 uv["east"]["uv"] = [7/16, uv["east"]["uv"][1]+6/16]
                 uv["east"]["uv_size"] = [2/16, 10/16]
                 uv["west"]["uv"] = [7/16, uv["west"]["uv"][1]+6/16]
@@ -133,7 +135,7 @@ class armorstand:
                 uv["down"]["uv_size"] = [2/16,2/16]
             elif lantern:
                 size = [6/16, 7/16, 6/16]
-                origin = [-1*(x+9) + (16-6)/32, y + (16-7)/32, z + (16-6)/32]
+                origin = [-1*(x + self.offsets[0]) + (16-6)/32, y + (16-7)/32 + self.offsets[1], z + (16-6)/32 + self.offsets[2]]
                 uv["east"]["uv"] = [0, uv["east"]["uv"][1]+2/16]
                 uv["east"]["uv_size"] = [6/16, 7/16]
                 uv["west"]["uv"] = [0, uv["west"]["uv"][1]+2/16]
@@ -153,7 +155,7 @@ class armorstand:
                 self.make_hopper(x, y, z, block_name,uv, rot)
                 non_block=True
             else:
-                origin = [-1*(x+9), y, z]
+                origin = [-1*(x + self.offsets[0]), y + self.offsets[1], z + self.offsets[2]]
                 size = [1, 1, 1]
             ## the code below assumes 1 cube, the helper functions for hoppers and stairs handle proper blocks,
             ## Probably should just move all this to helper functions for each block geo
@@ -179,7 +181,7 @@ class armorstand:
         ## helper function for hoppers. it is a bit ugly, but it works
         block_name = "block_{}_{}_{}".format(x, y, z)
         block1 = {}
-        block1["origin"] = [-1*(x+9), y+9/16, z]
+        block1["origin"] = [-1*(x + self.offsets[0]), y + 9/16 + self.offsets[1], z + self.offsets[2]]
         block1["size"] = [1, 7/16, 1]
         block1["inflate"] = -0.03
         block1uv=dict(uv)
@@ -189,7 +191,7 @@ class armorstand:
         block1uv["south"]["uv_size"] = [1, 6/16]
         block1["uv"]=block1uv
         block2={}
-        block2["origin"] = [-1*(x+9) + 0.25, y+4/16, z + 0.25]
+        block2["origin"] = [-1*(x + self.offsets[0]) + 0.25, y+4/16 + self.offsets[1], z + 0.25 + self.offsets[2]]
         block2["size"] = [.5, 6/16, 0.5]
         block2["inflate"] = -0.03
         block2uv=dict(uv)
@@ -210,15 +212,15 @@ class armorstand:
         block3uv["south"]["uv_size"] = [4/16, 4/16]
         block3["uv"]=block2uv
         if rot == 0:
-            block3["origin"] = [-1*(x+9) + 6/16, y+1/16, z + 6/16]
+            block3["origin"] = [-1*(x + self.offsets[0]) + 6/16, y+1/16 + self.offsets[1], z + 6/16 + self.offsets[2]]
         elif rot == 5:
-            block3["origin"] = [-1*(x+9) + 1/16, y + 5/16, z + 6/16]
+            block3["origin"] = [-1*(x + self.offsets[0]) + 1/16 , y + 5/16 + self.offsets[1], z + 6/16 + self.offsets[2]]
         elif rot == 2:
-            block3["origin"] = [-1*(x+9) + 6/16, y + 5/16, z + 1/16]
+            block3["origin"] = [-1*(x + self.offsets[0]) + 6/16, y + 5/16 + self.offsets[1], z + 1/16 + self.offsets[2]]
         elif rot == 3:
-            block3["origin"] = [-1*(x+9) + 6/16, y + 5/16, z + 1 - 6/16]
+            block3["origin"] = [-1*(x + self.offsets[0]) + 6/16, y + 5/16 + self.offsets[1], z + 1 - 6/16 + self.offsets[2]]
         elif rot == 4:
-            block3["origin"] = [-1*(x+9) + 1 - 6/16, y + 5/16, z + 6/16]
+            block3["origin"] = [-1*(x + self.offsets[0]) + 1 - 6/16, y + 5/16 + self.offsets[1], z + 6/16 + self.offsets[2]]
             
         self.blocks[block_name] = {}
         self.blocks[block_name]["name"] = block_name
@@ -233,8 +235,8 @@ class armorstand:
         block1 = {}
         offset = 0
         if top:
-            offset = 7/16
-        block1["origin"] = [-1*(x+9), y + offset, z]
+            offset = 7/16 
+        block1["origin"] = [-1*(x + self.offsets[0]), y + offset + self.offsets[1], z + self.offsets[2]]
         block1["size"] = [1, 0.5, 1]
         block1["inflate"] = -0.03
         block1uv=dict(uv)
@@ -254,10 +256,10 @@ class armorstand:
 
         
         block2={}
-        block2["origin"] = [-1*(x+9), y + 7/16 - offset, z]
+        block2["origin"] = [-1*(x + self.offsets[0]), y + 7/16 - offset + self.offsets[1], z + self.offsets[2]]
         block2["size"] = [1, 0.5, 0.5]
         block2["rotation"]=rotation
-        block2["pivot"]=[-1*(x+9) + 0.5, y + 0.5 - offset, z + 0.5]
+        block2["pivot"]=[-1*(x + self.offsets[0]) + 0.5, y + 0.5 - offset + self.offsets[1], z + 0.5 + self.offsets[2]]
         block2["inflate"] = -0.03
         block2uv=dict(uv)
         block2uv["east"]["uv_size"] = [1, 1]
@@ -310,7 +312,7 @@ class armorstand:
             impt=impt[:,0:16,:]
         image_array = np.ones([16, 16, 4],np.uint8)*255
         image_array[0:shape[0], 0:shape[1], 0:impt.shape[2]] = impt
-        image_array[:, :, 3] = image_array[:, :, 3]*.8
+        image_array[:, :, 3] = image_array[:, :, 3] * self.alpha
         if type(self.uv_array) is type(None):
             self.uv_array = image_array
         else:
