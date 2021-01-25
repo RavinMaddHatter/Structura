@@ -21,6 +21,8 @@ class armorstand:
         with open("lookups/variants.json") as f:
             ## custom lookup table mapping the assume array location in the terrian texture to the relevant blocks IE log2 index 2 implies a specific wood type not captured anywhere
             self.block_variants = json.load(f)
+        with open("lookups/hacks.json") as f:
+            self.hacks = json.load(f)
         self.stand = {}
         self.offsets = offsets
         self.alpha=alpha
@@ -35,8 +37,9 @@ class armorstand:
         self.uv_array = None
         ## The stuff below is a horrible cludge that should get cleaned up. +1 karma to whomever has a better plan for this.
         # this is how i determine if something should be thin. it is ugly, but kinda works
-        self.lower_objects = ["powered_repeater", "unpowered_repeater", "unpowered_comparator", "activator_rail", "detector_rail",
-                              "golden_rail", "rail", "powered_comparator", "spruce_pressure_plate", "stone_pressure_plate", "redstone_wire", "frame", "carpet"]
+        self.lower_objects = self.hacks["slab_like"]
+        self.slab_like_objects = self.hacks["trapdoor_like"]
+        
         ## these blocks are either not needed, or cause issue. Grass is banned because the terrian_texture.json has a biome map in it. If someone wants to fix we can un-bann it
         self.excluded = ["air", "grass", "structure_block"]
 
@@ -66,7 +69,7 @@ class armorstand:
     def make_block(self, x, y, z, block_name, rot=None, top=False, trap_open=False, parent=None,variant=None):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
         if block_name not in self.excluded:
-            slab = ("slab" in block_name and "double" not in block_name) or "daylight_detector" in block_name
+            slab = ("slab" in block_name and "double" not in block_name) or block_name in self.slab_like_objects
             wall = "wall" in block_name
             torch = "torch" in block_name
             lantern = "lantern" in block_name
