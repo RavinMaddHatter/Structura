@@ -124,4 +124,3 @@ dmypy.json
 # Pyre type checker
 .pyre/
 *.mcpack
-*.mcstructure
