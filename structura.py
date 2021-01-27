@@ -94,8 +94,10 @@ def generate_pack(struct_name, pack_name,opacity,offset=[9,0,0]):
     manifest.export(pack_name)
     
     ## repeate for each structure after you get it to work
-    
-
+    #creats a base animation controller for us to put pose changes into
+    animation = animation_class.animations()
+    longestY=0
+    update_animation=True
     for model_name in models.keys():
             
         rc.add_model(model_name)
@@ -106,16 +108,21 @@ def generate_pack(struct_name, pack_name,opacity,offset=[9,0,0]):
         struct2make = structure_reader.process_structure(models[model_name])
         #creates a base armorstand class for us to insert blocks
         armorstand = armor_stand_geo_class.armorstandgeo(model_name,alpha = opacity,offsets=offset)
-        #creats a base animation controller for us to put pose changes into
-        animation = animation_class.animations()
+        
         #gets the shape for looping
         [xlen, ylen, zlen] = struct2make.get_size()
+        if ylen > longestY:
+            update_animation=True
+            longestY = ylen
+        else:
+            update_animation=False
         for y in range(ylen):
             #creates the layer for controlling. Note there is implied formating here
             #for layer names
             armorstand.make_layer(y)
             #adds links the layer name to an animation
-            animation.insert_layer(y)
+            if update_animation:
+                animation.insert_layer(y)
             for x in range(xlen):
                 for z in range(zlen):
                     #gets block
