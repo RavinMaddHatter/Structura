@@ -66,11 +66,12 @@ def process_block(x,y,z,block):
     if "open_bit" in block["states"].keys():
         open_bit = bool(block["states"]["open_bit"])
     return [rot, top, variant, open_bit]
-def generate_pack(struct_name, pack_name,opacity,offset=[9,0,0]):
+def generate_pack(struct_name, pack_name,opacity):
     # check that the pack name is not already used
-    global models
+    global models, offsets
     if check_var.get()==0:
         model_name=""
+        offsets={"":[xvar.get(),yvar.get(),zvar.get()]}
         models={"":struct_name}
     else:
         fileName="{} Nametags.txt".format(pack_name)
@@ -99,7 +100,7 @@ def generate_pack(struct_name, pack_name,opacity,offset=[9,0,0]):
     longestY=0
     update_animation=True
     for model_name in models.keys():
-            
+        offset=offsets[model_name]
         rc.add_model(model_name)
         armorstand_entity.add_model(model_name)
         copyfile(models[model_name], "{}/{}.mcstructure".format(pack_name,model_name))
@@ -196,9 +197,9 @@ def runFromGui():
             messagebox.showinfo("Error", "You need to add some strucutres")
             
     opacity=(100-sliderVar.get())/100
-    offset=[xvar.get(),yvar.get(),zvar.get()]
+    
     if not stop:
-        generate_pack(FileGUI.get(), packName.get(),opacity,offset=offset)
+        generate_pack(FileGUI.get(), packName.get(),opacity)
 
 
 def browseStruct():
@@ -219,6 +220,7 @@ def box_checked():
     if check_var.get()==0:
         modle_name_entry.grid_forget()
         modle_name_lb.grid_forget()
+        deleteButton.grid_forget()
         listbox.grid_forget()
         saveButton.grid_forget()
         modelButton.grid_forget()
@@ -280,14 +282,16 @@ def add_model():
         messagebox.showinfo("Error", "The Name Tag mut be unique")
         valid=False
     if valid:
+        
         listbox.insert(END,model_name_var.get())
+        offsets[model_name_var.get()]=[xvar.get(),yvar.get(),zvar.get()]
         models[model_name_var.get()]=FileGUI.get()
 def delete_model():
     items = listbox.curselection()
     if len(items)>0:
         models.pop(listbox.get(ACTIVE))
     listbox.delete(ANCHOR)
-
+offsets={}
 root = Tk()
 root.title("Structura")
 models={}
@@ -296,8 +300,10 @@ packName = StringVar()
 sliderVar = DoubleVar()
 model_name_var = StringVar()
 xvar = DoubleVar()
+xvar.set(8)
 yvar = DoubleVar()
 zvar = DoubleVar()
+zvar.set(7)
 check_var = IntVar()
 export_list = IntVar()
 sliderVar.set(20)
