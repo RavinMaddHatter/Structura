@@ -20,7 +20,7 @@ def process_block(x,y,z,block):
     top = False
     open_bit = False
     ## everything below is handling the garbage mapping and naming in NBT
-    #probably should be cleaned up into a helper function/library. for now it works-ish
+    ## probably should be cleaned up into a helper function/library. for now it works-ish
     variant="Default"
     if "wall_block_type" in block["states"].keys():
         variant = ["wall_block_type",block["states"]["wall_block_type"]]
@@ -67,6 +67,8 @@ def process_block(x,y,z,block):
         open_bit = bool(block["states"]["open_bit"])
     return [rot, top, variant, open_bit]
 def generate_pack(struct_name, pack_name,opacity):
+    visual_name=pack_name
+    pack_name=pack_name.replace(" ","_")
     # check that the pack name is not already used
     global models, offsets
     if check_var.get()==0:
@@ -87,12 +89,14 @@ def generate_pack(struct_name, pack_name,opacity):
                                                                "*.mcpack"),
                                                               ("all files",
                                                                "*.*")))
+        
+        pack_name=ntpath.basename(pack_name)
     ## makes a render controller class that we will use to hide models
     rc=rcc.render_controller()
     ##makes a armor stand entity class that we will use to add models 
     armorstand_entity = armor_stand_class.armorstand()
     ##manifest is mostly hard coded in this function.
-    manifest.export(pack_name)
+    manifest.export(visual_name)
     
     ## repeate for each structure after you get it to work
     #creats a base animation controller for us to put pose changes into
@@ -140,8 +144,8 @@ def generate_pack(struct_name, pack_name,opacity):
                         print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
         ## this is a quick hack to get block lists, doesnt consider vairants.... so be careful                
         allBlocks = struct2make.get_block_list()
-        fileName="{} block list.txt".format(model_name)
-        if export_list.get():
+        fileName="{}-{} block list.txt".format(visual_name,model_name)
+        if export_list.get()==1:
             with open(fileName,"w+") as text_file:
                 text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
                 for name in allBlocks.keys():
@@ -203,19 +207,10 @@ def runFromGui():
 
 
 def browseStruct():
-    #brows for a structure file.
+    #browse for a structure file.
     FileGUI.set(filedialog.askopenfilename(filetypes=(
         ("Structure File", "*.mcstructure *.MCSTRUCTURE"), )))
-##def validate(self, action, index, value_if_allowed,
-##                   prior_value, text, validation_type, trigger_type, widget_name):
-##    if value_if_allowed:
-##        try:
-##            float(value_if_allowed)
-##            return True
-##        except ValueError:
-##            return False
-##    else:
-##        return False
+
 def box_checked():
     if check_var.get()==0:
         modle_name_entry.grid_forget()
