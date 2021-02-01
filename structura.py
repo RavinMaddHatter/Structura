@@ -1,4 +1,4 @@
-import armor_stand_geo_class
+import armor_stand_geo_class_2 as asgc
 import armor_stand_class
 import structure_reader
 import animation_class
@@ -14,6 +14,7 @@ import shutil
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
+debug=True
 
 def process_block(x,y,z,block):
     rot = None
@@ -112,7 +113,7 @@ def generate_pack(struct_name, pack_name,opacity):
         #reads structure
         struct2make = structure_reader.process_structure(models[model_name])
         #creates a base armorstand class for us to insert blocks
-        armorstand = armor_stand_geo_class.armorstandgeo(model_name,alpha = opacity,offsets=offset)
+        armorstand = asgc.armorstandgeo(model_name,alpha = opacity,offsets=offset)
         
         #gets the shape for looping
         [xlen, ylen, zlen] = struct2make.get_size()
@@ -136,7 +137,8 @@ def generate_pack(struct_name, pack_name,opacity):
                     [rot, top, variant, open_bit]=process_block(x,y,z,block)
                     ##  If java worlds are brought into bedrock the tools some times
                     ##   output unsupported blocks, will log.
-                    
+                    if debug:
+                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit)
                     try:
                         armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit)
                     except:
