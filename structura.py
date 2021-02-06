@@ -11,6 +11,7 @@ import os
 from zipfile import ZipFile
 import glob
 import shutil
+import ntpath
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
@@ -55,15 +56,17 @@ def process_block(x,y,z,block):
     if "stone_slab_type_4" in block["states"].keys():
         variant = ["stone_slab_type_4",block["states"]["stone_slab_type_4"]]
     if "facing_direction" in block["states"].keys():
-        rot = block["states"]["facing_direction"]
+        rot = int(block["states"]["facing_direction"])
     if "direction" in block["states"].keys():
-        rot = block["states"]["direction"]
-    if "top_slot_bit" in block["states"].keys():
-        top = bool(block["states"]["top_slot_bit"])
+        rot = int(block["states"]["direction"])
+    if "torch_facing_direction" in block["states"].keys():
+        rot = block["states"]["torch_facing_direction"]
     if "weirdo_direction" in block["states"].keys():
         rot = int(block["states"]["weirdo_direction"])
     if "upside_down_bit" in block["states"].keys():
         top = bool(block["states"]["upside_down_bit"])
+    if "top_slot_bit" in block["states"].keys():
+        top = bool(block["states"]["top_slot_bit"])
     if "open_bit" in block["states"].keys():
         open_bit = bool(block["states"]["open_bit"])
     return [rot, top, variant, open_bit]
@@ -134,7 +137,11 @@ def generate_pack(struct_name, pack_name,opacity):
                     #gets block
                     block = struct2make.get_block(x, y, z)
                     blk_name=block["name"].replace("minecraft:", "")
-                    [rot, top, variant, open_bit]=process_block(x,y,z,block)
+                    blockProp=process_block(x,y,z,block)
+                    rot = blockProp[0]
+                    top = blockProp[1]
+                    variant = blockProp[2]
+                    open_bit = blockProp[3]
                     ##  If java worlds are brought into bedrock the tools some times
                     ##   output unsupported blocks, will log.
                     if debug:

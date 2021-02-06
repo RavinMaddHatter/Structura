@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "test13",
+    "description": "Structura block overlay pack, created by  \u00a7o\u00a75DrAv0011\u00a7r, \u00a7o\u00a79 FondUnicycle\u00a7r and\u00a7o\u00a75 RavinMaddHatter\u00a7r",
+    "uuid": "a40d75cc-b0b2-46c9-b5cc-c30cd7444306",
+    "version": [
+      0,
+      0,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      16,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "ebbc8036-ceda-4631-a2f7-73082a99cd1e",
+      "version": [
+        0,
+        0,
+        1
+      ]
+    }
+  ]
+}

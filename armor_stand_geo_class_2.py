@@ -80,26 +80,35 @@ class armorstandgeo:
             ghost_block_name = "block_{}_{}_{}".format(x, y, z)
             self.blocks[ghost_block_name] = {}
             block_type = self.defs[block_name]
-            
             ## hardcoded to true for now, but this is when the variants will be called
-            if True:
-                shape_variant="default"
-            
-            block_shapes = self.block_shapes[block_type]["default"]
-            block_uv = self.block_uv[block_type]["default"]
+            shape_variant="default"
+            if block_type == "hopper" and rot!=0:
+                shape_variant="side"
+            elif block_type == "trapdoor" and trap_open:
+                shape_variant = "open"
+            elif top:
+                shape_variant = "top"
+
+                
+
+            block_shapes = self.block_shapes[block_type][shape_variant]
+
+            if shape_variant in self.block_uv[block_type].keys():
+                block_uv = self.block_uv[block_type][shape_variant]
+            else:
+                block_uv = self.block_uv[block_type]["default"]
 
             
 
             if block_type in self.block_rotations.keys():
-                rotation = self.block_rotations[block_type][str(int(rot))]
+                rotation = self.block_rotations[block_type][str(rot)]
             else:
                 rotation = [0, 0, 0]
-                print("no rotation for block type {} found".format(block_type))
+                #print("no rotation for block type {} found".format(block_type))
             self.blocks[ghost_block_name]["cubes"] = []
             uv_idx=0
             uv = self.block_name_to_uv(block_name,variant=variant)
             for i in range(len(block_shapes["size"])):
-                print(block_name)
                 block={}
                 if len(block_uv["uv_sizes"]["up"])>i:
                     uv_idx=i
@@ -110,18 +119,32 @@ class armorstandgeo:
                     xoff = block_shapes["offsets"][i][0]
                     yoff = block_shapes["offsets"][i][1]
                     zoff = block_shapes["offsets"][i][2]
-                block["origin"] = [-1*(x + self.offsets[0] + xoff), y + yoff + self.offsets[1], z + zoff + self.offsets[2]]
+                block["origin"] = [-1*(x + self.offsets[0]) + xoff, y + yoff + self.offsets[1], z + zoff + self.offsets[2]]
                 block["size"] = block_shapes["size"][i]
                 block["inflate"] = -0.03
-                blockUV=dict(uv)
                 block["pivot"]=[-1*(x + self.offsets[0]) + 0.5, y + 0.5 + self.offsets[1], z + 0.5 + self.offsets[2]]
                 block["rotation"]=rotation
+                
+                blockUV=dict(uv)
+                blockUV["up"]["uv"][0] += block_uv["offset"]["up"][uv_idx][0]
+                blockUV["up"]["uv"][1] += block_uv["offset"]["up"][uv_idx][1]
+                blockUV["down"]["uv"][0] += block_uv["offset"]["down"][uv_idx][0]
+                blockUV["down"]["uv"][1] += block_uv["offset"]["down"][uv_idx][1]
+                blockUV["east"]["uv"][0] += block_uv["offset"]["east"][uv_idx][0]
+                blockUV["east"]["uv"][1] += block_uv["offset"]["east"][uv_idx][1]
+                blockUV["west"]["uv"][0] += block_uv["offset"]["west"][uv_idx][0]
+                blockUV["west"]["uv"][1] += block_uv["offset"]["west"][uv_idx][1]
+                blockUV["north"]["uv"][0] += block_uv["offset"]["north"][uv_idx][0]
+                blockUV["north"]["uv"][1] += block_uv["offset"]["north"][uv_idx][1]
+                blockUV["south"]["uv"][0] += block_uv["offset"]["south"][uv_idx][0]
+                blockUV["south"]["uv"][1] += block_uv["offset"]["south"][uv_idx][1]
                 blockUV["up"]["uv_size"] = block_uv["uv_sizes"]["up"][uv_idx]
                 blockUV["down"]["uv_size"] = block_uv["uv_sizes"]["down"][uv_idx]
                 blockUV["east"]["uv_size"] = block_uv["uv_sizes"]["east"][uv_idx]
                 blockUV["west"]["uv_size"] = block_uv["uv_sizes"]["west"][uv_idx]
                 blockUV["north"]["uv_size"] = block_uv["uv_sizes"]["north"][uv_idx]
                 blockUV["south"]["uv_size"] = block_uv["uv_sizes"]["south"][uv_idx]
+                
                 block["uv"]=blockUV
                 self.blocks[ghost_block_name]["cubes"].append(block)
             
