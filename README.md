@@ -7,7 +7,7 @@ This tool is inspired by Litematica. It is a tool that generates Resource packs 
 
 
 
-## Generating an .mcstrucutre file
+## Generating an .mcstructure file
 
 First you must get a structure block, as this is typically done from a creative copy with cheats enabled, simply execute /give @s structure_block to get a structure block 
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/give_structure.png?raw=true)
