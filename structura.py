@@ -71,6 +71,7 @@ def process_block(x,y,z,block):
         open_bit = bool(block["states"]["open_bit"])
     return [rot, top, variant, open_bit]
 def generate_pack(struct_name, pack_name,opacity):
+    
     visual_name=pack_name
     pack_name=pack_name.replace(" ","_")
     # check that the pack name is not already used

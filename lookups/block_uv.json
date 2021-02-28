@@ -70,8 +70,28 @@
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"comparator":{"default":{
-			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
-			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
+			"uv_sizes":{
+				"up":[[1,1],[0.125,0.125],[0.125,0.125],[0.125,0.125]],
+				"down":[[1,1],[0.125,0.125],[0.125,0.125],[0.125,0.125]],
+				"north":[[1,1],[0.125,0.4375],[0.125,0.4375],[0.125,0.25]],
+				"south":[[1,1],[0.125,0.4375],[0.125,0.4375],[0.125,0.25]],
+				"east":[[1,1],[0.125,0.4375],[0.125,0.4375],[0.125,0.25]],
+				"west":[[1,1],[0.125,0.4375],[0.125,0.4375],[0.125,0.25]]},
+			"offset":{
+				"up":[[0,0],[0.4375,0.375],[0.4375,0.375],[0.4375,0.375]],
+				"down":[[0,0],[0.4375,0.5],[0.4375,0.5],[0.4375,0.5]],
+				"north":[[0,0],[0.4375,0.375],[0.4375,0.375],[0.4375,0.375]],
+				"south":[[0,0],[0.4375,0.375],[0.4375,0.375],[0.4375,0.375]],
+				"east":[[0,0],[0.4375,0.375],[0.4375,0.375],[0.4375,0.375]],
+				"west":[[0,0],[0.4375,0.375],[0.4375,0.375],[0.4375,0.375]]},
+			"overwrite":{
+				"up":["default","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off"],
+				"down":["default","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off"],
+				"north":["default","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off"],
+				"south":["default","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off"],
+				"east":["default","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off"],
+				"west":["default","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off","textures/blocks/redstone_torch_off"]}
+				}},
 	"conduit":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
@@ -94,11 +114,15 @@
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"end_rod":{"default":{
-			"uv_sizes":{"up":[[0.125,0.125]],"down":[[0.125,1]],"north":[[0.125,0.9375]],"south":[[0.125,0.9375]],"east":[[0.125,0.9375]],"west":[[0.125,0.9375]]},
-			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
+			"uv_sizes":{"up":[[0.125,0.125],[0.25,0.25]],"down":[[0.125,1],[0.25,0.25]],"north":[[0.125,0.9375],[0.25,0.25]],"south":[[0.125,0.9375],[0.25,0.25]],"east":[[0.125,0.9375],[0.25,0.25]],"west":[[0.125,0.9375],[0.25,0.25]]},
+			"offset":{"up":[[0,0],[0.125,0.125]],"down":[[0,0],[0.125,0.125]],"north":[[0,0],[0.125,0.125]],"south":[[0,0],[0.125,0.125]],"east":[[0,0],[0.125,0.125]],"west":[[0,0],[0.125,0.125]]}}},
 	"dispenser":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
+	"observer":{"default":{
+			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
+			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]},
+			"overwrite":{"down":["textures/blocks/observer_top_mirror"]}}},
 	"facing_block":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
@@ -136,8 +160,16 @@
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"lever":{"default":{
-			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
-			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
+			"uv_sizes":{"up":[[0.375,0.5],[0.125,0.125]],"down":[[0.375,0.5],[0.125,0.125]],"north":[[0.5,0.125],[0.125,0.6875]],"south":[[0.5,0.125],[0.125,0.6875]],"east":[[0.375,0.125],[0.125,0.6875]],"west":[[0.375,0.125],[0.125,0.6875]]},
+			"offset":{"up":[[0,0],[0.4375,0.3785]],"down":[[0,0],[0.4375,0.3785]],"north":[[0,0],[0.4375,0.3785]],"south":[[0,0],[0.4375,0.3785]],"east":[[0,0],[0.4375,0.3785]],"west":[[0,0],[0.4375,0.3785]]},
+			"overwrite":{
+				"up":["textures/blocks/cobblestone","textures/blocks/lever"],
+				"down":["textures/blocks/cobblestone","textures/blocks/lever"],
+				"north":["textures/blocks/cobblestone","textures/blocks/lever"],
+				"south":["textures/blocks/cobblestone","textures/blocks/lever"],
+				"east":["textures/blocks/cobblestone","textures/blocks/lever"],
+				"west":["textures/blocks/cobblestone","textures/blocks/lever"]}
+			}},
 	"lilypad":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
@@ -148,7 +180,7 @@
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[0.1875,1]],"south":[[0.1875,1]],"east":[[0.1875,1]],"west":[[0.1875,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"daylight":{"default":{
-			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
+			"uv_sizes":{"up":[[1 ,1]],"down":[[1,1]],"north":[[1,0.375]],"south":[[1,0.375]],"east":[[1,0.375]],"west":[[1,0.375]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"campfire":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
@@ -158,13 +190,20 @@
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"piston":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
-			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
+			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]},
+			"overwrite":{"up":["textures/blocks/piston_top_normal"]}
+			}},
+	"sticky_piston":{"default":{
+			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
+			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]},
+			"overwrite":{"up":["textures/blocks/piston_top_sticky"]}
+			}},
 	"piston_arm":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"portal_frame":{"default":{
-			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
-			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
+			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,0.8125]],"south":[[1,0.8125]],"east":[[1,0.8125]],"west":[[1,0.8125]]},
+			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0.1875]],"south":[[0,0.1875]],"east":[[0,0.1875]],"west":[[0,0.1875]]}}},
 	"rail":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
@@ -205,8 +244,9 @@
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}}
 }
+
 	
-	
+
 	
 	
 	
