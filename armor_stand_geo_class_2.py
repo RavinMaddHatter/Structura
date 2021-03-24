@@ -4,7 +4,7 @@ import numpy as np
 import copy
 import os
 
-debug=True
+debug=False
 class armorstandgeo:
     def __init__(self, name, alpha = 0.8,offsets=[9,0,0], size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
         self.ref_resource_pack = ref_pack
@@ -73,7 +73,7 @@ class armorstandgeo:
         self.geometry["bones"].append(
             {"name": layer_name, "pivot": [-8, 0, 8], "parent": "ghost_blocks"})
 
-    def make_block(self, x, y, z, block_name, rot=None, top=False, trap_open=False, parent=None,variant=None):
+    def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant=None):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
         
         if block_name not in self.excluded:
@@ -91,17 +91,18 @@ class armorstandgeo:
             elif top:
                 shape_variant = "top"
 
-                
+            if data!=0:
+                print(data)
 
             block_shapes = self.block_shapes[block_type][shape_variant]
-
+            block_uv = self.block_uv[block_type]["default"]
             if shape_variant in self.block_uv[block_type].keys():
                 block_uv = self.block_uv[block_type][shape_variant]
-            else:
-                block_uv = self.block_uv[block_type]["default"]
-
-            
-
+            if str(data) in self.block_uv[block_type].keys():
+                shape_variant=str(data)
+            if str(data) in self.block_shapes[block_type].keys():
+                block_shapes = self.block_shapes[block_type][str(data)]
+                print(block_shapes)
             if block_type in self.block_rotations.keys():
                 rotation = self.block_rotations[block_type][str(rot)]
             else:
@@ -206,7 +207,7 @@ class armorstandgeo:
             temp_new[startshape[0]:, :, :] = image_array
             self.uv_array = temp_new
 
-    def block_name_to_uv(self, block_name, variant = "",shape_variant="default",index=0):
+    def block_name_to_uv(self, block_name, variant = "",shape_variant="default",index=0,data=0):
         
         # helper function maps the the section of the uv file to the side of the block
         temp_uv = {}

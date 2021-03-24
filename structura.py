@@ -15,12 +15,13 @@ import ntpath
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
-debug=True
+debug=False
 
 def process_block(x,y,z,block):
     rot = None
     top = False
     open_bit = False
+    data=0
     ## everything below is handling the garbage mapping and naming in NBT
     ## probably should be cleaned up into a helper function/library. for now it works-ish
     variant="Default"
@@ -69,11 +70,16 @@ def process_block(x,y,z,block):
         top = bool(block["states"]["top_slot_bit"])
     if "open_bit" in block["states"].keys():
         open_bit = bool(block["states"]["open_bit"])
-    return [rot, top, variant, open_bit]
+    if "repeater_delay" in block["states"].keys():
+        data = int(block["states"]["repeater_delay"])
+    if "output_subtract_bit" in block["states"].keys():
+        data = bool(block["states"]["output_subtract_bit"])
+    
+    return [rot, top, variant, open_bit,data]
 def generate_pack(struct_name, pack_name,opacity):
     
     visual_name=pack_name
-    pack_name=pack_name.replace(" ","_")
+    #pack_name=pack_name.replace(" ","_")
     # check that the pack name is not already used
     global models, offsets
     if check_var.get()==0:
@@ -143,12 +149,13 @@ def generate_pack(struct_name, pack_name,opacity):
                     top = blockProp[1]
                     variant = blockProp[2]
                     open_bit = blockProp[3]
+                    data = blockProp[4]
                     ##  If java worlds are brought into bedrock the tools some times
                     ##   output unsupported blocks, will log.
                     if debug:
-                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit)
+                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
                     try:
-                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit)
+                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
                     except:
                         print("There is an unsuported block in this world and it was skipped")
                         print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
