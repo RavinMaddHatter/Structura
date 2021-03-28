@@ -4,7 +4,7 @@ import numpy as np
 import copy
 import os
 
-
+debug=False
 class armorstandgeo:
     def __init__(self, name, alpha = 0.8,offsets=[9,0,0], size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
         self.ref_resource_pack = ref_pack
@@ -73,33 +73,47 @@ class armorstandgeo:
         self.geometry["bones"].append(
             {"name": layer_name, "pivot": [-8, 0, 8], "parent": "ghost_blocks"})
 
-    def make_block(self, x, y, z, block_name, rot=None, top=False, trap_open=False, parent=None,variant=None):
+    def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant=None):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
         
         if block_name not in self.excluded:
+            if debug:
+                print(block_name)
             ghost_block_name = "block_{}_{}_{}".format(x, y, z)
             self.blocks[ghost_block_name] = {}
             block_type = self.defs[block_name]
-            
             ## hardcoded to true for now, but this is when the variants will be called
-            if True:
-                shape_variant="default"
-            
-            block_shapes = self.block_shapes[block_type]["default"]
+            shape_variant="default"
+            if block_type == "hopper" and rot!=0:
+                shape_variant="side"
+            elif block_type == "trapdoor" and trap_open:
+                shape_variant = "open"
+            elif top:
+                shape_variant = "top"
+
+            if data!=0:
+                print(data)
+
+            block_shapes = self.block_shapes[block_type][shape_variant]
             block_uv = self.block_uv[block_type]["default"]
-
-            
-
+            if shape_variant in self.block_uv[block_type].keys():
+                block_uv = self.block_uv[block_type][shape_variant]
+            if str(data) in self.block_uv[block_type].keys():
+                shape_variant=str(data)
+            if str(data) in self.block_shapes[block_type].keys():
+                block_shapes = self.block_shapes[block_type][str(data)]
+                print(block_shapes)
             if block_type in self.block_rotations.keys():
-                rotation = self.block_rotations[block_type][str(int(rot))]
+                rotation = self.block_rotations[block_type][str(rot)]
             else:
                 rotation = [0, 0, 0]
-                print("no rotation for block type {} found".format(block_type))
+                if debug:
+                    print("no rotation for block type {} found".format(block_type))
             self.blocks[ghost_block_name]["cubes"] = []
             uv_idx=0
-            uv = self.block_name_to_uv(block_name,variant=variant)
+            
             for i in range(len(block_shapes["size"])):
-                print(block_name)
+                uv = self.block_name_to_uv(block_name,variant=variant,shape_variant=shape_variant,index=i)
                 block={}
                 if len(block_uv["uv_sizes"]["up"])>i:
                     uv_idx=i
@@ -110,18 +124,32 @@ class armorstandgeo:
                     xoff = block_shapes["offsets"][i][0]
                     yoff = block_shapes["offsets"][i][1]
                     zoff = block_shapes["offsets"][i][2]
-                block["origin"] = [-1*(x + self.offsets[0] + xoff), y + yoff + self.offsets[1], z + zoff + self.offsets[2]]
+                block["origin"] = [-1*(x + self.offsets[0]) + xoff, y + yoff + self.offsets[1], z + zoff + self.offsets[2]]
                 block["size"] = block_shapes["size"][i]
                 block["inflate"] = -0.03
-                blockUV=dict(uv)
                 block["pivot"]=[-1*(x + self.offsets[0]) + 0.5, y + 0.5 + self.offsets[1], z + 0.5 + self.offsets[2]]
                 block["rotation"]=rotation
+                
+                blockUV=dict(uv)
+                blockUV["up"]["uv"][0] += block_uv["offset"]["up"][uv_idx][0]
+                blockUV["up"]["uv"][1] += block_uv["offset"]["up"][uv_idx][1]
+                blockUV["down"]["uv"][0] += block_uv["offset"]["down"][uv_idx][0]
+                blockUV["down"]["uv"][1] += block_uv["offset"]["down"][uv_idx][1]
+                blockUV["east"]["uv"][0] += block_uv["offset"]["east"][uv_idx][0]
+                blockUV["east"]["uv"][1] += block_uv["offset"]["east"][uv_idx][1]
+                blockUV["west"]["uv"][0] += block_uv["offset"]["west"][uv_idx][0]
+                blockUV["west"]["uv"][1] += block_uv["offset"]["west"][uv_idx][1]
+                blockUV["north"]["uv"][0] += block_uv["offset"]["north"][uv_idx][0]
+                blockUV["north"]["uv"][1] += block_uv["offset"]["north"][uv_idx][1]
+                blockUV["south"]["uv"][0] += block_uv["offset"]["south"][uv_idx][0]
+                blockUV["south"]["uv"][1] += block_uv["offset"]["south"][uv_idx][1]
                 blockUV["up"]["uv_size"] = block_uv["uv_sizes"]["up"][uv_idx]
                 blockUV["down"]["uv_size"] = block_uv["uv_sizes"]["down"][uv_idx]
                 blockUV["east"]["uv_size"] = block_uv["uv_sizes"]["east"][uv_idx]
                 blockUV["west"]["uv_size"] = block_uv["uv_sizes"]["west"][uv_idx]
                 blockUV["north"]["uv_size"] = block_uv["uv_sizes"]["north"][uv_idx]
                 blockUV["south"]["uv_size"] = block_uv["uv_sizes"]["south"][uv_idx]
+                
                 block["uv"]=blockUV
                 self.blocks[ghost_block_name]["cubes"].append(block)
             
@@ -179,16 +207,30 @@ class armorstandgeo:
             temp_new[startshape[0]:, :, :] = image_array
             self.uv_array = temp_new
 
-    def block_name_to_uv(self, block_name, variant = ""):
+    def block_name_to_uv(self, block_name, variant = "",shape_variant="default",index=0,data=0):
         
         # helper function maps the the section of the uv file to the side of the block
         temp_uv = {}
         if block_name not in self.excluded:  # if you dont want a block to be rendered, exclude the UV
+
+            block_type = self.defs[block_name]
+            
             texture_files = self.get_block_texture_paths(block_name, variant = variant)
-            if block_name == "sticky_piston":
-                texture_files["up"] = "textures/blocks/piston_top_sticky"
-            if block_name == "piston":
-                texture_files["up"] = "textures/blocks/piston_top_normal"
+
+            corrected_textures={}
+            if shape_variant in self.block_uv[block_type].keys():
+                if "overwrite" in self.block_uv[block_type][shape_variant].keys():
+                    corrected_textures = self.block_uv[block_type][shape_variant]["overwrite"]
+            else:
+                if "overwrite" in self.block_uv[block_type]["default"].keys():
+                    corrected_textures = self.block_uv[block_type]["default"]["overwrite"]
+            
+            for side in corrected_textures.keys():
+                if len(corrected_textures[side])>index:
+                    if corrected_textures[side][index] != "default":
+                        texture_files[side]=corrected_textures[side][index]
+                        if debug:
+                            print("{}: {}".format(side,texture_files[side]))
             for key in texture_files.keys():
                 if texture_files[key] not in self.uv_map.keys():
                     self.extend_uv_image(
