@@ -36,8 +36,9 @@ The structure will appear around every armor stand in the worlds you load. It is
 You can go through a structure layer by layer if you like by shift right clicking on the stand. This will minimize all layers except the "active" ones. I cant add poses without adding a behavior pack so for large structures there will be mutiple layers displayed at a time (12 blocks apart)
 ![alt text](https://github.com/RavinMaddHatter/Structura/blob/main/docs/example_layer.png?raw=true)
 
-
-
+## Updating blocks
+As of structura 1.3 you can update the blocks manuall and contribut back to the project.
+[Here is a write up on how this works](docs/Editing%20Blocks.md)
 
 
 
