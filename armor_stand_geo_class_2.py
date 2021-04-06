@@ -59,6 +59,14 @@ class armorstandgeo:
         path_to_geo = "{}/models/entity/armor_stand.ghost_blocks_{}.geo.json".format(
             pack_folder,self.name)
         os.makedirs(os.path.dirname(path_to_geo), exist_ok=True)
+        i=0
+        for index in range(len(self.stand["minecraft:geometry"][0]["bones"])):
+            if "name" not in self.stand["minecraft:geometry"][0]["bones"][index].keys():
+                self.stand["minecraft:geometry"][0]["bones"][index]["name"]="empty_row+{}".format(i)
+                self.stand["minecraft:geometry"][0]["bones"][index]["parent"]="ghost_blocks"
+                self.stand["minecraft:geometry"][0]["bones"][index]["pivot"]=[0.5,0.5,0.5]
+                i+=1
+            
         with open(path_to_geo, "w+") as json_file:
             json.dump(self.stand, json_file, indent=2)
         texture_name = "{}/textures/entity/ghost_blocks_{}.png".format(
