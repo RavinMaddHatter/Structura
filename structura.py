@@ -3,8 +3,6 @@ import armor_stand_class
 import structure_reader
 import animation_class
 import render_controller_class as rcc
-from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
-from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
 import manifest
 from shutil import copyfile
 import os
@@ -12,9 +10,7 @@ from zipfile import ZipFile
 import glob
 import shutil
 import ntpath
-from tkinter import ttk
-from tkinter import filedialog
-from tkinter import messagebox
+
 debug=False
 
 def process_block(x,y,z,block):
@@ -313,7 +309,12 @@ This is the funciton that makes a structura pack:
 
 
 if __name__=="__main__":
-    
+    from tkinter import ttk
+    from tkinter import filedialog
+    from tkinter import messagebox
+    from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
+    from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
+
     offsets={}
     root = Tk()
     root.title("Structura")
