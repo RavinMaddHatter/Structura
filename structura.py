@@ -11,7 +11,7 @@ import glob
 import shutil
 import ntpath
 
-debug=False
+debug=True
 
 def process_block(x,y,z,block):
     rot = None
@@ -77,21 +77,21 @@ def process_block(x,y,z,block):
 
 
 
-def generate_pack(pack_name,opacity,models={}, offsets={},makeMaterialsList=False,simple=True):
+def generate_pack(pack_name,models_object={},makeMaterialsList=False):
     """
 This is the funciton that makes a structura pack:
 pack_name : the name of the pack, this will be stored the the manafest.JSON as well as the name of the mcpack file
-opacity : a float from 0 to 1.0, sets how transparent the collors are
-models : a dictionary containing model names as keys and the path to the models
-offsets : a dictionary containing the model names as keys and the X,Y,Z offsets
+models : 'NAME_TAG': {offsets: [x, y, z],opacity: percent,structure: file.mcstructure},
 makeMaterialsList : sets wether a material list shall be output.
     """
+    
+    
     visual_name=pack_name
-    if len(list(models.keys()))>1 or "" not in models.keys():
+    if len(list(models_object.keys()))>1:
         fileName="{} Nametags.txt".format(pack_name)
         with open(fileName,"w+") as text_file:
             text_file.write("These are the nametags used in this file\n")
-            for name in models.keys():
+            for name in models_object.keys():
                 text_file.write("{}\n".format(name))
         
     
@@ -107,16 +107,16 @@ makeMaterialsList : sets wether a material list shall be output.
     animation = animation_class.animations()
     longestY=0
     update_animation=True
-    for model_name in models.keys():
-        offset=offsets[model_name]
+    for model_name in models_object.keys():
+        offset=models_object[model_name]["offsets"]
         rc.add_model(model_name)
         armorstand_entity.add_model(model_name)
-        copyfile(models[model_name], "{}/{}.mcstructure".format(pack_name,model_name))
+        copyfile(models_object[model_name]["structure"], "{}/{}.mcstructure".format(pack_name,model_name))
         
         #reads structure
-        struct2make = structure_reader.process_structure(models[model_name])
+        struct2make = structure_reader.process_structure(models[model_name]["structure"])
         #creates a base armorstand class for us to insert blocks
-        armorstand = asgc.armorstandgeo(model_name,alpha = opacity,offsets=offset)
+        armorstand = asgc.armorstandgeo(model_name,alpha = models_object[model_name]['opacity'],offsets=models_object[model_name]['offsets'])
         
         #gets the shape for looping
         [xlen, ylen, zlen] = struct2make.get_size()
@@ -269,17 +269,22 @@ if __name__=="__main__":
         if len(FileGUI.get()) == 0:
             valid=False
             messagebox.showinfo("Error", "You need to browse for a structure file!")
-        if len(model_name_var.get()) == 0:
-            valid=False
-            messagebox.showinfo("Error", "You need a name for the Name Tag!")
+##        if len(model_name_var.get()) == 0:
+##            valid=False
+##            messagebox.showinfo("Error", "You need a name for the Name Tag!")
         if model_name_var.get() in list(models.keys()):
             messagebox.showinfo("Error", "The Name Tag mut be unique")
             valid=False
         if valid:
-            
+            name_tag=model_name_var.get()
+            opacity=(100-sliderVar.get())/100
+            models[name_tag] = {}
+            models[name_tag]["offsets"] = [xvar.get(),yvar.get(),zvar.get()]
+            models[name_tag]["opacity"] = opacity
+            models[name_tag]["structure"] = FileGUI.get()
             listbox.insert(END,model_name_var.get())
-            offsets[model_name_var.get()]=[xvar.get(),yvar.get(),zvar.get()]
-            models[model_name_var.get()]=FileGUI.get()
+
+            
     def delete_model():
         items = listbox.curselection()
         if len(items)>0:
@@ -307,17 +312,18 @@ if __name__=="__main__":
         if os.path.isfile("{}.mcpack".format(packName.get())):
             stop = True
             messagebox.showinfo("Error", "pack already exists or pack name is empty")
-                
-        opacity=(100-sliderVar.get())/100
         
         if not stop:
             if check_var.get()==0:
-                offsets={"":[xvar.get(),yvar.get(),zvar.get()]}
-                models={"":FileGUI.get()}
+                name_tag = ""
+                
+                models[name_tag] = {}
+                models[name_tag]["offsets"] = [xvar.get(),yvar.get(),zvar.get()]
+                models[name_tag]["opacity"] = sliderVar.get()
+                models[name_tag]["structure"] = FileGUI.get()
+                
             generate_pack(packName.get(),
-                          opacity,
-                          models=models,
-                          offsets=offsets,
+                          models_object=models,
                           makeMaterialsList=(export_list.get()==1))
 
 
