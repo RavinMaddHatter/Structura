@@ -4,7 +4,10 @@ import numpy as np
 
 class process_structure:
     def __init__(self, file):
-        self.NBTfile = nbtlib.load(file, byteorder='little')
+        if type(file) is dict:
+            self.NBTfile = file
+        else:
+            self.NBTfile = nbtlib.load(file, byteorder='little')
         self.blocks = list(
             map(int, self.NBTfile[""]["structure"]["block_indices"][0]))
         self.size = list(map(int, self.NBTfile[""]["size"]))

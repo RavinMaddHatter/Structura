@@ -75,130 +75,19 @@ def process_block(x,y,z,block):
 
 
 
-def runFromGui():
-    ##wrapper for a gui.
-    global models, offsets
-    stop = False
-    
-    
-    if check_var.get()==0:
-        if len(FileGUI.get()) == 0:
-            stop = True
-            messagebox.showinfo("Error", "You need to browse for a structure file!")
-        if len(packName.get()) == 0:
-            stop = True
-            messagebox.showinfo("Error", "You need a Name")
-    else:
-        if len(list(models.keys()))==0:
-            stop = True
-            messagebox.showinfo("Error", "You need to add some strucutres")
-    if os.path.isfile("{}.mcpack".format(packName.get())):
-        stop = True
-        messagebox.showinfo("Error", "pack already exists or pack name is empty")
-            
-    opacity=(100-sliderVar.get())/100
-    
-    if not stop:
-        if check_var.get()==0:
-            offsets={"":[xvar.get(),yvar.get(),zvar.get()]}
-            models={"":FileGUI.get()}
-        generate_pack(packName.get(),
-                      opacity,
-                      simple=not(check_var.get()),
-                      models=models,
-                      offsets=offsets,
-                      makeMaterialsList=(export_list.get()==1))
 
 
-def browseStruct():
-    #browse for a structure file.
-    FileGUI.set(filedialog.askopenfilename(filetypes=(
-        ("Structure File", "*.mcstructure *.MCSTRUCTURE"), )))
-
-def box_checked():
-    if check_var.get()==0:
-        modle_name_entry.grid_forget()
-        modle_name_lb.grid_forget()
-        deleteButton.grid_forget()
-        listbox.grid_forget()
-        saveButton.grid_forget()
-        modelButton.grid_forget()
-        r = 0
-        file_lb.grid(row=r, column=0)
-        file_entry.grid(row=r, column=1)
-        packButton.grid(row=r, column=2)
-        r += 1
-        packName_lb.grid(row=r, column=0)
-        packName_entry.grid(row=r, column=1)
-        r += 1
-        cord_lb.grid_forget()
-        x_entry.grid_forget()
-        y_entry.grid_forget()
-        z_entry.grid_forget()
-        transparency_lb.grid_forget()
-        transparency_entry.grid_forget()
-        advanced_check.grid(row=r, column=0)
-        export_check.grid(row=r, column=1)
-        saveButton.grid(row=r, column=2)
-    else:
-        saveButton.grid_forget()
-        r = 0
-        file_lb.grid(row=r, column=0)
-        file_entry.grid(row=r, column=1)
-        packButton.grid(row=r, column=2)
-        r += 1
-        packName_lb.grid(row=r, column=0)
-        packName_entry.grid(row=r, column=1)
-        r += 1
-        modle_name_entry.grid(row=r, column=1)
-        modle_name_lb.grid(row=r, column=0)
-        modelButton.grid(row=r, column=2)
-        r += 1
-        cord_lb.grid(row=r, column=0,columnspan=3)
-        r += 1
-        x_entry.grid(row=r, column=0)
-        y_entry.grid(row=r, column=1)
-        z_entry.grid(row=r, column=2)
-        r += 1
-        transparency_lb.grid(row=r, column=0)
-        transparency_entry.grid(row=r, column=1,columnspan=2)
-        r += 1
-        listbox.grid(row=r,column=1, rowspan=3)
-        deleteButton.grid(row=r,column=2)
-        r += 4
-        advanced_check.grid(row=r, column=0)
-        export_check.grid(row=r, column=1)
-        saveButton.grid(row=r, column=2)
-def add_model():
-    valid=True
-    if len(FileGUI.get()) == 0:
-        valid=False
-        messagebox.showinfo("Error", "You need to browse for a structure file!")
-    if len(model_name_var.get()) == 0:
-        valid=False
-        messagebox.showinfo("Error", "You need a name for the Name Tag!")
-    if model_name_var.get() in list(models.keys()):
-        messagebox.showinfo("Error", "The Name Tag mut be unique")
-        valid=False
-    if valid:
-        
-        listbox.insert(END,model_name_var.get())
-        offsets[model_name_var.get()]=[xvar.get(),yvar.get(),zvar.get()]
-        models[model_name_var.get()]=FileGUI.get()
-def delete_model():
-    items = listbox.curselection()
-    if len(items)>0:
-        models.pop(listbox.get(ACTIVE))
-    listbox.delete(ANCHOR)
-def generate_pack(pack_name,opacity, simple=True,models={}, offsets={},makeMaterialsList=False):
+def generate_pack(pack_name,opacity,models={}, offsets={},makeMaterialsList=False,simple=True):
     """
 This is the funciton that makes a structura pack:
-
+pack_name : the name of the pack, this will be stored the the manafest.JSON as well as the name of the mcpack file
+opacity : a float from 0 to 1.0, sets how transparent the collors are
+models : a dictionary containing model names as keys and the path to the models
+offsets : a dictionary containing the model names as keys and the X,Y,Z offsets
+makeMaterialsList : sets wether a material list shall be output.
     """
     visual_name=pack_name
-    #pack_name=pack_name.replace(" ","_")
-    # check that the pack name is not already used
-    if len(models.keys())==1 and "" in models.keys():
+    if len(list(models.keys()))>1 or "" not in models.keys():
         fileName="{} Nametags.txt".format(pack_name)
         with open(fileName,"w+") as text_file:
             text_file.write("These are the nametags used in this file\n")
@@ -206,8 +95,6 @@ This is the funciton that makes a structura pack:
                 text_file.write("{}\n".format(name))
         
     
-        
-        pack_name=ntpath.basename(pack_name)
     ## makes a render controller class that we will use to hide models
     rc=rcc.render_controller()
     ##makes a armor stand entity class that we will use to add models 
@@ -309,11 +196,131 @@ This is the funciton that makes a structura pack:
 
 
 if __name__=="__main__":
+    ## this is all the gui stuff that is not needed if you are calling this as a CLI
+    
     from tkinter import ttk
     from tkinter import filedialog
     from tkinter import messagebox
     from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
     from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
+
+
+    def browseStruct():
+        #browse for a structure file.
+        FileGUI.set(filedialog.askopenfilename(filetypes=(
+            ("Structure File", "*.mcstructure *.MCSTRUCTURE"), )))
+
+    def box_checked():
+        if check_var.get()==0:
+            modle_name_entry.grid_forget()
+            modle_name_lb.grid_forget()
+            deleteButton.grid_forget()
+            listbox.grid_forget()
+            saveButton.grid_forget()
+            modelButton.grid_forget()
+            r = 0
+            file_lb.grid(row=r, column=0)
+            file_entry.grid(row=r, column=1)
+            packButton.grid(row=r, column=2)
+            r += 1
+            packName_lb.grid(row=r, column=0)
+            packName_entry.grid(row=r, column=1)
+            r += 1
+            cord_lb.grid_forget()
+            x_entry.grid_forget()
+            y_entry.grid_forget()
+            z_entry.grid_forget()
+            transparency_lb.grid_forget()
+            transparency_entry.grid_forget()
+            advanced_check.grid(row=r, column=0)
+            export_check.grid(row=r, column=1)
+            saveButton.grid(row=r, column=2)
+        else:
+            saveButton.grid_forget()
+            r = 0
+            file_lb.grid(row=r, column=0)
+            file_entry.grid(row=r, column=1)
+            packButton.grid(row=r, column=2)
+            r += 1
+            packName_lb.grid(row=r, column=0)
+            packName_entry.grid(row=r, column=1)
+            r += 1
+            modle_name_entry.grid(row=r, column=1)
+            modle_name_lb.grid(row=r, column=0)
+            modelButton.grid(row=r, column=2)
+            r += 1
+            cord_lb.grid(row=r, column=0,columnspan=3)
+            r += 1
+            x_entry.grid(row=r, column=0)
+            y_entry.grid(row=r, column=1)
+            z_entry.grid(row=r, column=2)
+            r += 1
+            transparency_lb.grid(row=r, column=0)
+            transparency_entry.grid(row=r, column=1,columnspan=2)
+            r += 1
+            listbox.grid(row=r,column=1, rowspan=3)
+            deleteButton.grid(row=r,column=2)
+            r += 4
+            advanced_check.grid(row=r, column=0)
+            export_check.grid(row=r, column=1)
+            saveButton.grid(row=r, column=2)
+    def add_model():
+        valid=True
+        if len(FileGUI.get()) == 0:
+            valid=False
+            messagebox.showinfo("Error", "You need to browse for a structure file!")
+        if len(model_name_var.get()) == 0:
+            valid=False
+            messagebox.showinfo("Error", "You need a name for the Name Tag!")
+        if model_name_var.get() in list(models.keys()):
+            messagebox.showinfo("Error", "The Name Tag mut be unique")
+            valid=False
+        if valid:
+            
+            listbox.insert(END,model_name_var.get())
+            offsets[model_name_var.get()]=[xvar.get(),yvar.get(),zvar.get()]
+            models[model_name_var.get()]=FileGUI.get()
+    def delete_model():
+        items = listbox.curselection()
+        if len(items)>0:
+            models.pop(listbox.get(ACTIVE))
+        listbox.delete(ANCHOR)
+
+
+    def runFromGui():
+        ##wrapper for a gui.
+        global models, offsets
+        stop = False
+        
+        
+        if check_var.get()==0:
+            if len(FileGUI.get()) == 0:
+                stop = True
+                messagebox.showinfo("Error", "You need to browse for a structure file!")
+            if len(packName.get()) == 0:
+                stop = True
+                messagebox.showinfo("Error", "You need a Name")
+        else:
+            if len(list(models.keys()))==0:
+                stop = True
+                messagebox.showinfo("Error", "You need to add some strucutres")
+        if os.path.isfile("{}.mcpack".format(packName.get())):
+            stop = True
+            messagebox.showinfo("Error", "pack already exists or pack name is empty")
+                
+        opacity=(100-sliderVar.get())/100
+        
+        if not stop:
+            if check_var.get()==0:
+                offsets={"":[xvar.get(),yvar.get(),zvar.get()]}
+                models={"":FileGUI.get()}
+            generate_pack(packName.get(),
+                          opacity,
+                          models=models,
+                          offsets=offsets,
+                          makeMaterialsList=(export_list.get()==1))
+
+
 
     offsets={}
     root = Tk()

@@ -1,0 +1,4 @@
+These are the nametags used in this file
+front
+mid left
+mid right
