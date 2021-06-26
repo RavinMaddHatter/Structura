@@ -92,6 +92,7 @@ makeMaterialsList : sets wether a material list shall be output.
         with open(fileName,"w+") as text_file:
             text_file.write("These are the nametags used in this file\n")
             for name in models_object.keys():
+                
                 text_file.write("{}\n".format(name))
         
     

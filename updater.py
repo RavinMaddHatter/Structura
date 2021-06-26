@@ -3,22 +3,31 @@ import os
 cwd = os.getcwd()
 
 os.environ["PATH_TO_STRUCTURA_LOOKUP"] = os.path.join(cwd,"lookups")
+def_files_to_update=["block_definition.json",
+                 "block_shapes.json",
+                 "block_uv.json",
+                 "variants.json",
+                 "armor_stand.larger_render.geo.json",
+                 "block_rotation.json"]
+
+def getLatest():
+
+    
+    registry={}
+    for file in def_files_to_update:
+        try:
+            os.remove(os.path.join(cwd,"lookups",file))
+        except:
+            print("failed to delet:" +file)
+            pass
+        registry[file]=None
 
 
-def getUpdates():
-    registry={
-            "block_definition.json": None,
-            "block_shapes.json": None,
-            "block_uv.json": None,
-            "variants.json": None,
-            "armor_stand.larger_render.geo.json": None,
-            "block_rotation.json": None
-        }
     definitions = pooch.create(
         # Use the default cache folder for the operating system
         path=pooch.os_cache("plumbus"),
         # The remote data is on Github
-        base_url="https://github.com/RavinMaddHatter/Structura/tree/1.4-development/lookups/",
+        base_url="https://github.com/RavinMaddHatter/Structura/raw/1.4-development/lookups/",
         # If this is a development version, get the data from the "main" branch
         registry=registry,
         env="PATH_TO_STRUCTURA_LOOKUP",
@@ -26,5 +35,5 @@ def getUpdates():
     for file in registry.keys():
         test=definitions.fetch(file)
 
-    
+getLatest() 
 
