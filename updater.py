@@ -8,7 +8,8 @@ def_files_to_update=["block_definition.json",
                  "block_uv.json",
                  "variants.json",
                  "armor_stand.larger_render.geo.json",
-                 "block_rotation.json"]
+                 "block_rotation.json",
+                 "nbt_defs.json"]
 
 def getLatest():
 
@@ -35,5 +36,4 @@ def getLatest():
     for file in registry.keys():
         test=definitions.fetch(file)
 
-getLatest() 
 

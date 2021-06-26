@@ -10,19 +10,34 @@ from zipfile import ZipFile
 import glob
 import shutil
 import ntpath
+import json
 
-debug=True
+debug=False
+with open("lookups/nbt_defs.json") as f:
+    nbt_def = json.load(f)
 
 def process_block(x,y,z,block):
     rot = None
     top = False
     open_bit = False
     data=0
-    ## everything below is handling the garbage mapping and naming in NBT
-    ## probably should be cleaned up into a helper function/library. for now it works-ish
     variant="Default"
-    if "wall_block_type" in block["states"].keys():
-        variant = ["wall_block_type",block["states"]["wall_block_type"]]
+    
+    for key in nbt_def.keys():
+        if nbt_def[key]=="variant" and key in block["states"].keys():
+            variant = [key,block["states"][key]]
+        if nbt_def[key]=="rot" and key in block["states"].keys():
+            try:
+                rot = int(block["states"][key])
+            except:
+                rot = str(block["states"][key])   
+        if nbt_def[key]=="top" and key in block["states"].keys():
+            top = bool(block["states"][key])
+        if nbt_def[key]=="open_bit" and "open_bit" in block["states"].keys():
+            open_bit = bool(block["states"][key])
+        if nbt_def[key]=="data" and key in block["states"].keys():
+            data = int(block["states"][key])
+    
     if "wood_type" in block["states"].keys():
         variant = ["wood_type",block["states"]["wood_type"]]
         if block["name"] == "minecraft:wood":
@@ -30,46 +45,7 @@ def process_block(x,y,z,block):
             if bool(block["states"]["stripped_bit"]):
                 keys+="_stripped"
             variant = ["wood",keys]
-    if "old_log_type" in block["states"].keys():
-        variant = ["old_log_type",block["states"]["old_log_type"]]
-    if "new_log_type" in block["states"].keys():
-        variant = ["new_log_type",block["states"]["new_log_type"]]
-    if "stone_type" in block["states"].keys():
-        variant = ["stone_type",block["states"]["stone_type"]]
-    if "prismarine_block_type" in block["states"].keys():
-        variant = ["prismarine_block_type",block["states"]["prismarine_block_type"]]
-    if "stone_brick_type" in block["states"].keys():
-        variant = ["stone_brick_type",block["states"]["stone_brick_type"]]
-    if "color" in block["states"].keys():
-        variant = ["color",block["states"]["color"]]
-    if "sand_stone_type" in block["states"].keys():
-        variant = ["sand_stone_type",block["states"]["sand_stone_type"]]
-    if "stone_slab_type" in block["states"].keys():
-        variant = ["stone_slab_type",block["states"]["stone_slab_type"]]
-    if "stone_slab_type_2" in block["states"].keys():
-        variant = ["stone_slab_type_2",block["states"]["stone_slab_type_2"]]
-    if "stone_slab_type_3" in block["states"].keys():
-        variant = ["stone_slab_type_3",block["states"]["stone_slab_type_3"]]
-    if "stone_slab_type_4" in block["states"].keys():
-        variant = ["stone_slab_type_4",block["states"]["stone_slab_type_4"]]
-    if "facing_direction" in block["states"].keys():
-        rot = int(block["states"]["facing_direction"])
-    if "direction" in block["states"].keys():
-        rot = int(block["states"]["direction"])
-    if "torch_facing_direction" in block["states"].keys():
-        rot = block["states"]["torch_facing_direction"]
-    if "weirdo_direction" in block["states"].keys():
-        rot = int(block["states"]["weirdo_direction"])
-    if "upside_down_bit" in block["states"].keys():
-        top = bool(block["states"]["upside_down_bit"])
-    if "top_slot_bit" in block["states"].keys():
-        top = bool(block["states"]["top_slot_bit"])
-    if "open_bit" in block["states"].keys():
-        open_bit = bool(block["states"]["open_bit"])
-    if "repeater_delay" in block["states"].keys():
-        data = int(block["states"]["repeater_delay"])
-    if "output_subtract_bit" in block["states"].keys():
-        data = bool(block["states"]["output_subtract_bit"])
+
     
     return [rot, top, variant, open_bit,data]
 
