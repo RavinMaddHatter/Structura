@@ -11,6 +11,7 @@ import glob
 import shutil
 import ntpath
 import json
+import updater
 
 debug=False
 with open("lookups/nbt_defs.json") as f:
@@ -213,6 +214,8 @@ if __name__=="__main__":
             advanced_check.grid(row=r, column=0)
             export_check.grid(row=r, column=1)
             saveButton.grid(row=r, column=2)
+            r +=1
+            updateButton.grid(row=r, column=2)
         else:
             saveButton.grid_forget()
             r = 0
@@ -242,6 +245,8 @@ if __name__=="__main__":
             advanced_check.grid(row=r, column=0)
             export_check.grid(row=r, column=1)
             saveButton.grid(row=r, column=2)
+            r +=1
+            updateButton.grid(row=r, column=2)
     def add_model():
         valid=True
         if len(FileGUI.get()) == 0:
@@ -341,6 +346,7 @@ if __name__=="__main__":
     saveButton = Button(root, text="Make Pack", command=runFromGui)
     modelButton = Button(root, text="Add Model", command=add_model)
 
+    updateButton = Button(root, text="Update Blocks", command=updater.getLatest)
     transparency_lb = Label(root, text="Transparency")
     transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,tickinterval=10,orient=HORIZONTAL)
 
