@@ -31,7 +31,7 @@ modFile=["01-6xSingleItemSortes",
          "29-multi sorter",
          "SnowFarm"]
 modName=["SingleItemSorter",
-         "Non-Stackable",
+         "Nonstackable",
          "AutoPusher1",
          "AutoPusher2",
          "AutoDropper1",
@@ -64,18 +64,12 @@ models={}
 offsets={}
 ind=0
 for i in range(len(modName)):
-    print(i)
-    print(i>=9)
-    if len(models.keys())<=4:
-        
-        models[modName[i]]="test structures\{}.mcstructure".format(modFile[i])
-        offsets[modName[i]]=[8,0,7]
-    else:
-        ind+=1
-        #if os.path.isfile("{}-{}.mcpack".format("HattersToyBox",i)):
-        #    os.remove("{}-{}".format("HattersToyBox",i))
-        structura.generate_pack("{}-{}".format("HattersToyBox",ind),50,models,offsets,makeMaterialsList=True)
-        models={}
-        offsets={}
+    
+    models[modName[i]]={}
+    print(modName[i])
+    
+    models[modName[i]]["structure"]="test_structures\{}.mcstructure".format(modFile[i])
+    models[modName[i]]["offsets"]=[8,0,7]
+    models[modName[i]]["opacity"] = 0.8
 ind+=1
-structura.generate_pack("{}-{}".format("HattersToyBox",ind),50,models,offsets,makeMaterialsList=True)
+structura.generate_pack("{}".format("HattersToyBox"),models_object=models,makeMaterialsList=False)

@@ -114,7 +114,7 @@ makeMaterialsList : sets wether a material list shall be output.
         copyfile(models_object[model_name]["structure"], "{}/{}.mcstructure".format(pack_name,model_name))
         
         #reads structure
-        struct2make = structure_reader.process_structure(models[model_name]["structure"])
+        struct2make = structure_reader.process_structure(models_object[model_name]["structure"])
         #creates a base armorstand class for us to insert blocks
         armorstand = asgc.armorstandgeo(model_name,alpha = models_object[model_name]['opacity'],offsets=models_object[model_name]['offsets'])
         
@@ -193,6 +193,7 @@ makeMaterialsList : sets wether a material list shall be output.
             zip.write(file)
     ## delete all the extra files.
     shutil.rmtree(pack_name)
+    print("Pack Making Completed")
 
 
 if __name__=="__main__":
