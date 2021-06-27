@@ -56,7 +56,16 @@
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"cauldron":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
-			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
+			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]},
+			"overwrite":{
+			"north":["textures/blocks/cauldron_side"],
+			"south":["textures/blocks/cauldron_side"],
+			"east":["textures/blocks/cauldron_side"],
+			"west":["textures/blocks/cauldron_side"],
+			"up":["textures/blocks/cauldron_top"],
+			"down":["textures/blocks/cauldron_bottom"]
+			}
+			}},
 	"chest":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
