@@ -214,8 +214,16 @@
 			"uv_sizes":{"up":[[1 ,1]],"down":[[1,1]],"north":[[1,0.375]],"south":[[1,0.375]],"east":[[1,0.375]],"west":[[1,0.375]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
 	"campfire":{"default":{
-			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
-			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
+			"uv_sizes":{"up":[[1,0.25]],"down":[[1,0.25]],"north":[[1,0.25]],"south":[[1,0.25]],"east":[[0.25,0.25]],"west":[[0.25,0.25]]},
+			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0.25]],"west":[[0,0.25]]},
+			"overwrite":{
+				"up":["textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log"],
+				"down":["textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log"],
+				"north":["textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log"],
+				"south":["textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log"],
+				"east":["textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log"],
+				"west":["textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log","textures/blocks/campfire_log"]}
+			}},
 	"pane":{"default":{
 			"uv_sizes":{"up":[[1,1]],"down":[[1,1]],"north":[[1,1]],"south":[[1,1]],"east":[[1,1]],"west":[[1,1]]},
 			"offset":{"up":[[0,0]],"down":[[0,0]],"north":[[0,0]],"south":[[0,0]],"east":[[0,0]],"west":[[0,0]]}}},
