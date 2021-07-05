@@ -80,8 +80,8 @@ class armorstandgeo:
 
     def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant=None):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
-        
-        if block_name not in self.excluded:
+        block_type = self.defs[block_name]
+        if block_type!="ignore":
             if debug:
                 print(block_name)
             ghost_block_name = "block_{}_{}_{}".format(x, y, z)

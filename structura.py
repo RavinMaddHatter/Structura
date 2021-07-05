@@ -54,7 +54,7 @@ def process_block(x,y,z,block):
 
 
 
-def generate_pack(pack_name,models_object={},makeMaterialsList=False):
+def generate_pack(pack_name,models_object={},makeMaterialsList=False, icon="lookups/pack_icon.png"):
     """
 This is the funciton that makes a structura pack:
 pack_name : the name of the pack, this will be stored the the manafest.JSON as well as the name of the mcpack file
@@ -64,7 +64,7 @@ makeMaterialsList : sets wether a material list shall be output.
     
     
     visual_name=pack_name
-    if len(list(models_object.keys()))>1:
+    if len("".join(list(models_object.keys())))>1:
         fileName="{} Nametags.txt".format(pack_name)
         with open(fileName,"w+") as text_file:
             text_file.write("These are the nametags used in this file\n")
@@ -90,7 +90,8 @@ makeMaterialsList : sets wether a material list shall be output.
         rc.add_model(model_name)
         armorstand_entity.add_model(model_name)
         copyfile(models_object[model_name]["structure"], "{}/{}.mcstructure".format(pack_name,model_name))
-        
+        if debug:
+            print(models_object[model_name]['offsets'])
         #reads structure
         struct2make = structure_reader.process_structure(models_object[model_name]["structure"])
         #creates a base armorstand class for us to insert blocks
@@ -121,8 +122,11 @@ makeMaterialsList : sets wether a material list shall be output.
                     variant = blockProp[2]
                     open_bit = blockProp[3]
                     data = blockProp[4]
+                    if debug:
+                        print(blk_name)
                     ##  If java worlds are brought into bedrock the tools some times
                     ##   output unsupported blocks, will log.
+                    
                     if debug:
                         armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
                     try:
@@ -148,7 +152,7 @@ makeMaterialsList : sets wether a material list shall be output.
         armorstand_entity.export(pack_name)
         
     # Copy my icons in
-    copyfile("lookups/pack_icon.png", "{}/pack_icon.png".format(pack_name))
+    copyfile(icon, "{}/pack_icon.png".format(pack_name))
     # Adds to zip file a modified armor stand geometry to enlarge the render area of the entity
     larger_render = "lookups/armor_stand.larger_render.geo.json"
     larger_render_path = "{}/models/entity/{}".format(pack_name, "armor_stand.larger_render.geo.json")
@@ -188,7 +192,10 @@ if __name__=="__main__":
         #browse for a structure file.
         FileGUI.set(filedialog.askopenfilename(filetypes=(
             ("Structure File", "*.mcstructure *.MCSTRUCTURE"), )))
-
+    def browseIcon():
+        #browse for a structure file.
+        icon_var.set(filedialog.askopenfilename(filetypes=(
+            ("Icon File", "*.png *.PNG"), )))
     def box_checked():
         if check_var.get()==0:
             modle_name_entry.grid_forget()
@@ -202,6 +209,11 @@ if __name__=="__main__":
             file_entry.grid(row=r, column=1)
             packButton.grid(row=r, column=2)
             r += 1
+            icon_lb.grid(row=r, column=0)
+            icon_entry.grid(row=r, column=1)
+            IconButton.grid(row=r, column=2)
+            r += 1
+            
             packName_lb.grid(row=r, column=0)
             packName_entry.grid(row=r, column=1)
             r += 1
@@ -222,6 +234,10 @@ if __name__=="__main__":
             file_lb.grid(row=r, column=0)
             file_entry.grid(row=r, column=1)
             packButton.grid(row=r, column=2)
+            r += 1
+            icon_lb.grid(row=r, column=0)
+            icon_entry.grid(row=r, column=1)
+            IconButton.grid(row=r, column=2)
             r += 1
             packName_lb.grid(row=r, column=0)
             packName_entry.grid(row=r, column=1)
@@ -258,6 +274,7 @@ if __name__=="__main__":
         if model_name_var.get() in list(models.keys()):
             messagebox.showinfo("Error", "The Name Tag mut be unique")
             valid=False
+
         if valid:
             name_tag=model_name_var.get()
             opacity=(100-sliderVar.get())/100
@@ -295,19 +312,24 @@ if __name__=="__main__":
         if os.path.isfile("{}.mcpack".format(packName.get())):
             stop = True
             messagebox.showinfo("Error", "pack already exists or pack name is empty")
-        
+        if len(icon_var.get())>0:
+            pack_icon=icon_var.get()
+        else:
+            pack_icon="lookups/pack_icon.png"
         if not stop:
-            if check_var.get()==0:
+            if not(check_var.get()):
                 name_tag = ""
-                
                 models[name_tag] = {}
                 models[name_tag]["offsets"] = [xvar.get(),yvar.get(),zvar.get()]
                 models[name_tag]["opacity"] = sliderVar.get()
                 models[name_tag]["structure"] = FileGUI.get()
                 
+            if debug:
+                print(models)
             generate_pack(packName.get(),
                           models_object=models,
-                          makeMaterialsList=(export_list.get()==1))
+                          makeMaterialsList=(export_list.get()==1),
+                          icon=pack_icon)
 
 
 
@@ -317,6 +339,8 @@ if __name__=="__main__":
     models={}
     FileGUI = StringVar()
     packName = StringVar()
+    icon_var = StringVar()
+    icon_var.set("lookups/pack_icon.png")
     sliderVar = DoubleVar()
     model_name_var = StringVar()
     xvar = DoubleVar()
@@ -336,6 +360,9 @@ if __name__=="__main__":
     x_entry = Entry(root, textvariable=xvar, width=5)
     y_entry = Entry(root, textvariable=yvar, width=5)
     z_entry = Entry(root, textvariable=zvar, width=5)
+    icon_lb = Label(root, text="Icon file")
+    icon_entry = Entry(root, textvariable=icon_var)
+    IconButton = Button(root, text="Browse", command=browseIcon)
     file_lb = Label(root, text="Structure file")
     packName_lb = Label(root, text="Pack Name")
     packButton = Button(root, text="Browse", command=browseStruct)
