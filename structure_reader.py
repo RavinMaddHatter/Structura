@@ -73,10 +73,16 @@ class process_structure:
                                "monster_egg_stone_type", "prismarine_block_type", "new_log_type", "stone_slab_type_2",
                                "old_log_type", "stone_slab_type_3", "new_leaf_type"]
 
+                # debug output for states
+                #if block_name == 'double_stone_slab2':
+                #    print(self.palette[block_id]["states"])
+
+
                 # Parsing the respective states
 
-                #if block_name == 'skull':
-                #    print(self.palette[block_id]["states"])
+                # Fix double slabs
+                if ("double_" in block_name and "slab" in block_name):
+                    block_name = block_name.replace('double_', '')
 
                 # Fix log type
                 if (block_name == 'log2'):
@@ -139,10 +145,10 @@ class process_structure:
                     block_name += '.crimsonRoots'
 
                 # Handle repeaters, comparators and daylight detectors
-                if (block_name == 'unpowered_repeater'):
+                if (block_name == 'unpowered_repeater' or block_name == 'powered_repeater'):
                     block_name = 'repeater'
 
-                if (block_name == 'unpowered_comparator'):
+                if (block_name == 'unpowered_comparator' or block_name == 'powered_comparator'):
                     block_name = 'comparator'
 
                 if (block_name == 'daylight_detector_inverted'):
@@ -237,7 +243,7 @@ class process_structure:
                 if ("double_plant_type" in self.palette[block_id]["states"]):
                     block_name += '.' + self.palette[block_id]["states"]["double_plant_type"]
                 if ("coral_color" in self.palette[block_id]["states"]):
-                    if (block_name == 'coral_fan_dead'):
+                    if (block_name == 'coral_fan_dead' or block_name == 'coral_fan'):
                         block_name += '.'+self.palette[block_id]["states"]["coral_color"]+'_fan'
                     else:
                         block_name += '.' + self.palette[block_id]["states"]["coral_color"]
@@ -287,6 +293,8 @@ class process_structure:
                 if ("stone_slab_type_2" in self.palette[block_id]["states"]):
                     # Handle prismarine types
                     type = self.palette[block_id]["states"]["stone_slab_type_2"]
+                    if ("double" in block_name):
+                        print(block_name)
                     if (type == 'prismarine_rough'):
                         block_name += '.prismarine.rough'
                     elif (type == 'prismarine_dark'):
@@ -355,13 +363,15 @@ class process_structure:
         return translated_block_counter
 
 
-testFileName = "allblocks.mcstructure"
-excludedBlocks = ["minecraft:structure_block", "minecraft:air"]
-test = process_structure(testFileName)
-block_count = test.get_block_list(excludedBlocks)
-print("BLOCK LIST")
-total_blocks = 0
-for i in block_count.keys():
-    print("{}: {}".format(i, block_count[i]))
-    total_blocks += block_count[i]
-print("TOTAL NUMBER OF BLOCKS ", total_blocks)
+#testFileName = "allblocks2.mcstructure"
+#excludedBlocks = ["minecraft:structure_block", "minecraft:air"]
+#test = process_structure(testFileName)
+#block_count = test.get_block_list(excludedBlocks)
+#print("BLOCK LIST")
+#total_blocks = 0
+#for i in block_count.keys():
+#    #if ("TRANSLATION_MISSING" in i):
+#    print("{}: {}".format(i, block_count[i]))
+#
+#    total_blocks += block_count[i]
+#print("TOTAL NUMBER OF BLOCKS ", total_blocks)
