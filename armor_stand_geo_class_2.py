@@ -21,8 +21,6 @@ class armorstandgeo:
         with open("lookups/variants.json") as f:
             ## custom lookup table mapping the assume array location in the terrian texture to the relevant blocks IE log2 index 2 implies a specific wood type not captured anywhere
             self.block_variants = json.load(f)
-        with open("lookups/hacks.json") as f:
-            self.hacks = json.load(f)
         with open("lookups/block_definition.json") as f:
             self.defs = json.load(f)
         with open("lookups/block_shapes.json") as f:
@@ -44,11 +42,10 @@ class armorstandgeo:
         self.uv_array = None
         ## The stuff below is a horrible cludge that should get cleaned up. +1 karma to whomever has a better plan for this.
         # this is how i determine if something should be thin. it is ugly, but kinda works
-        self.lower_objects = self.hacks["slab_like"]
-        self.slab_like_objects = self.hacks["trapdoor_like"]
+
         
         ## these blocks are either not needed, or cause issue. Grass is banned because the terrian_texture.json has a biome map in it. If someone wants to fix we can un-bann it
-        self.excluded = ["air", "grass", "structure_block"]
+        self.excluded = ["air", "structure_block"]
 
     def export(self, pack_folder):
         ## This exporter just packs up the armorstand json files and dumps them where it should go. as well as exports the UV file
@@ -83,8 +80,8 @@ class armorstandgeo:
 
     def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant=None):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
-        
-        if block_name not in self.excluded:
+        block_type = self.defs[block_name]
+        if block_type!="ignore":
             if debug:
                 print(block_name)
             ghost_block_name = "block_{}_{}_{}".format(x, y, z)
