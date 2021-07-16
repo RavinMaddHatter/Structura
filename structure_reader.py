@@ -46,43 +46,11 @@ class process_structure:
                 block_name = self.palette[block_id]["name"]
                 block_name = block_name.replace('minecraft:', '')
 
-                # We will ignore these states when checking for additional data
-                ignored_state_types = ["upside_down_bit", "top_slot_bit", "direction", "facing_direction", "deprecated",
-                                       "wall_connection_type_east", "rail_data_bit", "age", "rail_direction",
-                                       "redstone_signal",
-                                       "torch_facing_direction", "lever_direction", "covered_bit", "growing_plant_age",
-                                       "dripstone_thickness", "moisturized_amount", "growth", "pillar_axis",
-                                       "attached_bit", "composter_fill_level", "update_bit", "infiniburn_bit",
-                                       "allow_underwater_bit", "explode_bit", "brewing_stand_slot_a_bit",
-                                       "brewing_stand_slot_b_bit",
-                                       "brewing_stand_slot_c_bit", "ground_sign_direction", "stability",
-                                       "stability_check",
-                                       "hanging", "multi_face_direction_bits", "cluster_count", "dead_bit",
-                                       "bamboo_leaf_size",
-                                       "bamboo_stalk_thickness", "twisting_vines_age", "vine_direction_bits",
-                                       "bite_counter"]
-
-                ignored_state_types = []
-
-                # We will check these states for additional data about the blocks
-                state_types = ["color", "dirt_type", "stone_slab_type_4", "stone_slab_type", "wall_block_type",
-                               "old_leaf_type", "chisel_type", "huge_mushroom_bits", "wood_type", "flower_type",
-                               "double_plant_type", "coral_color", "tall_grass_type", "sapling_type", "cauldron_liquid",
-                               "sand_type", "stone_brick_type", "stone_type", "sponge_type", "cracked_state",
-                               "sand_stone_type", "respawn_anchor_charge",
-                               "monster_egg_stone_type", "prismarine_block_type", "new_log_type", "stone_slab_type_2",
-                               "old_log_type", "stone_slab_type_3", "new_leaf_type"]
-
                 # debug output for states
-                #if block_name == 'double_stone_slab2':
-                #    print(self.palette[block_id]["states"])
-
+#                if block_name == 'smooth_stone':
+#                    print(self.palette[block_id]["states"])
 
                 # Parsing the respective states
-
-                # Fix double slabs
-                if ("double_" in block_name and "slab" in block_name):
-                    block_name = block_name.replace('double_', '')
 
                 # Fix log type
                 if (block_name == 'log2'):
@@ -153,6 +121,15 @@ class process_structure:
 
                 if (block_name == 'daylight_detector_inverted'):
                     block_name = 'daylight_detector'
+
+                if (block_name == 'lit_redstone_lamp'):
+                    block_name = 'redstone_lamp'
+
+                if (block_name == 'wall_sign'):
+                    block_name = 'sign'
+
+                if (block_name == 'birch_wall_sign'):
+                    block_name = 'birch_sign'
 
                 # Handle undyed shulker boxes
                 if (block_name == 'undyed_shulker_box'):
@@ -293,8 +270,6 @@ class process_structure:
                 if ("stone_slab_type_2" in self.palette[block_id]["states"]):
                     # Handle prismarine types
                     type = self.palette[block_id]["states"]["stone_slab_type_2"]
-                    if ("double" in block_name):
-                        print(block_name)
                     if (type == 'prismarine_rough'):
                         block_name += '.prismarine.rough'
                     elif (type == 'prismarine_dark'):
@@ -332,38 +307,49 @@ class process_structure:
                     elif (block_name == 'brown_mushroom_block'):
                         block_name += '.cap'
 
-                # print states that we haven't parsed yet (DEBUG)
-                # found = False
-                # total_state_types = ignored_state_types + state_types
-
-                # for state_type in total_state_types:
-                #    if (state_type in self.palette[block_id]["states"]):
-                #        found = True
-
-                # if not found and len(self.palette[block_id]["states"]) > 0:
-                #    print(self.palette[block_id]["states"])
-
+                # DEPRECATED this is no longer necessary and will be removed in the future
                 if block_name in block_counter.keys():
-                    block_counter[block_name] += 1
+                    # Fix double slabs
+                    if ("double_" in block_name and "slab" in block_name):
+                        block_counter[block_name] += 2
+                    else:
+                        block_counter[block_name] += 1
                 else:
-                    block_counter[block_name] = 1
+                    # Fix double slabs
+                    if ("double_" in block_name and "slab" in block_name):
+                        block_counter[block_name] = 2
+                    else:
+                        block_counter[block_name] = 1
 
-                if ('tile.' + block_name + '.name' in translations):
-                    translated_block_name = translations['tile.' + block_name + '.name']
-                elif ('item.' + block_name + '.name' in translations):
-                    translated_block_name = translations['item.' + block_name + '.name']
+                # Fix double slabs for translations
+                fixed_block_name = block_name
+                if ("double_" in block_name and "slab" in block_name):
+                    fixed_block_name = block_name.replace('double_', '')
+
+                if ('tile.' + fixed_block_name + '.name' in translations):
+                    translated_block_name = translations['tile.' + fixed_block_name + '.name']
+                elif ('item.' + fixed_block_name + '.name' in translations):
+                    translated_block_name = translations['item.' + fixed_block_name + '.name']
                 else:
-                    translated_block_name = "TRANSLATION_MISSING " + block_name
+                    translated_block_name = "TRANSLATION_MISSING " + fixed_block_name
 
                 if translated_block_name in translated_block_counter.keys():
-                    translated_block_counter[translated_block_name] += 1
+                    if ("double_" in block_name and "slab" in block_name):
+                        translated_block_counter[translated_block_name] += 2
+                    else:
+                        translated_block_counter[translated_block_name] += 1
                 else:
-                    translated_block_counter[translated_block_name] = 1
+                    if ("double_" in block_name and "slab" in block_name):
+                        translated_block_counter[translated_block_name] = 2
+                    else:
+                        translated_block_counter[translated_block_name] = 1
 
-        return translated_block_counter
+        # sort alphabetically
+        sorted_items = dict(sorted(translated_block_counter.items()))
 
+        return sorted_items
 
-#testFileName = "allblocks2.mcstructure"
+#testFileName = "Post_office.mcstructure"
 #excludedBlocks = ["minecraft:structure_block", "minecraft:air"]
 #test = process_structure(testFileName)
 #block_count = test.get_block_list(excludedBlocks)

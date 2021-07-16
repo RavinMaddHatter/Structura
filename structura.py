@@ -135,11 +135,12 @@ makeMaterialsList : sets wether a material list shall be output.
                         print("There is an unsuported block in this world and it was skipped")
                         print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
         ## this is a quick hack to get block lists, doesnt consider vairants.... so be careful                
-        allBlocks = struct2make.get_block_list()
+        allBlocks = struct2make.get_block_list(["minecraft:air", "minecraft:structure_block"])
         fileName="{}-{} block list.txt".format(visual_name,model_name)
         if makeMaterialsList:
             with open(fileName,"w+") as text_file:
-                text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
+                text_file.write("This is a list of all blocks used in the structure.\nThere are some issues with variants"
+                                "(e.g. bed colors and skulls, entities), so there might be some missing information\n\n")
                 for name in allBlocks.keys():
                     commonName = name.replace("minecraft:","")
                     text_file.write("{}: {}\n".format(commonName,allBlocks[name]))
