@@ -9,6 +9,7 @@
     "bubble_column": "bubble_column",
     "acacia_button": "button",
     "birch_button": "button",
+	"cave_air":"ignore",
     "crimson_button": "button",
     "dark_oak_button": "button",
     "jungle_button": "button",
