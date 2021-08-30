@@ -9,7 +9,7 @@ This is an attempt to use Java Blockstates and Models to render the ghost blocks
 
 ## Notes 
 
-It is an alpha version. It does not contain support for all the features right now available on **Structura**.<br/>
+It is an alpha version. It does not contain support for all the features right now available on **Structura** and it might not be continued to be developed.<br/>
 It does not have ane executable yet<br/>
 Pipeline (not in order):<br/>
 -All Vanilla blocks support<br/>
