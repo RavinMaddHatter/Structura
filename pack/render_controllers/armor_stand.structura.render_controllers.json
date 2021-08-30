@@ -1,0 +1,14 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.armor_stand.structura": {
+      "materials": [
+        {
+          "*": "Material.structura"
+        }
+      ],
+      "geometry": "Geometry.structura",
+      "textures": ["Texture.structura"]
+    }
+  }
+}

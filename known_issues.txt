@@ -1,0 +1,19 @@
+Hopper and scaffolfing textures are compressed
+"Floating" Scaffolding does not have the correct model
+Closed pistons do not show the head
+Side placed torches postition is offset
+Bells do not have the bell, only the support
+Multipart blocks are not supported (fence, wall, glass_pane, iron bars, brewing_stand...)
+Following blocks are not supported yet:
+    Known reason:
+        Chests
+        Item frames     
+        Cauldrons
+    Unknown reason
+        Campfires
+        Pickles
+        Candles    
+        Cauldrons
+        Lectern
+        Noteblock
+        Filled Flower Pots
