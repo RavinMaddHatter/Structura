@@ -9,26 +9,26 @@ This is an attempt to use Java Blockstates and Models to render the ghost blocks
 
 ## Notes 
 
-It is an alpha version. It does not contain support for all the features right now available on **Structura**.
-It does not have ane executable yet
-Pipeline (not in order):
--All Vanilla blocks support
--Support for all features available right now on Structura
---Layered animations
---Multiple structures in one pack (by renaming armor_stand)
---Transparency changer
---Offsets
--Make app into a web
--Support for custom blocks from addons(?)
--Optimize app speed
+It is an alpha version. It does not contain support for all the features right now available on **Structura**.<br\>
+It does not have ane executable yet<br\>
+Pipeline (not in order):<br\>
+-All Vanilla blocks support<br\>
+-Support for all features available right now on Structura<br\>
+--Layered animations<br\>
+--Multiple structures in one pack (by renaming armor_stand)<br\>
+--Transparency changer<br\>
+--Offsets<br\>
+-Make app into a web<br\>
+-Support for custom blocks from addons(?)<br\>
+-Optimize app speed<br\>
 
 ## How to use
 
-First you need to have installed Python 3.9.x on your device
-Open Terminal in the Structura Rewrite folder and run the following command to install the needed modules
-`pip install pillow nbtlib numpy`
-Once that is completed the app is ready to use
+First you need to have installed Python 3.9.x on your device<br\>
+Open Terminal in the Structura Rewrite folder and run the following command to install the needed modules:<br\>
+`pip install pillow nbtlib numpy`<br\>
+Once that is completed the app is ready to use<br\>
 
-To use it run the next command
-`structura.py <path_to_mcstructure_file> <pack_name>`
-and it will generate an .mcpack with the structure on it
+To use it run the next command:<br\>
+`structura.py <path_to_mcstructure_file> <pack_name>`<br\>
+and it will generate an .mcpack with the structure on it.<br\>
