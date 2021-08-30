@@ -27,8 +27,11 @@ Pipeline (not in order):<br/>
 First you need to have installed Python 3.9.x on your device<br/>
 Open Terminal in the Structura Rewrite folder and run the following command to install the needed modules:<br/>
 `pip install pillow nbtlib numpy`<br/>
-Once that is completed the app is ready to use<br/>
+Once that is completed the app is ready to download and use<br/>
 
-To use it run the next command:<br/>
+Download the repository by pressing green "Code" button and then "Download ZIP".
+Once the app is downloaded unzip the file and get into the app directory.
+
+Finally to use it run the next command:<br/>
 `structura.py <path_to_mcstructure_file> <pack_name>`<br/>
 and it will generate an .mcpack with the structure on it.<br/>
