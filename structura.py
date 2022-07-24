@@ -3,8 +3,6 @@ import armor_stand_class
 import structure_reader
 import animation_class
 import render_controller_class as rcc
-from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
-from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
 import manifest
 from shutil import copyfile
 import os
@@ -12,21 +10,35 @@ from zipfile import ZipFile
 import glob
 import shutil
 import ntpath
-from tkinter import ttk
-from tkinter import filedialog
-from tkinter import messagebox
+import json
+import updater
+
 debug=False
+with open("lookups/nbt_defs.json") as f:
+    nbt_def = json.load(f)
 
 def process_block(x,y,z,block):
     rot = None
     top = False
     open_bit = False
     data=0
-    ## everything below is handling the garbage mapping and naming in NBT
-    ## probably should be cleaned up into a helper function/library. for now it works-ish
     variant="Default"
-    if "wall_block_type" in block["states"].keys():
-        variant = ["wall_block_type",block["states"]["wall_block_type"]]
+    
+    for key in nbt_def.keys():
+        if nbt_def[key]=="variant" and key in block["states"].keys():
+            variant = [key,block["states"][key]]
+        if nbt_def[key]=="rot" and key in block["states"].keys():
+            try:
+                rot = int(block["states"][key])
+            except:
+                rot = str(block["states"][key])   
+        if nbt_def[key]=="top" and key in block["states"].keys():
+            top = bool(block["states"][key])
+        if nbt_def[key]=="open_bit" and "open_bit" in block["states"].keys():
+            open_bit = bool(block["states"][key])
+        if nbt_def[key]=="data" and key in block["states"].keys():
+            data = int(block["states"][key])
+    
     if "wood_type" in block["states"].keys():
         variant = ["wood_type",block["states"]["wood_type"]]
         if block["name"] == "minecraft:wood":
@@ -34,74 +46,33 @@ def process_block(x,y,z,block):
             if bool(block["states"]["stripped_bit"]):
                 keys+="_stripped"
             variant = ["wood",keys]
-    if "old_log_type" in block["states"].keys():
-        variant = ["old_log_type",block["states"]["old_log_type"]]
-    if "new_log_type" in block["states"].keys():
-        variant = ["new_log_type",block["states"]["new_log_type"]]
-    if "stone_type" in block["states"].keys():
-        variant = ["stone_type",block["states"]["stone_type"]]
-    if "prismarine_block_type" in block["states"].keys():
-        variant = ["prismarine_block_type",block["states"]["prismarine_block_type"]]
-    if "stone_brick_type" in block["states"].keys():
-        variant = ["stone_brick_type",block["states"]["stone_brick_type"]]
-    if "color" in block["states"].keys():
-        variant = ["color",block["states"]["color"]]
-    if "sand_stone_type" in block["states"].keys():
-        variant = ["sand_stone_type",block["states"]["sand_stone_type"]]
-    if "stone_slab_type" in block["states"].keys():
-        variant = ["stone_slab_type",block["states"]["stone_slab_type"]]
-    if "stone_slab_type_2" in block["states"].keys():
-        variant = ["stone_slab_type_2",block["states"]["stone_slab_type_2"]]
-    if "stone_slab_type_3" in block["states"].keys():
-        variant = ["stone_slab_type_3",block["states"]["stone_slab_type_3"]]
-    if "stone_slab_type_4" in block["states"].keys():
-        variant = ["stone_slab_type_4",block["states"]["stone_slab_type_4"]]
-    if "facing_direction" in block["states"].keys():
-        rot = int(block["states"]["facing_direction"])
-    if "direction" in block["states"].keys():
-        rot = int(block["states"]["direction"])
-    if "torch_facing_direction" in block["states"].keys():
-        rot = block["states"]["torch_facing_direction"]
-    if "weirdo_direction" in block["states"].keys():
-        rot = int(block["states"]["weirdo_direction"])
-    if "upside_down_bit" in block["states"].keys():
-        top = bool(block["states"]["upside_down_bit"])
-    if "top_slot_bit" in block["states"].keys():
-        top = bool(block["states"]["top_slot_bit"])
-    if "open_bit" in block["states"].keys():
-        open_bit = bool(block["states"]["open_bit"])
-    if "repeater_delay" in block["states"].keys():
-        data = int(block["states"]["repeater_delay"])
-    if "output_subtract_bit" in block["states"].keys():
-        data = bool(block["states"]["output_subtract_bit"])
+
     
     return [rot, top, variant, open_bit,data]
-def generate_pack(struct_name, pack_name,opacity):
+
+
+
+
+
+def generate_pack(pack_name,models_object={},makeMaterialsList=False, icon="lookups/pack_icon.png"):
+    """
+This is the funciton that makes a structura pack:
+pack_name : the name of the pack, this will be stored the the manafest.JSON as well as the name of the mcpack file
+models : 'NAME_TAG': {offsets: [x, y, z],opacity: percent,structure: file.mcstructure},
+makeMaterialsList : sets wether a material list shall be output.
+    """
+    
     
     visual_name=pack_name
-    #pack_name=pack_name.replace(" ","_")
-    # check that the pack name is not already used
-    global models, offsets
-    if check_var.get()==0:
-        model_name=""
-        offsets={"":[xvar.get(),yvar.get(),zvar.get()]}
-        models={"":struct_name}
-    else:
+    if len("".join(list(models_object.keys())))>1:
         fileName="{} Nametags.txt".format(pack_name)
         with open(fileName,"w+") as text_file:
             text_file.write("These are the nametags used in this file\n")
-            for name in models.keys():
+            for name in models_object.keys():
+                
                 text_file.write("{}\n".format(name))
         
-    while os.path.isfile("{}.mcpack".format(pack_name)) or pack_name == "":
-        pack_name = filedialog.asksaveasfilename(initialdir = os.getcwd(),
-                                                 title = "Select a New Name",
-                                                 filetypes = (("pack files",
-                                                               "*.mcpack"),
-                                                              ("all files",
-                                                               "*.*")))
-        
-        pack_name=ntpath.basename(pack_name)
+    
     ## makes a render controller class that we will use to hide models
     rc=rcc.render_controller()
     ##makes a armor stand entity class that we will use to add models 
@@ -114,16 +85,17 @@ def generate_pack(struct_name, pack_name,opacity):
     animation = animation_class.animations()
     longestY=0
     update_animation=True
-    for model_name in models.keys():
-        offset=offsets[model_name]
+    for model_name in models_object.keys():
+        offset=models_object[model_name]["offsets"]
         rc.add_model(model_name)
         armorstand_entity.add_model(model_name)
-        copyfile(models[model_name], "{}/{}.mcstructure".format(pack_name,model_name))
-        
+        copyfile(models_object[model_name]["structure"], "{}/{}.mcstructure".format(pack_name,model_name))
+        if debug:
+            print(models_object[model_name]['offsets'])
         #reads structure
-        struct2make = structure_reader.process_structure(models[model_name])
+        struct2make = structure_reader.process_structure(models_object[model_name]["structure"])
         #creates a base armorstand class for us to insert blocks
-        armorstand = asgc.armorstandgeo(model_name,alpha = opacity,offsets=offset)
+        armorstand = asgc.armorstandgeo(model_name,alpha = models_object[model_name]['opacity'],offsets=models_object[model_name]['offsets'])
         
         #gets the shape for looping
         [xlen, ylen, zlen] = struct2make.get_size()
@@ -150,8 +122,11 @@ def generate_pack(struct_name, pack_name,opacity):
                     variant = blockProp[2]
                     open_bit = blockProp[3]
                     data = blockProp[4]
+                    if debug:
+                        print(blk_name)
                     ##  If java worlds are brought into bedrock the tools some times
                     ##   output unsupported blocks, will log.
+                    
                     if debug:
                         armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
                     try:
@@ -162,7 +137,7 @@ def generate_pack(struct_name, pack_name,opacity):
         ## this is a quick hack to get block lists, doesnt consider vairants.... so be careful                
         allBlocks = struct2make.get_block_list()
         fileName="{}-{} block list.txt".format(visual_name,model_name)
-        if export_list.get()==1:
+        if makeMaterialsList:
             with open(fileName,"w+") as text_file:
                 text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
                 for name in allBlocks.keys():
@@ -177,7 +152,7 @@ def generate_pack(struct_name, pack_name,opacity):
         armorstand_entity.export(pack_name)
         
     # Copy my icons in
-    copyfile("lookups/pack_icon.png", "{}/pack_icon.png".format(pack_name))
+    copyfile(icon, "{}/pack_icon.png".format(pack_name))
     # Adds to zip file a modified armor stand geometry to enlarge the render area of the entity
     larger_render = "lookups/armor_stand.larger_render.geo.json"
     larger_render_path = "{}/models/entity/{}".format(pack_name, "armor_stand.larger_render.geo.json")
@@ -200,148 +175,209 @@ def generate_pack(struct_name, pack_name,opacity):
             zip.write(file)
     ## delete all the extra files.
     shutil.rmtree(pack_name)
+    print("Pack Making Completed")
 
 
-def runFromGui():
-    ##wrapper for a gui.
-    stop = False
-    if check_var.get()==0:
-        if len(FileGUI.get()) == 0:
-            stop = True
-            messagebox.showinfo("Error", "You need to browse for a structure file!")
-        if len(packName.get()) == 0:
-            stop = True
-            messagebox.showinfo("Error", "You need a Name")
-    else:
-        if len(list(models.keys()))==0:
-            stop = True
-            messagebox.showinfo("Error", "You need to add some strucutres")
-            
-    opacity=(100-sliderVar.get())/100
+if __name__=="__main__":
+    ## this is all the gui stuff that is not needed if you are calling this as a CLI
     
-    if not stop:
-        generate_pack(FileGUI.get(), packName.get(),opacity)
+    from tkinter import ttk
+    from tkinter import filedialog
+    from tkinter import messagebox
+    from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
+    from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
 
 
-def browseStruct():
-    #browse for a structure file.
-    FileGUI.set(filedialog.askopenfilename(filetypes=(
-        ("Structure File", "*.mcstructure *.MCSTRUCTURE"), )))
+    def browseStruct():
+        #browse for a structure file.
+        FileGUI.set(filedialog.askopenfilename(filetypes=(
+            ("Structure File", "*.mcstructure *.MCSTRUCTURE"), )))
+    def browseIcon():
+        #browse for a structure file.
+        icon_var.set(filedialog.askopenfilename(filetypes=(
+            ("Icon File", "*.png *.PNG"), )))
+    def box_checked():
+        if check_var.get()==0:
+            modle_name_entry.grid_forget()
+            modle_name_lb.grid_forget()
+            deleteButton.grid_forget()
+            listbox.grid_forget()
+            saveButton.grid_forget()
+            modelButton.grid_forget()
+            r = 0
+            file_lb.grid(row=r, column=0)
+            file_entry.grid(row=r, column=1)
+            packButton.grid(row=r, column=2)
+            r += 1
+            icon_lb.grid(row=r, column=0)
+            icon_entry.grid(row=r, column=1)
+            IconButton.grid(row=r, column=2)
+            r += 1
+            
+            packName_lb.grid(row=r, column=0)
+            packName_entry.grid(row=r, column=1)
+            r += 1
+            cord_lb.grid_forget()
+            x_entry.grid_forget()
+            y_entry.grid_forget()
+            z_entry.grid_forget()
+            transparency_lb.grid_forget()
+            transparency_entry.grid_forget()
+            advanced_check.grid(row=r, column=0)
+            export_check.grid(row=r, column=1)
+            saveButton.grid(row=r, column=2)
+            r +=1
+            updateButton.grid(row=r, column=2)
+        else:
+            saveButton.grid_forget()
+            r = 0
+            file_lb.grid(row=r, column=0)
+            file_entry.grid(row=r, column=1)
+            packButton.grid(row=r, column=2)
+            r += 1
+            icon_lb.grid(row=r, column=0)
+            icon_entry.grid(row=r, column=1)
+            IconButton.grid(row=r, column=2)
+            r += 1
+            packName_lb.grid(row=r, column=0)
+            packName_entry.grid(row=r, column=1)
+            r += 1
+            modle_name_entry.grid(row=r, column=1)
+            modle_name_lb.grid(row=r, column=0)
+            modelButton.grid(row=r, column=2)
+            r += 1
+            cord_lb.grid(row=r, column=0,columnspan=3)
+            r += 1
+            x_entry.grid(row=r, column=0)
+            y_entry.grid(row=r, column=1)
+            z_entry.grid(row=r, column=2)
+            r += 1
+            transparency_lb.grid(row=r, column=0)
+            transparency_entry.grid(row=r, column=1,columnspan=2)
+            r += 1
+            listbox.grid(row=r,column=1, rowspan=3)
+            deleteButton.grid(row=r,column=2)
+            r += 4
+            advanced_check.grid(row=r, column=0)
+            export_check.grid(row=r, column=1)
+            saveButton.grid(row=r, column=2)
+            r +=1
+            updateButton.grid(row=r, column=2)
+    def add_model():
+        valid=True
+        if len(FileGUI.get()) == 0:
+            valid=False
+            messagebox.showinfo("Error", "You need to browse for a structure file!")
+##        if len(model_name_var.get()) == 0:
+##            valid=False
+##            messagebox.showinfo("Error", "You need a name for the Name Tag!")
+        if model_name_var.get() in list(models.keys()):
+            messagebox.showinfo("Error", "The Name Tag mut be unique")
+            valid=False
 
-def box_checked():
-    if check_var.get()==0:
-        modle_name_entry.grid_forget()
-        modle_name_lb.grid_forget()
-        deleteButton.grid_forget()
-        listbox.grid_forget()
-        saveButton.grid_forget()
-        modelButton.grid_forget()
-        r = 0
-        file_lb.grid(row=r, column=0)
-        file_entry.grid(row=r, column=1)
-        packButton.grid(row=r, column=2)
-        r += 1
-        packName_lb.grid(row=r, column=0)
-        packName_entry.grid(row=r, column=1)
-        r += 1
-        cord_lb.grid_forget()
-        x_entry.grid_forget()
-        y_entry.grid_forget()
-        z_entry.grid_forget()
-        transparency_lb.grid_forget()
-        transparency_entry.grid_forget()
-        advanced_check.grid(row=r, column=0)
-        export_check.grid(row=r, column=1)
-        saveButton.grid(row=r, column=2)
-    else:
-        saveButton.grid_forget()
-        r = 0
-        file_lb.grid(row=r, column=0)
-        file_entry.grid(row=r, column=1)
-        packButton.grid(row=r, column=2)
-        r += 1
-        packName_lb.grid(row=r, column=0)
-        packName_entry.grid(row=r, column=1)
-        r += 1
-        modle_name_entry.grid(row=r, column=1)
-        modle_name_lb.grid(row=r, column=0)
-        modelButton.grid(row=r, column=2)
-        r += 1
-        cord_lb.grid(row=r, column=0,columnspan=3)
-        r += 1
-        x_entry.grid(row=r, column=0)
-        y_entry.grid(row=r, column=1)
-        z_entry.grid(row=r, column=2)
-        r += 1
-        transparency_lb.grid(row=r, column=0)
-        transparency_entry.grid(row=r, column=1,columnspan=2)
-        r += 1
-        listbox.grid(row=r,column=1, rowspan=3)
-        deleteButton.grid(row=r,column=2)
-        r += 4
-        advanced_check.grid(row=r, column=0)
-        export_check.grid(row=r, column=1)
-        saveButton.grid(row=r, column=2)
-def add_model():
-    valid=True
-    if len(FileGUI.get()) == 0:
-        valid=False
-        messagebox.showinfo("Error", "You need to browse for a structure file!")
-    if len(model_name_var.get()) == 0:
-        valid=False
-        messagebox.showinfo("Error", "You need a name for the Name Tag!")
-    if model_name_var.get() in list(models.keys()):
-        messagebox.showinfo("Error", "The Name Tag mut be unique")
-        valid=False
-    if valid:
+        if valid:
+            name_tag=model_name_var.get()
+            opacity=(100-sliderVar.get())/100
+            models[name_tag] = {}
+            models[name_tag]["offsets"] = [xvar.get(),yvar.get(),zvar.get()]
+            models[name_tag]["opacity"] = opacity
+            models[name_tag]["structure"] = FileGUI.get()
+            listbox.insert(END,model_name_var.get())
+
+            
+    def delete_model():
+        items = listbox.curselection()
+        if len(items)>0:
+            models.pop(listbox.get(ACTIVE))
+        listbox.delete(ANCHOR)
+
+
+    def runFromGui():
+        ##wrapper for a gui.
+        global models, offsets
+        stop = False
         
-        listbox.insert(END,model_name_var.get())
-        offsets[model_name_var.get()]=[xvar.get(),yvar.get(),zvar.get()]
-        models[model_name_var.get()]=FileGUI.get()
-def delete_model():
-    items = listbox.curselection()
-    if len(items)>0:
-        models.pop(listbox.get(ACTIVE))
-    listbox.delete(ANCHOR)
-offsets={}
-root = Tk()
-root.title("Structura")
-models={}
-FileGUI = StringVar()
-packName = StringVar()
-sliderVar = DoubleVar()
-model_name_var = StringVar()
-xvar = DoubleVar()
-xvar.set(8)
-yvar = DoubleVar()
-zvar = DoubleVar()
-zvar.set(7)
-check_var = IntVar()
-export_list = IntVar()
-sliderVar.set(20)
-listbox=Listbox(root)
-file_entry = Entry(root, textvariable=FileGUI)
-packName_entry = Entry(root, textvariable=packName)
-modle_name_lb = Label(root, text="Name Tag")
-modle_name_entry = Entry(root, textvariable=model_name_var)
-cord_lb = Label(root, text="offset")
-x_entry = Entry(root, textvariable=xvar, width=5)
-y_entry = Entry(root, textvariable=yvar, width=5)
-z_entry = Entry(root, textvariable=zvar, width=5)
-file_lb = Label(root, text="Structure file")
-packName_lb = Label(root, text="Pack Name")
-packButton = Button(root, text="Browse", command=browseStruct)
-advanced_check = Checkbutton(root, text="advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
-export_check = Checkbutton(root, text="make lists", variable=export_list, onvalue=1, offvalue=0)
+        
+        if check_var.get()==0:
+            if len(FileGUI.get()) == 0:
+                stop = True
+                messagebox.showinfo("Error", "You need to browse for a structure file!")
+            if len(packName.get()) == 0:
+                stop = True
+                messagebox.showinfo("Error", "You need a Name")
+        else:
+            if len(list(models.keys()))==0:
+                stop = True
+                messagebox.showinfo("Error", "You need to add some strucutres")
+        if os.path.isfile("{}.mcpack".format(packName.get())):
+            stop = True
+            messagebox.showinfo("Error", "pack already exists or pack name is empty")
+        if len(icon_var.get())>0:
+            pack_icon=icon_var.get()
+        else:
+            pack_icon="lookups/pack_icon.png"
+        if not stop:
+            if not(check_var.get()):
+                name_tag = ""
+                models[name_tag] = {}
+                models[name_tag]["offsets"] = [xvar.get(),yvar.get(),zvar.get()]
+                models[name_tag]["opacity"] = sliderVar.get()
+                models[name_tag]["structure"] = FileGUI.get()
+                
+            if debug:
+                print(models)
+            generate_pack(packName.get(),
+                          models_object=models,
+                          makeMaterialsList=(export_list.get()==1),
+                          icon=pack_icon)
 
-deleteButton = Button(root, text="Remove Model", command=delete_model)
-saveButton = Button(root, text="Make Pack", command=runFromGui)
-modelButton = Button(root, text="Add Model", command=add_model)
 
-transparency_lb = Label(root, text="Transparency")
-transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,tickinterval=10,orient=HORIZONTAL)
 
-box_checked()
+    offsets={}
+    root = Tk()
+    root.title("Structura")
+    models={}
+    FileGUI = StringVar()
+    packName = StringVar()
+    icon_var = StringVar()
+    icon_var.set("lookups/pack_icon.png")
+    sliderVar = DoubleVar()
+    model_name_var = StringVar()
+    xvar = DoubleVar()
+    xvar.set(8)
+    yvar = DoubleVar()
+    zvar = DoubleVar()
+    zvar.set(7)
+    check_var = IntVar()
+    export_list = IntVar()
+    sliderVar.set(20)
+    listbox=Listbox(root)
+    file_entry = Entry(root, textvariable=FileGUI)
+    packName_entry = Entry(root, textvariable=packName)
+    modle_name_lb = Label(root, text="Name Tag")
+    modle_name_entry = Entry(root, textvariable=model_name_var)
+    cord_lb = Label(root, text="offset")
+    x_entry = Entry(root, textvariable=xvar, width=5)
+    y_entry = Entry(root, textvariable=yvar, width=5)
+    z_entry = Entry(root, textvariable=zvar, width=5)
+    icon_lb = Label(root, text="Icon file")
+    icon_entry = Entry(root, textvariable=icon_var)
+    IconButton = Button(root, text="Browse", command=browseIcon)
+    file_lb = Label(root, text="Structure file")
+    packName_lb = Label(root, text="Pack Name")
+    packButton = Button(root, text="Browse", command=browseStruct)
+    advanced_check = Checkbutton(root, text="advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
+    export_check = Checkbutton(root, text="make lists", variable=export_list, onvalue=1, offvalue=0)
 
-root.mainloop()
-root.quit()
+    deleteButton = Button(root, text="Remove Model", command=delete_model)
+    saveButton = Button(root, text="Make Pack", command=runFromGui)
+    modelButton = Button(root, text="Add Model", command=add_model)
+
+    updateButton = Button(root, text="Update Blocks", command=updater.getLatest)
+    transparency_lb = Label(root, text="Transparency")
+    transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,tickinterval=10,orient=HORIZONTAL)
+
+    box_checked()
+
+    root.mainloop()
+    root.quit()

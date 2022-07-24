@@ -1,0 +1,106 @@
+§lInstructions
+§r This book contains all of the keys to the structura tools pack I put in discord. 
+
+If you name tag armor stands the names in this book you can see the various redstone contraptions. 
+
+NP
+
+§lNote: §r the name tag name only goes up to the colon and doesn’t include the colon.
+
+NP
+
+
+§lItem Sorters§r
+Single item sorter: 6 side by side items sorters, this can be as few as 2 side by side or as many as you like within ticking
+
+Non-Stackable: 2 non-stackable items sorters, minimum of 2 side by side
+
+NP
+
+§lAuto pusher §r
+Auto Pusher 1: used to automatically push solid blocks like sand, concrete, stone as soon as it is placed.
+
+Auto pusher 2: used to automatically push solid blocks like sand, concrete, stone as soon as it is placed.
+
+
+
+
+§lAuto Dropers §r
+Auto Dropper 1: 2x1x4 blocks in size, drops as fast as possible in Minecraft but doesn’t drop all blocks.
+
+Auto Dropper 2: 3x1x4 blocks in size, drops all blocks but not the fastest.
+
+NP
+
+Auto Dropper 3: 3x3x1 blocks in size, drops all blocks but can jam up if unloaded
+
+Auto Dropper 4: 4x4x1 blocks in size, drops all blocks, and isn’t the fastest.
+
+NP
+
+§lClocks §r
+
+Clock 1: can be set between 2-5 tick clock using the repeater timeing settings
+
+Clock 2: Can be set from 3-9 ticks by playing with the 2 repeaters.
+
+NP
+
+Clock 3: Observer clock, can stop if you unload when they are running.
+
+Clock 4: Hopper clock, can hold up to 4 stacks of items and will take longer or shorter to toggle depending upon how many items are in the hoppers
+
+
+§lPulse Shortener: §r
+Pulse 1: Rising edge mono-stable. Pulses 1 time as it turns on.
+
+Pulse 2: Falling edge mono-stable. Pulses 1 time as the signal turns off.
+
+NP
+
+Pulse 3: Falling edge mono-stable. Pulses 1 time as the signal turns off.
+
+Pulse 4: Falling edge mono-stable. Pulses 1 time as the signal turns off.
+
+
+§lLogic Gates §r
+And: output only turns on if both inputs are active
+
+Or: Turns on if either output or both outputs are active.
+
+NP
+
+Nand: Turns on as long as both inputs are not active. (so not and)
+
+Nor: Turns on if neither input is active
+
+Xor: Turns on if only one or the other is active but of if both are active.
+
+§lPulse Extenders §r
+Pulse Extender 1: a 2x1x5 pulse extender
+
+Pulse Extender 2: A 5x3x1 pulse extender
+
+
+§lFlip Flop §r
+
+Flip Flop 1: each time the input changes the output toggels to the opposite state (useful for doors)
+
+Flip Flop 2: each time the input changes the output toggels to the opposite state (useful for doors)
+
+
+
+
+§lDoors §r
+Barrel Door: This door uses a barel as a key, it can be frusterating to get the timing right, but it is kinda unique.
+
+2x3 Trap Door: This door has an inner and outer lever that can be used to open it, it is pretty quick.
+
+2x4 Trap Door: This door is taller but has to have 2 blocks above it to cover up some redstone.
+
+§l Multi Item Sorter:
+Multi Sorter: The multi item sorter slack helped me show case.
+
+§l Snow farm §r
+ReLiC: A stupid fast snow farm as an easter egg for getting this far in the book, put snowman on the honey blocks and let it go.
+
