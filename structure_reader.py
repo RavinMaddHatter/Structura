@@ -1,18 +1,29 @@
 import nbtlib
 import numpy as np
 
-
+loaded={}
 class process_structure:
     def __init__(self, file):
-        self.NBTfile = nbtlib.load(file, byteorder='little')
-        self.blocks = list(
-            map(int, self.NBTfile[""]["structure"]["block_indices"][0]))
-        self.size = list(map(int, self.NBTfile[""]["size"]))
-        self.palette = self.NBTfile[""]["structure"]["palette"]["default"]["block_palette"]
+        global loaded
+        if type(file) is dict:
+            self.NBTfile = file
+        else:
+            self.NBTfile = nbtlib.load(file, byteorder='little')
+        loaded=self.NBTfile
+        
+        if "" in self.NBTfile.keys():
+            self.blocks = list(map(int, self.NBTfile[""]["structure"]["block_indices"][0]))
+            self.size = list(map(int, self.NBTfile[""]["size"]))
+            self.palette = self.NBTfile[""]["structure"]["palette"]["default"]["block_palette"]
+            
+        elif "structure" in self.NBTfile.keys():
+            self.blocks = list(map(int, self.NBTfile["structure"]["block_indices"][0]))
+            self.size = list(map(int, self.NBTfile["size"]))
+            self.palette = self.NBTfile["structure"]["palette"]["default"]["block_palette"]
         self.get_blockmap()
 
     def get_blockmap(self):
-        self.cube = np.zeros(self.size, np.int)
+        self.cube = np.zeros(self.size, int)
         i = 0
         for x in range(self.size[0]):
             for y in range(self.size[1]):
@@ -37,10 +48,11 @@ class process_structure:
                 else:
                     block_counter[block_name] = 1
         return block_counter
+    
 
-# testFileName="test6.mcstructure"
-# excludedBlocks=["minecraft:structure_block","minecraft:air"]
-# test=process_structure(testFileName)
+#testFileName="ShulkerSandwich.mcstructure"
+#excludedBlocks=["minecraft:structure_block","minecraft:air"]
+#test=process_structure(testFileName)
 # block_count=test.get_block_list(excludedBlocks)
 # for i in block_count.keys():
 ##    print("{}: {}".format(i,block_count[i]))
