@@ -178,15 +178,16 @@ makeMaterialsList : sets wether a material list shall be output.
     print("Pack Making Completed")
 
 
+
 if __name__== "__main__":
     ## this is all the gui stuff that is not needed if you are calling this as a CLI
     print("here")  
+
     from tkinter import ttk
     from tkinter import filedialog
     from tkinter import messagebox
     from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
     from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
-
 
     def browseStruct():
         #browse for a structure file.
@@ -290,7 +291,6 @@ if __name__== "__main__":
         if len(items)>0:
             models.pop(listbox.get(ACTIVE))
         listbox.delete(ANCHOR)
-
 
     def runFromGui():
         ##wrapper for a gui.
