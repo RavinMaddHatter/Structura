@@ -15,7 +15,7 @@
 		TextInput:
 			id: packName
 			pos_hint: {"x": 0.32 ,"y": .905 }
-			size_hint: (0.3,0.05)
+			size_hint: (0.3,0.045)
 			multiline: False
 		##0.855
 		Label:
@@ -25,14 +25,14 @@
 		TextInput:
 			id: structureFile
 			pos_hint: {"x": 0.32 ,"y": .855 }
-			size_hint: (0.3,0.05)
+			size_hint: (0.3,0.045)
 			multiline: False
 
 		Button:
 			text: "Browse"
 			id: browseButton
 			pos_hint: {"x": 0.7 ,"y": .855 }
-			size_hint: (0.25,0.05)
+			size_hint: (0.25,0.045)
 		##0.805
 		Label:
 			text: "Transparency"
@@ -45,7 +45,7 @@
 			step: 1
 			orientation: "horizontal"
 			value: 20
-			size_hint: (0.67 , 0.05 )
+			size_hint: (0.67 , 0.045 )
 			pos_hint: {"x": 0.3 ,"y": .805 }
 		##0.755
 		Label:
@@ -59,7 +59,7 @@
 			step: 1
 			orientation: "horizontal"
 			value: 50
-			size_hint: (0.67 , 0.05 )
+			size_hint: (0.67 , 0.045 )
 			pos_hint: {"x": 0.3 ,"y": .755 }
 		## 0.705
 		Label:
@@ -83,7 +83,7 @@
 		TextInput:
 			id:xOffset
 			pos_hint: {"x": 0.02 ,"y": .605 }
-			size_hint: (0.3,0.05)
+			size_hint: (0.3,0.045)
 			multiline: False
 			text: "0"
 			input_type: "number"
@@ -91,7 +91,7 @@
 		TextInput:
 			id:yOffset
 			pos_hint: {"x": 0.35 ,"y": .605 }
-			size_hint: (0.3,0.05)
+			size_hint: (0.3,0.045)
 			multiline: False
 			text: "0"
 			input_type: "number"
@@ -99,12 +99,35 @@
 		TextInput:
 			id:zOffset
 			pos_hint: {"x": 0.68 ,"y": .605 }
-			size_hint: (0.3,0.05)
+			size_hint: (0.3,0.045)
 			multiline: False
 			text: "0"
 			input_type: "number"
 			input_filter: "int"
-		## 0.0
+		## 0.555
+		Button:
+			text: "Add Default"
+			id: addDefault
+			pos_hint: {"x": 0.35 ,"y": .555 }
+			size_hint: (0.25,0.045)
+		## 0.505
+		Label:
+			text: "Name Tag"
+			pos_hint: {"x": 0 ,"y": .505 }
+			size_hint: (0.3,0.05)
+		TextInput:
+			id: tagText
+			pos_hint: {"x": 0.32 ,"y": .505 }
+			size_hint: (0.35,0.045)
+			multiline: False
+
+		Button:
+			text: "Add Nametag"
+			id: addNametag
+			pos_hint: {"x": 0.7 ,"y": .505 }
+			size_hint: (0.25,0.05)
+		## 0.545
+		## 0.055
 		Label:
 			text: "Materials List"
 			pos_hint: {"x": 0 ,"y": .055 }
@@ -118,5 +141,5 @@
 			id:makePack
 			text:"Make Pack"
 			pos_hint: {"x": 0.66 ,"y": .055 }
-			size_hint: (0.3,0.05)
+			size_hint: (0.3,0.045)
 			

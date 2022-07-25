@@ -8,7 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.textinput import TextInput
 from kivy.lang import Builder
-from plyer import filechooser
+from tkinter import filedialog
 from kivy.config import Config
 from os.path import sep, expanduser, isdir, dirname
 import sys
@@ -25,11 +25,10 @@ class StructuraLayout(Widget):
         self.ids.browseButton.bind(on_press = self.browseForFile)
         self.ids.makePack.bind(on_press = self.browseForFile)
     def browseForFile(self, instance):
-        path = filechooser.open_file(title="Pick a CSV file..", 
-                             filters=[("Comma-separated Values", "*.mcstructure")])
+        path = filedialog.askopenfilename(filetypes=(
+            ("Structure File", "*.mcstructure *.MCSTRUCTURE"), ))
         if len(path)>0:
-            self.ids.structureFile.text = path[0]
-            print(path[0])
+            self.ids.structureFile.text = path
     def makePack(self,instance):
         print("make Pack")
 
