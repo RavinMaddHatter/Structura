@@ -178,7 +178,7 @@ makeMaterialsList : sets wether a material list shall be output.
     print("Pack Making Completed")
 
 
-if False and __name__== "__main__":
+if __name__== "__main__":
     ## this is all the gui stuff that is not needed if you are calling this as a CLI
     print("here")  
     from tkinter import ttk

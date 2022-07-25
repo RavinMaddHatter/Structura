@@ -1,52 +1,41 @@
 <Button>
-	font_size: 32
-<Lable>
-	font_size: 32
+	font_size: root.width/7
+<Label>
+	font_size: root.width/7
+
 <StructuraLayout>
 	FloatLayout:
 		orientation:"horizontal"
 		size: root.width, root.height
-		##0.955
-		Label:
-			text: "Pack Name"
-			pos_hint: {"x": 0 ,"y": .955 }
-			size_hint: (0.3,0.05)
-		TextInput:
-			id: structureFile
-			pos_hint: {"x": 0.3 ,"y": .955 }
-			size_hint: (0.3,0.05)
 		##0.905
 		Label:
-			text: "Structure File"
+			text: "Pack Name"
 			pos_hint: {"x": 0 ,"y": .905 }
 			size_hint: (0.3,0.05)
 		TextInput:
-			id: structureFile
-			pos_hint: {"x": 0.3 ,"y": .905 }
+			id: packName
+			pos_hint: {"x": 0.32 ,"y": .905 }
 			size_hint: (0.3,0.05)
+			multiline: False
+		##0.855
+		Label:
+			text: "Structure File"
+			pos_hint: {"x": 0 ,"y": .855 }
+			size_hint: (0.3,0.05)
+		TextInput:
+			id: structureFile
+			pos_hint: {"x": 0.32 ,"y": .855 }
+			size_hint: (0.3,0.05)
+			multiline: False
 
 		Button:
 			text: "Browse"
 			id: browseButton
-			pos_hint: {"x": 0.7 ,"y": .905 }
-			size_hint: (0.3,0.05)
-		##0.855
-		Label:
-			text: "Transparency"
-			pos_hint: {"x": 0 ,"y": .855 }
-			size_hint: (0.3,0.05)
-		Slider:
-			id: transparency
-			min: 0
-			max: 100
-			step: 1
-			orientation: "horizontal"
-			value: 20
-			size_hint: (0.7 , 0.05 )
-			pos_hint: {"x": 0.3 ,"y": .855 }
+			pos_hint: {"x": 0.7 ,"y": .855 }
+			size_hint: (0.25,0.05)
 		##0.805
 		Label:
-			text: "Red"
+			text: "Transparency"
 			pos_hint: {"x": 0 ,"y": .805 }
 			size_hint: (0.3,0.05)
 		Slider:
@@ -56,52 +45,78 @@
 			step: 1
 			orientation: "horizontal"
 			value: 20
-			size_hint: (0.7 , 0.05 )
+			size_hint: (0.67 , 0.05 )
 			pos_hint: {"x": 0.3 ,"y": .805 }
-		## 0.755
+		##0.755
+		Label:
+			text: "Hue"
+			pos_hint: {"x": 0 ,"y": .755 }
+			size_hint: (0.3,0.05)
+		Slider:
+			id: hue
+			min: 0
+			max: 100
+			step: 1
+			orientation: "horizontal"
+			value: 50
+			size_hint: (0.67 , 0.05 )
+			pos_hint: {"x": 0.3 ,"y": .755 }
+		## 0.705
 		Label:
 			text: "Offsets"
-			pos_hint: {"x": 0 ,"y": .755 }
-			size_hint: (1,0.05)
+			pos_hint: {"x": 0.33 ,"y": .705 }
+			size_hint: (.33,0.05)
 		## 0.655
 		Label:
 			text: "X"
-			pos_hint: {"x": 0.02 ,"y": .705 }
+			pos_hint: {"x": 0.02 ,"y": .655 }
 			size_hint: (0.3,0.05)
 		Label:
 			text: "Y"
-			pos_hint: {"x": 0.35 ,"y": .705 }
+			pos_hint: {"x": 0.35 ,"y": .655 }
 			size_hint: (0.3,0.05)
 		Label:
 			text: "Z"
-			pos_hint: {"x": 0.68 ,"y": .705 }
-			size_hint: (0.3,0.05)
-		## 0.655
-		TextInput:
-			id:xOffset
-			pos_hint: {"x": 0.02 ,"y": .655 }
-			size_hint: (0.3,0.05)
-		TextInput:
-			id:yOffset
-			pos_hint: {"x": 0.35 ,"y": .655 }
-			size_hint: (0.3,0.05)
-		TextInput:
-			id:zOffset
 			pos_hint: {"x": 0.68 ,"y": .655 }
 			size_hint: (0.3,0.05)
+		## 0.605
+		TextInput:
+			id:xOffset
+			pos_hint: {"x": 0.02 ,"y": .605 }
+			size_hint: (0.3,0.05)
+			multiline: False
+			text: "0"
+			input_type: "number"
+			input_filter: "int"
+		TextInput:
+			id:yOffset
+			pos_hint: {"x": 0.35 ,"y": .605 }
+			size_hint: (0.3,0.05)
+			multiline: False
+			text: "0"
+			input_type: "number"
+			input_filter: "int"
+		TextInput:
+			id:zOffset
+			pos_hint: {"x": 0.68 ,"y": .605 }
+			size_hint: (0.3,0.05)
+			multiline: False
+			text: "0"
+			input_type: "number"
+			input_filter: "int"
 		## 0.0
 		Label:
-			text: "Make Materials List"
-			pos_hint: {"x": 0 ,"y": .005 }
+			text: "Materials List"
+			pos_hint: {"x": 0 ,"y": .055 }
 			halign: "left"
 			size_hint: (0.3,0.05)
 		CheckBox:
 			id: lists
-			pos_hint: {"x": 0.3 ,"y": .005 }
+			pos_hint: {"x": 0.3 ,"y": .055 }
 			size_hint: (0.1,0.05)
 		Button:
 			id:makePack
 			text:"Make Pack"
-			pos_hint: {"x": 0.6 ,"y": .005 }
+			pos_hint: {"x": 0.66 ,"y": .055 }
 			size_hint: (0.3,0.05)
 			
