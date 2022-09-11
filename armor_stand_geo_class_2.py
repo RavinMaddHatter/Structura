@@ -166,8 +166,11 @@ class armorstandgeo:
         
     def save_uv(self, name):
         # saves the texture file where you tell it to
-        im = Image.fromarray(self.uv_array)
-        im.save(name)
+        print(self.uv_array)
+        if self.uv_array is None:
+            print("No Blocks Were found")
+            im = Image.fromarray(self.uv_array)
+            im.save(name)
 
     def stand_init(self):
         # helper function to initialize the dictionary that will be exported as the json object

@@ -1,0 +1,1862 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.armor_stand.ghost_blocks_",
+        "texture_width": 1,
+        "visible_bounds_offset": [
+          0.0,
+          1.5,
+          0.0
+        ],
+        "visible_bounds_width": 5120,
+        "visible_bounds_height": 5120,
+        "texture_height": 0
+      },
+      "bones": [
+        {
+          "name": "ghost_blocks",
+          "pivot": [
+            -8,
+            0,
+            8
+          ]
+        },
+        {
+          "name": "layer_0",
+          "pivot": [
+            -8,
+            0,
+            8
+          ],
+          "parent": "ghost_blocks"
+        },
+        {
+          "name": "layer_1",
+          "pivot": [
+            -8,
+            0,
+            8
+          ],
+          "parent": "ghost_blocks"
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+0",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+1",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+2",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+3",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+4",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+5",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+6",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+7",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+8",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+9",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+10",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+11",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+12",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+13",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+14",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+15",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+16",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+17",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+18",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+19",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+20",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+21",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+22",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+23",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+24",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+25",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+26",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+27",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+28",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+29",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+30",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+31",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+32",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+33",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+34",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+35",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+36",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+37",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+38",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+39",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+40",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+41",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+42",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+43",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+44",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+45",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+46",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+47",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+48",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+49",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+50",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+51",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+52",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+53",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+54",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+55",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+56",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+57",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+58",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+59",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+60",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+61",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+62",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+63",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+64",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+65",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+66",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+67",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+68",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+69",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+70",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+71",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+72",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+73",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+74",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+75",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+76",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+77",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+78",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+79",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+80",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+81",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+82",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+83",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+84",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+85",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+86",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+87",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+88",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+89",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+90",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+91",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+92",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+93",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+94",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+95",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+96",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+97",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+98",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+99",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "name": "empty_row+100",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+101",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+102",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+103",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+104",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+105",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+106",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+107",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+108",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+109",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+110",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "name": "empty_row+111",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "name": "empty_row+112",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "name": "empty_row+113",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+114",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+115",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+116",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+117",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+118",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+119",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+120",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+121",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+122",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+123",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+124",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+125",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+126",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+127",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+128",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "name": "empty_row+129",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+130",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+131",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+132",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+133",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+134",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+135",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+136",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+137",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+138",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+139",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+140",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+141",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+142",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+143",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+144",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+145",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+146",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+147",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+148",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+149",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+150",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+151",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+152",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+153",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+154",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+155",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+156",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+157",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+158",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+159",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+160",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+161",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+162",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+163",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+164",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+165",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+166",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+167",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+168",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+169",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+170",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+171",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+172",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+173",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+174",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+175",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+176",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+177",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+178",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+179",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+180",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "cubes": [],
+          "name": "empty_row+181",
+          "parent": "ghost_blocks",
+          "pivot": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
+  ]
+}

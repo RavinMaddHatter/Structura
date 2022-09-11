@@ -279,7 +279,7 @@ if __name__=="__main__":
             name_tag=model_name_var.get()
             opacity=(100-sliderVar.get())/100
             models[name_tag] = {}
-            models[name_tag]["offsets"] = [xvar.get(),yvar.get(),zvar.get()]
+            models[name_tag]["offsets"] = [xvar.get()+8,yvar.get(),zvar.get()+7]
             models[name_tag]["opacity"] = opacity
             models[name_tag]["structure"] = FileGUI.get()
             listbox.insert(END,model_name_var.get())
@@ -344,10 +344,10 @@ if __name__=="__main__":
     sliderVar = DoubleVar()
     model_name_var = StringVar()
     xvar = DoubleVar()
-    xvar.set(8)
+    xvar.set(0)
     yvar = DoubleVar()
     zvar = DoubleVar()
-    zvar.set(7)
+    zvar.set(0)
     check_var = IntVar()
     export_list = IntVar()
     sliderVar.set(20)
