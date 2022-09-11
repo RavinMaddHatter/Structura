@@ -246,12 +246,15 @@
     "lodestone": "cube",
     "loom": "cube",
     "magma": "cube",
+
+	
     "melon_block": "cube",
     "mob_spawner": "cube",
     "monster_egg": "cube",
     "mossy_cobblestone": "cube",
     "movingBlock": "cube",
     "mycelium": "cube",
+    "mud_brick_wall": "wall",
     "nether_brick": "cube",
     "nether_gold_ore": "cube",
     "nether_wart_block": "cube",
@@ -695,8 +698,8 @@
     "white_candle_cake": "cake",
     "yellow_candle": "cube",
     "yellow_candle_cake": "cake",
-    
-    
+
+
     "mangrove_button": "button",
     "mangrove_propagule": "cross_texture",
     "mangrove_planks": "cube",
@@ -729,7 +732,7 @@
     
     "sculk": "cube",
     "sculk_catalyst": "cube",
-    "sculk_sensor": "slab",
+    "sculk_sensor": "sculk_sensor",
     "sculk_shrieker": "cube",
     "sculk_vein": "vine",
     

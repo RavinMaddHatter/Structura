@@ -14,6 +14,7 @@ import json
 import updater
 
 debug=False
+
 with open("lookups/nbt_defs.json") as f:
     nbt_def = json.load(f)
 
@@ -22,6 +23,7 @@ def process_block(x,y,z,block):
     top = False
     open_bit = False
     data=0
+    skip=False
     variant="Default"
     
     for key in nbt_def.keys():
@@ -31,7 +33,12 @@ def process_block(x,y,z,block):
             try:
                 rot = int(block["states"][key])
             except:
-                rot = str(block["states"][key])   
+                rot = str(block["states"][key])
+        if nbt_def[key]=="upper_block_bit" and key in block["states"].keys():
+            top = bool(block["states"][key])
+            skip=top
+            print(skip)
+            
         if nbt_def[key]=="top" and key in block["states"].keys():
             top = bool(block["states"][key])
         if nbt_def[key]=="open_bit" and "open_bit" in block["states"].keys():
@@ -48,7 +55,7 @@ def process_block(x,y,z,block):
             variant = ["wood",keys]
 
     
-    return [rot, top, variant, open_bit,data]
+    return [rot, top, variant, open_bit, data, skip]
 
 
 
@@ -122,6 +129,8 @@ makeMaterialsList : sets wether a material list shall be output.
                     variant = blockProp[2]
                     open_bit = blockProp[3]
                     data = blockProp[4]
+                    skip = blockProp[5]
+                    
                     if debug:
                         print(blk_name)
                     ##  If java worlds are brought into bedrock the tools some times
@@ -130,7 +139,8 @@ makeMaterialsList : sets wether a material list shall be output.
                     if debug:
                         armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
                     try:
-                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
+                        if not skip:
+                            armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
                     except:
                         print("There is an unsuported block in this world and it was skipped")
                         print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
@@ -279,7 +289,7 @@ if __name__=="__main__":
             name_tag=model_name_var.get()
             opacity=(100-sliderVar.get())/100
             models[name_tag] = {}
-            models[name_tag]["offsets"] = [xvar.get()+8,yvar.get(),zvar.get()+7]
+            models[name_tag]["offsets"] = [xvar.get()-8,yvar.get(),zvar.get()-7]
             models[name_tag]["opacity"] = opacity
             models[name_tag]["structure"] = FileGUI.get()
             listbox.insert(END,model_name_var.get())

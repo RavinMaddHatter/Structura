@@ -3,7 +3,7 @@ import json
 
 with open("terrain_texture.json") as file:
     oldData=json.load(file)
-with open("terrain_texture17.json") as file:
+with open("terrain_texture_18.json") as file:
     newData=json.load(file)
 
 oldKeys=list(oldData["texture_data"].keys())

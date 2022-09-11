@@ -166,9 +166,9 @@ class armorstandgeo:
         
     def save_uv(self, name):
         # saves the texture file where you tell it to
-        print(self.uv_array)
         if self.uv_array is None:
             print("No Blocks Were found")
+        else:
             im = Image.fromarray(self.uv_array)
             im.save(name)
 
