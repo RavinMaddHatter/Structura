@@ -19,7 +19,7 @@ def getLatest():
         try:
             os.remove(os.path.join(cwd,"lookups",file))
         except:
-            print("failed to delet:" +file)
+            print("failed to delete:" +file)
             pass
         registry[file]=None
 
@@ -28,7 +28,7 @@ def getLatest():
         # Use the default cache folder for the operating system
         path=pooch.os_cache("plumbus"),
         # The remote data is on Github
-        base_url="https://github.com/RavinMaddHatter/Structura/raw/1.4-release/lookups/",
+        base_url="https://github.com/RavinMaddHatter/Structura/tree/main/lookups",
         # If this is a development version, get the data from the "main" branch
         registry=registry,
         env="PATH_TO_STRUCTURA_LOOKUP",
