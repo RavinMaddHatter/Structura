@@ -27,23 +27,19 @@ def process_block(x,y,z,block):
     variant="Default"
     
     for key in nbt_def.keys():
-        if nbt_def[key]=="variant" and key in block["states"].keys():
+        if nbt_def[key]== "variant" and key in block["states"].keys():
             variant = [key,block["states"][key]]
-        if nbt_def[key]=="rot" and key in block["states"].keys():
+        if nbt_def[key]== "rot" and key in block["states"].keys():
             try:
                 rot = int(block["states"][key])
             except:
                 rot = str(block["states"][key])
-        if nbt_def[key]=="upper_block_bit" and key in block["states"].keys():
-            top = bool(block["states"][key])
-            skip=top
-            print(skip)
             
-        if nbt_def[key]=="top" and key in block["states"].keys():
+        if nbt_def[key]== "top" and key in block["states"].keys():
             top = bool(block["states"][key])
-        if nbt_def[key]=="open_bit" and "open_bit" in block["states"].keys():
+        if nbt_def[key]== "open_bit" and "open_bit" in block["states"].keys():
             open_bit = bool(block["states"][key])
-        if nbt_def[key]=="data" and key in block["states"].keys():
+        if nbt_def[key]== "data" and key in block["states"].keys():
             data = int(block["states"][key])
     
     if "wood_type" in block["states"].keys():
@@ -53,8 +49,8 @@ def process_block(x,y,z,block):
             if bool(block["states"]["stripped_bit"]):
                 keys+="_stripped"
             variant = ["wood",keys]
-
-    
+    if debug:
+        print([rot, top, variant, open_bit, data, skip])
     return [rot, top, variant, open_bit, data, skip]
 
 
@@ -289,7 +285,7 @@ if __name__=="__main__":
             name_tag=model_name_var.get()
             opacity=(100-sliderVar.get())/100
             models[name_tag] = {}
-            models[name_tag]["offsets"] = [xvar.get()-8,yvar.get(),zvar.get()-7]
+            models[name_tag]["offsets"] = [xvar.get(),yvar.get(),zvar.get()]
             models[name_tag]["opacity"] = opacity
             models[name_tag]["structure"] = FileGUI.get()
             listbox.insert(END,model_name_var.get())

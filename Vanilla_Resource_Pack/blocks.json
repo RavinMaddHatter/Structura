@@ -653,6 +653,10 @@
       "sound" : "stone",
       "textures" : "concrete"
    },
+   "concrete_powder" : {
+      "sound" : "sand",
+      "textures" : "concretePowder"
+   },
    "concretePowder" : {
       "sound" : "sand",
       "textures" : "concretePowder"
@@ -2789,6 +2793,11 @@
       "sound" : "sculk_vein",
       "textures" : "sculk_vein"
    },
+   
+   "sea_lantern" : {
+      "sound" : "glass",
+      "textures" : "sea_lantern"
+   },
    "seaLantern" : {
       "sound" : "glass",
       "textures" : "sea_lantern"
@@ -3273,6 +3282,9 @@
    "tripWire" : {
       "textures" : "trip_wire"
    },
+   "trip_wire" : {
+      "textures" : "trip_wire"
+   },
    "tripwire_hook" : {
       "textures" : {
          "down" : "trip_wire_base",
@@ -3685,5 +3697,31 @@
    "yellow_glazed_terracotta" : {
       "sound" : "stone",
       "textures" : "yellow_glazed_terracotta"
+   },
+   "stone_block_slab":{
+	   "textures" : "stone"
+   },
+   "stone_block_slab2":{
+	   "textures" : "stone"
+   },
+   "double_stone_block_slab2":{
+	   "textures" : "stone"
+   },
+   "stone_block_slab3":{
+	   "textures" : "stone"
+   },
+   "stone_block_slab4":{
+	   "textures" : "stone"
+   },
+   "double_stone_block_slab3":{
+	   "textures" : "stone"
+	   
+   },
+   "double_stone_block_slab":{
+	   "textures" : "stone"
+   },
+   "double_stone_block_slab4":{
+	   "textures" : "stone"
    }
+
 }

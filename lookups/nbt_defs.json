@@ -21,5 +21,8 @@
 	"repeater_delay":"data",
 	"output_subtract_bit":"data",
 	"ground_sign_direction":"rot",
-	"upper_block_bit":"top"
+	"upper_block_bit":"top",
+	"bite_counter":"data",
+	"cluster_count":"data",
+	"pillar_axis":"rot"
 }

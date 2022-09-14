@@ -1,0 +1,5 @@
+These are the nametags used in this file
+wood
+stone
+gems
+decor

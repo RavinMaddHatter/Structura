@@ -537,6 +537,7 @@
     "stripped_warped_stem": "tree",
     "warped_hyphae": "tree",
     "tripWire": "tripwire",
+    "trip_wire": "tripwire",
     "tripwire_hook": "tripwire_hook",
     "turtle_egg": "turtle_egg",
     "vine": "vine",
@@ -740,4 +741,5 @@
     "ochre_froglight": "cube",
     "verdant_froglight": "cube",
     "frog_spawn": "carpet"
+	
 }

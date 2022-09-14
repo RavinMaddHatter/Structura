@@ -5,8 +5,9 @@ import copy
 import os
 
 debug=False
+
 class armorstandgeo:
-    def __init__(self, name, alpha = 0.8,offsets=[9,0,0], size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
+    def __init__(self, name, alpha = 0.8,offsets=[0,0,0], size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
         self.ref_resource_pack = ref_pack
         ## we load all of these items containing the mapping of blocks to the some property that is either hidden, implied or just not clear
         with open("{}/blocks.json".format(self.ref_resource_pack)) as f:
@@ -30,6 +31,8 @@ class armorstandgeo:
         self.name = name.replace(" ","_").lower()
         self.stand = {}
         self.offsets = offsets
+        self.offsets[0]+=8
+        self.offsets[2]+=7
         self.alpha=alpha
         self.texture_list = []
         self.geometry = {}
@@ -96,7 +99,7 @@ class armorstandgeo:
             elif top:
                 shape_variant = "top"
 
-            if data!=0:
+            if data!=0 and debug:
                 print(data)
 
             block_shapes = self.block_shapes[block_type][shape_variant]
@@ -107,7 +110,6 @@ class armorstandgeo:
                 shape_variant=str(data)
             if str(data) in self.block_shapes[block_type].keys():
                 block_shapes = self.block_shapes[block_type][str(data)]
-                print(block_shapes)
             if block_type in self.block_rotations.keys():
                 rotation = self.block_rotations[block_type][str(rot)]
             else:
@@ -293,6 +295,11 @@ class armorstandgeo:
                 index=0
                 if variant[0] in self.block_variants.keys():
                     index=self.block_variants[variant[0]][variant[1] ]
+                if debug:
+                    print(index)
+                    print(key)
+                    print(texturedata[textures[key]]["textures"])
+                    print(texturedata[textures[key]]["textures"][index])
                 textures[key] = texturedata[textures[key]]["textures"][index]
 
             

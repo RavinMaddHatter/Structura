@@ -2777,6 +2777,10 @@
             "textures/blocks/stone_diorite",
             "textures/blocks/stone_diorite_smooth",
             "textures/blocks/stone_andesite",
+            "textures/blocks/stone_andesite_smooth",
+            "textures/blocks/red_sandstone_smooth",
+            "textures/blocks/end_bricks",
+            "textures/blocks/stone_andesite_smooth",
             "textures/blocks/stone_andesite_smooth"
          ]
       },
