@@ -1,19 +1,11 @@
+from turtle import color
 import armor_stand_geo_class_2 as asgc
-import armor_stand_class
-import structure_reader
-import animation_class
+import armor_stand_class ,structure_reader ,animation_class ,manifest ,os ,glob ,json ,shutil ,updater
 import render_controller_class as rcc
-import manifest
 from shutil import copyfile
-import os
-from zipfile import ZipFile
-import glob
-import shutil
-import ntpath
-import json
-import updater
+from zipfile import ZIP_DEFLATED, ZipFile
 
-debug=False
+debug=True
 
 with open("lookups/nbt_defs.json") as f:
     nbt_def = json.load(f)
@@ -25,7 +17,7 @@ def process_block(x,y,z,block):
     data=0
     skip=False
     variant="Default"
-    
+
     for key in nbt_def.keys():
         if nbt_def[key]== "variant" and key in block["states"].keys():
             variant = [key,block["states"][key]]
@@ -41,7 +33,7 @@ def process_block(x,y,z,block):
             open_bit = bool(block["states"][key])
         if nbt_def[key]== "data" and key in block["states"].keys():
             data = int(block["states"][key])
-    
+
     if "wood_type" in block["states"].keys():
         variant = ["wood_type",block["states"]["wood_type"]]
         if block["name"] == "minecraft:wood":
@@ -54,9 +46,6 @@ def process_block(x,y,z,block):
     return [rot, top, variant, open_bit, data, skip]
 
 
-
-
-
 def generate_pack(pack_name,models_object={},makeMaterialsList=False, icon="lookups/pack_icon.png"):
     """
 This is the funciton that makes a structura pack:
@@ -64,25 +53,21 @@ pack_name : the name of the pack, this will be stored the the manafest.JSON as w
 models : 'NAME_TAG': {offsets: [x, y, z],opacity: percent,structure: file.mcstructure},
 makeMaterialsList : sets wether a material list shall be output.
     """
-    
-    
     visual_name=pack_name
     if len("".join(list(models_object.keys())))>1:
         fileName="{} Nametags.txt".format(pack_name)
         with open(fileName,"w+") as text_file:
             text_file.write("These are the nametags used in this file\n")
             for name in models_object.keys():
-                
                 text_file.write("{}\n".format(name))
-        
-    
+
     ## makes a render controller class that we will use to hide models
     rc=rcc.render_controller()
     ##makes a armor stand entity class that we will use to add models 
     armorstand_entity = armor_stand_class.armorstand()
     ##manifest is mostly hard coded in this function.
     manifest.export(visual_name)
-    
+
     ## repeate for each structure after you get it to work
     #creats a base animation controller for us to put pose changes into
     animation = animation_class.animations()
@@ -99,7 +84,7 @@ makeMaterialsList : sets wether a material list shall be output.
         struct2make = structure_reader.process_structure(models_object[model_name]["structure"])
         #creates a base armorstand class for us to insert blocks
         armorstand = asgc.armorstandgeo(model_name,alpha = models_object[model_name]['opacity'],offsets=models_object[model_name]['offsets'])
-        
+
         #gets the shape for looping
         [xlen, ylen, zlen] = struct2make.get_size()
         if ylen > longestY:
@@ -149,14 +134,14 @@ makeMaterialsList : sets wether a material list shall be output.
                 for name in allBlocks.keys():
                     commonName = name.replace("minecraft:","")
                     text_file.write("{}: {}\n".format(commonName,allBlocks[name]))
-        
+
         # call export fuctions
         armorstand.export(pack_name)
         animation.export(pack_name)
 
         ##export the armorstand class
         armorstand_entity.export(pack_name)
-        
+
     # Copy my icons in
     copyfile(icon, "{}/pack_icon.png".format(pack_name))
     # Adds to zip file a modified armor stand geometry to enlarge the render area of the entity
@@ -164,16 +149,16 @@ makeMaterialsList : sets wether a material list shall be output.
     larger_render_path = "{}/models/entity/{}".format(pack_name, "armor_stand.larger_render.geo.json")
     copyfile(larger_render, larger_render_path)
     # the base render controller is hard coded and just copied in
-        
-        
+
+
     rc.export(pack_name)
     ## get all files
     file_paths = []
     for directory,_,_ in os.walk(pack_name):
         file_paths.extend(glob.glob(os.path.join(directory, "*.*")))
-    
+
     ## add all files to the mcpack file  
-    with ZipFile("{}.mcpack".format(pack_name), 'x') as zip: 
+    with ZipFile("{}.mcpack".format(pack_name), 'x',ZIP_DEFLATED) as zip: 
         # writing each file one by one 
 
         for file in file_paths:
@@ -187,12 +172,9 @@ makeMaterialsList : sets wether a material list shall be output.
 if __name__=="__main__":
     ## this is all the gui stuff that is not needed if you are calling this as a CLI
     
-    from tkinter import ttk
-    from tkinter import filedialog
-    from tkinter import messagebox
+    from tkinter import ttk,filedialog,messagebox
     from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
     from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
-
 
     def browseStruct():
         #browse for a structure file.
@@ -219,7 +201,7 @@ if __name__=="__main__":
             icon_entry.grid(row=r, column=1)
             IconButton.grid(row=r, column=2)
             r += 1
-            
+
             packName_lb.grid(row=r, column=0)
             packName_entry.grid(row=r, column=1)
             r += 1
@@ -274,9 +256,6 @@ if __name__=="__main__":
         if len(FileGUI.get()) == 0:
             valid=False
             messagebox.showinfo("Error", "You need to browse for a structure file!")
-##        if len(model_name_var.get()) == 0:
-##            valid=False
-##            messagebox.showinfo("Error", "You need a name for the Name Tag!")
         if model_name_var.get() in list(models.keys()):
             messagebox.showinfo("Error", "The Name Tag mut be unique")
             valid=False
@@ -337,8 +316,6 @@ if __name__=="__main__":
                           makeMaterialsList=(export_list.get()==1),
                           icon=pack_icon)
 
-
-
     offsets={}
     root = Tk()
     root.title("Structura")
@@ -371,6 +348,8 @@ if __name__=="__main__":
     IconButton = Button(root, text="Browse", command=browseIcon)
     file_lb = Label(root, text="Structure file")
     packName_lb = Label(root, text="Pack Name")
+    if debug:
+        debug_lb = Label(root, text="Debug Mode",fg='Red').place(x=285,y=70)
     packButton = Button(root, text="Browse", command=browseStruct)
     advanced_check = Checkbutton(root, text="advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
     export_check = Checkbutton(root, text="make lists", variable=export_list, onvalue=1, offvalue=0)
@@ -385,5 +364,6 @@ if __name__=="__main__":
 
     box_checked()
 
+    root.resizable(0,0)
     root.mainloop()
     root.quit()
