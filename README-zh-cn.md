@@ -61,6 +61,6 @@ yay -S python37 # yay or any other AUR component
 chmod +x start.sh && sh start.sh
 ```
 
-##更新方块
+## 更新方块
 从1.3版本开始，你可以手动更新方块并贡献回本项目。
 [这是一篇关于它如何工作的文章](docs/Editing%20Blocks.md)
