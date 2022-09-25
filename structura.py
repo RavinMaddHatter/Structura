@@ -1,11 +1,11 @@
-from turtle import color
+import zipfile
 import armor_stand_geo_class_2 as asgc
 import armor_stand_class ,structure_reader ,animation_class ,manifest ,os ,glob ,json ,shutil ,updater
 import render_controller_class as rcc
 from shutil import copyfile
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZipFile
 
-debug=True
+debug=False
 
 with open("lookups/nbt_defs.json") as f:
     nbt_def = json.load(f)
@@ -158,9 +158,8 @@ makeMaterialsList : sets wether a material list shall be output.
         file_paths.extend(glob.glob(os.path.join(directory, "*.*")))
 
     ## add all files to the mcpack file  
-    with ZipFile("{}.mcpack".format(pack_name), 'x',ZIP_DEFLATED) as zip: 
+    with ZipFile("{}.mcpack".format(pack_name), 'x',zipfile.ZIP_DEFLATED) as zip: 
         # writing each file one by one 
-
         for file in file_paths:
             print(file)
             zip.write(file)
@@ -173,9 +172,10 @@ if __name__=="__main__":
     ## this is all the gui stuff that is not needed if you are calling this as a CLI
     
     from tkinter import ttk,filedialog,messagebox
-    from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
+    from tkinter import StringVar, Label, Tk, END, ACTIVE
     from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
-
+    import sv_ttk
+    
     def browseStruct():
         #browse for a structure file.
         FileGUI.set(filedialog.askopenfilename(filetypes=(
@@ -201,7 +201,6 @@ if __name__=="__main__":
             icon_entry.grid(row=r, column=1)
             IconButton.grid(row=r, column=2)
             r += 1
-
             packName_lb.grid(row=r, column=0)
             packName_entry.grid(row=r, column=1)
             r += 1
@@ -216,6 +215,7 @@ if __name__=="__main__":
             saveButton.grid(row=r, column=2)
             r +=1
             updateButton.grid(row=r, column=2)
+            themeButton.grid(row=r, column=1)
         else:
             saveButton.grid_forget()
             r = 0
@@ -229,6 +229,7 @@ if __name__=="__main__":
             r += 1
             packName_lb.grid(row=r, column=0)
             packName_entry.grid(row=r, column=1)
+
             r += 1
             modle_name_entry.grid(row=r, column=1)
             modle_name_lb.grid(row=r, column=0)
@@ -251,6 +252,7 @@ if __name__=="__main__":
             saveButton.grid(row=r, column=2)
             r +=1
             updateButton.grid(row=r, column=2)
+            themeButton.grid(row=r, column=1)
     def add_model():
         valid=True
         if len(FileGUI.get()) == 0:
@@ -268,7 +270,6 @@ if __name__=="__main__":
             models[name_tag]["opacity"] = opacity
             models[name_tag]["structure"] = FileGUI.get()
             listbox.insert(END,model_name_var.get())
-
             
     def delete_model():
         items = listbox.curselection()
@@ -276,12 +277,10 @@ if __name__=="__main__":
             models.pop(listbox.get(ACTIVE))
         listbox.delete(ANCHOR)
 
-
     def runFromGui():
         ##wrapper for a gui.
         global models, offsets
         stop = False
-        
         
         if check_var.get()==0:
             if len(FileGUI.get()) == 0:
@@ -296,7 +295,7 @@ if __name__=="__main__":
                 messagebox.showinfo("Error", "You need to add some strucutres")
         if os.path.isfile("{}.mcpack".format(packName.get())):
             stop = True
-            messagebox.showinfo("Error", "pack already exists or pack name is empty")
+            messagebox.showinfo("Error", "Pack already exists or pack name is empty")
         if len(icon_var.get())>0:
             pack_icon=icon_var.get()
         else:
@@ -316,52 +315,53 @@ if __name__=="__main__":
                           makeMaterialsList=(export_list.get()==1),
                           icon=pack_icon)
 
-    offsets={}
+    offsets,models={},{}
     root = Tk()
     root.title("Structura")
-    models={}
     FileGUI = StringVar()
     packName = StringVar()
     icon_var = StringVar()
+    var = StringVar()
     icon_var.set("lookups/pack_icon.png")
     sliderVar = DoubleVar()
     model_name_var = StringVar()
     xvar = DoubleVar()
     xvar.set(0)
-    yvar = DoubleVar()
-    zvar = DoubleVar()
+    yvar,zvar = DoubleVar(),DoubleVar()
     zvar.set(0)
-    check_var = IntVar()
-    export_list = IntVar()
+    check_var,export_list = IntVar(),IntVar()
     sliderVar.set(20)
     listbox=Listbox(root)
-    file_entry = Entry(root, textvariable=FileGUI)
-    packName_entry = Entry(root, textvariable=packName)
+    file_entry = ttk.Entry(root, textvariable=FileGUI)
+    packName_entry = ttk.Entry(root, textvariable=packName)
     modle_name_lb = Label(root, text="Name Tag")
-    modle_name_entry = Entry(root, textvariable=model_name_var)
-    cord_lb = Label(root, text="offset")
-    x_entry = Entry(root, textvariable=xvar, width=5)
-    y_entry = Entry(root, textvariable=yvar, width=5)
-    z_entry = Entry(root, textvariable=zvar, width=5)
-    icon_lb = Label(root, text="Icon file")
-    icon_entry = Entry(root, textvariable=icon_var)
-    IconButton = Button(root, text="Browse", command=browseIcon)
-    file_lb = Label(root, text="Structure file")
+    modle_name_entry = ttk.Entry(root, textvariable=model_name_var)
+    cord_lb = Label(root, text="Offset")
+    x_entry = ttk.Entry(root, textvariable=xvar, width=5)
+    y_entry = ttk.Entry(root, textvariable=yvar, width=5)
+    z_entry = ttk.Entry(root, textvariable=zvar, width=5)
+    icon_lb = Label(root, text="Icon File")
+    icon_entry = ttk.Entry(root, textvariable=icon_var)
+    IconButton = ttk.Button(root, text="Browse", command=browseIcon)
+    file_lb = Label(root, text="Structure File")
     packName_lb = Label(root, text="Pack Name")
     if debug:
-        debug_lb = Label(root, text="Debug Mode",fg='Red').place(x=285,y=70)
-    packButton = Button(root, text="Browse", command=browseStruct)
-    advanced_check = Checkbutton(root, text="advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
-    export_check = Checkbutton(root, text="make lists", variable=export_list, onvalue=1, offvalue=0)
+        Label(root, text="Debug Mode",fg='Red',font=("Times",11,"italic")).place(x=330,y=80)
+    packButton = ttk.Button(root, text="Browse", command=browseStruct)
+    advanced_check = ttk.Checkbutton(root, text="Advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
+    export_check = ttk.Checkbutton(root, text="Make Lists", variable=export_list, onvalue=1, offvalue=0)
 
-    deleteButton = Button(root, text="Remove Model", command=delete_model)
-    saveButton = Button(root, text="Make Pack", command=runFromGui)
-    modelButton = Button(root, text="Add Model", command=add_model)
+    deleteButton = ttk.Button(root, text="Remove Model", command=delete_model)
+    saveButton = ttk.Button(root, text="Make Pack", command=runFromGui)
+    modelButton = ttk.Button(root, text="Add Model", command=add_model)
 
-    updateButton = Button(root, text="Update Blocks", command=updater.getLatest)
+    updateButton = ttk.Button(root, text="Update Blocks", command=updater.getLatest)
     transparency_lb = Label(root, text="Transparency")
-    transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,tickinterval=10,orient=HORIZONTAL)
+    transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,orient=HORIZONTAL)
 
+    themeButton = ttk.Button(root, text="Toggle Theme", command=sv_ttk.toggle_theme)
+
+    sv_ttk.use_light_theme()
     box_checked()
 
     root.resizable(0,0)
