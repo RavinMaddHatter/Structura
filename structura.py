@@ -174,7 +174,6 @@ if __name__=="__main__":
     from tkinter import ttk,filedialog,messagebox
     from tkinter import StringVar, Label, Tk, END, ACTIVE
     from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
-    import sv_ttk
     
     def browseStruct():
         #browse for a structure file.
@@ -215,7 +214,6 @@ if __name__=="__main__":
             saveButton.grid(row=r, column=2)
             r +=1
             updateButton.grid(row=r, column=2)
-            themeButton.grid(row=r, column=1)
         else:
             saveButton.grid_forget()
             r = 0
@@ -252,7 +250,6 @@ if __name__=="__main__":
             saveButton.grid(row=r, column=2)
             r +=1
             updateButton.grid(row=r, column=2)
-            themeButton.grid(row=r, column=1)
     def add_model():
         valid=True
         if len(FileGUI.get()) == 0:
@@ -359,9 +356,6 @@ if __name__=="__main__":
     transparency_lb = Label(root, text="Transparency")
     transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,orient=HORIZONTAL)
 
-    themeButton = ttk.Button(root, text="Toggle Theme", command=sv_ttk.toggle_theme)
-
-    sv_ttk.use_light_theme()
     box_checked()
 
     root.resizable(0,0)
