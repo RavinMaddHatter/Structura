@@ -1132,7 +1132,7 @@
          "up" : "double_plant_top"
       }
    },
-   "double_stone_slab" : {
+   "double_stone_block_slab" : {
       "sound" : "stone",
       "textures" : {
          "down" : "stone_slab_bottom",
@@ -1140,7 +1140,7 @@
          "up" : "stone_slab_top"
       }
    },
-   "double_stone_slab2" : {
+   "double_stone_block_slab2" : {
       "sound" : "stone",
       "textures" : {
          "down" : "stone_slab_bottom_2",
@@ -1148,7 +1148,7 @@
          "up" : "stone_slab_top_2"
       }
    },
-   "double_stone_slab3" : {
+   "double_stone_block_slab3" : {
       "sound" : "stone",
       "textures" : {
          "down" : "stone_slab_bottom_3",
@@ -1156,7 +1156,7 @@
          "up" : "stone_slab_top_3"
       }
    },
-   "double_stone_slab4" : {
+   "double_stone__slab4" : {
       "sound" : "stone",
       "textures" : {
          "down" : "stone_slab_bottom_4",
@@ -3052,7 +3052,7 @@
       "sound" : "stone",
       "textures" : "stone"
    },
-   "stone_slab" : {
+   "stone_block_slab" : {
       "sound" : "stone",
       "textures" : {
          "down" : "stone_slab_bottom",
@@ -3060,7 +3060,7 @@
          "up" : "stone_slab_top"
       }
    },
-   "stone_slab2" : {
+   "stone_block_slab2" : {
       "sound" : "stone",
       "textures" : {
          "down" : "stone_slab_bottom_2",
@@ -3068,7 +3068,7 @@
          "up" : "stone_slab_top_2"
       }
    },
-   "stone_slab3" : {
+   "stone_block_slab3" : {
       "sound" : "stone",
       "textures" : {
          "down" : "stone_slab_bottom_3",
@@ -3076,7 +3076,7 @@
          "up" : "stone_slab_top_3"
       }
    },
-   "stone_slab4" : {
+   "stone_block_slab4" : {
       "sound" : "stone",
       "textures" : {
          "down" : "stone_slab_bottom_4",
@@ -3697,31 +3697,6 @@
    "yellow_glazed_terracotta" : {
       "sound" : "stone",
       "textures" : "yellow_glazed_terracotta"
-   },
-   "stone_block_slab":{
-	   "textures" : "stone"
-   },
-   "stone_block_slab2":{
-	   "textures" : "stone"
-   },
-   "double_stone_block_slab2":{
-	   "textures" : "stone"
-   },
-   "stone_block_slab3":{
-	   "textures" : "stone"
-   },
-   "stone_block_slab4":{
-	   "textures" : "stone"
-   },
-   "double_stone_block_slab3":{
-	   "textures" : "stone"
-	   
-   },
-   "double_stone_block_slab":{
-	   "textures" : "stone"
-   },
-   "double_stone_block_slab4":{
-	   "textures" : "stone"
    }
 
 }

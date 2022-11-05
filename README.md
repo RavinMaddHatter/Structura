@@ -1,4 +1,7 @@
 # Structura
+[![Github All Releases](https://img.shields.io/github/downloads/RavinMaddHatter/Structura/total.svg)]()
+
+English丨[**简体中文**](https://github.com//Wulian233/Structura/blob/main/README-zh-cn.md)
 
 This tool is inspired by Litematica. It is a tool that generates Resource packs from .mcstructure files. In this resource pack the armor stands were modified to render when off screen, and have all the blocks from your structure file as bones in their model. then "ghost blocks" are used to show the user where to place the real blocks. 
 
