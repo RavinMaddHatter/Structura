@@ -79,7 +79,7 @@ class armorstandgeo:
         # sets up a layer for us to refference in the animation controller later. Layers are moved during the poses 
         layer_name = "layer_{}".format(y)
         self.geometry["bones"].append(
-            {"name": layer_name, "pivot": [-8, 0, 8], "parent": "ghost_blocks"})
+            {"name": layer_name, "parent": "ghost_blocks"})#, "pivot": [-8, 0, 8]})
 
     def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant=None):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
@@ -134,8 +134,9 @@ class armorstandgeo:
                 block["origin"] = [-1*(x + self.offsets[0]) + xoff, y + yoff + self.offsets[1], z + zoff + self.offsets[2]]
                 block["size"] = block_shapes["size"][i]
                 block["inflate"] = -0.03
-                block["pivot"]=[-1*(x + self.offsets[0]) + 0.5, y + 0.5 + self.offsets[1], z + 0.5 + self.offsets[2]]
-                block["rotation"]=rotation
+                if rot is not None:
+                    block["pivot"]=[-1*(x + self.offsets[0]) + 0.5, y + 0.5 + self.offsets[1], z + 0.5 + self.offsets[2]]
+                    block["rotation"]=rotation
                 
                 blockUV=dict(uv)
                 blockUV["up"]["uv"][0] += block_uv["offset"]["up"][uv_idx][0]
@@ -163,7 +164,7 @@ class armorstandgeo:
 
             
             self.blocks[ghost_block_name]["name"] = ghost_block_name
-            self.blocks[ghost_block_name]["parent"] = "layer_{}".format(y)
+            self.blocks[ghost_block_name]["parent"] = "layer_{}".format(y % (12))
             self.blocks[ghost_block_name]["pivot"] = block_shapes["center"]
         
     def save_uv(self, name):

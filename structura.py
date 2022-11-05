@@ -43,8 +43,13 @@ class structura:
             for name in name_tags:
                 text_file.write("{}\n".format(name))
     def make_big_model(self):
-        names= list(self.structure_files.keys())
-        struct2make=structure_reader.combined_structures(names,exclude_list=self.exclude_list)
+        file_names=[]
+        for name in list(self.structure_files.keys()):
+            file_names.append(self.structure_files[name]["file"])
+        struct2make=structure_reader.combined_structures(file_names,exclude_list=self.exclude_list)
+        self.structure_files[""]={}
+        self.structure_files[""]["offsets"]=(-struct2make.get_size()//2).tolist()
+        self.structure_files[""]["offsets"][1]= 0
         self.rc.add_model("")
         self.armorstand_entity.add_model("")
         blocks=self._add_blocks_to_geo(struct2make,"")
@@ -60,7 +65,6 @@ class structura:
             self.rc.add_model(model_name)
             self.armorstand_entity.add_model(model_name)
             ## temp folder would be a good idea
-            print(self.structure_files[model_name]["file"])
             copyfile(self.structure_files[model_name]["file"], "{}/{}.mcstructure".format(self.pack_name,model_name))
             if debug:
                 print(self.structure_files[model_name]['offsets'])
@@ -96,44 +100,51 @@ class structura:
             longestY = ylen
         else:
             update_animation=False
+        if ylen>50:
+            print(ylen)
+            ylen=50
         for y in range(ylen):
             if debug:
                 print(range(ylen))
                 print("layer "+str(y)+" of "+ str(ylen))
             #creates the layer for controlling. Note there is implied formating here
             #for layer names
-            armorstand.make_layer(y)
-            #adds links the layer name to an animation
-            if update_animation:
-                self.animation.insert_layer(y)
-            for x in range(xlen):
-                for z in range(zlen):
-                    block = struct2make.get_block(x, y, z)
-                    blk_name=block["name"].replace("minecraft:", "")
-                    blockProp=self._process_block(block)
-                    rot = blockProp[0]
-                    top = blockProp[1]
-                    variant = blockProp[2]
-                    open_bit = blockProp[3]
-                    data = blockProp[4]
-                    skip = blockProp[5]
-                    if debug:
-                        #print(blk_name)
-                        pass
-                    if debug and False:
+            if y<12:
+                armorstand.make_layer(y)
+                #adds links the layer name to an animation
+                if update_animation:
+                    self.animation.insert_layer(y)
+            non_air=struct2make.get_layer_blocks(y)
+            
+            for loc in non_air:
+                x=int(loc[0])
+                z=int(loc[1])
+                block = struct2make.get_block(x, y, z)
+                blk_name=block["name"].replace("minecraft:", "")
+                blockProp=self._process_block(block)
+                rot = blockProp[0]
+                top = blockProp[1]
+                variant = blockProp[2]
+                open_bit = blockProp[3]
+                data = blockProp[4]
+                skip = blockProp[5]
+                if debug:
+                    #print(blk_name)
+                    pass
+                if debug and False:
+                    if not skip:
+                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
+                else:
+                    try:
                         if not skip:
                             armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
-                    else:
-                        try:
-                            if not skip:
-                                armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
-                        except:
-                            self.unsupported_blocks.append("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
-                            print("There is an unsuported block in this world and it was skipped")
-                            print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
+                    except:
+                        self.unsupported_blocks.append("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
+                        print("There is an unsuported block in this world and it was skipped")
+                        print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
             ## consider temp file
-            armorstand.export(self.pack_name)
-            self.animation.export(self.pack_name)
+        armorstand.export(self.pack_name)
+        self.animation.export(self.pack_name)
         return struct2make.get_block_list()
     def compile_pack(self):
         ## consider temp file
@@ -229,6 +240,7 @@ if __name__=="__main__":
             x_entry.grid_forget()
             y_entry.grid_forget()
             z_entry.grid_forget()
+            big_build_check.grid_forget()
             transparency_lb.grid_forget()
             transparency_entry.grid_forget()
             advanced_check.grid(row=r, column=0)
@@ -270,6 +282,7 @@ if __name__=="__main__":
             export_check.grid(row=r, column=1)
             saveButton.grid(row=r, column=2)
             r +=1
+            big_build_check.grid(row=r, column=0,columnspan=2)
             updateButton.grid(row=r, column=2)
     def add_model():
         valid=True
@@ -324,6 +337,7 @@ if __name__=="__main__":
             structura_base.set_opacity(sliderVar.get())
             if debug:
                 print(models)
+            
             if not(check_var.get()):
                 structura_base.add_model("",FileGUI.get())
                 offset=[xvar.get(),yvar.get(),zvar.get()]
@@ -331,6 +345,11 @@ if __name__=="__main__":
                 if (export_list.get()==1):
                     structura_base.generate_nametag_file()
                 structura_base.generate_with_nametags()
+                structura_base.compile_pack()
+            elif big_build.get():
+                for name_tag in models.keys():
+                    structura_base.add_model(name_tag,models[name_tag]["structure"])
+                structura_base.make_big_model()
                 structura_base.compile_pack()
             else:
                 for name_tag in models.keys():
@@ -359,6 +378,8 @@ if __name__=="__main__":
     zvar.set(0)
     check_var = IntVar()
     export_list = IntVar()
+    big_build = IntVar()
+    big_build.set(0)
     sliderVar.set(20)
     listbox=Listbox(root)
     file_entry = Entry(root, textvariable=FileGUI)
@@ -379,6 +400,7 @@ if __name__=="__main__":
     packButton = Button(root, text="Browse", command=browseStruct)
     advanced_check = Checkbutton(root, text="advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
     export_check = Checkbutton(root, text="make lists", variable=export_list, onvalue=1, offvalue=0)
+    big_build_check = Checkbutton(root, text="Big Build mode", variable=big_build, onvalue=1, offvalue=0)
 
     deleteButton = Button(root, text="Remove Model", command=delete_model)
     saveButton = Button(root, text="Make Pack", command=runFromGui)
