@@ -9,166 +9,186 @@ debug=True
 
 with open("lookups/nbt_defs.json") as f:
     nbt_def = json.load(f)
-
-def process_block(x,y,z,block):
-    rot = None
-    top = False
-    open_bit = False
-    data=0
-    skip=False
-    variant="Default"
-
-    for key in nbt_def.keys():
-        if nbt_def[key]== "variant" and key in block["states"].keys():
-            variant = [key,block["states"][key]]
-        if nbt_def[key]== "rot" and key in block["states"].keys():
-            try:
-                rot = int(block["states"][key])
-            except:
-                rot = str(block["states"][key])
-            
-        if nbt_def[key]== "top" and key in block["states"].keys():
-            top = bool(block["states"][key])
-        if nbt_def[key]== "open_bit" and "open_bit" in block["states"].keys():
-            open_bit = bool(block["states"][key])
-        if nbt_def[key]== "data" and key in block["states"].keys():
-            data = int(block["states"][key])
-
-    if "wood_type" in block["states"].keys():
-        variant = ["wood_type",block["states"]["wood_type"]]
-        if block["name"] == "minecraft:wood":
-            keys = block["states"]["wood_type"]
-            if bool(block["states"]["stripped_bit"]):
-                keys+="_stripped"
-            variant = ["wood",keys]
-    if debug:
-        print([rot, top, variant, open_bit, data, skip])
-    return [rot, top, variant, open_bit, data, skip]
-
-
-def generate_pack(pack_name,models_object={},makeMaterialsList=False, icon="lookups/pack_icon.png"):
-    """
-This is the funciton that makes a structura pack:
-pack_name : the name of the pack, this will be stored the the manafest.JSON as well as the name of the mcpack file
-models : 'NAME_TAG': {offsets: [x, y, z],opacity: percent,structure: file.mcstructure},
-makeMaterialsList : sets wether a material list shall be output.
-    """
-    visual_name=pack_name
-    if len("".join(list(models_object.keys())))>1:
-        fileName="{} Nametags.txt".format(pack_name)
+class structura:
+    def __init__(self,pack_name):
+        self.pack_name=pack_name
+        self.structure_files={}
+        self.rc=rcc.render_controller()
+        self.armorstand_entity = armor_stand_class.armorstand()
+        visual_name=pack_name
+        manifest.export(visual_name)
+        self.animation = animation_class.animations()
+        self.exclude_list=["minecraft:structure_block","minecraft:air"]
+        self.opacity=0.8
+        self.longestY=0
+        self.unsupported_blocks=[]
+        self.all_blocks={}
+        self.icon="lookups/pack_icon.png"
+    def set_icon(self,icon):
+        self.icon=icon
+    def set_opacity(self,opacity):
+        self.opacity=opacity
+    def add_model(self,name,file_name):
+        self.structure_files[name]={}
+        self.structure_files[name]["file"]=file_name
+        self.structure_files[name]["offsets"]=None
+    def set_model_offset(self,name,offset):
+        self.structure_files[name]["offsets"]=offset
+    def generate_nametag_file(self):
+        ## temp folder would be a good idea
+        name_tags=self.structure_files.keys()
+        fileName="{} Nametags.txt".format(self.pack_name)
         with open(fileName,"w+") as text_file:
             text_file.write("These are the nametags used in this file\n")
-            for name in models_object.keys():
+            for name in name_tags:
                 text_file.write("{}\n".format(name))
-
-    ## makes a render controller class that we will use to hide models
-    rc=rcc.render_controller()
-    ##makes a armor stand entity class that we will use to add models 
-    armorstand_entity = armor_stand_class.armorstand()
-    ##manifest is mostly hard coded in this function.
-    manifest.export(visual_name)
-
-    ## repeate for each structure after you get it to work
-    #creats a base animation controller for us to put pose changes into
-    animation = animation_class.animations()
-    longestY=0
-    update_animation=True
-    for model_name in models_object.keys():
-        offset=models_object[model_name]["offsets"]
-        rc.add_model(model_name)
-        armorstand_entity.add_model(model_name)
-        copyfile(models_object[model_name]["structure"], "{}/{}.mcstructure".format(pack_name,model_name))
-        if debug:
-            print(models_object[model_name]['offsets'])
-        #reads structure
-        struct2make = structure_reader.process_structure(models_object[model_name]["structure"])
-        #creates a base armorstand class for us to insert blocks
-        armorstand = asgc.armorstandgeo(model_name,alpha = models_object[model_name]['opacity'],offsets=models_object[model_name]['offsets'])
-
-        #gets the shape for looping
+    def make_big_model(self):
+        names= list(self.structure_files.keys())
+        struct2make=structure_reader.combined_structures(names,exclude_list=self.exclude_list)
+        self.rc.add_model("")
+        self.armorstand_entity.add_model("")
+        blocks=self._add_blocks_to_geo(struct2make,"")
+        ## condier temp folder
+        self.armorstand_entity.export(self.pack_name)
+    def generate_with_nametags(self):
+        update_animation=True
+        for model_name in self.structure_files.keys():
+            if self.structure_files[model_name]["offsets"] is None:
+                offset=[0,0,0]
+            else:
+                offset=self.structure_files[model_name]["offsets"]
+            self.rc.add_model(model_name)
+            self.armorstand_entity.add_model(model_name)
+            ## temp folder would be a good idea
+            print(self.structure_files[model_name]["file"])
+            copyfile(self.structure_files[model_name]["file"], "{}/{}.mcstructure".format(self.pack_name,model_name))
+            if debug:
+                print(self.structure_files[model_name]['offsets'])
+            struct2make = structure_reader.process_structure(self.structure_files[model_name]["file"])
+            
+            blocks=self._add_blocks_to_geo(struct2make,model_name)
+            self.structure_files[model_name]["block_list"]=blocks
+            ##consider temp folder
+            self.armorstand_entity.export(self.pack_name)## this may be in the wrong spot, but transfered from 1.5
+    def make_nametag_block_lists(self):
+        ## consider temp file
+        for model_name in self.structure_files.keys():
+            file_name="{}-{} block list.txt".format(visual_name,model_name)
+            all_blocks=self.structure_files[model_name]["block_list"]
+            with open(file_name,"w+") as text_file:
+                text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
+                for name in all_blocks.keys():
+                    commonName = name.replace("minecraft:","")
+                    text_file.write("{}: {}\n".format(commonName,all_blocks[name]))
+    def make_big_blocklist(self):
+        ## consider temp file
+        file_name="{} block list.txt".format(self.pack_name)
+        with open(file_name,"w+") as text_file:
+            text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
+            for name in self.all_blocks.keys():
+                commonName = name.replace("minecraft:","")
+                text_file.write("{}: {}\n".format(commonName,self.all_blocks[name]))
+    def _add_blocks_to_geo(self,struct2make,model_name):
+        armorstand = asgc.armorstandgeo(model_name,alpha = self.opacity, offsets=self.structure_files[model_name]['offsets'])
         [xlen, ylen, zlen] = struct2make.get_size()
-        if ylen > longestY:
+        if ylen > self.longestY:
             update_animation=True
             longestY = ylen
         else:
             update_animation=False
         for y in range(ylen):
+            if debug:
+                print(range(ylen))
+                print("layer "+str(y)+" of "+ str(ylen))
             #creates the layer for controlling. Note there is implied formating here
             #for layer names
             armorstand.make_layer(y)
             #adds links the layer name to an animation
             if update_animation:
-                animation.insert_layer(y)
+                self.animation.insert_layer(y)
             for x in range(xlen):
                 for z in range(zlen):
-                    #gets block
                     block = struct2make.get_block(x, y, z)
                     blk_name=block["name"].replace("minecraft:", "")
-                    blockProp=process_block(x,y,z,block)
+                    blockProp=self._process_block(block)
                     rot = blockProp[0]
                     top = blockProp[1]
                     variant = blockProp[2]
                     open_bit = blockProp[3]
                     data = blockProp[4]
                     skip = blockProp[5]
-                    
                     if debug:
-                        print(blk_name)
-                    ##  If java worlds are brought into bedrock the tools some times
-                    ##   output unsupported blocks, will log.
-                    
-                    if debug:
-                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
-                    try:
+                        #print(blk_name)
+                        pass
+                    if debug and False:
                         if not skip:
                             armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
-                    except:
-                        print("There is an unsuported block in this world and it was skipped")
-                        print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
-        ## this is a quick hack to get block lists, doesnt consider vairants.... so be careful                
-        allBlocks = struct2make.get_block_list()
-        fileName="{}-{} block list.txt".format(visual_name,model_name)
-        if makeMaterialsList:
-            with open(fileName,"w+") as text_file:
-                text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
-                for name in allBlocks.keys():
-                    commonName = name.replace("minecraft:","")
-                    text_file.write("{}: {}\n".format(commonName,allBlocks[name]))
+                    else:
+                        try:
+                            if not skip:
+                                armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
+                        except:
+                            self.unsupported_blocks.append("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
+                            print("There is an unsuported block in this world and it was skipped")
+                            print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
+            ## consider temp file
+            armorstand.export(self.pack_name)
+            self.animation.export(self.pack_name)
+        return struct2make.get_block_list()
+    def compile_pack(self):
+        ## consider temp file
+        copyfile(self.icon, "{}/pack_icon.png".format(self.pack_name))
+        larger_render = "lookups/armor_stand.larger_render.geo.json"
+        larger_render_path = "{}/models/entity/{}".format(self.pack_name, "armor_stand.larger_render.geo.json")
+        copyfile(larger_render, larger_render_path)
+        self.rc.export(self.pack_name)
+        file_paths = []
+        for directory,_,_ in os.walk(self.pack_name):
+            file_paths.extend(glob.glob(os.path.join(directory, "*.*")))
+        ## add all files to the mcpack file  
+        with ZipFile("{}.mcpack".format(self.pack_name), 'x',ZIP_DEFLATED) as zip: ## add compression
+            # writing each file one by one 
 
-        # call export fuctions
-        armorstand.export(pack_name)
-        animation.export(pack_name)
+            for file in file_paths:
+                print(file)
+                zip.write(file)
+        ## delete all the extra files.
+        shutil.rmtree(self.pack_name)
+        print("Pack Making Completed")
+    def _process_block(self,block):
+        rot = None
+        top = False
+        open_bit = False
+        data=0
+        skip=False
+        variant="Default"
 
-        ##export the armorstand class
-        armorstand_entity.export(pack_name)
+        for key in nbt_def.keys():
+            if nbt_def[key]== "variant" and key in block["states"].keys():
+                variant = [key,block["states"][key]]
+            if nbt_def[key]== "rot" and key in block["states"].keys():
+                try:
+                    rot = int(block["states"][key])
+                except:
+                    rot = str(block["states"][key])
+                
+            if nbt_def[key]== "top" and key in block["states"].keys():
+                top = bool(block["states"][key])
+            if nbt_def[key]== "open_bit" and "open_bit" in block["states"].keys():
+                open_bit = bool(block["states"][key])
+            if nbt_def[key]== "data" and key in block["states"].keys():
+                data = int(block["states"][key])
 
-    # Copy my icons in
-    copyfile(icon, "{}/pack_icon.png".format(pack_name))
-    # Adds to zip file a modified armor stand geometry to enlarge the render area of the entity
-    larger_render = "lookups/armor_stand.larger_render.geo.json"
-    larger_render_path = "{}/models/entity/{}".format(pack_name, "armor_stand.larger_render.geo.json")
-    copyfile(larger_render, larger_render_path)
-    # the base render controller is hard coded and just copied in
-
-
-    rc.export(pack_name)
-    ## get all files
-    file_paths = []
-    for directory,_,_ in os.walk(pack_name):
-        file_paths.extend(glob.glob(os.path.join(directory, "*.*")))
-
-    ## add all files to the mcpack file  
-    with ZipFile("{}.mcpack".format(pack_name), 'x',ZIP_DEFLATED) as zip: 
-        # writing each file one by one 
-
-        for file in file_paths:
-            print(file)
-            zip.write(file)
-    ## delete all the extra files.
-    shutil.rmtree(pack_name)
-    print("Pack Making Completed")
-
-
+        if "wood_type" in block["states"].keys():
+            variant = ["wood_type",block["states"]["wood_type"]]
+            if block["name"] == "minecraft:wood":
+                keys = block["states"]["wood_type"]
+                if bool(block["states"]["stripped_bit"]):
+                    keys+="_stripped"
+                variant = ["wood",keys]
+        #if debug:
+        #    print([rot, top, variant, open_bit, data, skip])
+        return [rot, top, variant, open_bit, data, skip]
 if __name__=="__main__":
     ## this is all the gui stuff that is not needed if you are calling this as a CLI
     
@@ -281,8 +301,10 @@ if __name__=="__main__":
         ##wrapper for a gui.
         global models, offsets
         stop = False
-        
-        
+        if os.path.isfile("{}.mcpack".format(packName.get())):
+            stop = True
+            messagebox.showinfo("Error", "pack already exists or pack name is empty")
+            ## could be fixed if temp files were used.
         if check_var.get()==0:
             if len(FileGUI.get()) == 0:
                 stop = True
@@ -294,27 +316,31 @@ if __name__=="__main__":
             if len(list(models.keys()))==0:
                 stop = True
                 messagebox.showinfo("Error", "You need to add some strucutres")
-        if os.path.isfile("{}.mcpack".format(packName.get())):
-            stop = True
-            messagebox.showinfo("Error", "pack already exists or pack name is empty")
         if len(icon_var.get())>0:
             pack_icon=icon_var.get()
-        else:
-            pack_icon="lookups/pack_icon.png"
         if not stop:
-            if not(check_var.get()):
-                name_tag = ""
-                models[name_tag] = {}
-                models[name_tag]["offsets"] = [xvar.get(),yvar.get(),zvar.get()]
-                models[name_tag]["opacity"] = sliderVar.get()
-                models[name_tag]["structure"] = FileGUI.get()
-                
+            
+            structura_base=structura(packName.get())
+            structura_base.set_opacity(sliderVar.get())
             if debug:
                 print(models)
-            generate_pack(packName.get(),
-                          models_object=models,
-                          makeMaterialsList=(export_list.get()==1),
-                          icon=pack_icon)
+            if not(check_var.get()):
+                structura_base.add_model("",FileGUI.get())
+                offset=[xvar.get(),yvar.get(),zvar.get()]
+                structura_base.set_model_offset("",offset)
+                if (export_list.get()==1):
+                    structura_base.generate_nametag_file()
+                structura_base.generate_with_nametags()
+                structura_base.compile_pack()
+            else:
+                for name_tag in models.keys():
+                    structura_base.add_model(name_tag,models[name_tag]["structure"])
+                    structura_base.set_model_offset(name_tag,models[name_tag]["offsets"])
+                    structura_base.generate_with_nametags()
+                    if (export_list.get()==1):
+                        structura_base.generate_nametag_file()
+                structura_base.compile_pack()
+        
 
     offsets={}
     root = Tk()
