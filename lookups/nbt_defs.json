@@ -24,5 +24,6 @@
 	"upper_block_bit":"top",
 	"bite_counter":"data",
 	"cluster_count":"data",
-	"pillar_axis":"rot"
+	"pillar_axis":"rot",
+	"lever_direction":"rot"
 }
