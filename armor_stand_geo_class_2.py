@@ -134,30 +134,16 @@ class armorstandgeo:
                 block["origin"] = [-1*(x + self.offsets[0]) + xoff, y + yoff + self.offsets[1], z + zoff + self.offsets[2]]
                 block["size"] = block_shapes["size"][i]
                 block["inflate"] = -0.03
-                block["pivot"]=[-1*(x + self.offsets[0]) + 0.5, y + 0.5 + self.offsets[1], z + 0.5 + self.offsets[2]]
-                block["rotation"]=rotation
+                block["pivot"] = [-1*(x + self.offsets[0]) + 0.5, y + 0.5 + self.offsets[1], z + 0.5 + self.offsets[2]]
+                block["rotation"] = rotation
                 
                 blockUV=dict(uv)
-                blockUV["up"]["uv"][0] += block_uv["offset"]["up"][uv_idx][0]
-                blockUV["up"]["uv"][1] += block_uv["offset"]["up"][uv_idx][1]
-                blockUV["down"]["uv"][0] += block_uv["offset"]["down"][uv_idx][0]
-                blockUV["down"]["uv"][1] += block_uv["offset"]["down"][uv_idx][1]
-                blockUV["east"]["uv"][0] += block_uv["offset"]["east"][uv_idx][0]
-                blockUV["east"]["uv"][1] += block_uv["offset"]["east"][uv_idx][1]
-                blockUV["west"]["uv"][0] += block_uv["offset"]["west"][uv_idx][0]
-                blockUV["west"]["uv"][1] += block_uv["offset"]["west"][uv_idx][1]
-                blockUV["north"]["uv"][0] += block_uv["offset"]["north"][uv_idx][0]
-                blockUV["north"]["uv"][1] += block_uv["offset"]["north"][uv_idx][1]
-                blockUV["south"]["uv"][0] += block_uv["offset"]["south"][uv_idx][0]
-                blockUV["south"]["uv"][1] += block_uv["offset"]["south"][uv_idx][1]
-                blockUV["up"]["uv_size"] = block_uv["uv_sizes"]["up"][uv_idx]
-                blockUV["down"]["uv_size"] = block_uv["uv_sizes"]["down"][uv_idx]
-                blockUV["east"]["uv_size"] = block_uv["uv_sizes"]["east"][uv_idx]
-                blockUV["west"]["uv_size"] = block_uv["uv_sizes"]["west"][uv_idx]
-                blockUV["north"]["uv_size"] = block_uv["uv_sizes"]["north"][uv_idx]
-                blockUV["south"]["uv_size"] = block_uv["uv_sizes"]["south"][uv_idx]
+                for dir in ["up", "down", "east", "west", "north", "south"]:
+                    blockUV[dir]["uv"][0] += block_uv["offset"][dir][uv_idx][0]
+                    blockUV[dir]["uv"][1] += block_uv["offset"][dir][uv_idx][1]
+                    blockUV[dir]["uv_size"] = block_uv["uv_sizes"][dir][uv_idx]
                 
-                block["uv"]=blockUV
+                block["uv"] = blockUV
                 self.blocks[ghost_block_name]["cubes"].append(block)
             
 
