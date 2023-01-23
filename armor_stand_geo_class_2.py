@@ -3,6 +3,8 @@ from PIL import Image
 import numpy as np
 import copy
 import os
+import math
+from scipy.spatial.transform import Rotation
 
 debug=False
 
@@ -111,9 +113,9 @@ class armorstandgeo:
             if str(data) in self.block_shapes[block_type].keys():
                 block_shapes = self.block_shapes[block_type][str(data)]
             if block_type in self.block_rotations.keys():
-                rotation = self.block_rotations[block_type][str(rot)]
+                block_rotation = self.block_rotations[block_type][str(rot)]
             else:
-                rotation = [0, 0, 0]
+                block_rotation = [0, 0, 0]
                 if debug:
                     print("no rotation for block type {} found".format(block_type))
             self.blocks[ghost_block_name]["cubes"] = []
@@ -135,6 +137,13 @@ class armorstandgeo:
                 block["size"] = block_shapes["size"][i]
                 block["inflate"] = -0.03
                 block["pivot"] = [-1*(x + self.offsets[0]) + 0.5, y + 0.5 + self.offsets[1], z + 0.5 + self.offsets[2]]
+                
+                if "rotation" in block_shapes.keys():
+                    shape_rot = Rotation.from_euler('XYZ', block_shapes["rotation"][i], degrees=True) # intrinsic rotation
+                    rotation = shape_rot * Rotation.from_euler('xyz', block_rotation, degrees=True) # extrinsic rotation
+                    rotation = rotation.as_euler('XYZ', degrees=True).tolist()
+                else:
+                    rotation = block_rotation
                 block["rotation"] = rotation
                 
                 blockUV=dict(uv)
