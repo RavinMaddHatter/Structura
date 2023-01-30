@@ -2,4 +2,3 @@ numpy
 nbtlib
 pooch
 pillow
-scipy
