@@ -98,6 +98,8 @@ class armorstandgeo:
                 shape_variant="side"
             elif block_type == "trapdoor" and trap_open:
                 shape_variant = "open"
+            elif block_type == "lever" and trap_open:
+                shape_variant = "on"
             elif top:
                 shape_variant = "top"
 
