@@ -3,7 +3,6 @@ from PIL import Image
 import numpy as np
 import copy
 import os
-import math
 
 debug=False
 
