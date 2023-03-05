@@ -6,6 +6,7 @@ import os
 import boto3
 from botocore.exceptions import ClientError
 import shutil
+import sys
 from structura_core import structura
 from nacl.signing import VerifyKey
 from nacl.exceptions import BadSignatureError
@@ -123,7 +124,6 @@ def convert_command(body):
         data={
                 'content': "working on conversion"
             }
-        error=""
 
         for key in body["data"]["resolved"]["attachments"]:
             attach=body["data"]["resolved"]["attachments"][key]
@@ -132,42 +132,41 @@ def convert_command(body):
                     file_url=attach["url"]
                     file_name=attach["filename"]
                     data["content"]=file_url
-                    error=""
                     break
                 else:
-                    error="is empty"
-                    data["content"]=error
+                    raise Exception("file is empty, no data to convert.")
             else:
-                error="not a structure file"
-                data["content"]=error
-        
-        if error=="":
+                raise Exception("Not a .mcstructure file.")
+    
+
             #shutil.rmtree("/tmp/input")
-            response = requests.get(file_url)
-            name=file_name.split(".mcstructure")[0]
-
-            os.makedirs("/tmp/input", exist_ok=True)
-
-            file_dir = f"/tmp/input/{file_name}"
-            open(file_dir, "wb").write(response.content)
-            data["content"]="Processing, if this hangs it is because the file is too big. retrying will not fix it"
+        response = requests.get(file_url)
+        name=file_name.split(".mcstructure")[0]
+        os.makedirs("/tmp/input", exist_ok=True)
+        file_dir = f"/tmp/input/{file_name}"
+        open(file_dir, "wb").write(response.content)
+        data["content"]="Processing, if this hangs it is because the file is too big. retrying will not fix it"
             
-            send_repsonse(body,data)
-            created_file = make_pack("/tmp/"+name,file_dir)
-            data["content"]=f"sending file to server {name}.mcpack"
-            send_repsonse(body,data)
-            s3_client = boto3.client('s3')
-            folder=uuid.uuid4()
-            s3_key=f"{folder}/{name}.mcpack"
-            response = s3_client.upload_file(created_file, bucket, s3_key)
-            signed_url = s3_client.generate_presigned_url(
-                'get_object',
-                Params={'Bucket': bucket, 'Key': s3_key},
-                ExpiresIn=3600)
-            data["content"]=f"Your file has been created, it will be saved for 1 hour then deleted, here is the url {signed_url}"
-            send_repsonse(body,data)
+        send_repsonse(body,data)
+        created_file = make_pack("/tmp/"+name,file_dir)
+        data["content"]=f"sending file to server {name}.mcpack"
+        send_repsonse(body,data)
+        s3_client = boto3.client('s3')
+        folder=uuid.uuid4()
+        s3_key=f"{folder}/{name}.mcpack"
+        response = s3_client.upload_file(created_file, bucket, s3_key)
+            
+        signed_url = s3_client.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': bucket, 'Key': s3_key},
+            ExpiresIn=3600)
+        data["content"]=f"Your file has been created, it will be saved for 1 hour then deleted, here is the url {signed_url}"
+        send_repsonse(body,data)
     except Exception as e:
-        data={'content': "failed due to error processing file. "+str(e)}
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        print(exc_type, fname, exc_tb.tb_lineno)
+        data={'content': "failed due to error processing file. Error {}, in file {}, line number {} ".format(str(e), fname, exc_tb.tb_lineno)}
         send_repsonse(body,data)
         raise
     return {
@@ -175,16 +174,13 @@ def convert_command(body):
             'body': "file created"
             }
 def make_pack(name,file_dir):
-    try:
         
-        structura_base=structura(name)
-        structura_base.set_opacity(20)
-        structura_base.add_model("",file_dir)
-        structura_base.set_model_offset("",[0,0,0])
-        structura_base.generate_nametag_file()
-        structura_base.generate_with_nametags()
-        return structura_base.compile_pack()
-    except Exception as e:
-            data={'content': "failed due to error processing file. "+str(e)}
-    return data
+    structura_base=structura(name)
+    structura_base.set_opacity(20)
+    structura_base.add_model("",file_dir)
+    structura_base.set_model_offset("",[0,0,0])
+    structura_base.generate_nametag_file()
+    structura_base.generate_with_nametags()
+    return structura_base.compile_pack()
+
   
