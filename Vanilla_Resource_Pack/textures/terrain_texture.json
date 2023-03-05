@@ -2151,6 +2151,12 @@
             "textures/blocks/pumpkin_side"
          ]
       },
+	  
+      "pumpkin_face_on" : {
+         "textures" : [
+            "textures/blocks/pumpkin_face_on"
+         ]
+      },
       "pumpkin_side" : {
          "textures" : [
             "textures/blocks/pumpkin_side",

@@ -1,17 +1,24 @@
-from structura_core import structura
+import structura_core  
 import os
+structura_core.debug=True
 files_to_conver={
         
         "gems":{"file":"test_structures/All Blocks World/gems and redstone.mcstructure",
-                "offset":[0,0,0]},
+                "offset":[-32,0,-32]},
         "stone":{"file":"test_structures/All Blocks World/Stones.mcstructure",
-                 "offset":[0,0,0]},
+                 "offset":[-30,0,-32]},
         "wood":{"file":"test_structures/All Blocks World/wood.mcstructure",
-                "offset":[0,0,0]},
+                "offset":[-31,0,-31]},
         "decor":{"file":"test_structures/All Blocks World/decorative.mcstructure",
-                 "offset":[0,0,0]}}
+                 "offset":[-32,0,-31]}}
 
-structura_base=structura("tmp/all_blocks")
+
+if os.path.exists("tmp/all_blocks.mcpack"):
+    os.remove("tmp/all_blocks.mcpack")
+if os.path.exists("tmp/all_blocks Nametags.txt"):
+    os.remove("tmp/all_blocks Nametags.txt")
+
+structura_base=structura_core.structura("tmp/all_blocks")
 structura_base.set_opacity(20)
 for name_tag, info in files_to_conver.items():
     print(f'{name_tag}, {info}')
@@ -20,4 +27,5 @@ for name_tag, info in files_to_conver.items():
     structura_base.set_model_offset(name_tag,info["offset"])
 structura_base.generate_nametag_file()
 structura_base.generate_with_nametags()
+
 structura_base.compile_pack()

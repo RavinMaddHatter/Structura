@@ -163,11 +163,10 @@ class structura:
         data=0
         skip=False
         variant="Default"
-
         for key in nbt_def.keys():
             if nbt_def[key]== "variant" and key in block["states"].keys():
                 variant = [key,block["states"][key]]
-            if nbt_def[key]== "rot" and key in block["states"].keys():
+            if nbt_def[key] == "rot" and key in block["states"].keys():
                 try:
                     rot = int(block["states"][key])
                 except:

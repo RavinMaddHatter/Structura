@@ -397,11 +397,11 @@
       "isotropic" : false,
       "textures" : {
          "down" : "bubble_column_down_top",
-         "east" : "pumpkin_side",
+         "east" : "bubble_column_down_top",
          "north" : "bubble_column_outer",
          "south" : "bubble_column_mid",
          "up" : "bubble_column_up_top",
-         "west" : "pumpkin_side"
+         "west" : "bubble_column_down_top"
       }
    },
    "budding_amethyst" : {
@@ -1879,7 +1879,7 @@
          "down" : "pumpkin_top",
          "east" : "pumpkin_side",
          "north" : "pumpkin_side",
-         "south" : "pumpkin_face",
+         "south" : "pumpkin_face_on",
          "up" : "pumpkin_top",
          "west" : "pumpkin_side"
       }
@@ -2492,7 +2492,7 @@
          "down" : "pumpkin_top",
          "east" : "pumpkin_side",
          "north" : "pumpkin_side",
-         "south" : "pumpkin_face",
+         "south" : "pumpkin_side",
          "up" : "pumpkin_top",
          "west" : "pumpkin_side"
       }

@@ -43,6 +43,94 @@
 			}
 		}
 	},
+	"hive": {
+		"default": {
+			"uv_sizes": {
+				"up": [
+					[1, 1]
+				],
+				"down": [
+					[1, 1]
+				],
+				"north": [
+					[1, 1]
+				],
+				"south": [
+					[1, 1]
+				],
+				"east": [
+					[1, 1]
+				],
+				"west": [
+					[1, 1]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0]
+				],
+				"down": [
+					[0, 0]
+				],
+				"north": [
+					[0, 0]
+				],
+				"south": [
+					[0, 0]
+				],
+				"east": [
+					[0, 0]
+				],
+				"west": [
+					[0, 0]
+				]
+			}
+		}
+	},
+	"loom": {
+		"default": {
+			"uv_sizes": {
+				"up": [
+					[1, 1]
+				],
+				"down": [
+					[1, 1]
+				],
+				"north": [
+					[1, 1]
+				],
+				"south": [
+					[1, 1]
+				],
+				"east": [
+					[1, 1]
+				],
+				"west": [
+					[1, 1]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0]
+				],
+				"down": [
+					[0, 0]
+				],
+				"north": [
+					[0, 0]
+				],
+				"south": [
+					[0, 0]
+				],
+				"east": [
+					[0, 0]
+				],
+				"west": [
+					[0, 0]
+				]
+			}
+		}
+	},
 	"water": {
 		"default": {
 			"uv_sizes": {
@@ -127,6 +215,50 @@
 				],
 				"west": [
 					[0, 0]
+				]
+			}
+		}
+	},
+	"glazed_terracotta": {
+		"default": {
+			"uv_sizes": {
+				"up": [
+					[1, 1]
+				],
+				"down": [
+					[1, 1]
+				],
+				"north": [
+					[1, -1]
+				],
+				"south": [
+					[-1, 1]
+				],
+				"east": [
+					[1, 1]
+				],
+				"west": [
+					[-1, -1]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0]
+				],
+				"down": [
+					[0, 0]
+				],
+				"north": [
+					[0, 1]
+				],
+				"south": [
+					[1, 0]
+				],
+				"east": [
+					[0, 0]
+				],
+				"west": [
+					[1, 1]
 				]
 			}
 		}
@@ -1226,8 +1358,182 @@
 				"east": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"],
 				"west": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"]
 			}
+		},
+		"1": {
+			"uv_sizes": {
+				"up": [
+					[1, 1],
+					[0.125, 0.125],
+					[0.125, 0.125],
+					[0.125, 0.125]
+				],
+				"down": [
+					[1, 1],
+					[0.125, 0.125],
+					[0.125, 0.125],
+					[0.125, 0.125]
+				],
+				"north": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"south": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"east": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"west": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"down": [
+					[0, 0],
+					[0.4375, 0.5],
+					[0.4375, 0.5],
+					[0.4375, 0.5]
+				],
+				"north": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"south": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"east": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"west": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				]
+			},
+			"overwrite": {
+				"up": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"],
+				"down": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"],
+				"north": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"],
+				"south": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"],
+				"east": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"],
+				"west": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"]
+			}
 		}
 	},
+	"purpur_block":{
+		"default": {
+			"uv_sizes": {
+				"up": [
+					[1, 1]
+				],
+				"down": [
+					[1, 1]
+				],
+				"north": [
+					[1, 1]
+				],
+				"south": [
+					[1, 1]
+				],
+				"east": [
+					[1, 1]
+				],
+				"west": [
+					[1, 1]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0]
+				],
+				"down": [
+					[0, 0]
+				],
+				"north": [
+					[0, 0]
+				],
+				"south": [
+					[0, 0]
+				],
+				"east": [
+					[0, 0]
+				],
+				"west": [
+					[0, 0]
+				]
+			}
+		},
+		
+		"lines": {
+			"uv_sizes": {
+				"up": [
+					[1, 1]
+				],
+				"down": [
+					[1, 1]
+				],
+				"north": [
+					[1, 1]
+				],
+				"south": [
+					[1, 1]
+				],
+				"east": [
+					[1, 1]
+				],
+				"west": [
+					[1, 1]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0]
+				],
+				"down": [
+					[0, 0]
+				],
+				"north": [
+					[0, 0]
+				],
+				"south": [
+					[0, 0]
+				],
+				"east": [
+					[0, 0]
+				],
+				"west": [
+					[0, 0]
+				]
+			}
+		}
+	},
+	
 	"conduit": {
 		"default": {
 			"uv_sizes": {
@@ -1680,6 +1986,94 @@
 			},
 			"overwrite": {
 				"down": ["textures/blocks/observer_top_mirror"]
+			}
+		}
+	},
+	"barrel": {
+		"default": {
+			"uv_sizes": {
+				"up": [
+					[1, 1]
+				],
+				"down": [
+					[1, 1]
+				],
+				"north": [
+					[1, 1]
+				],
+				"south": [
+					[1, 1]
+				],
+				"east": [
+					[1, 1]
+				],
+				"west": [
+					[1, 1]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0]
+				],
+				"down": [
+					[0, 0]
+				],
+				"north": [
+					[0, 0]
+				],
+				"south": [
+					[0, 0]
+				],
+				"east": [
+					[0, 0]
+				],
+				"west": [
+					[0, 0]
+				]
+			}
+		}
+	},
+	"carved_pumpkin": {
+		"default": {
+			"uv_sizes": {
+				"up": [
+					[1, 1]
+				],
+				"down": [
+					[1, 1]
+				],
+				"north": [
+					[1, 1]
+				],
+				"south": [
+					[1, 1]
+				],
+				"east": [
+					[1, 1]
+				],
+				"west": [
+					[1, 1]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0]
+				],
+				"down": [
+					[0, 0]
+				],
+				"north": [
+					[0, 0]
+				],
+				"south": [
+					[0, 0]
+				],
+				"east": [
+					[0, 0]
+				],
+				"west": [
+					[0, 0]
+				]
 			}
 		}
 	},
