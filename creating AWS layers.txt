@@ -1,0 +1,4 @@
+Copy-Item -Path .\.vstructura\Lib\site-packages\ .\.vstructura -Recurse
+Rename-Item -Path .\.vstructura\site-packages python
+Compress-Archive -Path .\.vstructura\python\ -DestinationPath .\.vstructura\python_layer.zip
+Remove-Item -Path .\.vstructura\python\ -Recurse -Force

@@ -29,14 +29,19 @@ class process_structure:
         self.mins = np.array(list(map(int,self.NBTfile["structure_world_origin"])))
         self.maxs = self.mins + np.array(self.size)-1
         self.get_blockmap()
+    def get_layer_blocks(self,y):
+        lb=self.cube[:,y,:]
+        return np.argwhere(lb > 0)
     def get_blockmap(self):
-        self.cube = np.zeros(self.size, int)
-        i = 0
-        for x in range(self.size[0]):
-            for y in range(self.size[1]):
-                for z in range(self.size[2]):
-                    self.cube[x][y][z] = self.blocks[i]
-                    i += 1
+        index_of_air = 0
+        for i in range(len(self.palette)):
+            if self.palette[i]["name"] == "minecraft:air":
+                index_of_air = i
+        self.cube = np.array(self.blocks)
+        self.cube += 1
+        self.palette = [{"name":"minecraft:air","states":[]}] + self.palette
+        self.cube[self.cube==index_of_air+1]=0
+        self.cube=self.cube.reshape(self.size)
 
     def get_block(self, x, y, z):
         index = self.cube[x, y, z]
@@ -73,19 +78,29 @@ class combined_structures:
             
             self.structs[file]["size"] = np.array(list(map(int, self.structs[file]["nbt"]["size"])))
             self.structs[file]["palette"] = self.structs[file]["nbt"]["structure"]["palette"]["default"]["block_palette"]
+            index_of_air = 0
+            for i in range(len(self.structs[file]["palette"])):
+                if self.structs[file]["palette"][i]["name"] == "minecraft:air":
+                    index_of_air = i
+            #index_of_air=np.where(self.structs[file]["blocks"] == index_of_air)
             self.structs[file]["mins"] = np.array(list(map(int,self.structs[file]["nbt"]["structure_world_origin"])))
             self.structs[file]["maxs"] = self.structs[file]["mins"] + self.structs[file]["size"]
             self.maxs=np.maximum(self.maxs, self.structs[file]["maxs"])
             self.mins=np.minimum(self.mins, self.structs[file]["mins"])
             self.structs[file]["blocks"] = self.structs[file]["blocks"].reshape(self.structs[file]["size"])
             self.structs[file]["blocks"] = self.structs[file]["blocks"]+len(self.palette)
+            self.structs[file]["blocks"][self.structs[file]["blocks"]==index_of_air+len(self.palette)]=0
+            
             self.palette += self.structs[file]["palette"]
         self.size = self.maxs-self.mins
         self.blocks = np.zeros(self.size, int)
         for file in file_list:
             embed(self.structs[file]["blocks"],self.blocks,self.structs[file]["mins"]-self.mins)
+    def get_layer_blocks(self,y):
+        lb=self.blocks[:,y,:]
+        return np.argwhere(lb > 0)
     def get_block(self, x, y, z):
-        index = self.cube[x, y, z]
+        index = self.blocks[x, y, z]
         return self.palette[int(index)]
     def get_size(self):
         return self.size
@@ -107,9 +122,10 @@ if __name__ == "__main__":
     testFileNameArray.append("test_structures\\BigHatter\\2.mcstructure")
     testFileNameArray.append("test_structures\\BigHatter\\3.mcstructure")
     testFileNameArray.append("test_structures\\BigHatter\\4.mcstructure")
-    testFileName="BigHatter\\1.mcstructure"
+    testFileName="test_structures\\BigHatter\\1.mcstructure"
     excludedBlocks=["minecraft:structure_block","minecraft:air"]
-    #test=process_structure(testFileName)
+    test=process_structure(testFileName)
+    print(test.get_layer_blocks(2))
     #block_count=test.get_block_list(excludedBlocks)
     t=combined_structures(testFileNameArray)
     print(t.size)

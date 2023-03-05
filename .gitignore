@@ -125,3 +125,5 @@ dmypy.json
 .pyre/
 structura.zip
 structura.exe
+tmp/test Nametags.txt
+*.mcpack
