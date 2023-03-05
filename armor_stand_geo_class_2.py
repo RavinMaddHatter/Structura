@@ -1,6 +1,6 @@
 import json
 from PIL import Image
-import numpy as np
+from numpy import array, ones, uint8, zeros
 import copy
 import os
 
@@ -269,7 +269,7 @@ class armorstandgeo:
         # helper function that just appends to the uv array to make things
         print(new_image_filename)
         image = Image.open(new_image_filename)
-        impt = np.array(image)
+        impt = array(image)
         shape=list(impt.shape)
         if shape[0]>16:
             shape[0]=16
@@ -277,7 +277,7 @@ class armorstandgeo:
         if shape[1]>16:
             shape[1]=16
             impt=impt[:,0:16,:]
-        image_array = np.ones([16, 16, 4],np.uint8)*255
+        image_array = ones([16, 16, 4],uint8)*255
         image_array[0:shape[0], 0:shape[1], 0:impt.shape[2]] = impt
         image_array[:, :, 3] = image_array[:, :, 3] * self.alpha
         if type(self.uv_array) is type(None):
@@ -286,7 +286,7 @@ class armorstandgeo:
             startshape = list(self.uv_array.shape)
             endshape = startshape.copy()
             endshape[0] += image_array.shape[0]
-            temp_new = np.zeros(endshape, np.uint8)
+            temp_new = zeros(endshape, uint8)
             temp_new[0:startshape[0], :, :] = self.uv_array
             temp_new[startshape[0]:, :, :] = image_array
             self.uv_array = temp_new

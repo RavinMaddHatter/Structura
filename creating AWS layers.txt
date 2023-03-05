@@ -1,3 +1,8 @@
+python3.9 -m venv .vstructura
+.\.vstructura\Scripts\activate
+python3.9 -m pip install [each module]
+
+
 Copy-Item -Path .\.vstructura\Lib\site-packages\ .\.vstructura -Recurse
 Rename-Item -Path .\.vstructura\site-packages python
 Compress-Archive -Path .\.vstructura\python\ -DestinationPath .\.vstructura\python_layer.zip

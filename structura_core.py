@@ -157,17 +157,6 @@ class structura:
         file_paths = []
         shutil.make_archive("{}".format(self.pack_name), 'zip', self.pack_name)
         os.rename(f'{self.pack_name}.zip',f'{self.pack_name}.mcpack')
-        #for directory,_,_ in os.walk(self.pack_name):
-        #    file_paths.extend(glob.glob(os.path.join(directory, "*.*")))
-        ## add all files to the mcpack file  
-        #with ZipFile("{}.mcpack".format(self.pack_name), 'x',ZIP_DEFLATED) as zip: ## add compression
-            # writing each file one by one 
-
-
-        #    for file in file_paths:
-        #        print(file)
-        #        zip.write(file)
-        ## delete all the extra files.
         shutil.rmtree(self.pack_name)
         print("Pack Making Completed")
     def _process_block(self,block):
