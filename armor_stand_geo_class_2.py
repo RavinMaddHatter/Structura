@@ -158,6 +158,13 @@ class armorstandgeo:
                 print(block_name)
             ghost_block_name = "block_{}_{}_{}".format(x, y, z)
             self.blocks[ghost_block_name] = {}
+            self.blocks[ghost_block_name]["name"] = ghost_block_name
+
+            layer_name = "layer_{}".format(y % (12))
+            if layer_name not in self.layers:
+                self.layers.append(layer_name)
+            self.blocks[ghost_block_name]["parent"] = layer_name
+
             block_type = self.defs[block_name]
             ## hardcoded to true for now, but this is when the variants will be called
             shape_variant="default"
@@ -165,6 +172,8 @@ class armorstandgeo:
                 shape_variant="side"
             elif block_type == "trapdoor" and trap_open:
                 shape_variant = "open"
+            elif block_type == "lever" and trap_open:
+                shape_variant = "on"
             elif top:
                 shape_variant = "top"
 
@@ -172,6 +181,11 @@ class armorstandgeo:
                 print(data)
 
             block_shapes = self.block_shapes[block_type][shape_variant]
+            self.blocks[ghost_block_name]["pivot"] = [block_shapes["center"][0] - (x + self.offsets[0]),
+                                                      y + block_shapes["center"][1] + self.offsets[1],
+                                                      z + block_shapes["center"][2] + self.offsets[2]]
+            self.blocks[ghost_block_name]["inflate"] = -0.03
+
             block_uv = self.block_uv[block_type]["default"]
             if shape_variant in self.block_uv[block_type].keys():
                 block_uv = self.block_uv[block_type][shape_variant]
@@ -179,15 +193,14 @@ class armorstandgeo:
                 shape_variant=str(data)
             if str(data) in self.block_shapes[block_type].keys():
                 block_shapes = self.block_shapes[block_type][str(data)]
-            if block_type in self.block_rotations.keys():
-                rotation = self.block_rotations[block_type][str(rot)]
+            if block_type in self.block_rotations.keys() and rot is not None:
+                self.blocks[ghost_block_name]["rotation"] = self.block_rotations[block_type][str(rot)]
             else:
-                rotation = [0, 0, 0]
                 if debug:
                     print("no rotation for block type {} found".format(block_type))
             self.blocks[ghost_block_name]["cubes"] = []
             uv_idx=0
-            
+
             for i in range(len(block_shapes["size"])):
                 uv = self.block_name_to_uv(block_name,variant=variant,shape_variant=shape_variant,index=i)
                 block={}
@@ -202,43 +215,19 @@ class armorstandgeo:
                     zoff = block_shapes["offsets"][i][2]
                 block["origin"] = [-1*(x + self.offsets[0]) + xoff, y + yoff + self.offsets[1], z + zoff + self.offsets[2]]
                 block["size"] = block_shapes["size"][i]
-                block["inflate"] = -0.03
-                if rot is not None:
-                    block["pivot"]=[-1*(x + self.offsets[0]) + 0.5, y + 0.5 + self.offsets[1], z + 0.5 + self.offsets[2]]
-                    block["rotation"]=rotation
-                
-                blockUV=dict(uv)
-                blockUV["up"]["uv"][0] += block_uv["offset"]["up"][uv_idx][0]
-                blockUV["up"]["uv"][1] += block_uv["offset"]["up"][uv_idx][1]
-                blockUV["down"]["uv"][0] += block_uv["offset"]["down"][uv_idx][0]
-                blockUV["down"]["uv"][1] += block_uv["offset"]["down"][uv_idx][1]
-                blockUV["east"]["uv"][0] += block_uv["offset"]["east"][uv_idx][0]
-                blockUV["east"]["uv"][1] += block_uv["offset"]["east"][uv_idx][1]
-                blockUV["west"]["uv"][0] += block_uv["offset"]["west"][uv_idx][0]
-                blockUV["west"]["uv"][1] += block_uv["offset"]["west"][uv_idx][1]
-                blockUV["north"]["uv"][0] += block_uv["offset"]["north"][uv_idx][0]
-                blockUV["north"]["uv"][1] += block_uv["offset"]["north"][uv_idx][1]
-                blockUV["south"]["uv"][0] += block_uv["offset"]["south"][uv_idx][0]
-                blockUV["south"]["uv"][1] += block_uv["offset"]["south"][uv_idx][1]
-                blockUV["up"]["uv_size"] = block_uv["uv_sizes"]["up"][uv_idx]
-                blockUV["down"]["uv_size"] = block_uv["uv_sizes"]["down"][uv_idx]
-                blockUV["east"]["uv_size"] = block_uv["uv_sizes"]["east"][uv_idx]
-                blockUV["west"]["uv_size"] = block_uv["uv_sizes"]["west"][uv_idx]
-                blockUV["north"]["uv_size"] = block_uv["uv_sizes"]["north"][uv_idx]
-                blockUV["south"]["uv_size"] = block_uv["uv_sizes"]["south"][uv_idx]
-                
-                block["uv"]=blockUV
-                self.blocks[ghost_block_name]["cubes"].append(block)
-            
 
-            
-            self.blocks[ghost_block_name]["name"] = ghost_block_name
-            layer_name = "layer_{}".format(y % (12))
-            if layer_name not in self.layers:
-                self.layers.append(layer_name)
-            self.blocks[ghost_block_name]["parent"] = layer_name
-            self.blocks[ghost_block_name]["pivot"] = block_shapes["center"]
-        
+                if "rotation" in block_shapes.keys():
+                    block["rotation"] = block_shapes["rotation"][i]
+
+                blockUV=dict(uv)
+                for dir in ["up", "down", "east", "west", "north", "south"]:
+                    blockUV[dir]["uv"][0] += block_uv["offset"][dir][uv_idx][0]
+                    blockUV[dir]["uv"][1] += block_uv["offset"][dir][uv_idx][1]
+                    blockUV[dir]["uv_size"] = block_uv["uv_sizes"][dir][uv_idx]
+
+                block["uv"] = blockUV
+                self.blocks[ghost_block_name]["cubes"].append(block)
+
     def save_uv(self, name):
         # saves the texture file where you tell it to
         if self.uv_array is None:
@@ -249,7 +238,7 @@ class armorstandgeo:
 
     def stand_init(self):
         # helper function to initialize the dictionary that will be exported as the json object
-        self.stand["format_version"] = "1.12.0"
+        self.stand["format_version"] = "1.16.0"
         self.geometry["description"] = {
             "identifier": "geometry.armor_stand.ghost_blocks_{}".format(self.name)}
         self.geometry["description"]["texture_width"] = 1
