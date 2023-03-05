@@ -6,7 +6,7 @@ import big_render_controller as brc
 from shutil import copyfile
 from zipfile import ZIP_DEFLATED, ZipFile
 
-debug=True
+debug=False
 
 with open("lookups/nbt_defs.json") as f:
     nbt_def = json.load(f)
@@ -126,9 +126,6 @@ class structura:
                 open_bit = blockProp[3]
                 data = blockProp[4]
                 skip = blockProp[5]
-                if debug:
-                    #print(blk_name)
-                    pass
                 if debug:
                     if not skip:
                         armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)

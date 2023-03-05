@@ -1,5 +1,5 @@
 {
-    "air": "ignore",
+  
     "anvil": "anvil",
     "bamboo": "bamboo",
     "beacon": "beacon",
@@ -9,7 +9,6 @@
     "bubble_column": "bubble_column",
     "acacia_button": "button",
     "birch_button": "button",
-    "cave_air":"ignore",
     "crimson_button": "button",
     "dark_oak_button": "button",
     "jungle_button": "button",
@@ -348,11 +347,6 @@
     "leaves2": "cube",
     "grindstone": "grindstone",
     "hopper": "hopper",
-    "invisibleBedrock": "ignore",
-    "skull": "ignore",
-    "standing_banner": "ignore",
-    "wall_banner": "ignore",
-    "jigsaw": "ignore",
     "kelp": "cross_texture",
     "ladder": "ladder",
     "lantern": "lantern",
@@ -361,7 +355,6 @@
     "lever": "lever",
     "waterlily": "lilypad",
     "warped_stem": "cube",
-    "camera": "ignore",
     "campfire": "campfire",
     "carpet": "carpet",
     "chain": "chain",
@@ -374,7 +367,6 @@
     "end_portal": "cube",
     "portal": "pane",
     "scaffolding": "cube",
-    "structure_block": "ignore",
     "glass_pane": "pane",
     "hard_glass_pane": "pane",
     "hard_stained_glass_pane": "pane",
@@ -483,7 +475,6 @@
     "warped_standing_sign": "standing_sign",
     "melon_stem": "cross_texture",
     "pumpkin_stem": "cross_texture",
-    "structure_void": "ignore",
     "black_glazed_terracotta": "terracotta",
     "blue_glazed_terracotta": "terracotta",
     "brown_glazed_terracotta": "terracotta",
@@ -740,6 +731,20 @@
     "pearlescent_froglight": "cube",
     "ochre_froglight": "cube",
     "verdant_froglight": "cube",
-    "frog_spawn": "carpet"
+    "frog_spawn": "carpet",
+	
+	"air": "ignore",
+	"camera": "ignore",
+	"invisibleBedrock": "ignore",
+    "skull": "ignore",
+    "standing_banner": "ignore",
+    "wall_banner": "ignore",
+    "jigsaw": "ignore",
+	"cave_air":"ignore",
+	"structure_block": "ignore",
+	"structure_void": "ignore",
+	"stone_block_slab3":"ignore",
+	"double_stone_block_slab3":"ignore",
+	"double_stone_block_slab4":"ignore"
 	
 }

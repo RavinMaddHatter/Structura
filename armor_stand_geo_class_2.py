@@ -256,7 +256,6 @@ class armorstandgeo:
 
     def extend_uv_image(self, new_image_filename):
         # helper function that just appends to the uv array to make things
-        print(new_image_filename)
         image = Image.open(new_image_filename)
         impt = array(image)
         shape=list(impt.shape)
