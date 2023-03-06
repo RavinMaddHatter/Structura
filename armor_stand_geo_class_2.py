@@ -1,10 +1,16 @@
-import json
+try:
+    import ujson as json
+except:
+    print("using built in json, but that is much slower, consider installing ujson")
+    import json
 from PIL import Image
 from numpy import array, ones, uint8, zeros
 import copy
 import os
+import time
 
 debug=False
+
 
 class armorstandgeo:
     def __init__(self, name, alpha = 0.8,offsets=[0,0,0], size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
@@ -44,6 +50,7 @@ class armorstandgeo:
         self.errors={}
         self.layers=[]
         self.uv_array = None
+        self.pre_gen_blocks={}
         ## The stuff below is a horrible cludge that should get cleaned up. +1 karma to whomever has a better plan for this.
         # this is how i determine if something should be thin. it is ugly, but kinda works
 
@@ -52,6 +59,7 @@ class armorstandgeo:
         self.excluded = ["air", "structure_block"]
 
     def export(self, pack_folder):
+        start = time.time()
         ## This exporter just packs up the armorstand json files and dumps them where it should go. as well as exports the UV file
         self.add_blocks_to_bones()
         self.geometry["description"]["texture_height"] = len(
@@ -68,9 +76,9 @@ class armorstandgeo:
                 self.stand["minecraft:geometry"][0]["bones"][index]["parent"]="ghost_blocks"
                 self.stand["minecraft:geometry"][0]["bones"][index]["pivot"]=[0.5,0.5,0.5]
                 i+=1
-            
+        start=time.time()
         with open(path_to_geo, "w+") as json_file:
-            json.dump(self.stand, json_file, indent=2)
+            json.dump(self.stand, json_file)
         texture_name = "{}/textures/entity/ghost_blocks_{}.png".format(
             pack_folder,self.name)
         os.makedirs(os.path.dirname(texture_name), exist_ok=True)
@@ -154,17 +162,13 @@ class armorstandgeo:
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
         block_type = self.defs[block_name]
         if block_type!="ignore":
-            if debug:
-                print(block_name)
             ghost_block_name = "block_{}_{}_{}".format(x, y, z)
             self.blocks[ghost_block_name] = {}
             self.blocks[ghost_block_name]["name"] = ghost_block_name
-
             layer_name = "layer_{}".format(y % (12))
             if layer_name not in self.layers:
                 self.layers.append(layer_name)
             self.blocks[ghost_block_name]["parent"] = layer_name
-
             block_type = self.defs[block_name]
             ## hardcoded to true for now, but this is when the variants will be called
             shape_variant="default"
@@ -179,6 +183,7 @@ class armorstandgeo:
 
             if data!=0 and debug:
                 print(data)
+
 
             block_shapes = self.block_shapes[block_type][shape_variant]
             self.blocks[ghost_block_name]["pivot"] = [block_shapes["center"][0] - (x + self.offsets[0]),

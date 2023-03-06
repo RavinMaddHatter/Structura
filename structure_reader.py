@@ -37,6 +37,7 @@ class process_structure:
         for i in range(len(self.palette)):
             if self.palette[i]["name"] == "minecraft:air":
                 index_of_air = i
+                break
         self.cube = array(self.blocks)
         self.cube += 1
         self.palette = [{"name":"minecraft:air","states":[]}] + self.palette

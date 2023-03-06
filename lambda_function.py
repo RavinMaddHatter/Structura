@@ -1,5 +1,5 @@
 from PIL import Image
-import json
+import json 
 import boto3
 import uuid
 import os
@@ -12,6 +12,7 @@ from nacl.signing import VerifyKey
 from nacl.exceptions import BadSignatureError
 import requests
 import uuid
+import time
 app_id=os.environ.get('app_id')
 discord_url = "https://discord.com/api/v10/applications/{}/commands".format(app_id)
 discord_secret=os.environ.get('secret')
@@ -19,6 +20,7 @@ bucket=os.environ.get('bucket')
 
 PUBLIC_KEY = os.environ.get('discord_key')
 def lambda_handler(event, context):
+    tick=time.time()
     try:
         body = json.loads(event['body'])
         signature = event['headers']['x-signature-ed25519']
@@ -50,7 +52,7 @@ def lambda_handler(event, context):
                 })
             }
         elif t == 2:
-            return command_handler(body)
+            return command_handler(body,tick)
         else:
             return {
                 'statusCode': 400,
@@ -62,7 +64,7 @@ def lambda_handler(event, context):
         else:
             raise
 
-def command_handler(body):
+def command_handler(body,tick):
     initial_callback(body)
     command = body['data']['name']
     
@@ -70,7 +72,7 @@ def command_handler(body):
         return help_command(body)
             
     elif command == 'convert':
-        return convert_command(body)
+        return convert_command(body,tick)
     else:
         return {
             'statusCode': 400,
@@ -117,7 +119,8 @@ def help_command(body):
             'body': "success"
                 
             }
-def convert_command(body):
+def convert_command(body,tick):
+    auth_time="{:.2f}".format(time.time()-tick)
     try:
 
         
@@ -140,27 +143,37 @@ def convert_command(body):
     
 
             #shutil.rmtree("/tmp/input")
+        t_predownload=time.time()
         response = requests.get(file_url)
         name=file_name.split(".mcstructure")[0]
+        t_post_download=time.time()
         os.makedirs("/tmp/input", exist_ok=True)
         file_dir = f"/tmp/input/{file_name}"
         open(file_dir, "wb").write(response.content)
         data["content"]="Processing, if this hangs it is because the file is too big. retrying will not fix it"
             
         send_repsonse(body,data)
+        
         created_file = make_pack("/tmp/"+name,file_dir)
+        t_post_pack=time.time()
         data["content"]=f"sending file to server {name}.mcpack"
-        send_repsonse(body,data)
+        
         s3_client = boto3.client('s3')
         folder=uuid.uuid4()
         s3_key=f"{folder}/{name}.mcpack"
+        data["content"]=f"sending file to server {name}.mcpack {created_file}"
+        send_repsonse(body,data)
         response = s3_client.upload_file(created_file, bucket, s3_key)
             
         signed_url = s3_client.generate_presigned_url(
             'get_object',
             Params={'Bucket': bucket, 'Key': s3_key},
             ExpiresIn=3600)
-        data["content"]=f"Your file has been created, it will be saved for 1 hour then deleted, here is the url {signed_url}"
+        stop_time=time.time()
+        toc="{:.2f}".format(stop_time-tick)
+        download_t="{:.2f}".format(t_post_download-t_predownload)
+        pack_creation="{:.2f}".format(t_post_pack-t_post_download)
+        data["content"]=f"Your file has been created in {toc} S,{auth_time} to authenticate, {download_t} to download, {pack_creation} to process, it will be saved for 1 hour then deleted, here is the url {signed_url}"
         send_repsonse(body,data)
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()

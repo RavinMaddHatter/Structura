@@ -5,6 +5,7 @@ import render_controller_class as rcc
 import big_render_controller as brc
 from shutil import copyfile
 from zipfile import ZIP_DEFLATED, ZipFile
+import time
 
 debug=False
 
@@ -12,6 +13,7 @@ with open("lookups/nbt_defs.json") as f:
     nbt_def = json.load(f)
 class structura:
     def __init__(self,pack_name):
+        self.timers={"start":time.time(),"previous":time.time()}
         self.pack_name=pack_name
         self.structure_files={}
         self.rc=rcc.render_controller()
@@ -72,16 +74,21 @@ class structura:
             copyfile(self.structure_files[model_name]["file"], "{}/{}.mcstructure".format(self.pack_name,model_name))
             if debug:
                 print(self.structure_files[model_name]['offsets'])
+            self.timers[f"model constants{model_name}"]=time.time()-self.timers["previous"]
+            self.timers["previous"]=time.time()
             struct2make = structure_reader.process_structure(self.structure_files[model_name]["file"])
-            
+            self.timers[f"loaded-{model_name}"]=time.time()-self.timers["previous"]
+            self.timers["previous"]=time.time()
             blocks=self._add_blocks_to_geo(struct2make,model_name)
+            self.timers[f"added blocks {model_name}"]=time.time()-self.timers["previous"]
+            self.timers["previous"]=time.time()
             self.structure_files[model_name]["block_list"]=blocks
             ##consider temp folder
             self.armorstand_entity.export(self.pack_name)## this may be in the wrong spot, but transfered from 1.5
     def make_nametag_block_lists(self):
         ## consider temp file
         for model_name in self.structure_files.keys():
-            file_name="{}-{} block list.txt".format(visual_name,model_name)
+            file_name="{}-{} block list.txt".format(self.pack_name,model_name)
             all_blocks=self.structure_files[model_name]["block_list"]
             with open(file_name,"w+") as text_file:
                 text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
@@ -98,13 +105,16 @@ class structura:
                 text_file.write("{}: {}\n".format(commonName,self.all_blocks[name]))
     def _add_blocks_to_geo(self,struct2make,model_name,export_big=False):
         [xlen, ylen, zlen] = struct2make.get_size()
+        
         armorstand = asgc.armorstandgeo(model_name,alpha = self.opacity, size=[xlen, ylen, zlen], offsets=self.structure_files[model_name]['offsets'])
+
         if ylen > self.longestY:
             update_animation=True
             longestY = ylen
         else:
             update_animation=False
         for y in range(ylen):
+            
             #creates the layer for controlling. Note there is implied formating here
             #for layer names
             if y<12:
@@ -113,7 +123,6 @@ class structura:
                 if update_animation and not export_big:
                     self.animation.insert_layer(y)
             non_air=struct2make.get_layer_blocks(y)
-            
             for loc in non_air:
                 x=int(loc[0])
                 z=int(loc[1])
@@ -156,6 +165,10 @@ class structura:
         os.rename(f'{self.pack_name}.zip',f'{self.pack_name}.mcpack')
         shutil.rmtree(self.pack_name)
         print("Pack Making Completed")
+        self.timers["finished"]=time.time()-self.timers["previous"]
+        self.timers["total"]=time.time()-self.timers["start"]
+        
+        return f'{self.pack_name}.mcpack'
     def _process_block(self,block):
         rot = None
         top = False
@@ -186,17 +199,6 @@ class structura:
                 if bool(block["states"]["stripped_bit"]):
                     keys+="_stripped"
                 variant = ["wood",keys]
-        #if debug:
-        #    print([rot, top, variant, open_bit, data, skip])
         return [rot, top, variant, open_bit, data, skip]
-if __name__ =="__main__":
-    name="tmp/test"
-    file_dir="test_structures/full_16pig sorter.mcstructure"
-    structura_base=structura(name)
-    structura_base.set_opacity(20)
-    structura_base.add_model("",file_dir)
-    structura_base.set_model_offset("",[0,0,0])
-    structura_base.generate_nametag_file()
-    structura_base.generate_with_nametags()
-    structura_base.compile_pack()
+
 
