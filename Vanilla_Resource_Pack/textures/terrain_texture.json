@@ -199,6 +199,7 @@
     "big_dripleaf_top": {
       "textures": "textures/blocks/big_dripleaf_top"
     },
+	
     "birch_planks": {
       "textures": "textures/blocks/planks_birch"
     },
@@ -2164,6 +2165,9 @@
         "textures/blocks/piston_top_sticky"
       ]
     },
+	"oak_planks":{
+		"textures":"textures/blocks/planks_oak"
+	},
     "planks": {
       "textures": [
         "textures/blocks/planks_oak",
@@ -3156,6 +3160,27 @@
     "stripped_spruce_log_side": {
       "textures": "textures/blocks/stripped_spruce_log"
     },
+	"spruce_log_side":{
+		"textures":"textures/blocks/log_spruce"
+	},
+	"spruce_log_top":{
+		"textures":"textures/blocks/log_spruce_top"
+	},
+	"birch_log_side":{
+		"textures":"textures/blocks/log_birch"
+	},
+	"birch_log_top":{
+		"textures":"textures/blocks/log_birch_top"
+	},
+	"jungle_log_side":{
+		"textures":"textures/blocks/log_jungle"
+	},
+	"jungle_log_top":{
+		"textures":"textures/blocks/log_jungle_top"
+	},
+	"acacia_log_side":{
+		"textures": "textures/blocks/log_acacia"
+	},
     "stripped_spruce_log_top": {
       "textures": "textures/blocks/stripped_spruce_log_top"
     },
@@ -3165,6 +3190,21 @@
     "stripped_warped_stem_top": {
       "textures": "textures/blocks/huge_fungus/stripped_warped_stem_top"
     },
+	"acacia_log_top":{
+		"textures":"textures/blocks/log_acacia_top"
+	},
+	"dark_oak_log_side":{
+		"textures":"textures/blocks/log_big_oak"
+	},
+	"dark_oak_log_top":{
+		"textures":"textures/blocks/log_big_oak_top"
+	},
+	"oak_log_side":{
+		"textures":"textures/blocks/log_oak"
+	},
+	"oak_log_top":{
+		"textures":"textures/blocks/log_oak_top"
+	},
     "structure_block": {
       "textures": [
         "textures/blocks/structure_block",
@@ -3426,23 +3466,54 @@
     "wood_spruce": {
       "textures": "textures/blocks/planks_spruce"
     },
-	
-	"wool_colored_black":{"textures":"textures/blocks/wool_colored_black"},
-	"wool_colored_red":{"textures":"textures/blocks/wool_colored_red"},
-	"wool_colored_green":{"textures":"textures/blocks/wool_colored_green"},
-	"wool_colored_brown":{"textures":"textures/blocks/wool_colored_brown"},
-	"wool_colored_blue":{"textures":"textures/blocks/wool_colored_blue"},
-	"wool_colored_purple":{"textures":"textures/blocks/wool_colored_purple"},
-	"wool_colored_cyan":{"textures":"textures/blocks/wool_colored_cyan"},
-	"wool_colored_silver":{"textures":"textures/blocks/wool_colored_silver"},
-	"wool_colored_gray":{"textures":"textures/blocks/wool_colored_gray"},
-	"wool_colored_pink":{"textures":"textures/blocks/wool_colored_pink"},
-	"wool_colored_lime":{"textures":"textures/blocks/wool_colored_lime"},
-	"wool_colored_light_blue":{"textures":"textures/blocks/wool_colored_light_blue"},
-	"wool_colored_magenta":{"textures":"textures/blocks/wool_colored_magenta"},
-	"wool_colored_orange":{"textures":"textures/blocks/wool_colored_orange"},
-	"wool_colored_white":{"textures":"textures/blocks/wool_colored_white"},
-	"wool_colored_yellow":{"textures":"textures/blocks/wool_colored_yellow"},
+    "wool_colored_black": {
+      "textures": "textures/blocks/wool_colored_black"
+    },
+    "wool_colored_red": {
+      "textures": "textures/blocks/wool_colored_red"
+    },
+    "wool_colored_green": {
+      "textures": "textures/blocks/wool_colored_green"
+    },
+    "wool_colored_brown": {
+      "textures": "textures/blocks/wool_colored_brown"
+    },
+    "wool_colored_blue": {
+      "textures": "textures/blocks/wool_colored_blue"
+    },
+    "wool_colored_purple": {
+      "textures": "textures/blocks/wool_colored_purple"
+    },
+    "wool_colored_cyan": {
+      "textures": "textures/blocks/wool_colored_cyan"
+    },
+    "wool_colored_silver": {
+      "textures": "textures/blocks/wool_colored_silver"
+    },
+    "wool_colored_gray": {
+      "textures": "textures/blocks/wool_colored_gray"
+    },
+    "wool_colored_pink": {
+      "textures": "textures/blocks/wool_colored_pink"
+    },
+    "wool_colored_lime": {
+      "textures": "textures/blocks/wool_colored_lime"
+    },
+    "wool_colored_light_blue": {
+      "textures": "textures/blocks/wool_colored_light_blue"
+    },
+    "wool_colored_magenta": {
+      "textures": "textures/blocks/wool_colored_magenta"
+    },
+    "wool_colored_orange": {
+      "textures": "textures/blocks/wool_colored_orange"
+    },
+    "wool_colored_white": {
+      "textures": "textures/blocks/wool_colored_white"
+    },
+    "wool_colored_yellow": {
+      "textures": "textures/blocks/wool_colored_yellow"
+    },
     "wool": {
       "textures": [
         "textures/blocks/wool_colored_white",

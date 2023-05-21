@@ -339,6 +339,7 @@
     "grass_path": "farmland",
     "crimson_fence": "fence",
     "fence": "fence",
+	"spruce_fence":"fence",
     "nether_brick_fence": "fence",
     "warped_fence": "fence",
     "acacia_fence_gate": "fence_gate",
@@ -762,6 +763,18 @@
     "jigsaw": "ignore",
 	"cave_air":"ignore",
 	"structure_block": "ignore",
-	"structure_void": "ignore"
+	"spruce_log":"tree",
+	"birch_log":"tree",
+	"jungle_log":"tree",
+	"acacia_log":"tree",
+	"dark_oak_log":"tree",
+	"birch_fence":"fence",
+	"jungle_fence":"fence",
+	"acacia_fence":"fence",
+	"dark_oak_fence":"fence",
+	"oak_log":"tree",
+	"oak_fence":"fence",
+	"structure_void": "ignore",
+	"oak_planks":"block"
 	
 }
