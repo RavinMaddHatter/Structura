@@ -4,6 +4,7 @@ import boto3
 import uuid
 import os
 import boto3
+import decimal 
 from botocore.exceptions import ClientError
 import shutil
 import sys
@@ -17,62 +18,130 @@ app_id=os.environ.get('app_id')
 discord_url = "https://discord.com/api/v10/applications/{}/commands".format(app_id)
 discord_secret=os.environ.get('secret')
 bucket=os.environ.get('bucket')
+channel=os.environ.get('channel')
+
+channelpref=os.environ.get('channelpref')
 
 PUBLIC_KEY = os.environ.get('discord_key')
+def update_stats(success=True,tick = 0):
+    data={}
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-2')  
+    table = dynamodb.Table('Structura')
+    if success:
+        stat="packsCreated"
+    else:
+        stat="failures"
+    used=time.time()-tick
+    response = table.update_item(                                                             
+        Key={'Statistic': "monthlyUse"},
+        UpdateExpression= f"set {stat} = {stat} + :inc, runTime = runTime + :used",
+        ExpressionAttributeValues={':inc': decimal.Decimal(1),
+                                    ':used': decimal.Decimal(used)},
+        ReturnValues="ALL_NEW")
+    data["monthlyUse"]=response['Attributes']
+    response = table.update_item(                                                             
+        Key={'Statistic': "historicalTotal"},
+        UpdateExpression= f"set {stat} = {stat} + :inc, runTime = runTime + :used",
+        ExpressionAttributeValues={':inc': decimal.Decimal(1),
+                                    ':used': decimal.Decimal(used)},
+        ReturnValues="ALL_NEW")
+    data["historicalTotal"]=response['Attributes']
+    return data
+
+    
 def lambda_handler(event, context):
+    global tick
     tick=time.time()
+    print("starting lambda handler")
     try:
         body = json.loads(event['body'])
+
+
+        
         signature = event['headers']['x-signature-ed25519']
         timestamp = event['headers']['x-signature-timestamp']
 
         # validate the interaction
 
         verify_key = VerifyKey(bytes.fromhex(PUBLIC_KEY))
-
-        message = timestamp + json.dumps(body, separators=(',', ':'))
+        body2 = event['body']
     
         try:
-            verify_key.verify(message.encode(), signature=bytes.fromhex(signature))
-        except BadSignatureError:
-            return {
-                'statusCode': 401,
-                'body': json.dumps('invalid request signature')
-                }
+            verify_key.verify(f'{timestamp}{body2}'.encode(), bytes.fromhex(signature))
+        except BadSignatureError as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            raise Exception("Authentication error")
+            
     
         # handle the interaction
+        if body['channel']['id'] in channel :
+            
+            t = body['type']
 
-        t = body['type']
-
-        if t == 1:
-            return {
-                'statusCode': 200,
-                'body': json.dumps({
-                'type': 1
-                })
-            }
-        elif t == 2:
-            return command_handler(body,tick)
-        else:
-            return {
-                'statusCode': 400,
-                'body': json.dumps('unhandled request type')
+            if t == 1:
+                return {
+                    'statusCode': 200,
+                    'body': json.dumps({
+                    'type': 1
+                    })
                 }
-    except:
+            elif t == 2:
+                return command_handler(body)
+            else:
+                return {
+                    'statusCode': 400,
+                    'body': json.dumps('unhandled request type')
+                    }
+        else:
+            initial_callback(body, ephemeral=True)
+            data={'content':f"Converstion in this channel are disallowed. Please use <#{channelpref}> to convert files","flags":64}
+            send_repsonse(body,data)
+    except Exception as e:
+        print ("ERROR HANDLING")
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        
+        print(exc_type, fname, exc_tb.tb_lineno)
         if "name" in event.keys():
             return add_command(event)
         else:
-            raise
+            print(exc_type, fname, exc_tb.tb_lineno)
+            print(body)
+            print(event["body"])
+            print(body.keys())
+            update_stats(False, tick)
+            try:
+                body = json.loads(event['body'])
+                #body = json.loads(event['body'], object_hook=ascii_encode_dict)
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
+                print(body)
+                print(body.keys())
+                data={'content': "failed due to error processing file. Error {}, in file {}, line number {} ".format(str(e), fname, exc_tb.tb_lineno)}
+                send_repsonse(body,data)
+                raise
+            except:
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
+                raise
 
-def command_handler(body,tick):
-    initial_callback(body)
+def command_handler(body):
     command = body['data']['name']
-    
     if command == 'help':
+        initial_callback(body, ephemeral=False)
         return help_command(body)
-            
     elif command == 'convert':
+        initial_callback(body, ephemeral=True)
         return convert_command(body,tick)
+    elif command == 'convertpublic':
+        initial_callback(body, ephemeral=False)
+        return convert_command(body,tick)
+    elif command == 'stats':
+        initial_callback(body, ephemeral=False)
+        return stats_command(body)
     else:
         return {
             'statusCode': 400,
@@ -89,10 +158,15 @@ def add_command(body):
             'body': r.text
             
         }
-def initial_callback(body):
+def initial_callback(body,ephemeral=False):
     data={
-        'type': 5
+        'type': 5,
+        'data':{
+            "flags":0
+            }
         }
+    if ephemeral:
+        data["data"]["flags"]=64
     interaction_id=body['id']
     interaction_token=body['token']
     url = "https://discord.com/api/v10/interactions/{}/{}/callback".format(interaction_id,interaction_token)
@@ -103,14 +177,44 @@ def send_repsonse(body,data):
     interaction_token=body['token']
     url = "https://discord.com/api/v10/webhooks/{}/{}/messages/@original".format(app_id,interaction_token)
     r = requests.patch(url, json=data)
-
+def send_url_buttons(body,labels,urls,text="pack creation complete"):
+    interaction_id=body['id']
+    interaction_token=body['token']
+    data={
+            "content":text,
+            "components": [
+                {
+                "type": 1,
+                "components": [
+                    ]
+                }
+            ]
+        }
+    for i in range(len(labels)):
+        button={
+                    "type": 2,
+                    "label": labels[i],
+                    "style": 5,
+                    "url": urls[i]
+                    }
+        data["components"][0]["components"].append(button)   
+    url = "https://discord.com/api/v10/webhooks/{}/{}/messages/@original".format(app_id,interaction_token)
+    r = requests.patch(url, json=data)
 def help_command(body):
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-2')  
+    table = dynamodb.Table('Structura')
+    response = table.get_item(Key={'Statistic': "historicalTotal"})
+    pack_creation_time=float(response["Item"]['runTime'])/float(response["Item"]['packsCreated'])
+    packsCreated=float(response["Item"]['packsCreated'])
+    packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
+    help_text=f"This bot is a privlage not a right, To keep it funded do check out a few videos. Each video you watch pays for {packs_per_view:0.1f} conversions \n"
+    help_text+="Note: on may 20 2023 i changed the name of the file upload in the command. This may be cached on your device if you are an long time user fully close the app or restart your device to see if that fixes it.\n\n"
+    help_text+="/convert [file1] [file2-file6 optional]: this command creates a structura pack from a valid structure file. If the file is not valid it will not work. If you select more than 1 file the name tag will be the file name. this one is private so we dont see what is going on\n\n"
+    help_text+="/convertpublic [file1] [file2-file6 optional] : this command creates a structura pack from a valid structure file. If the file is not valid it will not work.If you select more than 1 file the name tag will be the file name. This one is public so we can see what is going on\n"
     data={
 #            'type': 4,
 #            'data':{
-                'content': """This bot is a privlage not a right, it is provided by MadHatter and is paid for by him. Please use this as if it is costing your a small amount of money, as hosting it does cost money. If it becomes too expensive I will be shut down.
-    /convert [upload file] : this command creates a structura pack from a valid structure file. If the file is not valid it will not work.
-    """
+                'content':help_text 
 #                }
             }
     send_repsonse(body,data)
@@ -119,66 +223,65 @@ def help_command(body):
             'body': "success"
                 
             }
+def stats_command(body):
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-2')  
+    table = dynamodb.Table('Structura')
+    response = table.get_item(Key={'Statistic': "historicalTotal"})
+    pack_creation_time_total=float(response["Item"]['runTime'])
+    packsCreated_total=float(response["Item"]['packsCreated'])
+    failures_total=float(response["Item"]['failures'])
+    response = table.get_item(Key={'Statistic': "monthlyUse"})
+    execution_time_month = float(response["Item"]['runTime'])
+    failures_month = float(response["Item"]['failures'])
+    pack_creation_time_month=float(response["Item"]['runTime'])
+    packsCreated_month=float(response["Item"]['packsCreated'])
+    help_text="Here are some statistics for the bot. We had a ton:\n"
+    help_text+=f"Packs Created: {packsCreated_total:0.0f} total, {packsCreated_month:0.0f} this month\n"
+    help_text+=f"The bot has run for a total of: {pack_creation_time_total:0.2f}s total, {pack_creation_time_month:0.2f}s this month\n"
+    help_text+=f"The bot has failed to create: {failures_total:0.0f} total, {failures_month:0.0f} this month\n"
+    data={
+#            'type': 4,
+#            'data':{
+                'content':help_text 
+#                }
+            }
+    send_repsonse(body,data)
+    return {
+            'statusCode': 200,
+            'body': "success"
+                
+            }
+
 def convert_command(body,tick):
     auth_time="{:.2f}".format(time.time()-tick)
     try:
 
         
         data={
-                'content': "working on conversion"
+                'content': "working on conversion",
+                "flags":0
             }
-
+        valid_files=[]
         for key in body["data"]["resolved"]["attachments"]:
             attach=body["data"]["resolved"]["attachments"][key]
             if attach["filename"].endswith(".mcstructure"):
                 if attach["size"]>0:
-                    file_url=attach["url"]
-                    file_name=attach["filename"]
-                    data["content"]=file_url
-                    break
-                else:
-                    raise Exception("file is empty, no data to convert.")
-            else:
-                raise Exception("Not a .mcstructure file.")
-    
-
-            #shutil.rmtree("/tmp/input")
-        t_predownload=time.time()
-        response = requests.get(file_url)
-        name=file_name.split(".mcstructure")[0]
-        t_post_download=time.time()
-        os.makedirs("/tmp/input", exist_ok=True)
-        file_dir = f"/tmp/input/{file_name}"
-        open(file_dir, "wb").write(response.content)
-        data["content"]="Processing, if this hangs it is because the file is too big. retrying will not fix it"
-            
-        send_repsonse(body,data)
-        
-        created_file = make_pack("/tmp/"+name,file_dir)
-        t_post_pack=time.time()
-        data["content"]=f"sending file to server {name}.mcpack"
-        
-        s3_client = boto3.client('s3')
-        folder=uuid.uuid4()
-        s3_key=f"{folder}/{name}.mcpack"
-        data["content"]=f"sending file to server {name}.mcpack {created_file}"
-        send_repsonse(body,data)
-        response = s3_client.upload_file(created_file, bucket, s3_key)
-            
-        signed_url = s3_client.generate_presigned_url(
-            'get_object',
-            Params={'Bucket': bucket, 'Key': s3_key},
-            ExpiresIn=3600)
-        stop_time=time.time()
-        toc="{:.2f}".format(stop_time-tick)
-        download_t="{:.2f}".format(t_post_download-t_predownload)
-        pack_creation="{:.2f}".format(t_post_pack-t_post_download)
-        data["content"]=f"Your file has been created in {toc} S,{auth_time} to authenticate, {download_t} to download, {pack_creation} to process, it will be saved for 1 hour then deleted, here is the url {signed_url}"
-        send_repsonse(body,data)
+                    valid_files.append([attach["url"],attach["filename"]])
+        if len(valid_files)>1:
+            file_url=valid_files[0][0]
+            file_name=valid_files[0][1]
+            make_pack_nametag(valid_files,body,tick)
+        elif len(valid_files)==1:
+            file_url=valid_files[0][0]
+            file_name=valid_files[0][1]
+            make_pack_single(file_url,file_name,body,tick)
+        else: 
+            raise Exception("No Valid Files were attached, Either File size is 0kb or no .mcstructure files were loaded")
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
         print(exc_type, fname, exc_tb.tb_lineno)
+        update_stats(False,tick)
         data={'content': "failed due to error processing file. Error {}, in file {}, line number {} ".format(str(e), fname, exc_tb.tb_lineno)}
         send_repsonse(body,data)
         raise
@@ -186,14 +289,103 @@ def convert_command(body,tick):
             'statusCode': 200,
             'body': "file created"
             }
-def make_pack(name,file_dir):
+def make_pack_nametag(valid_files,body,tick):
+    data={
+            'content': "working on conversion",
+            "flags":0
+        }
+    os.makedirs("/tmp/input", exist_ok=True)
+    names=[]
+    for info in valid_files:
+        file_url = info[0]
+        file_name = info[1]
+        response = requests.get(file_url)
+        names.append( file_name.split(".mcstructure")[0])
+        file_dir = f"/tmp/input/{file_name}"
+        open(file_dir, "wb").write(response.content)
+    data["content"]="Processing, if this hangs it is because the file is too big. retrying will not fix it"
+    send_repsonse(body,data)
+    
+    structura_base=structura("/tmp/"+names[0])
+    structura_base.set_opacity(20)
+    for name in names:
+        structura_base.add_model(name,file_dir)
+        structura_base.set_model_offset(name,[0,0,0])
+    structura_base.generate_nametag_file()
+    structura_base.generate_with_nametags()
+    
+    created_file = structura_base.compile_pack()
+    material_lists =  structura_base.make_nametag_block_lists() 
+    s3_client = boto3.client('s3')
+    folder="{:.2f}".format(time.time())
+    s3_key=f"{folder}/{name}.mcpack"
+    data["content"]=f"sending file to server {name}.mcpack {created_file}"
+    send_repsonse(body,data)
+    response = s3_client.upload_file(created_file, bucket, s3_key)
+    labels=["Structura Pack"]
+    urls=[f"https://{bucket}.s3.amazonaws.com/{s3_key}"]
+    i=0
+    for mat_list in material_lists:
+        i+=1
+        list_name=f"Block_list{i}.txt"
         
-    structura_base=structura(name)
+        labels.append(f"Block_list {i}")
+        s3_key=f"{folder}/{list_name}"
+        response = s3_client.upload_file(mat_list, bucket, s3_key)
+        urls.append(f"https://{bucket}.s3.amazonaws.com/{s3_key}")
+    stats=update_stats(True,tick)
+    pack_creation_time=float(stats['historicalTotal']['runTime'])/float(stats['historicalTotal']['packsCreated'])
+    packsCreated=float(stats['historicalTotal']['packsCreated'])
+    packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
+    text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}"
+    send_url_buttons(body,labels,urls,text=text)
+    
+    
+def make_pack_single(file_url,file_name,body,tick):
+    data={
+            'content': "working on conversion",
+            "flags":0
+        }
+    response = requests.get(file_url)
+    name = file_name.split(".mcstructure")[0]
+    os.makedirs("/tmp/input", exist_ok=True)
+    file_dir = f"/tmp/input/{file_name}"
+    open(file_dir, "wb").write(response.content)
+
+    data["content"]="Processing, if this hangs it is because the file is too big. retrying will not fix it"
+    send_repsonse(body,data)
+    
+    structura_base=structura("/tmp/"+name)
     structura_base.set_opacity(20)
     structura_base.add_model("",file_dir)
     structura_base.set_model_offset("",[0,0,0])
     structura_base.generate_nametag_file()
     structura_base.generate_with_nametags()
-    return structura_base.compile_pack()
+    
+    created_file = structura_base.compile_pack()
+    material_lists =  structura_base.make_nametag_block_lists() 
+    s3_client = boto3.client('s3')
+    folder="{:.2f}".format(time.time())
+    s3_key=f"{folder}/{name}.mcpack"
+    data["content"]=f"sending file to server {name}.mcpack {created_file}"
+    send_repsonse(body,data)
+    response = s3_client.upload_file(created_file, bucket, s3_key)
+    labels=["Structura Pack"]
+    urls=[f"https://{bucket}.s3.amazonaws.com/{s3_key}"]
+    i=0
+    for mat_list in material_lists:
+        i+=1
+        list_name=f"Block_list{i}.txt"
+        
+        labels.append(f"Block_list {i}")
+        s3_key=f"{folder}/{list_name}"
+        response = s3_client.upload_file(mat_list, bucket, s3_key)
+        urls.append(f"https://{bucket}.s3.amazonaws.com/{s3_key}")
+    stats=update_stats(True,tick)
+    pack_creation_time=float(stats['historicalTotal']['runTime'])/float(stats['historicalTotal']['packsCreated'])
+    packsCreated=float(stats['historicalTotal']['packsCreated'])
+    packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
+    text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}"
+    send_url_buttons(body,labels,urls,text=text)
 
   

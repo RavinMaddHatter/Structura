@@ -1,4 +1,4 @@
-import structura_core  
+import structura_core
 import os
 structura_core.debug=True
 files_to_conver={
@@ -10,6 +10,9 @@ files_to_conver={
         "wood":{"file":"test_structures/All Blocks World/wood.mcstructure",
                 "offset":[-31,0,-31]},
         "decor":{"file":"test_structures/All Blocks World/decorative.mcstructure",
+                 "offset":[-32,0,-31]},
+
+        "":{"file":"test_structures/All Blocks World/decorative.mcstructure",
                  "offset":[-32,0,-31]}}
 
 
@@ -27,5 +30,6 @@ for name_tag, info in files_to_conver.items():
     structura_base.set_model_offset(name_tag,info["offset"])
 structura_base.generate_nametag_file()
 structura_base.generate_with_nametags()
+print(structura_base.compile_pack())
+print(structura_base.make_nametag_block_lists())
 
-structura_base.compile_pack()

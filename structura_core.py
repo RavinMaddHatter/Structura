@@ -87,19 +87,22 @@ class structura:
             self.armorstand_entity.export(self.pack_name)## this may be in the wrong spot, but transfered from 1.5
     def make_nametag_block_lists(self):
         ## consider temp file
+        file_names=[]
         for model_name in self.structure_files.keys():
             file_name="{}-{} block list.txt".format(self.pack_name,model_name)
+            file_names.append(file_name)
             all_blocks=self.structure_files[model_name]["block_list"]
             with open(file_name,"w+") as text_file:
-                text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
+                text_file.write("This is a list of blocks, there is a known issue with variants, all blocks are reported as minecraft stores them\n")
                 for name in all_blocks.keys():
                     commonName = name.replace("minecraft:","")
                     text_file.write("{}: {}\n".format(commonName,all_blocks[name]))
+        return file_names
     def make_big_blocklist(self):
         ## consider temp file
         file_name="{} block list.txt".format(self.pack_name)
         with open(file_name,"w+") as text_file:
-            text_file.write("This is a list of blocks, there is a known issue with variants, all variants are counted together\n")
+            text_file.write("This is a list of blocks, there is a known issue with variants, all blocks are reported as minecraft stores them\n")
             for name in self.all_blocks.keys():
                 commonName = name.replace("minecraft:","")
                 text_file.write("{}: {}\n".format(commonName,self.all_blocks[name]))
