@@ -27,6 +27,7 @@ class structura:
         self.unsupported_blocks=[]
         self.all_blocks={}
         self.icon="lookups/pack_icon.png"
+        self.dead_blocks={}
     def set_icon(self,icon):
         self.icon=icon
     def set_opacity(self,opacity):
@@ -149,6 +150,11 @@ class structura:
                         self.unsupported_blocks.append("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
                         print("There is an unsuported block in this world and it was skipped")
                         print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
+                        if block["name"] not in self.dead_blocks:
+                            self.dead_blocks[block["name"]]={}
+                        if variant not in self.dead_blocks[block["name"]]:
+                            self.dead_blocks[block["name"]][variant]=0
+                        self.dead_blocks[block["name"]][variant]+=1
             ## consider temp file
         if export_big:
             armorstand.export_big(self.pack_name)
@@ -207,5 +213,14 @@ class structura:
                     keys+="_stripped"
                 variant = ["wood",keys]
         return [rot, top, variant, open_bit, data, skip]
+    def get_skipped(self):
+        ## temp folder would be a good idea
+        if len(self.unsupported_blocks)>1:
+            fileName="{} skipped.txt".format(self.pack_name)
+            with open(fileName,"w+") as text_file:
+                text_file.write("These are the skipped blocks\n")
+                for skipped in self.unsupported_blocks:
+                    text_file.write(f"{skipped}\n")
+        return self.dead_blocks
 
 

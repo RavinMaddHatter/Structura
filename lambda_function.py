@@ -313,7 +313,8 @@ def make_pack_nametag(valid_files,body,tick):
         structura_base.set_model_offset(name,[0,0,0])
     structura_base.generate_nametag_file()
     structura_base.generate_with_nametags()
-    
+    skipped = structura_base.get_skipped()
+    update_skiped(skipped)
     created_file = structura_base.compile_pack()
     material_lists =  structura_base.make_nametag_block_lists() 
     s3_client = boto3.client('s3')
@@ -340,6 +341,21 @@ def make_pack_nametag(valid_files,body,tick):
     text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}"
     send_url_buttons(body,labels,urls,text=text)
     
+def update_skiped(skipped):
+    expression="ADD "
+    vals={}
+    for block,variants in skipped.items():
+        for variant, count in variants.items():
+            key=f"{block}_{variant}"
+            expression+=f"{key} :{key}, "
+            vals[f":{key}"]=count
+    if expression != "ADD ":
+        expression=expression[:-2]
+        response = table.update_item(                                                             
+            Key={'Statistic': "brokenBlocks"},
+            UpdateExpression= expression,
+            ExpressionAttributeValues=vals,
+            ReturnValues="ALL_NEW")        
     
 def make_pack_single(file_url,file_name,body,tick):
     data={
@@ -361,6 +377,8 @@ def make_pack_single(file_url,file_name,body,tick):
     structura_base.set_model_offset("",[0,0,0])
     structura_base.generate_nametag_file()
     structura_base.generate_with_nametags()
+    skipped = structura_base.get_skipped()
+    update_skiped(skipped)
     
     created_file = structura_base.compile_pack()
     material_lists =  structura_base.make_nametag_block_lists() 
