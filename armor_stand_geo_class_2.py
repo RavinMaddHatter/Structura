@@ -158,7 +158,7 @@ class armorstandgeo:
         self.geometry["bones"].append(
             {"name": layer_name, "parent": "ghost_blocks"})#, "pivot": [-8, 0, 8]})
 
-    def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant=None):
+    def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant="default"):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
         block_type = self.defs[block_name]
         if block_type!="ignore":
@@ -183,7 +183,7 @@ class armorstandgeo:
 
             if data!=0 and debug:
                 print(data)
-
+            
 
             block_shapes = self.block_shapes[block_type][shape_variant]
             self.blocks[ghost_block_name]["pivot"] = [block_shapes["center"][0] - (x + self.offsets[0]),

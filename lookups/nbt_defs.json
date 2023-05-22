@@ -29,5 +29,6 @@
 	"bite_counter":"data",
 	"cluster_count":"data",
 	"pillar_axis":"rot",
-	"lever_direction":"rot"
+	"lever_direction":"rot",
+	"rail_direction":"rot"
 }

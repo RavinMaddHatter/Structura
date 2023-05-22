@@ -178,7 +178,7 @@ class structura:
         open_bit = False
         data=0
         skip=False
-        variant="Default"
+        variant="default"
         for key in nbt_def.keys():
             if nbt_def[key]== "variant" and key in block["states"].keys():
                 variant = [key,block["states"][key]]
@@ -194,6 +194,10 @@ class structura:
                 open_bit = bool(block["states"][key])
             if nbt_def[key]== "data" and key in block["states"].keys():
                 data = int(block["states"][key])
+            if key == "rail_direction" and key in block["states"].keys():
+                data = str(block["states"][key].as_unsigned)
+                if "rail_data_bit" in block["states"].keys():
+                    data += "-"+str(block["states"]["rail_data_bit"].as_unsigned)
 
         if "wood_type" in block["states"].keys():
             variant = ["wood_type",block["states"]["wood_type"]]
