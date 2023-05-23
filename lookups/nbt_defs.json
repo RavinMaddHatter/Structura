@@ -30,5 +30,7 @@
 	"cluster_count":"data",
 	"pillar_axis":"rot",
 	"lever_direction":"rot",
-	"rail_direction":"rot"
+	"rail_direction":"rot",
+	"vine_direction_bits":"rot",
+	"multi_face_direction_bits":"data"
 }

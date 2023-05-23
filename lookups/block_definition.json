@@ -629,7 +629,7 @@
     "exposed_double_cut_copper_slab": "cube",
     "flowering_azalea": "cube",
     "glow_frame": "frame",
-    "glow_lichen": "vine",
+    "glow_lichen": "vine-multi",
     "gray_candle": "cube",
     "gray_candle_cake": "cube",
     "green_candle": "cube",
@@ -744,7 +744,7 @@
     "sculk_catalyst": "cube",
     "sculk_sensor": "sculk_sensor",
     "sculk_shrieker": "cube",
-    "sculk_vein": "vine",
+    "sculk_vein": "vine-multi",
     
     "pearlescent_froglight": "cube",
     "ochre_froglight": "cube",

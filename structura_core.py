@@ -150,9 +150,11 @@ class structura:
                         self.unsupported_blocks.append("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
                         print("There is an unsuported block in this world and it was skipped")
                         print("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
-                        if block["name"] not in self.dead_blocks:
+                        if block["name"] not in self.dead_blocks.keys():
                             self.dead_blocks[block["name"]]={}
-                        if variant not in self.dead_blocks[block["name"]]:
+                        if type(variant) is list:
+                            variant="_".join(variant)
+                        if variant not in self.dead_blocks[block["name"]].keys():
                             self.dead_blocks[block["name"]][variant]=0
                         self.dead_blocks[block["name"]][variant]+=1
             ## consider temp file
