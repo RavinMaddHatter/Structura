@@ -1153,6 +1153,10 @@
     "textures": {
       "down": "stone_slab_bottom_3",
       "side": "stone_slab_side_3",
+      "east": "stone_slab_side_3",
+      "west": "stone_slab_side_3",
+      "north": "stone_slab_side_3",
+      "south": "stone_slab_side_3",
       "up": "stone_slab_top_3"
     }
   },
