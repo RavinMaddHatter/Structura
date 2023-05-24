@@ -1,0 +1,12 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:ender_dragon",
+      "spawn_egg": {
+        "base_color": "#1c1c1c",
+        "overlay_color": "#e079fa"
+      }
+    }
+  }
+}

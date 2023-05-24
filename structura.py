@@ -1,12 +1,11 @@
 import updater
 import os
 from structura_core import structura
-from turtle import color
 
 from tkinter import ttk,filedialog,messagebox
 from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
 from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
-debug = False
+debug = True
 
 def browseStruct():
     #browse for a structure file.
@@ -117,7 +116,7 @@ def runFromGui():
     stop = False
     if os.path.isfile("{}.mcpack".format(packName.get())):
         stop = True
-        messagebox.showinfo("Error", "pack already exists or pack name is empty")
+        messagebox.showinfo("Error", "Pack already exists or pack name is empty")
         ## could be fixed if temp files were used.
     if check_var.get()==0:
         if len(FileGUI.get()) == 0:
@@ -189,7 +188,7 @@ file_entry = Entry(root, textvariable=FileGUI)
 packName_entry = Entry(root, textvariable=packName)
 modle_name_lb = Label(root, text="Name Tag")
 modle_name_entry = Entry(root, textvariable=model_name_var)
-cord_lb = Label(root, text="offset")
+cord_lb = Label(root, text="Offset")
 x_entry = Entry(root, textvariable=xvar, width=5)
 y_entry = Entry(root, textvariable=yvar, width=5)
 z_entry = Entry(root, textvariable=zvar, width=5)
@@ -201,8 +200,8 @@ packName_lb = Label(root, text="Pack Name")
 if debug:
     debug_lb = Label(root, text="Debug Mode",fg='Red').place(x=285,y=70)
 packButton = Button(root, text="Browse", command=browseStruct)
-advanced_check = Checkbutton(root, text="advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
-export_check = Checkbutton(root, text="make lists", variable=export_list, onvalue=1, offvalue=0)
+advanced_check = Checkbutton(root, text="Advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
+export_check = Checkbutton(root, text="Make lists", variable=export_list, onvalue=1, offvalue=0)
 big_build_check = Checkbutton(root, text="Big Build mode", variable=big_build, onvalue=1, offvalue=0)
 
 deleteButton = Button(root, text="Remove Model", command=delete_model)
