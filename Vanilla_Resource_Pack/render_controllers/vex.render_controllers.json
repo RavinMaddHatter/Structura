@@ -9,8 +9,7 @@
       },
       "geometry": "Geometry.default",
       "materials": [ { "*": "Material.default" } ],
-      "textures": [ "Array.textures[query.is_charging]" ],
-      "ignore_lighting": true
+      "textures": [ "Array.textures[query.is_charging]" ]
     }
   }
 }

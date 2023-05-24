@@ -222,10 +222,10 @@
 					"rotation" : [ "-this", "-this", "-this" ]
 				},
 				"leftleg" : {
-					"rotation" : [ "-this", "-this-0.1", "-this-0.01" ]
+					"rotation" : [ "-this", "-this", "-this" ]
 				},
 				"rightarm" : {
-          "rotation": [ "-this", "-this+0.01", "-this+0.01" ]
+					"rotation" : [ "-this", "-this", "-this" ]
 				},
 				"rightitem" : {
 					"rotation" : [ "-this", "-this", "-this" ]

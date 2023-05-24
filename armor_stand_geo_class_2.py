@@ -355,6 +355,7 @@ class armorstandgeo:
             textures["up"] = textureLayout
             textures["down"] = textureLayout
         for key in textures.keys():
+            
             if type(texturedata[textures[key]]["textures"]) is str:
                 textures[key] = texturedata[textures[key]]["textures"]
             elif type(texturedata[textures[key]]["textures"]) is list:
