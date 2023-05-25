@@ -334,21 +334,34 @@ def make_pack_nametag(valid_files,body,tick):
         s3_key=f"{folder}/{list_name}"
         response = s3_client.upload_file(mat_list, bucket, s3_key)
         urls.append(f"https://{bucket}.s3.amazonaws.com/{s3_key}")
+    skipped_text=""
+    if len(list(skipped.keys()))>1:
+        skipped_text=", unsupported blocks were skipped. Consider sharing the structure file in <#801477108127891466>"
+        labels.append("skipped")
+        list_name=f"skipped_list{i}.txt"
+        s3_key=f"{folder}/{list_name}"
+        response = s3_client.upload_file(f"/tmp/{names[0]} skipped.txt", bucket, s3_key)
+        urls.append(f"https://{bucket}.s3.amazonaws.com/{s3_key}")
+        
     stats=update_stats(True,tick)
     pack_creation_time=float(stats['historicalTotal']['runTime'])/float(stats['historicalTotal']['packsCreated'])
     packsCreated=float(stats['historicalTotal']['packsCreated'])
     packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
-    text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}"
+    text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}{skipped_text}"
     send_url_buttons(body,labels,urls,text=text)
     
 def update_skiped(skipped):
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-2')  
+    table = dynamodb.Table('Structura')
     expression="ADD "
     vals={}
     for block,variants in skipped.items():
         for variant, count in variants.items():
+            block=block.replace("minecraft:","").replace("-","").replace("+","")
+            variant=variant.replace(":","").replace("-","").replace("+","")
             key=f"{block}_{variant}"
             expression+=f"{key} :{key}, "
-            vals[f":{key}"]=count
+            vals[f":{key}"]=1
     if expression != "ADD ":
         expression=expression[:-2]
         response = table.update_item(                                                             
@@ -399,11 +412,19 @@ def make_pack_single(file_url,file_name,body,tick):
         s3_key=f"{folder}/{list_name}"
         response = s3_client.upload_file(mat_list, bucket, s3_key)
         urls.append(f"https://{bucket}.s3.amazonaws.com/{s3_key}")
+    skipped_text=""
+    if len(list(skipped.keys()))>1:
+        skipped_text=", unsupported blocks were skipped. Consider sharing the structure file in <#801477108127891466>"
+        labels.append("skipped")
+        list_name=f"skipped_list{i}.txt"
+        s3_key=f"{folder}/{list_name}"
+        response = s3_client.upload_file(f"/tmp/{name} skipped.txt", bucket, s3_key)
+        urls.append(f"https://{bucket}.s3.amazonaws.com/{s3_key}")
     stats=update_stats(True,tick)
     pack_creation_time=float(stats['historicalTotal']['runTime'])/float(stats['historicalTotal']['packsCreated'])
     packsCreated=float(stats['historicalTotal']['packsCreated'])
     packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
-    text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}"
+    text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}{skipped_text}"
     send_url_buttons(body,labels,urls,text=text)
 
   

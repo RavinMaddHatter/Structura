@@ -1,5 +1,8 @@
 {
+	"huge_mushroom_bits":"variant",
 	"wall_block_type":"variant",
+	"direction":"rot",
+	"head_piece_bit":"data",
 	"old_log_type":"variant",
 	"new_log_type":"variant",
 	"stone_type":"variant",
