@@ -6,6 +6,7 @@ import big_render_controller as brc
 from shutil import copyfile
 from zipfile import ZIP_DEFLATED, ZipFile
 import time
+import os
 
 debug=False
 
@@ -13,13 +14,13 @@ with open("lookups/nbt_defs.json") as f:
     nbt_def = json.load(f)
 class structura:
     def __init__(self,pack_name):
+        os.makedirs(pack_name)
         self.timers={"start":time.time(),"previous":time.time()}
         self.pack_name=pack_name
         self.structure_files={}
         self.rc=rcc.render_controller()
         self.armorstand_entity = armor_stand_class.armorstand()
         visual_name=pack_name
-        manifest.export(visual_name)
         self.animation = animation_class.animations()
         self.exclude_list=["minecraft:structure_block","minecraft:air"]
         self.opacity=0.8
@@ -75,17 +76,12 @@ class structura:
             copyfile(self.structure_files[model_name]["file"], "{}/{}.mcstructure".format(self.pack_name,model_name))
             if debug:
                 print(self.structure_files[model_name]['offsets'])
-            self.timers[f"model constants{model_name}"]=time.time()-self.timers["previous"]
-            self.timers["previous"]=time.time()
             struct2make = structure_reader.process_structure(self.structure_files[model_name]["file"])
-            self.timers[f"loaded-{model_name}"]=time.time()-self.timers["previous"]
-            self.timers["previous"]=time.time()
             blocks=self._add_blocks_to_geo(struct2make,model_name)
-            self.timers[f"added blocks {model_name}"]=time.time()-self.timers["previous"]
-            self.timers["previous"]=time.time()
             self.structure_files[model_name]["block_list"]=blocks
             ##consider temp folder
             self.armorstand_entity.export(self.pack_name)## this may be in the wrong spot, but transfered from 1.5
+        
     def make_nametag_block_lists(self):
         ## consider temp file
         file_names=[]
@@ -166,6 +162,11 @@ class structura:
         return struct2make.get_block_list()
     def compile_pack(self):
         ## consider temp file
+        nametags=list(self.structure_files.keys())
+        if len(nametags)>1:
+            manifest.export(self.pack_name,nameTags=nametags)
+        else:
+            manifest.export(self.pack_name)
         copyfile(self.icon, "{}/pack_icon.png".format(self.pack_name))
         larger_render = "lookups/armor_stand.larger_render.geo.json"
         larger_render_path = "{}/models/entity/{}".format(self.pack_name, "armor_stand.larger_render.geo.json")
