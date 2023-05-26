@@ -296,12 +296,15 @@ def make_pack_nametag(valid_files,body,tick):
         }
     os.makedirs("/tmp/input", exist_ok=True)
     names=[]
+    file_dict={}
     for info in valid_files:
         file_url = info[0]
         file_name = info[1]
         response = requests.get(file_url)
-        names.append( file_name.split(".mcstructure")[0])
+        nm=file_name.split(".mcstructure")[0]
+        names.append(nm)
         file_dir = f"/tmp/input/{file_name}"
+        file_dict[nm]=file_dir
         open(file_dir, "wb").write(response.content)
     data["content"]="Processing, if this hangs it is because the file is too big. retrying will not fix it"
     send_repsonse(body,data)
@@ -309,7 +312,7 @@ def make_pack_nametag(valid_files,body,tick):
     structura_base=structura("/tmp/"+names[0])
     structura_base.set_opacity(20)
     for name in names:
-        structura_base.add_model(name,file_dir)
+        structura_base.add_model(name,file_dict[name])
         structura_base.set_model_offset(name,[0,0,0])
     structura_base.generate_nametag_file()
     structura_base.generate_with_nametags()
@@ -327,9 +330,8 @@ def make_pack_nametag(valid_files,body,tick):
     urls=[f"https://{bucket}.s3.amazonaws.com/{s3_key}"]
     i=0
     for mat_list in material_lists:
+        list_name=names[i][:15]+".txt"
         i+=1
-        list_name=f"Block_list{i}.txt"
-        
         labels.append(f"Block_list {i}")
         s3_key=f"{folder}/{list_name}"
         response = s3_client.upload_file(mat_list, bucket, s3_key)
@@ -348,6 +350,7 @@ def make_pack_nametag(valid_files,body,tick):
     packsCreated=float(stats['historicalTotal']['packsCreated'])
     packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
     text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}{skipped_text}"
+    #text=str(file_dict[name]) 
     send_url_buttons(body,labels,urls,text=text)
     
 def update_skiped(skipped):
