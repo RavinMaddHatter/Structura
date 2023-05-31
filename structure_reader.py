@@ -73,7 +73,10 @@ class process_structure:
                             if self.nbt_defs[state] == "variant":
                                 if block["states"][state] in self.block_names[name].keys():
                                     variant=block["states"][state]
-                    name=self.block_names[name][variant]
+                    try:
+                        name=self.block_names[name][variant]
+                    except:
+                        print(name,variant)
                 if name not in block_counter.keys():
                     block_counter[name]=0
                 
@@ -164,29 +167,33 @@ if __name__ == "__main__":
     batchtest.append(testFileName)
     testFileName="test_structures\\All Blocks World\\wood.mcstructure"
     batchtest.append(testFileName)
-    test=combined_structures(batchtest,excludedBlocks)
+    testFileName="test_structures\\All Blocks World\\Stones.mcstructure"
+    batchtest.append(testFileName)
+    testFileName="test_structures\\goretofame_piglinfarm.mcstructure"
+    batchtest.append(testFileName)
+##    test=combined_structures(batchtest,excludedBlocks)
     
-##    test=process_structure(testFileName)
+    test=process_structure(testFileName)
     bllist=test.get_block_list(ignored_blocks=excludedBlocks)
-    for key,value in bllist.items():
-        print(f"{key}:{value}")
-##    for x in range(test.size[0]):
-##        for z in range(test.size[2]):
-##            block=test.get_block(x,0,z)
-##            if block["name"] not in excludedBlocks:
-##                variant="default"
-##                for state in block["states"].keys():
-##                    
-##                    if state in test.nbt_defs.keys():
-##                        if test.nbt_defs[state] == "variant":
-##                            variant=block["states"][state]
-##                if block["name"] not in blocks_def.keys():
-##                    blocks_def[block["name"]]={}
-##                if variant not in blocks_def[block["name"]].keys():
-##                    actual_name = input(f"loc: {x+test.origin[0]},{z+test.origin[2]} {block['name']} - {variant}:")
-##                    blocks_def[block["name"]][variant]=actual_name
-##    with open("lookups\\material_list_names.json","w+") as name_file:
-##        json.dump(blocks_def,name_file)
+##    for key,value in bllist.items():
+##        print(f"{key}:{value}")
+    for x in range(test.size[0]):
+        for z in range(test.size[2]):
+            block=test.get_block(x,0,z)
+            if block["name"] not in excludedBlocks:
+                variant="default"
+                for state in block["states"].keys():
+                    
+                    if state in test.nbt_defs.keys():
+                        if test.nbt_defs[state] == "variant":
+                            variant=block["states"][state]
+                if block["name"] not in blocks_def.keys():
+                    blocks_def[block["name"]]={}
+                if variant not in blocks_def[block["name"]].keys():
+                    actual_name = input(f"loc: {x+test.origin[0]},{z+test.origin[2]} {block['name']} - {variant}:")
+                    blocks_def[block["name"]][variant]=actual_name
+    with open("lookups\\material_list_names.json","w+") as name_file:
+        json.dump(blocks_def,name_file)
     #print(test.size)
         #input(f"")
     #print(test.size)

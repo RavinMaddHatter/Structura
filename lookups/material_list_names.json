@@ -611,7 +611,8 @@
 		"purple": "Purple Shulker Box",
 		"lime": "Lime Shulker Box",
 		"pink": "Pink Shulker Box",
-		"magenta": "Magenta Shulker Box"
+		"magenta": "Magenta Shulker Box",
+		"default": "Shulker Box"
 	},
 	"minecraft:undyed_shulker_box": {
 		"default": "Shulker Box"
@@ -1732,5 +1733,11 @@
 	},
 	"minecraft:web": {
 		"default": "Web"
+	},
+	"minecraft:stained_glass": {
+		"white": "White Stained Glass"
+	},
+	"minecraft:redstone_wire": {
+		"default": "String"
 	}
 }
