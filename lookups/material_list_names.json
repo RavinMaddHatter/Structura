@@ -1614,7 +1614,8 @@
 		"default": "Mossy Cobblestone"
 	},
 	"minecraft:stonebrick": {
-		"default": "Stone Brick"
+		"default": "Stone Brick",
+		"mossy": "Mossy Stone Brick"
 	},
 	"minecraft:brick_block": {
 		"default": "Brick"
@@ -1735,9 +1736,46 @@
 		"default": "Web"
 	},
 	"minecraft:stained_glass": {
+		"default": "stained Glass",
 		"white": "White Stained Glass"
 	},
 	"minecraft:redstone_wire": {
 		"default": "String"
+	},
+	"minecraft:twisting_vines": {
+		"default": "Twisting Vines"
+	},
+	"minecraft:cave_vines": {
+		"default": "Glow Berries"
+	},
+	"minecraft:cave_vines_head_with_berries": {
+		"default": "Glow Berries"
+	},
+	"minecraft:small_dripleaf_block": {
+		"default": "Small Drip Leaf"
+	},
+	"minecraft:deadbush": {
+		"default": "Dead Bush"
+	},
+	"minecraft:dirt_with_roots": {
+		"default": "Rooted Dirt"
+	},
+	"minecraft:polished_blackstone_brick_slab": {
+		"default": "Polished Blackstone Brick Slab"
+	},
+	"minecraft:polished_blackstone_brick_double_slab": {
+		"default": "Polished Blackstone Brick"
+	},
+	"minecraft:polished_basalt": {
+		"default": "Polished Basalt"
+	},
+	"minecraft:basalt": {
+		"default": "Basalt"
+	},
+	"minecraft:chiseled_deepslate": {
+		"default": "Chiseled Deepslate"
+	},
+	"minecraft:smooth_basalt": {
+		"default": "Smooth Basalt"
 	}
 }

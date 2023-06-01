@@ -670,7 +670,7 @@
     "red_candle": "cube",
     "red_candle_cake": "cake",
     "small_amethyst_bud": "cross_texture",
-    "small_dripleaf_block": "cube",
+    
     "smooth_basalt": "cube",
     "spore_blossom": "cube",
     "tinted_glass": "cube",
@@ -808,5 +808,6 @@
     "bamboo_block":"tree",
     "stripped_bamboo_block":"tree",
 	"piston_arm_collision":"ignore",
+	"small_dripleaf_block": "ignore",
 	"sticky_piston_arm_collision":"ignore"
 }

@@ -10,9 +10,6 @@ files_to_conver={
         "wood":{"file":"test_structures/All Blocks World/wood.mcstructure",
                 "offset":[-31,0,-31]},
         "decor":{"file":"test_structures/All Blocks World/decorative.mcstructure",
-                 "offset":[-32,0,-31]},
-
-        "":{"file":"test_structures/All Blocks World/decorative.mcstructure",
                  "offset":[-32,0,-31]}}
 
 

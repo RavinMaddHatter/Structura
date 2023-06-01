@@ -169,8 +169,6 @@ if __name__ == "__main__":
     batchtest.append(testFileName)
     testFileName="test_structures\\All Blocks World\\Stones.mcstructure"
     batchtest.append(testFileName)
-    testFileName="test_structures\\goretofame_piglinfarm.mcstructure"
-    batchtest.append(testFileName)
 ##    test=combined_structures(batchtest,excludedBlocks)
     
     test=process_structure(testFileName)

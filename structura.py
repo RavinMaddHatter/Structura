@@ -144,6 +144,7 @@ def runFromGui():
             offset=[xvar.get(),yvar.get(),zvar.get()]
             structura_base.set_model_offset("",offset)
             if (export_list.get()==1):
+                
                 structura_base.make_nametag_block_lists()
             structura_base.generate_with_nametags()
             structura_base.compile_pack()
@@ -158,9 +159,10 @@ def runFromGui():
             for name_tag in models.keys():
                 structura_base.add_model(name_tag,models[name_tag]["structure"])
                 structura_base.set_model_offset(name_tag,models[name_tag]["offsets"])
-                structura_base.generate_with_nametags()
-                if (export_list.get()==1):
-                    structura_base.generate_nametag_file()
+            structura_base.generate_with_nametags()
+            if (export_list.get()==1):
+                structura_base.make_nametag_block_lists()
+            structura_base.generate_nametag_file()
             structura_base.compile_pack()
     
 
