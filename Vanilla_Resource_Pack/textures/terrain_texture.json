@@ -199,7 +199,6 @@
     "big_dripleaf_top": {
       "textures": "textures/blocks/big_dripleaf_top"
     },
-	
     "birch_planks": {
       "textures": "textures/blocks/planks_birch"
     },
@@ -2165,9 +2164,9 @@
         "textures/blocks/piston_top_sticky"
       ]
     },
-	"oak_planks":{
-		"textures":"textures/blocks/planks_oak"
-	},
+    "oak_planks": {
+      "textures": "textures/blocks/planks_oak"
+    },
     "planks": {
       "textures": [
         "textures/blocks/planks_oak",
@@ -2631,6 +2630,18 @@
     "sculk_sensor_side": {
       "textures": "textures/blocks/sculk_sensor_side"
     },
+	"calibrated_sculk_sensor_input_side":{
+		"textures": "textures/blocks/calibrated_sculk_sensor_input_side"
+	},
+	"calibrated_sculk_sensor_top":{
+		"textures": "textures/blocks/calibrated_sculk_sensor_top"
+	},
+	"suspicious_gravel":{
+		"textures": "textures/blocks/suspicious_gravel_0"
+	},
+	"suspicious_sand":{
+		"textures": "textures/blocks/suspicious_sand_0"
+	},
     "sculk_sensor_tendril_active": {
       "textures": "textures/blocks/sculk_sensor_tendril_active"
     },
@@ -2643,6 +2654,96 @@
     "sculk_shrieker_bottom": {
       "textures": "textures/blocks/sculk_shrieker_bottom"
     },
+	"cherry_trapdoor":{
+		"textures":"textures/blocks/cherry_trapdoor"
+	},
+	"cherry_sapling":{
+		"textures":"textures/blocks/cherry_sapling"
+	},
+	"cherry_planks":{
+		"textures":"textures/blocks/cherry_planks"
+	},
+	"cherry_leaves":{
+		"textures":"textures/blocks/cherry_leaves"
+	},
+	"stripped_cherry_log_side":{
+		"textures":"textures/blocks/stripped_cherry_log_side"
+	},
+	"decorated_pot":{
+		"textures":"textures/blocks/stripped_cherry_log_side"
+	},
+	"cherry_log_top":{
+		"textures":"textures/blocks/cherry_log_top"
+	},
+	"stripped_cherry_log_top":{
+		"textures":"textures/blocks/stripped_cherry_log_top"
+	},
+	"decorated_pot":{
+		"textures":"textures/blocks/decorated_pot_base"
+	},
+	"dead_brain_coral":{
+		"textures":"textures/blocks/coral_plant_pink_dead"
+	},
+	"brain_coral":{
+		"textures":"textures/blocks/coral_plant_pink_dead"
+	},
+	"dead_bubble_coral":{
+		"textures":"textures/blocks/coral_plant_pink"
+	},
+	"dead_fire_coral":{
+		"textures":"textures/blocks/coral_plant_red_dead"
+	},
+	"fire_coral":{
+		"textures":"textures/blocks/coral_plant_red"
+	},
+	"dead_horn_coral":{
+		"textures":"textures/blocks/coral_plant_yellow_dead"
+	},
+	"horn_coral":{
+		"textures":"textures/blocks/coral_plant_yellow"
+	},
+	"dead_tube_coral":{
+		"textures":"textures/blocks/coral_plant_blue_dead"
+	},
+	"tube_coral":{
+		"textures":"textures/blocks/coral_plant_blue"
+	},
+	"bubble_coral":{
+		"textures":"textures/blocks/coral_plant_pink"
+	},
+	"cherry_log_side":{
+		"textures":"textures/blocks/cherry_log_side"
+	},
+	"bamboo_mosaic":{
+		"textures":"textures/blocks/bamboo_mosaic"
+	},
+	"bamboo_fence":{
+		"textures":"textures/blocks/bamboo_planks"
+	},
+	"bamboo_sign":{
+		"textures":"textures/blocks/bamboo_planks"
+	},
+	"bamboo_planks":{
+		"textures":"textures/blocks/bamboo_planks"
+	},
+	"bamboo_fence_gate":{
+		"textures":"textures/blocks/bamboo_planks"
+	},
+	"bamboo_block":{
+		"textures":"textures/blocks/bamboo_block"
+	},
+	"bamboo_block_top":{
+		"textures":"textures/blocks/bamboo_block_top"
+	},
+	"stripped_bamboo_block":{
+		"textures":"textures/blocks/stripped_bamboo_block"
+	},
+	"stripped_bamboo_block_top":{
+		"textures":"textures/blocks/stripped_bamboo_block_top"
+	},
+	"bamboo_trapdoor":{
+		"textures":"textures/blocks/bamboo_trapdoor"
+	},
     "sculk_shrieker_inner_top": {
       "textures": [
         "textures/blocks/sculk_shrieker_inner_top",
@@ -3164,27 +3265,27 @@
     "stripped_spruce_log_side": {
       "textures": "textures/blocks/stripped_spruce_log"
     },
-	"spruce_log_side":{
-		"textures":"textures/blocks/log_spruce"
-	},
-	"spruce_log_top":{
-		"textures":"textures/blocks/log_spruce_top"
-	},
-	"birch_log_side":{
-		"textures":"textures/blocks/log_birch"
-	},
-	"birch_log_top":{
-		"textures":"textures/blocks/log_birch_top"
-	},
-	"jungle_log_side":{
-		"textures":"textures/blocks/log_jungle"
-	},
-	"jungle_log_top":{
-		"textures":"textures/blocks/log_jungle_top"
-	},
-	"acacia_log_side":{
-		"textures": "textures/blocks/log_acacia"
-	},
+    "spruce_log_side": {
+      "textures": "textures/blocks/log_spruce"
+    },
+    "spruce_log_top": {
+      "textures": "textures/blocks/log_spruce_top"
+    },
+    "birch_log_side": {
+      "textures": "textures/blocks/log_birch"
+    },
+    "birch_log_top": {
+      "textures": "textures/blocks/log_birch_top"
+    },
+    "jungle_log_side": {
+      "textures": "textures/blocks/log_jungle"
+    },
+    "jungle_log_top": {
+      "textures": "textures/blocks/log_jungle_top"
+    },
+    "acacia_log_side": {
+      "textures": "textures/blocks/log_acacia"
+    },
     "stripped_spruce_log_top": {
       "textures": "textures/blocks/stripped_spruce_log_top"
     },
@@ -3194,21 +3295,21 @@
     "stripped_warped_stem_top": {
       "textures": "textures/blocks/huge_fungus/stripped_warped_stem_top"
     },
-	"acacia_log_top":{
-		"textures":"textures/blocks/log_acacia_top"
-	},
-	"dark_oak_log_side":{
-		"textures":"textures/blocks/log_big_oak"
-	},
-	"dark_oak_log_top":{
-		"textures":"textures/blocks/log_big_oak_top"
-	},
-	"oak_log_side":{
-		"textures":"textures/blocks/log_oak"
-	},
-	"oak_log_top":{
-		"textures":"textures/blocks/log_oak_top"
-	},
+    "acacia_log_top": {
+      "textures": "textures/blocks/log_acacia_top"
+    },
+    "dark_oak_log_side": {
+      "textures": "textures/blocks/log_big_oak"
+    },
+    "dark_oak_log_top": {
+      "textures": "textures/blocks/log_big_oak_top"
+    },
+    "oak_log_side": {
+      "textures": "textures/blocks/log_oak"
+    },
+    "oak_log_top": {
+      "textures": "textures/blocks/log_oak_top"
+    },
     "structure_block": {
       "textures": [
         "textures/blocks/structure_block",

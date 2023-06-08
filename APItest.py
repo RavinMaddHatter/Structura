@@ -1,5 +1,6 @@
 import structura_core
 import os
+import shutil
 structura_core.debug=True
 files_to_conver={
         
@@ -10,9 +11,11 @@ files_to_conver={
         "wood":{"file":"test_structures/All Blocks World/wood.mcstructure",
                 "offset":[-31,0,-31]},
         "decor":{"file":"test_structures/All Blocks World/decorative.mcstructure",
+                 "offset":[-32,0,-31]},
+        "wood2":{"file":"test_structures/All Blocks World/wood2.mcstructure",
                  "offset":[-32,0,-31]}}
 
-
+shutil.rmtree("tmp/")
 if os.path.exists("tmp/all_blocks.mcpack"):
     os.remove("tmp/all_blocks.mcpack")
 if os.path.exists("tmp/all_blocks Nametags.txt"):
