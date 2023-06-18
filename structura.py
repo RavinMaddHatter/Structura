@@ -1,4 +1,3 @@
-import updater
 import os
 from structura_core import structura
 from turtle import color
@@ -21,9 +20,11 @@ def box_checked():
         modle_name_entry.grid_forget()
         modle_name_lb.grid_forget()
         deleteButton.grid_forget()
+        cord_lb_big.grid_forget()
         listbox.grid_forget()
         saveButton.grid_forget()
         modelButton.grid_forget()
+        cord_lb.grid_forget()
         r = 0
         file_lb.grid(row=r, column=0)
         file_entry.grid(row=r, column=1)
@@ -47,10 +48,10 @@ def box_checked():
         advanced_check.grid(row=r, column=0)
         export_check.grid(row=r, column=1)
         saveButton.grid(row=r, column=2)
-        r +=1
-        updateButton.grid(row=r, column=2)
     else:
         saveButton.grid_forget()
+        cord_lb.grid_forget()
+        cord_lb_big.grid_forget()
         r = 0
         file_lb.grid(row=r, column=0)
         file_entry.grid(row=r, column=1)
@@ -67,7 +68,11 @@ def box_checked():
         modle_name_lb.grid(row=r, column=0)
         modelButton.grid(row=r, column=2)
         r += 1
-        cord_lb.grid(row=r, column=0,columnspan=3)
+        offsetLbLoc=r
+        if big_build.get()==0:
+            cord_lb.grid(row=r, column=0,columnspan=3)
+        else:
+            cord_lb_big.grid(row=r, column=0,columnspan=3)
         r += 1
         x_entry.grid(row=r, column=0)
         y_entry.grid(row=r, column=1)
@@ -83,10 +88,8 @@ def box_checked():
         export_check.grid(row=r, column=1)
         saveButton.grid(row=r, column=2)
         r +=1
-        big_build_check.grid(row=r, column=0,columnspan=2)
-        updateButton.grid(row=r, column=2)
-def big_checked():
-    pass
+        big_build_check.grid(row=r, column=0,columnspan=2)   
+    
 def add_model():
     valid=True
     if len(FileGUI.get()) == 0:
@@ -125,13 +128,13 @@ def runFromGui():
         if len(FileGUI.get()) == 0:
             stop = True
             messagebox.showinfo("Error", "You need to browse for a structure file!")
-        if len(packName.get()) == 0:
-            stop = True
-            messagebox.showinfo("Error", "You need a Name")
+    if len(packName.get()) == 0:
+        stop = True
+        messagebox.showinfo("Error", "You need a Name")
     else:
         if len(list(models.keys()))==0:
             stop = True
-            messagebox.showinfo("Error", "You need to add some strucutres")
+            messagebox.showinfo("Error", "You need to add some structures")
     if len(icon_var.get())>0:
         pack_icon=icon_var.get()
     if not stop:
@@ -167,7 +170,7 @@ def runFromGui():
             structura_base.generate_nametag_file()
             structura_base.compile_pack()
     
-
+offsetLbLoc=4
 offsets={}
 root = Tk()
 root.title("Structura")
@@ -193,7 +196,8 @@ file_entry = Entry(root, textvariable=FileGUI)
 packName_entry = Entry(root, textvariable=packName)
 modle_name_lb = Label(root, text="Name Tag")
 modle_name_entry = Entry(root, textvariable=model_name_var)
-cord_lb = Label(root, text="offset")
+cord_lb = Label(root, text="Offset")
+cord_lb_big = Label(root, text="Corner")
 x_entry = Entry(root, textvariable=xvar, width=5)
 y_entry = Entry(root, textvariable=yvar, width=5)
 z_entry = Entry(root, textvariable=zvar, width=5)
@@ -207,13 +211,11 @@ if debug:
 packButton = Button(root, text="Browse", command=browseStruct)
 advanced_check = Checkbutton(root, text="advanced", variable=check_var, onvalue=1, offvalue=0, command=box_checked)
 export_check = Checkbutton(root, text="make lists", variable=export_list, onvalue=1, offvalue=0)
-big_build_check = Checkbutton(root, text="Big Build mode", variable=big_build, onvalue=1, offvalue=0)
+big_build_check = Checkbutton(root, text="Big Build mode", variable=big_build, onvalue=1, offvalue=0, command=box_checked )
 
 deleteButton = Button(root, text="Remove Model", command=delete_model)
 saveButton = Button(root, text="Make Pack", command=runFromGui)
 modelButton = Button(root, text="Add Model", command=add_model)
-
-updateButton = Button(root, text="Update Blocks", command=updater.getLatest)
 transparency_lb = Label(root, text="Transparency")
 transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,tickinterval=10,orient=HORIZONTAL)
 

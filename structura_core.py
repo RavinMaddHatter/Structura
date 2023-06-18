@@ -1,6 +1,6 @@
 
-import armor_stand_geo_class_2 as asgc
-import armor_stand_class ,structure_reader ,animation_class ,manifest ,os ,glob ,json ,shutil ,updater
+import armor_stand_geo_class as asgc
+import armor_stand_class ,structure_reader ,animation_class ,manifest ,os ,glob ,json ,shutil 
 import render_controller_class as rcc
 import big_render_controller as brc
 from shutil import copyfile
