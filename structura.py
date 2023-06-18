@@ -85,6 +85,8 @@ def box_checked():
         r +=1
         big_build_check.grid(row=r, column=0,columnspan=2)
         updateButton.grid(row=r, column=2)
+def big_checked():
+    pass
 def add_model():
     valid=True
     if len(FileGUI.get()) == 0:
@@ -158,7 +160,7 @@ def runFromGui():
         else:
             for name_tag in models.keys():
                 structura_base.add_model(name_tag,models[name_tag]["structure"])
-                structura_base.set_model_offset(name_tag,models[name_tag]["offsets"])
+                structura_base.set_model_offset(name_tag,models[name_tag]["offsets"].copy())
             structura_base.generate_with_nametags()
             if (export_list.get()==1):
                 structura_base.make_nametag_block_lists()

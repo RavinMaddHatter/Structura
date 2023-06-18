@@ -19,6 +19,7 @@ discord_url = "https://discord.com/api/v10/applications/{}/commands".format(app_
 discord_secret=os.environ.get('secret')
 bucket=os.environ.get('bucket')
 channel=os.environ.get('channel')
+cpm=float(os.environ.get('cpm'))
 
 channelpref=os.environ.get('channelpref')
 
@@ -206,7 +207,7 @@ def help_command(body):
     response = table.get_item(Key={'Statistic': "historicalTotal"})
     pack_creation_time=float(response["Item"]['runTime'])/float(response["Item"]['packsCreated'])
     packsCreated=float(response["Item"]['packsCreated'])
-    packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
+    packs_per_view = pack_per_youtube_View(pack_creation_time)
     help_text=f"This bot is a privlage not a right, To keep it funded do check out a few videos. Each video you watch pays for {packs_per_view:0.1f} conversions \n"
     help_text+="Note: on may 20 2023 i changed the name of the file upload in the command. This may be cached on your device if you are an long time user fully close the app or restart your device to see if that fixes it.\n\n"
     help_text+="/convert [file1] [file2-file6 optional]: this command creates a structura pack from a valid structure file. If the file is not valid it will not work. If you select more than 1 file the name tag will be the file name. this one is private so we dont see what is going on\n\n"
@@ -235,10 +236,30 @@ def stats_command(body):
     failures_month = float(response["Item"]['failures'])
     pack_creation_time_month=float(response["Item"]['runTime'])
     packsCreated_month=float(response["Item"]['packsCreated'])
+    
+    response = table.get_item(Key={'Statistic': "brokenBlocks"})
+    in_github = 54
+    
+    most_failed_block="error"
+    seen = len(response["Item"].keys())
+    
+    try:
+        response["Item"].pop("Statistic")
+        block_dict=response["Item"]
+        block_dict=dict(zip(response["Item"], map(int, response["Item"].values())))
+        most_failed_block=max(block_dict, key=block_dict.get)
+        block_failures=block_dict[most_failed_block]
+    except:
+        pass
+        
+    
+    
     help_text="Here are some statistics for the bot. We had a ton:\n"
-    help_text+=f"Packs Created: {packsCreated_total:0.0f} total, {packsCreated_month:0.0f} this month\n"
-    help_text+=f"The bot has run for a total of: {pack_creation_time_total:0.2f}s total, {pack_creation_time_month:0.2f}s this month\n"
-    help_text+=f"The bot has failed to create: {failures_total:0.0f} total, {failures_month:0.0f} this month\n"
+    help_text+=f"Packs Created                 \t: {packsCreated_total:0.0f} total,\t{packsCreated_month:0.0f} this month\n"
+    help_text+=f"The bot has failed to create  \t: {failures_total:0.0f} total,\t{failures_month:0.0f} this month\n"
+    help_text+=f"The bot has run for a total of\t: {pack_creation_time_total:0.2f}s total,\t{pack_creation_time_month:0.2f}s this month\n"
+    help_text+=f"Broken Blocks                 \t: {in_github} reported,\t {seen} seen\n"
+    help_text+=f"Most Used Failed Block          \t: {most_failed_block},\t {block_failures} times\n"
     data={
 #            'type': 4,
 #            'data':{
@@ -348,11 +369,18 @@ def make_pack_nametag(valid_files,body,tick):
     stats=update_stats(True,tick)
     pack_creation_time=float(stats['historicalTotal']['runTime'])/float(stats['historicalTotal']['packsCreated'])
     packsCreated=float(stats['historicalTotal']['packsCreated'])
-    packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
+    packs_per_view = pack_per_youtube_View(pack_creation_time) 
     text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}{skipped_text}"
     #text=str(file_dict[name]) 
     send_url_buttons(body,labels,urls,text=text)
+def pack_per_youtube_View(creation_time):
+    cost_compute=0.0000166667#per gb second
+    ram_allocated_GB=0.5
+    price_per_write_unit=1.25/1000000
+    #cpm=5.97
+    packs_per_view = cpm/((creation_time*ram_allocated_GB*cost_compute+4*price_per_write_unit)*1000)
     
+    return packs_per_view
 def update_skiped(skipped):
     dynamodb = boto3.resource('dynamodb', region_name='us-east-2')  
     table = dynamodb.Table('Structura')
@@ -426,7 +454,7 @@ def make_pack_single(file_url,file_name,body,tick):
     stats=update_stats(True,tick)
     pack_creation_time=float(stats['historicalTotal']['runTime'])/float(stats['historicalTotal']['packsCreated'])
     packsCreated=float(stats['historicalTotal']['packsCreated'])
-    packs_per_view = 0.00125/(0.0000032+0.00000854*pack_creation_time)
+    packs_per_view = pack_per_youtube_View(pack_creation_time)
     text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}{skipped_text}"
     send_url_buttons(body,labels,urls,text=text)
 
