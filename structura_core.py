@@ -88,7 +88,6 @@ class structura:
         for model_name in self.structure_files.keys():
             file_name="{}-{} block list.txt".format(self.pack_name,model_name)
             file_names.append(file_name)
-            print(self.structure_files[model_name].keys())
             all_blocks = self.structure_files[model_name]["block_list"]
             with open(file_name,"w+") as text_file:
                 text_file.write("This is a list of blocks, there is a known issue with variants, all blocks are reported as minecraft stores them\n")

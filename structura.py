@@ -164,7 +164,7 @@ def runFromGui():
                 structura_base.add_model(name_tag,models[name_tag]["structure"])
             structura_base.make_big_model([xvar.get(),yvar.get(),zvar.get()])
             if (export_list.get()==1):
-                sturctura_base.make_big_blocklist()
+                structura_base.make_big_blocklist()
             structura_base.compile_pack()
         else:
             for name_tag in models.keys():
