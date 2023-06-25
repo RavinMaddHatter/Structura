@@ -433,21 +433,21 @@
 	},
 	"minecraft:concrete_powder": {
 		"black": "Black Concrete Powder",
-		"red": "Red Concrete Powder ",
+		"red": "Red Concrete Powder",
 		"green": "Green Concrete Powder",
-		"brown": "Brown Concrete Powder ",
-		"blue": "Blue Concrete Powder ",
-		"purple": "Purple Concrete Powder ",
-		"cyan": "Cyan Concrete Powder ",
-		"silver": "Light Grey Concrete Powder ",
-		"gray": "Grey Concrete Powder ",
-		"pink": "Pink Concrete Powder ",
-		"lime": "Lime Concrete Powder ",
-		"yellow": "Yellow Concrete Powder ",
-		"light_blue": "Blue Concrete Powder ",
-		"magenta": "Magenta Concrete Powder ",
-		"orange": "Orange Concrete Powder ",
-		"white": "White Concrete Powder "
+		"brown": "Brown Concrete Powder",
+		"blue": "Blue Concrete Powder",
+		"purple": "Purple Concrete Powder",
+		"cyan": "Cyan Concrete Powder",
+		"silver": "Light Grey Concrete Powder",
+		"gray": "Grey Concrete Powder",
+		"pink": "Pink Concrete Powder",
+		"lime": "Lime Concrete Powder",
+		"yellow": "Yellow Concrete Powder",
+		"light_blue": "Blue Concrete Powder",
+		"magenta": "Magenta Concrete Powder",
+		"orange": "Orange Concrete Powder",
+		"white": "White Concrete Powder"
 	},
 	"minecraft:cocoa": {
 		"default": "Cocoa Bean"
@@ -804,7 +804,7 @@
 		"default": "Stripped Mangrove Wood"
 	},
 	"minecraft:mangrove_roots": {
-		"default": "Magrove Roots"
+		"default": "Mangrove Roots"
 	},
 	"minecraft:mangrove_planks": {
 		"default": "Mangrove Planks"
@@ -933,7 +933,7 @@
 		"default": "Acacia Log"
 	},
 	"minecraft:stripped_acacia_log": {
-		"default": "stripped Acacia Log"
+		"default": "Stripped Acacia Log"
 	},
 	"minecraft:acacia_stairs": {
 		"default": "Acacia Stairs"
@@ -999,7 +999,7 @@
 		"default": "Oak Log"
 	},
 	"minecraft:stripped_oak_log": {
-		"default": "stripped Oak Log"
+		"default": "Stripped Oak Log"
 	},
 	"minecraft:oak_stairs": {
 		"default": "Oak Stairs"
@@ -1194,7 +1194,7 @@
 		"granite": "Granite Slab",
 		"diorite": "Diorite Slab",
 		"andesite": "Andesite Slab",
-		"end_stone_brick": "Endstone Brick Slab"
+		"end_stone_brick": "End Stone Brick Slab"
 	},
 	"minecraft:stone_block_slab4": {
 		"smooth_quartz": "Smooth Quartz Slab",
@@ -1214,7 +1214,7 @@
 		"granite": "Granite",
 		"diorite": "Diorite",
 		"andesite": "Andesite",
-		"end_stone_brick": "Endstone Brick"
+		"end_stone_brick": "End Stone Brick"
 	},
 	"minecraft:dark_prismarine_stairs": {
 		"default": "Dark Prismarine Stairs"
@@ -1531,7 +1531,7 @@
 	"minecraft:quartz_block": {
 		"smooth": "Smooth Quartz Block",
 		"chiseled": "Chiseled Quartz Block",
-		"default": "Quarts Block"
+		"default": "Quartz Block"
 	},
 	"minecraft:reinforced_deepslate": {
 		"default": "Reinforced Deepslate"
@@ -1575,7 +1575,7 @@
 		"default": "End Stone Bricks"
 	},
 	"minecraft:chiseled_polished_blackstone": {
-		"default": "Chisled Polished Balckstone"
+		"default": "Chiseled Polished Blackstone"
 	},
 	"minecraft:cracked_deepslate_tiles": {
 		"default": "Cracked Deepslate Tiles"
@@ -1627,7 +1627,7 @@
 		"default": "Red Nether Brick"
 	},
 	"minecraft:end_stone": {
-		"default": "Endstone"
+		"default": "End Stone"
 	},
 	"minecraft:blackstone": {
 		"default": "Blackstone"
@@ -1642,7 +1642,7 @@
 		"default": "Cobbled Deepslate"
 	},
 	"minecraft:deepslate_tiles": {
-		"default": "Tiled Deepslate"
+		"default": "Deepslate Tiles"
 	},
 	"minecraft:polished_deepslate": {
 		"default": "Polished Deepslate"
@@ -1733,7 +1733,7 @@
 		"default": "Obsidian"
 	},
 	"minecraft:web": {
-		"default": "Web"
+		"default": "Cobweb"
 	},
 	"minecraft:stained_glass": {
 		"default": "stained Glass",
@@ -1752,7 +1752,7 @@
 		"default": "Glow Berries"
 	},
 	"minecraft:small_dripleaf_block": {
-		"default": "Small Drip Leaf"
+		"default": "Small Dripleaf"
 	},
 	"minecraft:deadbush": {
 		"default": "Dead Bush"
