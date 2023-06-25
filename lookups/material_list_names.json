@@ -150,7 +150,7 @@
 		"default": "Weighted Preasure Plate (light)"
 	},
 	"minecraft:daylight_detector_inverted": {
-		"default": "Dalight Sensor"
+		"default": "Daylight Sensor"
 	},
 	"minecraft:powered_repeater": {
 		"default": "Repeater"
@@ -1117,7 +1117,7 @@
 		"orchid": "Blue Orchid",
 		"allium": "Allium",
 		"houstonia": "Azure Bluet",
-		"cornflower": "Corneflower",
+		"cornflower": "Cornflower",
 		"tulip_red": "Red Tulip",
 		"tulip_orange": "Orange Tulip",
 		"tulip_white": "White Tulip",
@@ -1487,7 +1487,7 @@
 		"default": "Cobbled Deepslate Stairs"
 	},
 	"minecraft:deepslate_tile_stairs": {
-		"default": "Tiled Deeplsate Stairs"
+		"default": "Tiled Deepslate Stairs"
 	},
 	"minecraft:polished_deepslate_stairs": {
 		"default": "Polished Deepslate Stairs"
@@ -1660,7 +1660,7 @@
 		"default": "Waxed Exposed Copper Block"
 	},
 	"minecraft:waxed_weathered_copper": {
-		"default": "Waxed Weathered Copper Blcok"
+		"default": "Waxed Weathered Copper Block"
 	},
 	"minecraft:waxed_oxidized_copper": {
 		"default": "Waxed Oxidized Copper Block"

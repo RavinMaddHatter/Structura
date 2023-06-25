@@ -52,6 +52,9 @@ def box_checked():
         saveButton.grid_forget()
         cord_lb.grid_forget()
         cord_lb_big.grid_forget()
+        modle_name_entry.grid_forget()
+        modle_name_lb.grid_forget()
+        modelButton.grid_forget()
         r = 0
         file_lb.grid(row=r, column=0)
         file_entry.grid(row=r, column=1)
@@ -64,8 +67,10 @@ def box_checked():
         packName_lb.grid(row=r, column=0)
         packName_entry.grid(row=r, column=1)
         r += 1
-        modle_name_entry.grid(row=r, column=1)
-        modle_name_lb.grid(row=r, column=0)
+        if big_build.get()==0:
+            
+            modle_name_entry.grid(row=r, column=1)
+            modle_name_lb.grid(row=r, column=0)
         modelButton.grid(row=r, column=2)
         r += 1
         offsetLbLoc=r
@@ -92,6 +97,8 @@ def box_checked():
     
 def add_model():
     valid=True
+    if big_build.get()==1:
+        model_name_var.set(os.path.basename(FileGUI.get()))
     if len(FileGUI.get()) == 0:
         valid=False
         messagebox.showinfo("Error", "You need to browse for a structure file!")
@@ -132,7 +139,7 @@ def runFromGui():
         stop = True
         messagebox.showinfo("Error", "You need a Name")
     else:
-        if len(list(models.keys()))==0:
+        if len(list(models.keys()))==0 and check_var.get():
             stop = True
             messagebox.showinfo("Error", "You need to add some structures")
     if len(icon_var.get())>0:
@@ -148,15 +155,14 @@ def runFromGui():
             structura_base.add_model("",FileGUI.get())
             offset=[xvar.get(),yvar.get(),zvar.get()]
             structura_base.set_model_offset("",offset)
-            if (export_list.get()==1):
-                
-                structura_base.make_nametag_block_lists()
             structura_base.generate_with_nametags()
+            if (export_list.get()==1):
+                structura_base.make_nametag_block_lists()
             structura_base.compile_pack()
         elif big_build.get():
             for name_tag in models.keys():
                 structura_base.add_model(name_tag,models[name_tag]["structure"])
-            structura_base.make_big_model()
+            structura_base.make_big_model([xvar.get(),yvar.get(),zvar.get()])
             if (export_list.get()==1):
                 sturctura_base.make_big_blocklist()
             structura_base.compile_pack()

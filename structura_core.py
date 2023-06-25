@@ -47,21 +47,21 @@ class structura:
             text_file.write("These are the nametags used in this file\n")
             for name in name_tags:
                 text_file.write("{}\n".format(name))
-    def make_big_model(self):
+    def make_big_model(self,offset):
         self.rc=brc.render_controller()
         file_names=[]
         for name in list(self.structure_files.keys()):
             file_names.append(self.structure_files[name]["file"])
         struct2make=structure_reader.combined_structures(file_names,exclude_list=self.exclude_list)
         self.structure_files[""]={}
-        self.structure_files[""]["offsets"]=(-struct2make.get_size()//2).tolist()
+        self.structure_files[""]["offsets"]=[0,0,0]
         self.structure_files[""]["offsets"][1]= 0
         
         for i in range(12):
             self.armorstand_entity.add_model(str(i))
             self.rc.add_geometry(str(i))
+        self.big_offset=offset
         blocks=self._add_blocks_to_geo(struct2make,"",export_big=True)
-        ## condier temp folder
         self.armorstand_entity.export(self.pack_name)
     def generate_with_nametags(self):
         update_animation=True
@@ -88,7 +88,8 @@ class structura:
         for model_name in self.structure_files.keys():
             file_name="{}-{} block list.txt".format(self.pack_name,model_name)
             file_names.append(file_name)
-            all_blocks=self.structure_files[model_name]["block_list"]
+            print(self.structure_files[model_name].keys())
+            all_blocks = self.structure_files[model_name]["block_list"]
             with open(file_name,"w+") as text_file:
                 text_file.write("This is a list of blocks, there is a known issue with variants, all blocks are reported as minecraft stores them\n")
                 for name in all_blocks.keys():
@@ -156,9 +157,10 @@ class structura:
             ## consider temp file
         if export_big:
             armorstand.export_big(self.pack_name)
+            self.animation.export_big(self.pack_name,self.big_offset)
         else:
             armorstand.export(self.pack_name)
-        self.animation.export(self.pack_name)
+            self.animation.export(self.pack_name)
         return struct2make.get_block_list()
     def compile_pack(self):
         ## consider temp file
@@ -167,9 +169,9 @@ class structura:
             manifest.export(self.pack_name,nameTags=nametags)
         else:
             manifest.export(self.pack_name)
-        copyfile(self.icon, "{}/pack_icon.png".format(self.pack_name))
+        copyfile(self.icon, f"{self.pack_name}/pack_icon.png")
         larger_render = "lookups/armor_stand.larger_render.geo.json"
-        larger_render_path = "{}/models/entity/{}".format(self.pack_name, "armor_stand.larger_render.geo.json")
+        larger_render_path = f"{self.pack_name}/models/entity/armor_stand.larger_render.geo.json"
         copyfile(larger_render, larger_render_path)
         self.rc.export(self.pack_name)
         file_paths = []

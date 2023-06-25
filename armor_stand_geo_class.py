@@ -88,7 +88,7 @@ class armorstandgeo:
         ## This exporter just packs up the armorstand json files and dumps them where it should go. as well as exports the UV file
         self.stand["minecraft:geometry"] = []
         size=list(map(int,self.size))
-        offset=[-size[0]//2,0,-size[2]//2]
+        #offset=[-size[0]//2,0,-size[2]//2]
         geometries={}
         geometries["default"]={}
         geometries["default"]["description"]={}
@@ -99,7 +99,7 @@ class armorstandgeo:
         geometries["default"]["description"]["visible_bounds_height"] = 5120
         geometries["default"]["description"]["visible_bounds_offset"] = [0, 1.5, 0]     
         geometries["default"]["bones"]=[{"name":"ghost_blocks","pivot": [-8, 0, 8],"origin":[0,0,0]}]
-        default_geo=[{"origin": offset,"size": size,
+        default_geo=[{"size": size,
                         "uv": {
                                 "north": {"uv": [0, 0], "uv_size": [1, 1]},
                                 "east": {"uv": [0, 0], "uv_size": [1, 1]},
@@ -108,7 +108,7 @@ class armorstandgeo:
                                 "up": {"uv": [1, 1], "uv_size": [-1, -1]},
                                 "down": {"uv": [1, 1], "uv_size": [-1, -1]}
                         }},
-                     {"origin": offset,
+                     {
                         "size": size,
                         "uv": {
                                 "north": {"uv": [0, 3], "uv_size": [1, -1]},
@@ -129,8 +129,8 @@ class armorstandgeo:
             geometries[layer_name]["description"]["visible_bounds_width"] = 5120
             geometries[layer_name]["description"]["visible_bounds_height"] = 5120
             geometries[layer_name]["description"]["visible_bounds_offset"] = [0, 1.5, 0]
-            geometries[layer_name]["bones"]=[{"name": "ghost_blocks","pivot": [-8, 0, 8]},## i am not sure this should be this value for pivot
-                                             {"name": "layer_"+str(i),"parent": "ghost_blocks","pivot": [-8, 0, 8]}]## i am not sure this should be this value for pivot
+            geometries[layer_name]["bones"]=[{"name": "ghost_blocks","pivot": [0, 0, 0]},## i am not sure this should be this value for pivot
+                                             {"name": "layer_"+str(i),"parent": "ghost_blocks","pivot": [0, 0, 0]}]## i am not sure this should be this value for pivot
         
         
         for key in self.blocks.keys():

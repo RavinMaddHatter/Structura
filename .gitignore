@@ -129,3 +129,7 @@ structura.exe
 tmp/test Nametags.txt
 *.mcpack
 * Nametags.txt
+test_structures/Falcon/Falcon1.mcstructure
+test_structures/Falcon/falcon2.mcstructure
+test_structures/Falcon/falcon4.mcstructure
+test_structures/Falcon/falcon3.mcstructure

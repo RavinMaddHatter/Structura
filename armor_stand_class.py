@@ -69,4 +69,13 @@ class armorstand:
         
         with open(path, "w+") as json_file:
             json.dump(self.stand, json_file, indent=2)
+    def export_big(self, pack_name):
+        self.stand["minecraft:client_entity"]["description"]["textures"] = self.textures
+        self.stand["minecraft:client_entity"]["description"]["geometry"] = self.geos
+
+        path = "{}/entity/armor_stand.entity.json".format(pack_name)
+        os.makedirs(os.path.dirname(path), exist_ok = True)
+        
+        with open(path, "w+") as json_file:
+            json.dump(self.stand, json_file, indent=2)
     
