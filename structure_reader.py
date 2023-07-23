@@ -1,5 +1,5 @@
 import nbtlib
-from numpy import array, argwhere , int32, maximum, minimum, zeros, count_nonzero
+from numpy import array, argwhere , int32, maximum, minimum, zeros, count_nonzero, flip
 import json
 loaded={}
 def embed( small_array, big_array, loc):
@@ -122,6 +122,8 @@ class combined_structures:
         self.blocks = zeros(self.size, int)
         for file in file_list:
             embed(self.structs[file]["blocks"],self.blocks,self.structs[file]["mins"]-self.mins)
+        self.blocks = flip(self.blocks,0)
+        self.blocks = flip(self.blocks,2)
     def get_layer_blocks(self,y):
         lb=self.blocks[:,y,:]
         return argwhere(lb > 0)
@@ -146,12 +148,14 @@ class combined_structures:
                             if self.nbt_defs[state] == "variant":
                                 if block["states"][state] in self.block_names[name].keys():
                                     variant=block["states"][state]
-                    name=self.block_names[name][variant]
+                    try:
+                        name=self.block_names[name][variant]
+                    except:
+                        print(name,variant)
                 if name not in block_counter.keys():
                     block_counter[name]=0
                 
                 block_counter[name]+=count_nonzero(block_array==i)
-            
         return block_counter
         
     

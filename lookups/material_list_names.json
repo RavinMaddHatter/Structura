@@ -1740,7 +1740,7 @@
 		"white": "White Stained Glass"
 	},
 	"minecraft:redstone_wire": {
-		"default": "String"
+		"default": "Redstone Dust"
 	},
 	"minecraft:twisting_vines": {
 		"default": "Twisting Vines"

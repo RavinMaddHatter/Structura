@@ -61,7 +61,7 @@ class structura:
             self.armorstand_entity.add_model(str(i))
             self.rc.add_geometry(str(i))
         self.big_offset=offset
-        blocks=self._add_blocks_to_geo(struct2make,"",export_big=True)
+        self.all_blocks=self._add_blocks_to_geo(struct2make,"",export_big=True)
         self.armorstand_entity.export(self.pack_name)
     def generate_with_nametags(self):
         update_animation=True
@@ -102,7 +102,9 @@ class structura:
             text_file.write("This is a list of blocks, there is a known issue with variants, all blocks are reported as minecraft stores them\n")
             for name in self.all_blocks.keys():
                 commonName = name.replace("minecraft:","")
+                
                 text_file.write("{}: {}\n".format(commonName,self.all_blocks[name]))
+
     def _add_blocks_to_geo(self,struct2make,model_name,export_big=False):
         [xlen, ylen, zlen] = struct2make.get_size()
         

@@ -656,6 +656,22 @@
         "textures/blocks/concrete_black"
       ]
     },
+	"black_concrete": {"textures": "textures/blocks/concrete_black"},
+	"red_concrete": {"textures": "textures/blocks/concrete_red"},
+	"green_concrete": {"textures": "textures/blocks/concrete_green"},
+	"brown_concrete": {"textures": "textures/blocks/concrete_brown"},
+	"blue_concrete": {"textures": "textures/blocks/concrete_blue"},
+	"purple_concrete": {"textures": "textures/blocks/concrete_purple"},
+	"cyan_concrete": {"textures": "textures/blocks/concrete_cyan"},
+	"light_gray_concrete": {"textures": "textures/blocks/concrete_silver"},
+	"gray_concrete": {"textures": "textures/blocks/concrete_gray"},
+	"pink_concrete": {"textures": "textures/blocks/concrete_pink"},
+	"lime_concrete": {"textures": "textures/blocks/concrete_lime"},
+	"yellow_concrete": {"textures": "textures/blocks/concrete_yellow"},
+	"light_blue_concrete": {"textures": "textures/blocks/concrete_light_blue"},
+	"magenta_concrete": {"textures": "textures/blocks/concrete_magenta"},
+	"orange_concrete": {"textures": "textures/blocks/concrete_orange"},
+	"white_concrete": {"textures": "textures/blocks/concrete_white"},
     "concretePowder": {
       "textures": [
         "textures/blocks/concrete_powder_white",
@@ -2810,6 +2826,21 @@
         "textures/blocks/shulker_top_undyed"
       ]
     },
+	"white_shulker_box": {"textures": "textures/blocks/shulker_top_white"},
+	"orange_shulker_box": {"textures": "textures/blocks/shulker_top_orange"},
+	"magenta_shulker_box": {"textures": "textures/blocks/shulker_top_magenta"},
+	"light_blue_shulker_box": {"textures": "textures/blocks/shulker_top_light_blue"},
+	"lime_shulker_box": {"textures": "textures/blocks/shulker_top_lime"},
+	"pink_shulker_box": {"textures": "textures/blocks/shulker_top_pink"},
+	"gray_shulker_box": {"textures": "textures/blocks/shulker_top_gray"},
+	"light_gray_shulker_box": {"textures": "textures/blocks/shulker_top_silver"},
+	"green_shulker_box": {"textures": "textures/blocks/shulker_top_green"},
+	"cyan_shulker_box": {"textures": "textures/blocks/shulker_top_cyan"},
+	"purple_shulker_box": {"textures": "textures/blocks/shulker_top_purple"},
+	"blue_shulker_box": {"textures": "textures/blocks/shulker_top_blue"},
+	"brown_shulker_box": {"textures": "textures/blocks/shulker_top_brown"},
+	"red_shulker_box": {"textures": "textures/blocks/shulker_top_red"},
+	"black_shulker_box": {"textures": "textures/blocks/shulker_top_black"},
     "sign": {
       "textures": "textures/blocks/planks_oak"
     },
