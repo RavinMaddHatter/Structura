@@ -1,7 +1,8 @@
 import os
 from structura_core import structura
 from turtle import color
-
+from numpy import array, int32, minimum
+import nbtlib
 from tkinter import ttk,filedialog,messagebox
 from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
 from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
@@ -71,6 +72,8 @@ def box_checked():
             
             modle_name_entry.grid(row=r, column=1)
             modle_name_lb.grid(row=r, column=0)
+        else:
+            pass
         modelButton.grid(row=r, column=2)
         r += 1
         offsetLbLoc=r
@@ -94,11 +97,11 @@ def box_checked():
         saveButton.grid(row=r, column=2)
         r +=1
         big_build_check.grid(row=r, column=0,columnspan=2)   
-    
 def add_model():
     valid=True
     if big_build.get()==1:
         model_name_var.set(os.path.basename(FileGUI.get()))
+
     if len(FileGUI.get()) == 0:
         valid=False
         messagebox.showinfo("Error", "You need to browse for a structure file!")
@@ -114,6 +117,19 @@ def add_model():
         models[name_tag]["opacity"] = opacity
         models[name_tag]["structure"] = FileGUI.get()
         listbox.insert(END,model_name_var.get())
+        if big_build.get()==1:
+            mins = array([2147483647,2147483647,2147483647],dtype=int32)
+            for name in models.keys():
+                file = models[name]["structure"]
+                struct = {}
+                struct["nbt"] = nbtlib.load(file, byteorder='little')
+                if "" in struct["nbt"].keys():
+                    struct["nbt"] = struct["nbt"][""]
+                struct["mins"] = array(list(map(int,struct["nbt"]["structure_world_origin"])))
+                mins = minimum(mins, struct["mins"])
+            xvar.set(mins[0])
+            yvar.set(mins[1])
+            zvar.set(mins[2])
 
         
 def delete_model():

@@ -158,7 +158,7 @@ class armorstandgeo:
         self.geometry["bones"].append(
             {"name": layer_name, "parent": "ghost_blocks"})#, "pivot": [-8, 0, 8]})
 
-    def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant="default"):
+    def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant="default", big = False):
         # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
         block_type = self.defs[block_name]
         if block_type!="ignore":
@@ -199,7 +199,9 @@ class armorstandgeo:
             if str(data) in self.block_shapes[block_type].keys():
                 block_shapes = self.block_shapes[block_type][str(data)]
             if block_type in self.block_rotations.keys() and rot is not None:
-                self.blocks[ghost_block_name]["rotation"] = self.block_rotations[block_type][str(rot)]
+                self.blocks[ghost_block_name]["rotation"] = copy.deepcopy(self.block_rotations[block_type][str(rot)])
+                if big:
+                    self.blocks[ghost_block_name]["rotation"][1]+=180
             else:
                 if debug:
                     print("no rotation for block type {} found".format(block_type))
@@ -223,6 +225,7 @@ class armorstandgeo:
 
                 if "rotation" in block_shapes.keys():
                     block["rotation"] = block_shapes["rotation"][i]
+                    
 
                 blockUV=dict(uv)
                 for dir in ["up", "down", "east", "west", "north", "south"]:

@@ -107,7 +107,9 @@ class structura:
 
     def _add_blocks_to_geo(self,struct2make,model_name,export_big=False):
         [xlen, ylen, zlen] = struct2make.get_size()
-        
+        if export_big:
+            self.structure_files[model_name]['offsets'][0]-=xlen.item()+7
+            self.structure_files[model_name]['offsets'][2]-=zlen.item()+7
         armorstand = asgc.armorstandgeo(model_name,alpha = self.opacity, size=[xlen, ylen, zlen], offsets=self.structure_files[model_name]['offsets'])
 
         if ylen > self.longestY:
@@ -139,11 +141,11 @@ class structura:
                 skip = blockProp[5]
                 if debug:
                     if not skip:
-                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
+                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data, big = export_big)
                 else:
                     try:
                         if not skip:
-                            armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data)
+                            armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data, big = export_big)
                     except:
                         self.unsupported_blocks.append("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
                         print("There is an unsuported block in this world and it was skipped")
