@@ -1,8 +1,10 @@
 import os
+import json
 from structura_core import structura
 from turtle import color
 from numpy import array, int32, minimum
 import nbtlib
+import updater
 from tkinter import ttk,filedialog,messagebox
 from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
 from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
@@ -16,7 +18,21 @@ def browseIcon():
     #browse for a structure file.
     icon_var.set(filedialog.askopenfilename(filetypes=(
         ("Icon File", "*.png *.PNG"), )))
+def update():
+    with open("lookups\lookup_version.json") as file:
+        version_data = json.load(file)
+        print(version_data["version"])
+    updated = updater.update(version_data["update_url"],"Structura1-6",version_data["version"])
+    if updated:
+        with open("lookups\lookup_version.json") as file:
+            version_data = json.load(file)
+        messagebox.showinfo("Updated!", version_data["notes"])
+    else:
+        messagebox.showinfo("Status", "You are currently up to date.")
 def box_checked():
+    r = 0
+    title_text.grid(row=r, column=0, columnspan=2)
+    updateButton.grid(row=r, column=2)
     if check_var.get()==0:
         modle_name_entry.grid_forget()
         modle_name_lb.grid_forget()
@@ -26,7 +42,7 @@ def box_checked():
         saveButton.grid_forget()
         modelButton.grid_forget()
         cord_lb.grid_forget()
-        r = 0
+        r +=1
         file_lb.grid(row=r, column=0)
         file_entry.grid(row=r, column=1)
         packButton.grid(row=r, column=2)
@@ -59,7 +75,7 @@ def box_checked():
         modle_name_entry.grid_forget()
         modle_name_lb.grid_forget()
         modelButton.grid_forget()
-        r = 0
+        r +=1 
         file_lb.grid(row=r, column=0)
         file_entry.grid(row=r, column=1)
         packButton.grid(row=r, column=2)
@@ -218,6 +234,7 @@ big_build = IntVar()
 big_build.set(0)
 sliderVar.set(20)
 listbox=Listbox(root)
+title_text = Label(root, text="Structura")
 file_entry = Entry(root, textvariable=FileGUI)
 packName_entry = Entry(root, textvariable=packName)
 modle_name_lb = Label(root, text="Name Tag")
@@ -229,6 +246,7 @@ y_entry = Entry(root, textvariable=yvar, width=5)
 z_entry = Entry(root, textvariable=zvar, width=5)
 icon_lb = Label(root, text="Icon file")
 icon_entry = Entry(root, textvariable=icon_var)
+updateButton = Button(root, text="Update", command=update)
 IconButton = Button(root, text="Browse", command=browseIcon)
 file_lb = Label(root, text="Structure file")
 packName_lb = Label(root, text="Pack Name")

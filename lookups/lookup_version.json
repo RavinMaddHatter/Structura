@@ -1,5 +1,6 @@
 {
-	"version": "https://structuralookup.s3.us-east-2.amazonaws.com/StructuraLookups26082023.zip",
+	"version": "structura16-26082023",
 	"author": "RavinMaddHatter",
-	"update_url":"https://smgafwso25.execute-api.us-east-2.amazonaws.com/default/structuraUpdate"
+	"update_url":"https://smgafwso25.execute-api.us-east-2.amazonaws.com/default/structuraUpdate",
+	"notes":"first structura update that uses this release method"
 }
