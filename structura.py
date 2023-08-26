@@ -46,11 +46,14 @@ def box_checked():
         big_build_check.grid_forget()
         transparency_lb.grid_forget()
         transparency_entry.grid_forget()
+        get_cords_button.grid_forget()
         advanced_check.grid(row=r, column=0)
         export_check.grid(row=r, column=1)
         saveButton.grid(row=r, column=2)
+        
     else:
         saveButton.grid_forget()
+        get_cords_button.grid_forget()
         cord_lb.grid_forget()
         cord_lb_big.grid_forget()
         modle_name_entry.grid_forget()
@@ -73,7 +76,7 @@ def box_checked():
             modle_name_entry.grid(row=r, column=1)
             modle_name_lb.grid(row=r, column=0)
         else:
-            pass
+            get_cords_button.grid(row=r, column=0,columnspan=2)
         modelButton.grid(row=r, column=2)
         r += 1
         offsetLbLoc=r
@@ -117,19 +120,20 @@ def add_model():
         models[name_tag]["opacity"] = opacity
         models[name_tag]["structure"] = FileGUI.get()
         listbox.insert(END,model_name_var.get())
-        if big_build.get()==1:
-            mins = array([2147483647,2147483647,2147483647],dtype=int32)
-            for name in models.keys():
-                file = models[name]["structure"]
-                struct = {}
-                struct["nbt"] = nbtlib.load(file, byteorder='little')
-                if "" in struct["nbt"].keys():
-                    struct["nbt"] = struct["nbt"][""]
-                struct["mins"] = array(list(map(int,struct["nbt"]["structure_world_origin"])))
-                mins = minimum(mins, struct["mins"])
-            xvar.set(mins[0])
-            yvar.set(mins[1])
-            zvar.set(mins[2])
+            
+def get_global_cords():
+    mins = array([2147483647,2147483647,2147483647],dtype=int32)
+    for name in models.keys():
+        file = models[name]["structure"]
+        struct = {}
+        struct["nbt"] = nbtlib.load(file, byteorder='little')
+        if "" in struct["nbt"].keys():
+            struct["nbt"] = struct["nbt"][""]
+        struct["mins"] = array(list(map(int,struct["nbt"]["structure_world_origin"])))
+        mins = minimum(mins, struct["mins"])
+        xvar.set(mins[0])
+        yvar.set(mins[1])
+        zvar.set(mins[2])
 
         
 def delete_model():
@@ -191,7 +195,7 @@ def runFromGui():
                 structura_base.make_nametag_block_lists()
             structura_base.generate_nametag_file()
             structura_base.compile_pack()
-    
+
 offsetLbLoc=4
 offsets={}
 root = Tk()
@@ -238,6 +242,7 @@ big_build_check = Checkbutton(root, text="Big Build mode", variable=big_build, o
 deleteButton = Button(root, text="Remove Model", command=delete_model)
 saveButton = Button(root, text="Make Pack", command=runFromGui)
 modelButton = Button(root, text="Add Model", command=add_model)
+get_cords_button = Button(root, text="Get Global Cords", command=get_global_cords)
 transparency_lb = Label(root, text="Transparency")
 transparency_entry = Scale(root,variable=sliderVar, length=200, from_=0, to=100,tickinterval=10,orient=HORIZONTAL)
 
