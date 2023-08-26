@@ -1,14 +1,20 @@
 import os
+import updater
+if not(os.path.exists("lookups")):
+    print("downloading lookup files")
+    updater.update("https://smgafwso25.execute-api.us-east-2.amazonaws.com/default/structuraUpdate","Structura1-6","")
+    
 import json
 from structura_core import structura
 from turtle import color
 from numpy import array, int32, minimum
 import nbtlib
-import updater
+
 from tkinter import ttk,filedialog,messagebox
 from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
 from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
 debug = False
+
 
 def browseStruct():
     #browse for a structure file.
