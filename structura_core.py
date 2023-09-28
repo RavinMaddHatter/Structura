@@ -7,6 +7,9 @@ from shutil import copyfile
 from zipfile import ZIP_DEFLATED, ZipFile
 import time
 import os
+#for the random color
+from PIL import Image
+import random
 
 debug=False
 
@@ -27,6 +30,18 @@ class structura:
         self.longestY=0
         self.unsupported_blocks=[]
         self.all_blocks={}
+        ###random pack_icon color by Minecraft bedrock Arabic
+        input_image_path = 'lookups/tmp.png'
+        output_image_path = 'lookups/pack_icon.png'
+        input_image = Image.open(input_image_path)
+        width, height = input_image.size
+        random_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        output_image = Image.new("RGB", (width, height), random_color)
+        output_image.paste(input_image, (0, 0), input_image)
+        output_image.save(output_image_path)
+        input_image.close()
+        output_image.close()
+        ###
         self.icon="lookups/pack_icon.png"
         self.dead_blocks={}
     def set_icon(self,icon):
