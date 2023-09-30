@@ -459,9 +459,30 @@
 		"default": "Orange Concrete"
 	},
 	"minecraft:white_concrete": {
+
 		"default": "White Concrete"
 	},
 
+
+
+	"minecraft:concrete_powder": {
+		"black": "Black Concrete Powder",
+		"red": "Red Concrete Powder",
+		"green": "Green Concrete Powder",
+		"brown": "Brown Concrete Powder",
+		"blue": "Blue Concrete Powder",
+		"purple": "Purple Concrete Powder",
+		"cyan": "Cyan Concrete Powder",
+		"silver": "Light Grey Concrete Powder",
+		"gray": "Grey Concrete Powder",
+		"pink": "Pink Concrete Powder",
+		"lime": "Lime Concrete Powder",
+		"yellow": "Yellow Concrete Powder",
+		"light_blue": "Blue Concrete Powder",
+		"magenta": "Magenta Concrete Powder",
+		"orange": "Orange Concrete Powder",
+		"white": "White Concrete Powder"
+	},	
 	"minecraft:black_concrete_powder": {
 		"default": "Black Concrete Powder"
 	},
@@ -521,8 +542,8 @@
 		"blue": "Blue Terracotta",
 		"purple": "Purple Terracotta",
 		"cyan": "Cyan Terracotta",
-		"silver": "Light Grey Terracotta",
-		"gray": "Grey Terracotta",
+		"silver": "Light Gray Terracotta",
+		"gray": "Gray Terracotta",
 		"pink": "Pink Terracotta",
 		"lime": "Lime Terracotta",
 		"yellow": "Yellow Terracotta",
@@ -530,6 +551,54 @@
 		"magenta": "Magenta Terracotta",
 		"orange": "Orange Terracotta",
 		"white": "White Terracotta"
+	},
+	"minecraft:black_terracotta": {
+		"default": "Black Terracotta"
+	},
+	"minecraft:red_terracotta": {
+		"default": "Red Terracotta"
+	},
+	"minecraft:green_terracotta": {
+		"default": "Green Terracotta"
+	},
+	"minecraft:brown_terracotta": {
+		"default": "Brown Terracotta"
+	},
+	"minecraft:blue_terracotta": {
+		"default": "Blue Terracotta"
+	},
+	"minecraft:purple_terracotta": {
+		"default": "Purple Terracotta"
+	},
+	"minecraft:cyan_terracotta": {
+		"default": "Cyan Terracotta"
+	},
+	"minecraft:silver_terracotta": {
+		"default": "Light Gray Terracotta"
+	},
+	"minecraft:gray_terracotta": {
+		"default": "Gray Terracotta"
+	},
+	"minecraft:pink_terracotta": {
+		"default": "Pink Terracotta"
+	},
+	"minecraft:lime_terracotta": {
+		"default": "Lime Terracotta"
+	},
+	"minecraft:yellow_terracotta": {
+		"default": "Yellow Terracotta"
+	},
+	"minecraft:light_blue_terracotta": {
+		"default": "Light Blue Terracotta"
+	},
+	"minecraft:magenta_terracotta": {
+		"default": "Magenta Terracotta"
+	},
+	"minecraft:orange_terracotta": {
+		"default": "Orange Terracotta"
+	},
+	"minecraft:white_terracotta": {
+		"default": "White Terracotta"
 	},
 	"minecraft:jungle_log": {
 		"default": "Jungle Log"
@@ -656,6 +725,24 @@
 	},
 	"minecraft:black_candle": {
 		"default": "Black Candle"
+	},
+	"minecraft:shulker_box": {
+		"white": "White Shulker Box",
+		"gray": "Grey Shulker Box",
+		"silver": "Light Grey Shulker Box",
+		"green": "Green Shulker Box",
+		"black": "Black Shulker Box",
+		"cyan": "Cyan Shulker Box",
+		"brown": "Brown Shulker Box",
+		"light_blue": "Light Blue Shulker Box",
+		"red": "Red Shulker Box",
+		"blue": "Blue Shulker Box",
+		"orange": "Orange Shulker Box",
+		"purple": "Purple Shulker Box",
+		"lime": "Lime Shulker Box",
+		"pink": "Pink Shulker Box",
+		"magenta": "Magenta Shulker Box",
+		"default": "Shulker Box"
 	},
 	"minecraft:white_shulker_box": {
 		"default": "White Shulker Box"
@@ -1824,8 +1911,140 @@
 		"default": "Cobweb"
 	},
 	"minecraft:stained_glass": {
-		"default": "stained Glass",
-		"white": "White Stained Glass"
+		"default": "Stained Glass",
+		"white": "White Stained Glass",
+		"gray:": "Gray Stained Glass",
+		"silver": "Light Gray Stained Glass",
+		"black:": "Black Stained Glass",
+		"brown:": "Brown Stained Glass",
+		"Red:": "Red Stained Glass",
+		"orange:": "Orange Stained Glass",
+		"yellow:": "Yellow Stained Glass",
+		"lime:": "Lime Stained Glass",
+		"green:": "Green Stained Glass",
+		"cyan:": "Cyan Stained Glass",
+		"light_blue:": "Light Blue Stained Glass",
+		"blue:": "Blue Stained Glass",
+		"purple:": "Purple Stained Glass",
+		"magenta:": "Magenta Stained Glass",
+		"pink:": "Pink Stained Glass"
+	},
+	
+	"minecraft:white_stained_glass": {
+		"default": "White Stained Glass"
+	},
+	"minecraft:light_gray_stained_glass": {
+		"default": "Light Gray Stained Glass"
+	},
+	"minecraft:gray_stained_glass": {
+		"default": "Gray Stained Glass"
+	},
+	"minecraft:black_stained_glass": {
+		"default": "Black Stained Glass"
+	},
+	"minecraft:brown_stained_glass": {
+		"default": "Brown Stained Glass"
+	},
+	"minecraft:red_stained_glass": {
+		"default": "Red Stained Glass"
+	},
+	"minecraft:orange_stained_glass": {
+		"default": "Orange Stained Glass"
+	},
+	"minecraft:yellow_stained_glass": {
+		"default": "Yellow Stained Glass"
+	},
+	"minecraft:lime_stained_glass": {
+		"default": "Lime Stained Glass"
+	},
+	"minecraft:green_stained_glass": {
+		"default": "Green Stained Glass"
+	},
+	"minecraft:cyan_stained_glass": {
+		"default": "Cyan Stained Glass"
+	},
+	"minecraft:light_blue_stained_glass": {
+		"default": "Light Blue Stained Glass"
+	},
+	"minecraft:blue_stained_glass": {
+		"default": "Blue Stained Glass"
+	},
+	"minecraft:purple_stained_glass": {
+		"default": "Purple Stained Glass"
+	},
+	"minecraft:magenta_stained_glass": {
+		"default": "Magenta Stained Glass"
+	},
+	"minecraft:pink_stained_glass": {
+		"default": "Pink Stained Glass"
+	},
+
+	"minecraft:stained_glass_pane": {
+		"default": "Stained Glass Pane",
+		"white": "White Stained Glass Pane",
+		"gray:": "Gray Stained Glass Pane",
+		"silver": "Light Gray Stained Glass Pane",
+		"black:": "Black Stained Glass Pane",
+		"brown:": "Brown Stained Glass Pane",
+		"Red:": "Red Stained Glass Pane",
+		"orange:": "Orange Stained Glass Pane",
+		"yellow:": "Yellow Stained Glass Pane",
+		"lime:": "Lime Stained Glass Pane",
+		"green:": "Green Stained Glass Pane",
+		"cyan:": "Cyan Stained Glass Pane",
+		"light_blue:": "Light Blue Stained Glass Pane",
+		"blue:": "Blue Stained Glass Pane",
+		"purple:": "Purple Stained Glass Pane",
+		"magenta:": "Magenta Stained Glass Pane",
+		"pink:": "Pink Stained Glass Pane"
+	},
+	"minecraft:white_stained_glass_pane": {
+		"default": "White Stained Glass Pane"
+	},
+	"minecraft:light_gray_stained_glass_pane": {
+		"default": "Light Gray Stained Glass Pane"
+	},
+	"minecraft:gray_stained_glass_pane": {
+		"default": "Gray Stained Glass Pane"
+	},
+	"minecraft:black_stained_glass_pane": {
+		"default": "Black Stained Glass Pane"
+	},
+	"minecraft:brown_stained_glass_pane": {
+		"default": "Brown Stained Glass Pane"
+	},
+	"minecraft:red_stained_glass_pane": {
+		"default": "Red Stained Glass Pane"
+	},
+	"minecraft:orange_stained_glass_pane": {
+		"default": "Orange Stained Glass Pane"
+	},
+	"minecraft:yellow_stained_glass_pane": {
+		"default": "Yellow Stained Glass Pane"
+	},
+	"minecraft:lime_stained_glass_pane": {
+		"default": "Lime Stained Glass Pane"
+	},
+	"minecraft:green_stained_glass_pane": {
+		"default": "Green Stained Glass Pane"
+	},
+	"minecraft:cyan_stained_glass_pane": {
+		"default": "Cyan Stained Glass Pane"
+	},
+	"minecraft:light_blue_stained_glass_pane": {
+		"default": "Light Blue Stained Glass Pane"
+	},
+	"minecraft:blue_stained_glass_pane": {
+		"default": "Blue Stained Glass Pane"
+	},
+	"minecraft:purple_stained_glass_pane": {
+		"default": "Purple Stained Glass Pane"
+	},
+	"minecraft:magenta_stained_glass_pane": {
+		"default": "Magenta Stained Glass Pane"
+	},
+	"minecraft:pink_stained_glass_pane": {
+		"default": "Pink Stained Glass Pane"
 	},
 	"minecraft:redstone_wire": {
 		"default": "Redstone Dust"
