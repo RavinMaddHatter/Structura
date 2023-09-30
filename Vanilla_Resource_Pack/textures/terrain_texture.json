@@ -2685,9 +2685,6 @@
 	"stripped_cherry_log_side":{
 		"textures":"textures/blocks/stripped_cherry_log_side"
 	},
-	"decorated_pot":{
-		"textures":"textures/blocks/stripped_cherry_log_side"
-	},
 	"cherry_log_top":{
 		"textures":"textures/blocks/cherry_log_top"
 	},

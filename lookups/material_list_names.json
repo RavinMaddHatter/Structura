@@ -345,7 +345,7 @@
 		"default": "Lodestone"
 	},
 	"minecraft:carpet": {
-		"color": "Black Carpet",
+		"gray": "Gray Carpet",
 		"black": "Black Carpet",
 		"red": "Red Carpet",
 		"green": "Green Carpet",
@@ -353,7 +353,7 @@
 		"blue": "Blue Carpet",
 		"purple": "Purple Carpet",
 		"cyan": "Cyan Carpet",
-		"silver": "Grey Carpet",
+		"silver": "Light Gray Carpet",
 		"pink": "Pink Carpet",
 		"lime": "Lime Carpet",
 		"yellow": "Yellow Carpet",
@@ -384,10 +384,10 @@
 		"default": "Cyan Wool"
 	},
 	"minecraft:light_gray_wool": {
-		"default": "Light Grey Wool"
+		"default": "Light Gray Wool"
 	},
 	"minecraft:gray_wool": {
-		"default": "Grey Wool"
+		"default": "Gray Wool"
 	},
 	"minecraft:pink_wool": {
 		"default": "Pink Wool"
@@ -413,41 +413,102 @@
 	"minecraft:barrel": {
 		"default": "Barrel"
 	},
-	"minecraft:concrete": {
-		"black": "Black Concrete",
-		"red": "Red Concrete",
-		"green": "Green Concrete",
-		"brown": "Brown Concrete",
-		"blue": "Blue Concrete",
-		"purple": "Purple Concrete",
-		"cyan": "Cyan Concrete",
-		"silver": "Light Grey Concrete",
-		"gray": "Grey Concrete",
-		"pink": "Pink Concrete",
-		"lime": "Lime Concrete",
-		"yellow": "Yellow Concrete",
-		"light_blue": "Blue Concrete",
-		"magenta": "Magenta Concrete",
-		"orange": "Orange Concrete",
-		"white": "White Concrete"
+	"minecraft:black_concrete": {
+		"default": "Black Concrete"
 	},
-	"minecraft:concrete_powder": {
-		"black": "Black Concrete Powder",
-		"red": "Red Concrete Powder",
-		"green": "Green Concrete Powder",
-		"brown": "Brown Concrete Powder",
-		"blue": "Blue Concrete Powder",
-		"purple": "Purple Concrete Powder",
-		"cyan": "Cyan Concrete Powder",
-		"silver": "Light Grey Concrete Powder",
-		"gray": "Grey Concrete Powder",
-		"pink": "Pink Concrete Powder",
-		"lime": "Lime Concrete Powder",
-		"yellow": "Yellow Concrete Powder",
-		"light_blue": "Blue Concrete Powder",
-		"magenta": "Magenta Concrete Powder",
-		"orange": "Orange Concrete Powder",
-		"white": "White Concrete Powder"
+	"minecraft:red_concrete": {
+		"default": "Red Concrete"
+	},
+	"minecraft:green_concrete": {
+		"default": "Green Concrete"
+	},
+	"minecraft:brown_concrete": {
+		"default": "Brown Concrete"
+	},
+	"minecraft:blue_concrete": {
+		"default": "Blue Concrete"
+	},
+	"minecraft:purple_concrete": {
+		"default": "Purple Concrete"
+	},
+	"minecraft:cyan_concrete": {
+		"default": "Cyan Concrete"
+	},
+	"minecraft:silver_concrete": {
+		"default": "Light Gray Concrete"
+	},
+	"minecraft:gray_concrete": {
+		"default": "Gray Concrete"
+	},
+	"minecraft:pink_concrete": {
+		"default": "Pink Concrete"
+	},
+	"minecraft:lime_concrete": {
+		"default": "Lime Concrete"
+	},
+	"minecraft:yellow_concrete": {
+		"default": "Yellow Concrete"
+	},
+	"minecraft:light_blue_concrete": {
+		"default": "Light Blue Concrete"
+	},
+	"minecraft:magenta_concrete": {
+		"default": "Magenta Concrete"
+	},
+	"minecraft:orange_concrete": {
+		"default": "Orange Concrete"
+	},
+	"minecraft:white_concrete": {
+		"default": "White Concrete"
+	},
+
+	"minecraft:black_concrete_powder": {
+		"default": "Black Concrete Powder"
+	},
+	"minecraft:red_concrete_powder": {
+		"default": "Red Concrete Powder"
+	},
+	"minecraft:green_concrete_powder": {
+		"default": "Green Concrete Powder"
+	},
+	"minecraft:brown_concrete_powder": {
+		"default": "Brown Concrete Powder"
+	},
+	"minecraft:blue_concrete_powder": {
+		"default": "Blue Concrete Powder"
+	},
+	"minecraft:purple_concrete_powder": {
+		"default": "Purple Concrete Powder"
+	},
+	"minecraft:cyan_concrete_powder": {
+		"default": "Cyan Concrete Powder"
+	},
+	"minecraft:silver_concrete_powder": {
+		"default": "Light Gray Concrete Powder"
+	},
+	"minecraft:gray_concrete_powder": {
+		"default": "Gray Concrete Powder"
+	},
+	"minecraft:pink_concrete_powder": {
+		"default": "Pink Concrete Powder"
+	},
+	"minecraft:lime_concrete_powder": {
+		"default": "Lime Concrete Powder"
+	},
+	"minecraft:yellow_concrete_powder": {
+		"default": "Yellow Concrete Powder"
+	},
+	"minecraft:light_blue_concrete_powder": {
+		"default": "Light Blue Concrete Powder"
+	},
+	"minecraft:magenta_concrete_powder": {
+		"default": "Magenta Concrete Powder"
+	},
+	"minecraft:orange_concrete_powder": {
+		"default": "Orange Concrete Powder"
+	},
+	"minecraft:white_concrete_powder": {
+		"default": "White Concrete Powder"
 	},
 	"minecraft:cocoa": {
 		"default": "Cocoa Bean"
@@ -477,10 +538,10 @@
 		"default": "Black Glazed Terracotta"
 	},
 	"minecraft:gray_glazed_terracotta": {
-		"default": "Red Glazed Terracotta"
+		"default": "Gray Glazed Terracotta"
 	},
 	"minecraft:silver_glazed_terracotta": {
-		"default": "Light Grey Glazed Terracotta"
+		"default": "Light Gray Glazed Terracotta"
 	},
 	"minecraft:white_glazed_terracotta": {
 		"default": "White Glazed Terracotta"
@@ -573,10 +634,10 @@
 		"default": "Lime Candle"
 	},
 	"minecraft:gray_candle": {
-		"default": "Grey Candle"
+		"default": "Gray Candle"
 	},
 	"minecraft:light_gray_candle": {
-		"default": "Light Grey Candle"
+		"default": "Light Gray Candle"
 	},
 	"minecraft:purple_candle": {
 		"default": "Purple Candle"
@@ -596,23 +657,50 @@
 	"minecraft:black_candle": {
 		"default": "Black Candle"
 	},
-	"minecraft:shulker_box": {
-		"white": "White Shulker Box",
-		"gray": "Grey Shulker Box",
-		"silver": "Light Grey Shulker Box",
-		"green": "Green Shulker Box",
-		"black": "Black Shulker Box",
-		"cyan": "Cyan Shulker Box",
-		"brown": "Brown Shulker Box",
-		"light_blue": "Light Blue Shulker Box",
-		"red": "Red Shulker Box",
-		"blue": "Blue Shulker Box",
-		"orange": "Orange Shulker Box",
-		"purple": "Purple Shulker Box",
-		"lime": "Lime Shulker Box",
-		"pink": "Pink Shulker Box",
-		"magenta": "Magenta Shulker Box",
-		"default": "Shulker Box"
+	"minecraft:white_shulker_box": {
+		"default": "White Shulker Box"
+	},
+	"minecraft:gray_shulker_box": {
+		"default": "Gray Shulker Box"
+	},
+	"minecraft:silver_shulker_box": {
+		"default": "Light Gray Shulker Box"
+	},
+	"minecraft:green_shulker_box": {
+		"default": "Green Shulker Box"
+	},
+	"minecraft:black_shulker_box": {
+		"default": "Black Shulker Box"
+	},
+	"minecraft:cyan_shulker_box": {
+		"default": "Cyan Shulker Box"
+	},
+	"minecraft:brown_shulker_box": {
+		"default": "Brown Shulker Box"
+	},
+	"minecraft:light_blue_shulker_box": {
+		"default": "Light Blue Shulker Box"
+	},
+	"minecraft:red_shulker_box": {
+		"default": "Red Shulker Box"
+	},
+	"minecraft:blue_shulker_box": {
+		"default": "Blue Shulker Box"
+	},
+	"minecraft:orange_shulker_box": {
+		"default": "Orange Shulker Box"
+	},
+	"minecraft:purple_shulker_box": {
+		"default": "Purple Shulker Box"
+	},
+	"minecraft:lime_shulker_box": {
+		"default": "Lime Shulker Box"
+	},
+	"minecraft:pink_shulker_box": {
+		"default": "Pink Shulker Box"
+	},
+	"minecraft:magenta_shulker_box": {
+		"default": "Magenta Shulker Box"
 	},
 	"minecraft:undyed_shulker_box": {
 		"default": "Shulker Box"

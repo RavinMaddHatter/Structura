@@ -397,7 +397,7 @@
     "waterlily": "lilypad",
     "warped_stem": "cube",
     "campfire": "campfire",
-    "carpet": "carpet",
+    "gray_carpet": "carpet",
     "black_carpet": "carpet",
     "red_carpet": "carpet",
     "green_carpet": "carpet",
@@ -854,7 +854,6 @@
     "cherry_wall_sign":"wall_sign",
     "cherry_planks":"cube",
     "cherry_slab":"slab",
-    "cherry_sapling":"cross_texture",
     "cherry_wood":"cube",
     "cherry_button":"button",
     "cherry_pressure_plate":"pressure_plate",
@@ -872,7 +871,6 @@
 	"suspicious_gravel":"cube",
 	"suspicious_sand":"cube",
 	"pink_petals":"ignore",
-	"cherry_trapdoor":"trapdoor",
 	"cherry_hanging_sign":"ignore",
 	"warped_hanging_sign":"ignore",
 	"crimson_hanging_sign":"ignore",
@@ -887,7 +885,5 @@
 	"cherry_double_slab": "cube",
 	"cherry_sapling":"cross_texture",
 	"decorated_pot":"cube",
-	"bamboo_mosaic":"cube",
-	"bamboo_planks":"cube",
 	"bamboo_double_slab":"cube"
 }
