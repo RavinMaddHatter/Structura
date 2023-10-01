@@ -541,11 +541,11 @@
   "chain_command_block": {
     "sound": "metal",
     "textures": {
-      "down": "command_block_chain_conditional_side",
+      "down": "command_block_chain_back",
       "east": "command_block_chain_side",
-      "north": "command_block_chain_front",
+      "north": "command_block_chain_back",
       "south": "command_block_chain_back",
-      "up": "command_block_chain_conditional_side",
+      "up": "command_block_chain_front",
       "west": "command_block_chain_side"
     }
   },
@@ -633,11 +633,11 @@
   "command_block": {
     "sound": "metal",
     "textures": {
-      "down": "command_block_conditional_side",
+      "down": "command_block_back",
       "east": "command_block_side",
-      "north": "command_block_front",
-      "south": "command_block_back",
-      "up": "command_block_conditional_side",
+      "north": "command_block_side",
+      "south": "command_block_side",
+      "up": "command_block_front",
       "west": "command_block_side"
     }
   },
@@ -2746,11 +2746,11 @@
   "repeating_command_block": {
     "sound": "metal",
     "textures": {
-      "down": "command_block_repeating_conditional_side",
+      "down": "command_block_repeating_back",
       "east": "command_block_repeating_side",
-      "north": "command_block_repeating_front",
-      "south": "command_block_repeating_back",
-      "up": "command_block_repeating_conditional_side",
+      "north": "command_block_repeating_side",
+      "south": "command_block_repeating_side",
+      "up": "command_block_repeating_front",
       "west": "command_block_repeating_side"
     }
   },
