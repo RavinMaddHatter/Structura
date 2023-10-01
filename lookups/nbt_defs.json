@@ -28,6 +28,7 @@
 	"open_bit":"open_bit",
 	"repeater_delay":"data",
 	"output_subtract_bit":"data",
+	"candles":"data",
 	"ground_sign_direction":"rot",
 	"upper_block_bit":"top",
 	"bite_counter":"data",
