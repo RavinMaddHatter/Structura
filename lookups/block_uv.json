@@ -1186,7 +1186,7 @@
 			}
 		}
 	},
-	"comparator": {
+	"unpowered_comparator": {
 		"default": {
 			"uv_sizes": {
 				"up": [
@@ -1443,6 +1443,266 @@
 				"south": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"],
 				"east": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"],
 				"west": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_on"]
+			}
+		}
+	},
+	"comparator": {
+		"default": {
+			"uv_sizes": {
+				"up": [
+					[1, 1],
+					[0.125, 0.125],
+					[0.125, 0.125],
+					[0.125, 0.125]
+				],
+				"down": [
+					[1, 1],
+					[0.125, 0.125],
+					[0.125, 0.125],
+					[0.125, 0.125]
+				],
+				"north": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"south": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"east": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"west": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"down": [
+					[0, 0],
+					[0.4375, 0.5],
+					[0.4375, 0.5],
+					[0.4375, 0.5]
+				],
+				"north": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"south": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"east": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"west": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				]
+			},
+			"overwrite": {
+				"up": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_off"],
+				"down": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_off"],
+				"north": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_off"],
+				"south": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_off"],
+				"east": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_off"],
+				"west": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_off"]
+			}
+		},
+		"True": {
+			"uv_sizes": {
+				"up": [
+					[1, 1],
+					[0.125, 0.125],
+					[0.125, 0.125],
+					[0.125, 0.125]
+				],
+				"down": [
+					[1, 1],
+					[0.125, 0.125],
+					[0.125, 0.125],
+					[0.125, 0.125]
+				],
+				"north": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"south": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"east": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"west": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"down": [
+					[0, 0],
+					[0.4375, 0.5],
+					[0.4375, 0.5],
+					[0.4375, 0.5]
+				],
+				"north": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"south": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"east": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"west": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				]
+			},
+			"overwrite": {
+				"up": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"down": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"north": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"south": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"east": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"west": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"]
+			}
+		},
+		"1": {
+			"uv_sizes": {
+				"up": [
+					[1, 1],
+					[0.125, 0.125],
+					[0.125, 0.125],
+					[0.125, 0.125]
+				],
+				"down": [
+					[1, 1],
+					[0.125, 0.125],
+					[0.125, 0.125],
+					[0.125, 0.125]
+				],
+				"north": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"south": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"east": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				],
+				"west": [
+					[1, 1],
+					[0.125, 0.4375],
+					[0.125, 0.4375],
+					[0.125, 0.25]
+				]
+			},
+			"offset": {
+				"up": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"down": [
+					[0, 0],
+					[0.4375, 0.5],
+					[0.4375, 0.5],
+					[0.4375, 0.5]
+				],
+				"north": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"south": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"east": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				],
+				"west": [
+					[0, 0],
+					[0.4375, 0.375],
+					[0.4375, 0.375],
+					[0.4375, 0.375]
+				]
+			},
+			"overwrite": {
+				"up": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"down": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"north": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"south": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"east": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"],
+				"west": ["default", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on", "textures/blocks/redstone_torch_on"]
 			}
 		}
 	},
@@ -3203,148 +3463,54 @@
 			}
 		}
 	},
-	"repeater": {
+	"unpowered_repeater": {
 		"default": {
 			"uv_sizes": {
-				"up": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"down": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"north": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"south": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"east": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"west": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				]
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
 			},
 			"offset": {
-				"up": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]
 				],
-				"down": [
-					[0, 0],
-					[0.4375, 0.5],
-					[0.4375, 0.5]
-				],
-				"north": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"south": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"east": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"west": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				]
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]]
 			},
 			"overwrite": {
-				"up": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
-				"down": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
-				"north": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
-				"south": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
-				"east": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
-				"west": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"]
+				"up": ["default","textures/blocks/redstone_torch_off",  "textures/blocks/redstone_torch_off"],
+				"down": ["default","textures/blocks/redstone_torch_off",  "textures/blocks/redstone_torch_off"],
+				"north": ["default","textures/blocks/redstone_torch_off",  "textures/blocks/redstone_torch_off"],
+				"south": ["default","textures/blocks/redstone_torch_off",  "textures/blocks/redstone_torch_off"],
+				"east": ["default","textures/blocks/redstone_torch_off",  "textures/blocks/redstone_torch_off"],
+				"west": ["default","textures/blocks/redstone_torch_off",  "textures/blocks/redstone_torch_off"]
 			}
 		},
 		"1": {
 			"uv_sizes": {
-				"up": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"down": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"north": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"south": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"east": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"west": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				]
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1], [0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
 			},
 			"offset": {
-				"up": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"down": [
-					[0, 0],
-					[0.4375, 0.5],
-					[0.4375, 0.5]
-				],
-				"north": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"south": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"east": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"west": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]
 				]
 			},
 			"overwrite": {
-				"up": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
+				"up": ["default",  "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
 				"down": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
 				"north": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
 				"south": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
@@ -3354,67 +3520,20 @@
 		},
 		"2": {
 			"uv_sizes": {
-				"up": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"down": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"north": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"south": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"east": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"west": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				]
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
 			},
 			"offset": {
-				"up": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"down": [
-					[0, 0],
-					[0.4375, 0.5],
-					[0.4375, 0.5]
-				],
-				"north": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"south": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"east": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"west": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]
 				]
 			},
 			"overwrite": {
@@ -3428,68 +3547,20 @@
 		},
 		"3": {
 			"uv_sizes": {
-				"up": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"down": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"north": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"south": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"east": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"west": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				]
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
 			},
 			"offset": {
-				"up": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"down": [
-					[0, 0],
-					[0.4375, 0.5],
-					[0.4375, 0.5]
-				],
-				"north": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"south": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"east": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"west": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				]
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]]
 			},
 			"overwrite": {
 				"up": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
@@ -3502,68 +3573,20 @@
 		},
 		"4": {
 			"uv_sizes": {
-				"up": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"down": [
-					[1, 1],
-					[0.125, 0.125],
-					[0.125, 0.125]
-				],
-				"north": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"south": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"east": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				],
-				"west": [
-					[1, 1],
-					[0.125, 0.4375],
-					[0.125, 0.4375]
-				]
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
 			},
 			"offset": {
-				"up": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"down": [
-					[0, 0],
-					[0.4375, 0.5],
-					[0.4375, 0.5]
-				],
-				"north": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"south": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"east": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				],
-				"west": [
-					[0, 0],
-					[0.4375, 0.375],
-					[0.4375, 0.375]
-				]
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]]
 			},
 			"overwrite": {
 				"up": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
@@ -3572,6 +3595,142 @@
 				"south": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
 				"east": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"],
 				"west": ["default", "textures/blocks/redstone_torch_off", "textures/blocks/redstone_torch_off"]
+			}
+		}
+	},
+	
+	"repeater": {
+		"default": {
+			"uv_sizes": {
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
+			},
+			"offset": {
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]
+				],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]]
+			},
+			"overwrite": {
+				"up": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"down": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"north": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"south": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"east": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"west": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"]
+			}
+		},
+		"1": {
+			"uv_sizes": {
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1], [0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
+			},
+			"offset": {
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]
+				]
+			},
+			"overwrite": {
+				"up": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"down": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"north": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"south": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"east": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"west": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"]
+			}
+		},
+		"2": {
+			"uv_sizes": {
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
+			},
+			"offset": {
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]
+				]
+			},
+			"overwrite": {
+				"up": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"down": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"north": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"south": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"east": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"west": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"]
+			}
+		},
+		"3": {
+			"uv_sizes": {
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
+			},
+			"offset": {
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]]
+			},
+			"overwrite": {
+				"up": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"down": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"north": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"south": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"east": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"west": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"]
+			}
+		},
+		"4": {
+			"uv_sizes": {
+				"up": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"down": [[1, 1],[0.125, 0.125],[0.125, 0.125]],
+				"north": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"south": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"east": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]],
+				"west": [[1, 1],[0.125, 0.4375],[0.125, 0.4375]]
+			},
+			"offset": {
+				"up": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"down": [[0, 0],[0.4375, 0.5],[0.4375, 0.5]],
+				"north": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"south": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"east": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]],
+				"west": [[0, 0],[0.4375, 0.375],[0.4375, 0.375]]
+			},
+			"overwrite": {
+				"up": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"down": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"north": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"south": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"east": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"],
+				"west": ["default","textures/blocks/redstone_torch_on",  "textures/blocks/redstone_torch_on"]
 			}
 		}
 	},

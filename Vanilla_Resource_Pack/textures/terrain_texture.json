@@ -672,6 +672,22 @@
 	"magenta_concrete": {"textures": "textures/blocks/concrete_magenta"},
 	"orange_concrete": {"textures": "textures/blocks/concrete_orange"},
 	"white_concrete": {"textures": "textures/blocks/concrete_white"},
+	"black_concrete_powder":{"textures":"textures/blocks/concrete_powder_black"},
+	"red_concrete_powder":{"textures":"textures/blocks/concrete_powder_red"},
+	"green_concrete_powder":{"textures":"textures/blocks/concrete_powder_green"},
+	"brown_concrete_powder":{"textures":"textures/blocks/concrete_powder_brown"},
+	"blue_concrete_powder":{"textures":"textures/blocks/concrete_powder_blue"},
+	"purple_concrete_powder":{"textures":"textures/blocks/concrete_powder_purple"},
+	"cyan_concrete_powder":{"textures":"textures/blocks/concrete_powder_cyan"},
+	"light_gray_concrete_powder":{"textures":"textures/blocks/concrete_powder_silver"},
+	"gray_concrete_powder":{"textures":"textures/blocks/concrete_powder_gray"},
+	"pink_concrete_powder":{"textures":"textures/blocks/concrete_powder_pink"},
+	"lime_concrete_powder":{"textures":"textures/blocks/concrete_powder_lime"},
+	"yellow_concrete_powder":{"textures":"textures/blocks/concrete_powder_yellow"},
+	"light_blue_concrete_powder":{"textures":"textures/blocks/concrete_powder_light_blue"},
+	"magenta_concrete_powder":{"textures":"textures/blocks/concrete_powder_magenta"},
+	"orange_concrete_powder":{"textures":"textures/blocks/concrete_powder_orange"},
+	"white_concrete_powder":{"textures":"textures/blocks/concrete_powder_white"},
     "concretePowder": {
       "textures": [
         "textures/blocks/concrete_powder_white",
@@ -2972,6 +2988,22 @@
     "spruce_trapdoor": {
       "textures": "textures/blocks/spruce_trapdoor"
     },
+	"black_terracotta":{"textures":"textures/blocks/hardened_clay_stained_black"},
+	"white_terracotta":{"textures":"textures/blocks/hardened_clay_stained_white"},
+	"orange_terracotta":{"textures":"textures/blocks/hardened_clay_stained_orange"},
+	"magenta_terracotta":{"textures":"textures/blocks/hardened_clay_stained_magenta"},
+	"light_blue_terracotta":{"textures":"textures/blocks/hardened_clay_stained_light_blue"},
+	"yellow_terracotta":{"textures":"textures/blocks/hardened_clay_stained_yellow"},
+	"lime_terracotta":{"textures":"textures/blocks/hardened_clay_stained_lime"},
+	"pink_terracotta":{"textures":"textures/blocks/hardened_clay_stained_pink"},
+	"gray_terracotta":{"textures":"textures/blocks/hardened_clay_stained_gray"},
+	"light_gray_terracotta":{"textures":"textures/blocks/hardened_clay_stained_silver"},
+	"cyan_terracotta":{"textures":"textures/blocks/hardened_clay_stained_cyan"},
+	"purple_terracotta":{"textures":"textures/blocks/hardened_clay_stained_purple"},
+	"blue_terracotta":{"textures":"textures/blocks/hardened_clay_stained_blue"},
+	"brown_terracotta":{"textures":"textures/blocks/hardened_clay_stained_brown"},
+	"green_terracotta":{"textures":"textures/blocks/hardened_clay_stained_green"},
+	"red_terracotta":{"textures":"textures/blocks/hardened_clay_stained_red"},
     "stained_clay": {
       "textures": [
         "textures/blocks/hardened_clay_stained_white",
@@ -2992,6 +3024,23 @@
         "textures/blocks/hardened_clay_stained_black"
       ]
     },
+	
+	"magenta_stained_glass_pane":{"textures":"textures/blocks/glass_magenta"},
+	"white_stained_glass_pane":{"textures":"textures/blocks/glass_white"},
+	"orange_stained_glass_pane":{"textures":"textures/blocks/glass_orange"},
+	"light_blue_stained_glass_pane":{"textures":"textures/blocks/glass_light_blue"},
+	"yellow_stained_glass_pane":{"textures":"textures/blocks/glass_yellow"},
+	"lime_stained_glass_pane":{"textures":"textures/blocks/glass_lime"},
+	"pink_stained_glass_pane":{"textures":"textures/blocks/glass_pink"},
+	"green_stained_glass_pane":{"textures":"textures/blocks/glass_green"},
+	"gray_stained_glass_pane":{"textures":"textures/blocks/glass_gray"},
+	"light_gray_stained_glass_pane":{"textures":"textures/blocks/glass_silver"},
+	"cyan_stained_glass_pane":{"textures":"textures/blocks/glass_cyan"},
+	"purple_stained_glass_pane":{"textures":"textures/blocks/glass_purple"},
+	"blue_stained_glass_pane":{"textures":"textures/blocks/glass_blue"},
+	"brown_stained_glass_pane":{"textures":"textures/blocks/glass_brown"},
+	"red_stained_glass_pane":{"textures":"textures/blocks/glass_red"},
+	"black_stained_glass_pane":{"textures":"textures/blocks/glass_black"},
     "stained_glass": {
       "textures": [
         "textures/blocks/glass_white",
