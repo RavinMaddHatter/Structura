@@ -1,0 +1,104 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "white_stained_glass": {
+      "textures": "textures/blocks/glass_white"
+    },
+    "orange_stained_glass": {
+      "textures": "textures/blocks/glass_orange"
+    },
+    "magenta_stained_glass": {
+      "textures": "textures/blocks/glass_magenta"
+    },
+    "light_blue_stained_glass": {
+      "textures": "textures/blocks/glass_light_blue"
+    },
+    "yellow_stained_glass": {
+      "textures": "textures/blocks/glass_yellow"
+    },
+    "lime_stained_glass": {
+      "textures": "textures/blocks/glass_lime"
+    },
+    "pink_stained_glass": {
+      "textures": "textures/blocks/glass_pink"
+    },
+    "gray_stained_glass": {
+      "textures": "textures/blocks/glass_gray"
+    },
+    "light_gray_stained_glass": {
+      "textures": "textures/blocks/glass_silver"
+    },
+    "cyan_stained_glass": {
+      "textures": "textures/blocks/glass_cyan"
+    },
+    "purple_stained_glass": {
+      "textures": "textures/blocks/glass_purple"
+    },
+    "blue_stained_glass": {
+      "textures": "textures/blocks/glass_blue"
+    },
+    "brown_stained_glass": {
+      "textures": "textures/blocks/glass_brown"
+    },
+    "green_stained_glass": {
+      "textures": "textures/blocks/glass_green"
+    },
+    "red_stained_glass": {
+      "textures": "textures/blocks/glass_red"
+    },
+    "black_stained_glass": {
+      "textures": "textures/blocks/glass_black"
+    },
+    "white_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_white"
+    },
+    "orange_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_orange"
+    },
+    "magenta_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_magenta"
+    },
+    "light_blue_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_light_blue"
+    },
+    "yellow_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_yellow"
+    },
+    "lime_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_lime"
+    },
+    "pink_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_pink"
+    },
+    "gray_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_gray"
+    },
+    "light_gray_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_silver"
+    },
+    "cyan_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_cyan"
+    },
+    "purple_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_purple"
+    },
+    "blue_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_blue"
+    },
+    "brown_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_brown"
+    },
+    "green_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_green"
+    },
+    "red_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_red"
+    },
+    "black_stained_glass_pane_top": {
+      "textures": "textures/blocks/glass_pane_top_black"
+    }
+  }
+}

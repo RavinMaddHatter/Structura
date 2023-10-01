@@ -1,0 +1,247 @@
+{
+  "format_version": [
+    1,
+    1,
+    0
+  ],
+  "white_stained_glass": {
+    "textures": "white_stained_glass",
+    "sound": "glass"
+  },
+  "orange_stained_glass": {
+    "textures": "orange_stained_glass",
+    "sound": "glass"
+  },
+  "magenta_stained_glass": {
+    "textures": "magenta_stained_glass",
+    "sound": "glass"
+  },
+  "light_blue_stained_glass": {
+    "textures": "light_blue_stained_glass",
+    "sound": "glass"
+  },
+  "yellow_stained_glass": {
+    "textures": "yellow_stained_glass",
+    "sound": "glass"
+  },
+  "lime_stained_glass": {
+    "textures": "lime_stained_glass",
+    "sound": "glass"
+  },
+  "pink_stained_glass": {
+    "textures": "pink_stained_glass",
+    "sound": "glass"
+  },
+  "gray_stained_glass": {
+    "textures": "gray_stained_glass",
+    "sound": "glass"
+  },
+  "light_gray_stained_glass": {
+    "textures": "light_gray_stained_glass",
+    "sound": "glass"
+  },
+  "cyan_stained_glass": {
+    "textures": "cyan_stained_glass",
+    "sound": "glass"
+  },
+  "purple_stained_glass": {
+    "textures": "purple_stained_glass",
+    "sound": "glass"
+  },
+  "blue_stained_glass": {
+    "textures": "blue_stained_glass",
+    "sound": "glass"
+  },
+  "brown_stained_glass": {
+    "textures": "brown_stained_glass",
+    "sound": "glass"
+  },
+  "green_stained_glass": {
+    "textures": "green_stained_glass",
+    "sound": "glass"
+  },
+  "red_stained_glass": {
+    "textures": "red_stained_glass",
+    "sound": "glass"
+  },
+  "black_stained_glass": {
+    "textures": "black_stained_glass",
+    "sound": "glass"
+  },
+  "white_stained_glass_pane": {  
+    "textures": {
+      "up": "white_stained_glass",
+      "down": "white_stained_glass",
+      "north": "white_stained_glass",
+      "south": "white_stained_glass",
+      "west": "white_stained_glass",
+      "east": "white_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "orange_stained_glass_pane": {
+    "textures": {
+      "up": "orange_stained_glass",
+      "down": "orange_stained_glass",
+      "north": "orange_stained_glass",
+      "south": "orange_stained_glass",
+      "west": "orange_stained_glass",
+      "east": "orange_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "magenta_stained_glass_pane": {
+    "textures": {
+      "up": "magenta_stained_glass",
+      "down": "magenta_stained_glass",
+      "north": "magenta_stained_glass",
+      "south": "magenta_stained_glass",
+      "west": "magenta_stained_glass",
+      "east": "magenta_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "light_blue_stained_glass_pane": {
+    "textures": {
+      "up": "light_blue_stained_glass",
+      "down": "light_blue_stained_glass",
+      "north": "light_blue_stained_glass",
+      "south": "light_blue_stained_glass",
+      "west": "light_blue_stained_glass",
+      "east": "light_blue_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "yellow_stained_glass_pane": {
+    "textures": {
+      "up": "yellow_stained_glass",
+      "down": "yellow_stained_glass",
+      "north": "yellow_stained_glass",
+      "south": "yellow_stained_glass",
+      "west": "yellow_stained_glass",
+      "east": "yellow_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "lime_stained_glass_pane": {
+    "textures": {
+      "up": "lime_stained_glass",
+      "down": "lime_stained_glass",
+      "north": "lime_stained_glass",
+      "south": "lime_stained_glass",
+      "west": "lime_stained_glass",
+      "east": "lime_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "pink_stained_glass_pane": {
+    "textures": {
+      "up": "pink_stained_glass",
+      "down": "pink_stained_glass",
+      "north": "pink_stained_glass",
+      "south": "pink_stained_glass",
+      "west": "pink_stained_glass",
+      "east": "pink_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "gray_stained_glass_pane": {
+    "textures": {
+      "up": "gray_stained_glass",
+      "down": "gray_stained_glass",
+      "north": "gray_stained_glass",
+      "south": "gray_stained_glass",
+      "west": "gray_stained_glass",
+      "east": "gray_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "light_gray_stained_glass_pane": {
+    "textures": {
+      "up": "light_gray_stained_glass",
+      "down": "light_gray_stained_glass",
+      "north": "light_gray_stained_glass",
+      "south": "light_gray_stained_glass",
+      "west": "light_gray_stained_glass",
+      "east": "light_gray_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "cyan_stained_glass_pane": {
+    "textures": {
+      "up": "cyan_stained_glass",
+      "down": "cyan_stained_glass",
+      "north": "cyan_stained_glass",
+      "south": "cyan_stained_glass",
+      "west": "cyan_stained_glass",
+      "east": "cyan_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "purple_stained_glass_pane": {
+    "textures": {
+      "up": "purple_stained_glass",
+      "down": "purple_stained_glass",
+      "north": "purple_stained_glass",
+      "south": "purple_stained_glass",
+      "west": "purple_stained_glass",
+      "east": "purple_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "blue_stained_glass_pane": {
+    "textures": {
+      "up": "blue_stained_glass",
+      "down": "blue_stained_glass",
+      "north": "blue_stained_glass",
+      "south": "blue_stained_glass",
+      "west": "blue_stained_glass",
+      "east": "blue_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "brown_stained_glass_pane": {
+    "textures": {
+      "up": "brown_stained_glass",
+      "down": "brown_stained_glass",
+      "north": "brown_stained_glass",
+      "south": "brown_stained_glass",
+      "west": "brown_stained_glass",
+      "east": "brown_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "green_stained_glass_pane": {
+    "textures": {
+      "up": "green_stained_glass",
+      "down": "green_stained_glass",
+      "north": "green_stained_glass",
+      "south": "green_stained_glass",
+      "west": "green_stained_glass",
+      "east": "green_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "red_stained_glass_pane": {
+    "textures": {
+      "up": "red_stained_glass",
+      "down": "red_stained_glass",
+      "north": "red_stained_glass",
+      "south": "red_stained_glass",
+      "west": "red_stained_glass",
+      "east": "red_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  },
+  "black_stained_glass_pane": {
+    "textures": {
+      "up": "black_stained_glass",
+      "down": "black_stained_glass",
+      "north": "black_stained_glass",
+      "south": "black_stained_glass",
+      "west": "black_stained_glass",
+      "east": "black_stained_glass_pane_top"
+    },
+    "sound": "glass"
+  }
+}
