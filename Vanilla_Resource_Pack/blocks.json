@@ -653,22 +653,54 @@
     "sound": "stone",
     "textures": "concrete"
   },
-  "black_concrete":{"textures": "black_concrete"},
-  "red_concrete":{"textures": "red_concrete"},
-  "green_concrete":{"textures": "green_concrete"},
-  "brown_concrete":{"textures": "brown_concrete"},
-  "blue_concrete":{"textures": "blue_concrete"},
-  "purple_concrete":{"textures": "purple_concrete"},
-  "cyan_concrete":{"textures": "cyan_concrete"},
-  "light_gray_concrete":{"textures": "light_gray_concrete"},
-  "gray_concrete":{"textures": "gray_concrete"},
-  "pink_concrete":{"textures": "pink_concrete"},
-  "lime_concrete":{"textures": "lime_concrete"},
-  "yellow_concrete":{"textures": "yellow_concrete"},
-  "light_blue_concrete":{"textures": "light_blue_concrete"},
-  "magenta_concrete":{"textures": "magenta_concrete"},
-  "orange_concrete":{"textures": "orange_concrete"},
-  "white_concrete":{"textures": "white_concrete"},
+  "black_concrete": {
+    "textures": "black_concrete"
+  },
+  "red_concrete": {
+    "textures": "red_concrete"
+  },
+  "green_concrete": {
+    "textures": "green_concrete"
+  },
+  "brown_concrete": {
+    "textures": "brown_concrete"
+  },
+  "blue_concrete": {
+    "textures": "blue_concrete"
+  },
+  "purple_concrete": {
+    "textures": "purple_concrete"
+  },
+  "cyan_concrete": {
+    "textures": "cyan_concrete"
+  },
+  "light_gray_concrete": {
+    "textures": "light_gray_concrete"
+  },
+  "gray_concrete": {
+    "textures": "gray_concrete"
+  },
+  "pink_concrete": {
+    "textures": "pink_concrete"
+  },
+  "lime_concrete": {
+    "textures": "lime_concrete"
+  },
+  "yellow_concrete": {
+    "textures": "yellow_concrete"
+  },
+  "light_blue_concrete": {
+    "textures": "light_blue_concrete"
+  },
+  "magenta_concrete": {
+    "textures": "magenta_concrete"
+  },
+  "orange_concrete": {
+    "textures": "orange_concrete"
+  },
+  "white_concrete": {
+    "textures": "white_concrete"
+  },
   "concrete_powder": {
     "sound": "sand",
     "textures": "concretePowder"
@@ -2846,23 +2878,54 @@
     "sound": "shroomlight",
     "textures": "shroomlight"
   },
-  "shulker_box": {"textures": "shulker_box_top"},
-  "white_shulker_box": {"textures": "white_shulker_box"},
-  "gray_shulker_box": {"textures": "gray_shulker_box"},
-  "light_gray_shulker_box": {"textures": "light_gray_shulker_box"},
-  "green_shulker_box": {"textures": "green_shulker_box"},
-  "black_shulker_box": {"textures": "black_shulker_box"},
-  "cyan_shulker_box": {"textures": "cyan_shulker_box"},
-  "brown_shulker_box": {"textures": "brown_shulker_box"},
-  "light_blue_shulker_box": {"textures": "light_blue_shulker_box"},
-  "red_shulker_box": {"textures": "red_shulker_box"},
-  "blue_shulker_box": {"textures": "blue_shulker_box"},
-  "orange_shulker_box": {"textures": "orange_shulker_box"},
-  "purple_shulker_box": {"textures": "purple_shulker_box"},
-  "lime_shulker_box": {"textures": "lime_shulker_box"},
-  "pink_shulker_box": {"textures": "pink_shulker_box"},
-  "magenta_shulker_box": {"textures": "magenta_shulker_box"},
-  
+  "shulker_box": {
+    "textures": "shulker_box_top"
+  },
+  "white_shulker_box": {
+    "textures": "white_shulker_box"
+  },
+  "gray_shulker_box": {
+    "textures": "gray_shulker_box"
+  },
+  "light_gray_shulker_box": {
+    "textures": "light_gray_shulker_box"
+  },
+  "green_shulker_box": {
+    "textures": "green_shulker_box"
+  },
+  "black_shulker_box": {
+    "textures": "black_shulker_box"
+  },
+  "cyan_shulker_box": {
+    "textures": "cyan_shulker_box"
+  },
+  "brown_shulker_box": {
+    "textures": "brown_shulker_box"
+  },
+  "light_blue_shulker_box": {
+    "textures": "light_blue_shulker_box"
+  },
+  "red_shulker_box": {
+    "textures": "red_shulker_box"
+  },
+  "blue_shulker_box": {
+    "textures": "blue_shulker_box"
+  },
+  "orange_shulker_box": {
+    "textures": "orange_shulker_box"
+  },
+  "purple_shulker_box": {
+    "textures": "purple_shulker_box"
+  },
+  "lime_shulker_box": {
+    "textures": "lime_shulker_box"
+  },
+  "pink_shulker_box": {
+    "textures": "pink_shulker_box"
+  },
+  "magenta_shulker_box": {
+    "textures": "magenta_shulker_box"
+  },
   "silver_glazed_terracotta": {
     "sound": "stone",
     "textures": "silver_glazed_terracotta"
@@ -4346,5 +4409,9 @@
   "yellow_carpet": {
     "sound": "cloth",
     "textures": "wool_colored_yellow"
+  },
+  "yellow_shulker_box": {
+    "textures": "yellow_shulker_box",
+    "sound": "stone"
   }
 }

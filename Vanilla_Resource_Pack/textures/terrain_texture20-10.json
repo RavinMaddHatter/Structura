@@ -1,0 +1,104 @@
+{
+	"resource_pack_name": "vanilla",
+	"texture_name": "atlas.terrain",
+	"padding": 8,
+	"num_mip_levels": 4,
+  "texture_data": {
+    "white_shulker_box": {
+      "textures": "textures/blocks/shulker_top_white"
+    },
+    "orange_shulker_box": {
+      "textures": "textures/blocks/shulker_top_orange"
+    },
+    "magenta_shulker_box": {
+      "textures": "textures/blocks/shulker_top_magenta"
+    },
+    "light_blue_shulker_box": {
+      "textures": "textures/blocks/shulker_top_light_blue"
+    },
+    "yellow_shulker_box": {
+      "textures": "textures/blocks/shulker_top_yellow"
+    },
+    "lime_shulker_box": {
+      "textures": "textures/blocks/shulker_top_lime"
+    },
+    "pink_shulker_box": {
+      "textures": "textures/blocks/shulker_top_pink"
+    },
+    "gray_shulker_box": {
+      "textures": "textures/blocks/shulker_top_gray"
+    },
+    "light_gray_shulker_box": {
+      "textures": "textures/blocks/shulker_top_silver"
+    },
+    "cyan_shulker_box": {
+      "textures": "textures/blocks/shulker_top_cyan"
+    },
+    "purple_shulker_box": {
+      "textures": "textures/blocks/shulker_top_purple"
+    },
+    "blue_shulker_box": {
+      "textures": "textures/blocks/shulker_top_blue"
+    },
+    "brown_shulker_box": {
+      "textures": "textures/blocks/shulker_top_brown"
+    },
+    "green_shulker_box": {
+      "textures": "textures/blocks/shulker_top_green"
+    },
+    "red_shulker_box": {
+      "textures": "textures/blocks/shulker_top_red"
+    },
+    "black_shulker_box": {
+      "textures": "textures/blocks/shulker_top_black"
+    },
+    "white_concrete": {
+      "textures": "textures/blocks/concrete_white"
+    },
+    "orange_concrete": {
+      "textures": "textures/blocks/concrete_orange"
+    },
+    "magenta_concrete": {
+      "textures": "textures/blocks/concrete_magenta"
+    },
+    "light_blue_concrete": {
+      "textures": "textures/blocks/concrete_light_blue"
+    },
+    "yellow_concrete": {
+      "textures": "textures/blocks/concrete_yellow"
+    },
+    "lime_concrete": {
+      "textures": "textures/blocks/concrete_lime"
+    },
+    "pink_concrete": {
+      "textures": "textures/blocks/concrete_pink"
+    },
+    "gray_concrete": {
+      "textures": "textures/blocks/concrete_gray"
+    },
+    "light_gray_concrete": {
+      "textures": "textures/blocks/concrete_silver"
+    },
+    "cyan_concrete": {
+      "textures": "textures/blocks/concrete_cyan"
+    },
+    "purple_concrete": {
+      "textures": "textures/blocks/concrete_purple"
+    },
+    "blue_concrete": {
+      "textures": "textures/blocks/concrete_blue"
+    },
+    "brown_concrete": {
+      "textures": "textures/blocks/concrete_brown"
+    },
+    "green_concrete": {
+      "textures": "textures/blocks/concrete_green"
+    },
+    "red_concrete": {
+      "textures": "textures/blocks/concrete_red"
+    },
+    "black_concrete": {
+      "textures": "textures/blocks/concrete_black"
+    }
+  }
+}

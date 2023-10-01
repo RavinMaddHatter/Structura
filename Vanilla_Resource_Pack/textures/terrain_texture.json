@@ -656,22 +656,54 @@
         "textures/blocks/concrete_black"
       ]
     },
-	"black_concrete": {"textures": "textures/blocks/concrete_black"},
-	"red_concrete": {"textures": "textures/blocks/concrete_red"},
-	"green_concrete": {"textures": "textures/blocks/concrete_green"},
-	"brown_concrete": {"textures": "textures/blocks/concrete_brown"},
-	"blue_concrete": {"textures": "textures/blocks/concrete_blue"},
-	"purple_concrete": {"textures": "textures/blocks/concrete_purple"},
-	"cyan_concrete": {"textures": "textures/blocks/concrete_cyan"},
-	"light_gray_concrete": {"textures": "textures/blocks/concrete_silver"},
-	"gray_concrete": {"textures": "textures/blocks/concrete_gray"},
-	"pink_concrete": {"textures": "textures/blocks/concrete_pink"},
-	"lime_concrete": {"textures": "textures/blocks/concrete_lime"},
-	"yellow_concrete": {"textures": "textures/blocks/concrete_yellow"},
-	"light_blue_concrete": {"textures": "textures/blocks/concrete_light_blue"},
-	"magenta_concrete": {"textures": "textures/blocks/concrete_magenta"},
-	"orange_concrete": {"textures": "textures/blocks/concrete_orange"},
-	"white_concrete": {"textures": "textures/blocks/concrete_white"},
+    "black_concrete": {
+      "textures": "textures/blocks/concrete_black"
+    },
+    "red_concrete": {
+      "textures": "textures/blocks/concrete_red"
+    },
+    "green_concrete": {
+      "textures": "textures/blocks/concrete_green"
+    },
+    "brown_concrete": {
+      "textures": "textures/blocks/concrete_brown"
+    },
+    "blue_concrete": {
+      "textures": "textures/blocks/concrete_blue"
+    },
+    "purple_concrete": {
+      "textures": "textures/blocks/concrete_purple"
+    },
+    "cyan_concrete": {
+      "textures": "textures/blocks/concrete_cyan"
+    },
+    "light_gray_concrete": {
+      "textures": "textures/blocks/concrete_silver"
+    },
+    "gray_concrete": {
+      "textures": "textures/blocks/concrete_gray"
+    },
+    "pink_concrete": {
+      "textures": "textures/blocks/concrete_pink"
+    },
+    "lime_concrete": {
+      "textures": "textures/blocks/concrete_lime"
+    },
+    "yellow_concrete": {
+      "textures": "textures/blocks/concrete_yellow"
+    },
+    "light_blue_concrete": {
+      "textures": "textures/blocks/concrete_light_blue"
+    },
+    "magenta_concrete": {
+      "textures": "textures/blocks/concrete_magenta"
+    },
+    "orange_concrete": {
+      "textures": "textures/blocks/concrete_orange"
+    },
+    "white_concrete": {
+      "textures": "textures/blocks/concrete_white"
+    },
     "concretePowder": {
       "textures": [
         "textures/blocks/concrete_powder_white",
@@ -2646,18 +2678,18 @@
     "sculk_sensor_side": {
       "textures": "textures/blocks/sculk_sensor_side"
     },
-	"calibrated_sculk_sensor_input_side":{
-		"textures": "textures/blocks/calibrated_sculk_sensor_input_side"
-	},
-	"calibrated_sculk_sensor_top":{
-		"textures": "textures/blocks/calibrated_sculk_sensor_top"
-	},
-	"suspicious_gravel":{
-		"textures": "textures/blocks/suspicious_gravel_0"
-	},
-	"suspicious_sand":{
-		"textures": "textures/blocks/suspicious_sand_0"
-	},
+    "calibrated_sculk_sensor_input_side": {
+      "textures": "textures/blocks/calibrated_sculk_sensor_input_side"
+    },
+    "calibrated_sculk_sensor_top": {
+      "textures": "textures/blocks/calibrated_sculk_sensor_top"
+    },
+    "suspicious_gravel": {
+      "textures": "textures/blocks/suspicious_gravel_0"
+    },
+    "suspicious_sand": {
+      "textures": "textures/blocks/suspicious_sand_0"
+    },
     "sculk_sensor_tendril_active": {
       "textures": "textures/blocks/sculk_sensor_tendril_active"
     },
@@ -2670,93 +2702,93 @@
     "sculk_shrieker_bottom": {
       "textures": "textures/blocks/sculk_shrieker_bottom"
     },
-	"cherry_trapdoor":{
-		"textures":"textures/blocks/cherry_trapdoor"
-	},
-	"cherry_sapling":{
-		"textures":"textures/blocks/cherry_sapling"
-	},
-	"cherry_planks":{
-		"textures":"textures/blocks/cherry_planks"
-	},
-	"cherry_leaves":{
-		"textures":"textures/blocks/cherry_leaves"
-	},
-	"stripped_cherry_log_side":{
-		"textures":"textures/blocks/stripped_cherry_log_side"
-	},
-	"cherry_log_top":{
-		"textures":"textures/blocks/cherry_log_top"
-	},
-	"stripped_cherry_log_top":{
-		"textures":"textures/blocks/stripped_cherry_log_top"
-	},
-	"decorated_pot":{
-		"textures":"textures/blocks/decorated_pot_base"
-	},
-	"dead_brain_coral":{
-		"textures":"textures/blocks/coral_plant_pink_dead"
-	},
-	"brain_coral":{
-		"textures":"textures/blocks/coral_plant_pink_dead"
-	},
-	"dead_bubble_coral":{
-		"textures":"textures/blocks/coral_plant_pink"
-	},
-	"dead_fire_coral":{
-		"textures":"textures/blocks/coral_plant_red_dead"
-	},
-	"fire_coral":{
-		"textures":"textures/blocks/coral_plant_red"
-	},
-	"dead_horn_coral":{
-		"textures":"textures/blocks/coral_plant_yellow_dead"
-	},
-	"horn_coral":{
-		"textures":"textures/blocks/coral_plant_yellow"
-	},
-	"dead_tube_coral":{
-		"textures":"textures/blocks/coral_plant_blue_dead"
-	},
-	"tube_coral":{
-		"textures":"textures/blocks/coral_plant_blue"
-	},
-	"bubble_coral":{
-		"textures":"textures/blocks/coral_plant_pink"
-	},
-	"cherry_log_side":{
-		"textures":"textures/blocks/cherry_log_side"
-	},
-	"bamboo_mosaic":{
-		"textures":"textures/blocks/bamboo_mosaic"
-	},
-	"bamboo_fence":{
-		"textures":"textures/blocks/bamboo_planks"
-	},
-	"bamboo_sign":{
-		"textures":"textures/blocks/bamboo_planks"
-	},
-	"bamboo_planks":{
-		"textures":"textures/blocks/bamboo_planks"
-	},
-	"bamboo_fence_gate":{
-		"textures":"textures/blocks/bamboo_planks"
-	},
-	"bamboo_block":{
-		"textures":"textures/blocks/bamboo_block"
-	},
-	"bamboo_block_top":{
-		"textures":"textures/blocks/bamboo_block_top"
-	},
-	"stripped_bamboo_block":{
-		"textures":"textures/blocks/stripped_bamboo_block"
-	},
-	"stripped_bamboo_block_top":{
-		"textures":"textures/blocks/stripped_bamboo_block_top"
-	},
-	"bamboo_trapdoor":{
-		"textures":"textures/blocks/bamboo_trapdoor"
-	},
+    "cherry_trapdoor": {
+      "textures": "textures/blocks/cherry_trapdoor"
+    },
+    "cherry_sapling": {
+      "textures": "textures/blocks/cherry_sapling"
+    },
+    "cherry_planks": {
+      "textures": "textures/blocks/cherry_planks"
+    },
+    "cherry_leaves": {
+      "textures": "textures/blocks/cherry_leaves"
+    },
+    "stripped_cherry_log_side": {
+      "textures": "textures/blocks/stripped_cherry_log_side"
+    },
+    "cherry_log_top": {
+      "textures": "textures/blocks/cherry_log_top"
+    },
+    "stripped_cherry_log_top": {
+      "textures": "textures/blocks/stripped_cherry_log_top"
+    },
+    "decorated_pot": {
+      "textures": "textures/blocks/decorated_pot_base"
+    },
+    "dead_brain_coral": {
+      "textures": "textures/blocks/coral_plant_pink_dead"
+    },
+    "brain_coral": {
+      "textures": "textures/blocks/coral_plant_pink_dead"
+    },
+    "dead_bubble_coral": {
+      "textures": "textures/blocks/coral_plant_pink"
+    },
+    "dead_fire_coral": {
+      "textures": "textures/blocks/coral_plant_red_dead"
+    },
+    "fire_coral": {
+      "textures": "textures/blocks/coral_plant_red"
+    },
+    "dead_horn_coral": {
+      "textures": "textures/blocks/coral_plant_yellow_dead"
+    },
+    "horn_coral": {
+      "textures": "textures/blocks/coral_plant_yellow"
+    },
+    "dead_tube_coral": {
+      "textures": "textures/blocks/coral_plant_blue_dead"
+    },
+    "tube_coral": {
+      "textures": "textures/blocks/coral_plant_blue"
+    },
+    "bubble_coral": {
+      "textures": "textures/blocks/coral_plant_pink"
+    },
+    "cherry_log_side": {
+      "textures": "textures/blocks/cherry_log_side"
+    },
+    "bamboo_mosaic": {
+      "textures": "textures/blocks/bamboo_mosaic"
+    },
+    "bamboo_fence": {
+      "textures": "textures/blocks/bamboo_planks"
+    },
+    "bamboo_sign": {
+      "textures": "textures/blocks/bamboo_planks"
+    },
+    "bamboo_planks": {
+      "textures": "textures/blocks/bamboo_planks"
+    },
+    "bamboo_fence_gate": {
+      "textures": "textures/blocks/bamboo_planks"
+    },
+    "bamboo_block": {
+      "textures": "textures/blocks/bamboo_block"
+    },
+    "bamboo_block_top": {
+      "textures": "textures/blocks/bamboo_block_top"
+    },
+    "stripped_bamboo_block": {
+      "textures": "textures/blocks/stripped_bamboo_block"
+    },
+    "stripped_bamboo_block_top": {
+      "textures": "textures/blocks/stripped_bamboo_block_top"
+    },
+    "bamboo_trapdoor": {
+      "textures": "textures/blocks/bamboo_trapdoor"
+    },
     "sculk_shrieker_inner_top": {
       "textures": [
         "textures/blocks/sculk_shrieker_inner_top",
@@ -2823,21 +2855,51 @@
         "textures/blocks/shulker_top_undyed"
       ]
     },
-	"white_shulker_box": {"textures": "textures/blocks/shulker_top_white"},
-	"orange_shulker_box": {"textures": "textures/blocks/shulker_top_orange"},
-	"magenta_shulker_box": {"textures": "textures/blocks/shulker_top_magenta"},
-	"light_blue_shulker_box": {"textures": "textures/blocks/shulker_top_light_blue"},
-	"lime_shulker_box": {"textures": "textures/blocks/shulker_top_lime"},
-	"pink_shulker_box": {"textures": "textures/blocks/shulker_top_pink"},
-	"gray_shulker_box": {"textures": "textures/blocks/shulker_top_gray"},
-	"light_gray_shulker_box": {"textures": "textures/blocks/shulker_top_silver"},
-	"green_shulker_box": {"textures": "textures/blocks/shulker_top_green"},
-	"cyan_shulker_box": {"textures": "textures/blocks/shulker_top_cyan"},
-	"purple_shulker_box": {"textures": "textures/blocks/shulker_top_purple"},
-	"blue_shulker_box": {"textures": "textures/blocks/shulker_top_blue"},
-	"brown_shulker_box": {"textures": "textures/blocks/shulker_top_brown"},
-	"red_shulker_box": {"textures": "textures/blocks/shulker_top_red"},
-	"black_shulker_box": {"textures": "textures/blocks/shulker_top_black"},
+    "white_shulker_box": {
+      "textures": "textures/blocks/shulker_top_white"
+    },
+    "orange_shulker_box": {
+      "textures": "textures/blocks/shulker_top_orange"
+    },
+    "magenta_shulker_box": {
+      "textures": "textures/blocks/shulker_top_magenta"
+    },
+    "light_blue_shulker_box": {
+      "textures": "textures/blocks/shulker_top_light_blue"
+    },
+    "lime_shulker_box": {
+      "textures": "textures/blocks/shulker_top_lime"
+    },
+    "pink_shulker_box": {
+      "textures": "textures/blocks/shulker_top_pink"
+    },
+    "gray_shulker_box": {
+      "textures": "textures/blocks/shulker_top_gray"
+    },
+    "light_gray_shulker_box": {
+      "textures": "textures/blocks/shulker_top_silver"
+    },
+    "green_shulker_box": {
+      "textures": "textures/blocks/shulker_top_green"
+    },
+    "cyan_shulker_box": {
+      "textures": "textures/blocks/shulker_top_cyan"
+    },
+    "purple_shulker_box": {
+      "textures": "textures/blocks/shulker_top_purple"
+    },
+    "blue_shulker_box": {
+      "textures": "textures/blocks/shulker_top_blue"
+    },
+    "brown_shulker_box": {
+      "textures": "textures/blocks/shulker_top_brown"
+    },
+    "red_shulker_box": {
+      "textures": "textures/blocks/shulker_top_red"
+    },
+    "black_shulker_box": {
+      "textures": "textures/blocks/shulker_top_black"
+    },
     "sign": {
       "textures": "textures/blocks/planks_oak"
     },
@@ -3684,6 +3746,9 @@
     },
     "yellow_glazed_terracotta": {
       "textures": "textures/blocks/glazed_terracotta_yellow"
+    },
+    "yellow_shulker_box": {
+      "textures": "textures/blocks/shulker_top_yellow"
     }
   },
   "texture_name": "atlas.terrain"

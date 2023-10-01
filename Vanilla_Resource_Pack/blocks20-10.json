@@ -1,0 +1,135 @@
+{
+  "format_version": [
+    1,
+    1,
+    0
+  ],
+  "white_shulker_box": {
+    "textures": "white_shulker_box",
+    "sound": "stone"
+  },
+  "orange_shulker_box": {
+    "textures": "orange_shulker_box",
+    "sound": "stone"
+  },
+  "magenta_shulker_box": {
+    "textures": "magenta_shulker_box",
+    "sound": "stone"
+  },
+  "light_blue_shulker_box": {
+    "textures": "light_blue_shulker_box",
+    "sound": "stone"
+  },
+  "yellow_shulker_box": {
+    "textures": "yellow_shulker_box",
+    "sound": "stone"
+  },
+  "lime_shulker_box": {
+    "textures": "lime_shulker_box",
+    "sound": "stone"
+  },
+  "pink_shulker_box": {
+    "textures": "pink_shulker_box",
+    "sound": "stone"
+  },
+  "gray_shulker_box": {
+    "textures": "gray_shulker_box",
+    "sound": "stone"
+  },
+  "light_gray_shulker_box": {
+    "textures": "light_gray_shulker_box",
+    "sound": "stone"
+  },
+  "cyan_shulker_box": {
+    "textures": "cyan_shulker_box",
+    "sound": "stone"
+  },
+  "purple_shulker_box": {
+    "textures": "purple_shulker_box",
+    "sound": "stone"
+  },
+  "blue_shulker_box": {
+    "textures": "blue_shulker_box",
+    "sound": "stone"
+  },
+  "brown_shulker_box": {
+    "textures": "brown_shulker_box",
+    "sound": "stone"
+  },
+  "green_shulker_box": {
+    "textures": "green_shulker_box",
+    "sound": "stone"
+  },
+  "red_shulker_box": {
+    "textures": "red_shulker_box",
+    "sound": "stone"
+  },
+  "black_shulker_box": {
+    "textures": "black_shulker_box",
+    "sound": "stone"
+  },
+  "white_concrete": {
+    "textures": "white_concrete",
+    "sound": "stone"
+  },
+  "orange_concrete": {
+    "textures": "orange_concrete",
+    "sound": "stone"
+  },
+  "magenta_concrete": {
+    "textures": "magenta_concrete",
+    "sound": "stone"
+  },
+  "light_blue_concrete": {
+    "textures": "light_blue_concrete",
+    "sound": "stone"
+  },
+  "yellow_concrete": {
+    "textures": "yellow_concrete",
+    "sound": "stone"
+  },
+  "lime_concrete": {
+    "textures": "lime_concrete",
+    "sound": "stone"
+  },
+  "pink_concrete": {
+    "textures": "pink_concrete",
+    "sound": "stone"
+  },
+  "gray_concrete": {
+    "textures": "gray_concrete",
+    "sound": "stone"
+  },
+  "light_gray_concrete": {
+    "textures": "light_gray_concrete",
+    "sound": "stone"
+  },
+  "cyan_concrete": {
+    "textures": "cyan_concrete",
+    "sound": "stone"
+  },
+  "purple_concrete": {
+    "textures": "purple_concrete",
+    "sound": "stone"
+  },
+  "blue_concrete": {
+    "textures": "blue_concrete",
+    "sound": "stone"
+  },
+  "brown_concrete": {
+    "textures": "brown_concrete",
+    "sound": "stone"
+  },
+  "green_concrete": {
+    "textures": "green_concrete",
+    "sound": "stone"
+  },
+  "red_concrete": {
+    "textures": "red_concrete",
+    "sound": "stone"
+  },
+  "black_concrete": {
+    "textures": "black_concrete",
+    "sound": "stone"
+  }
+}
