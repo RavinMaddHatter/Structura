@@ -3567,12 +3567,7 @@
       ]
     },
     "waterlily": {
-      "textures": [
-        {
-          "path": "textures/blocks/waterlily",
-          "tint_color": "#208030"
-        }
-      ]
+      "textures": ["textures/blocks/waterlily"]
     },
     "waterlily_carried": {
       "textures": "textures/blocks/carried_waterlily"
