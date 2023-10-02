@@ -465,6 +465,9 @@
     "cauldron_top": {
       "textures": "textures/blocks/cauldron_top"
     },
+    "cauldron_top_lava": {
+      "textures": "textures/blocks/cauldron_top_lava"
+    },
     "cauldron_water": {
       "textures": "textures/blocks/cauldron_water"
     },

@@ -499,11 +499,11 @@
   "cauldron": {
     "textures": {
       "down": "cauldron_bottom",
-      "east": "still_water_grey",
+      "east": "cauldron_side",
       "north": "cauldron_side",
-      "south": "cauldron_inner",
+      "south": "cauldron_side",
       "up": "cauldron_top",
-      "west": "cauldron_water"
+      "west": "cauldron_side"
     }
   },
   "cave_vines": {
@@ -1797,11 +1797,11 @@
   "lava_cauldron": {
     "textures": {
       "down": "cauldron_bottom",
-      "east": "still_lava",
+      "east": "cauldron_side",
       "north": "cauldron_side",
-      "south": "cauldron_inner",
-      "up": "cauldron_top",
-      "west": "cauldron_water"
+      "south": "cauldron_side",
+      "up": "cauldron_top_lava",
+      "west": "cauldron_side"
     }
   },
   "leaves": {
