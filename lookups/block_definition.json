@@ -399,6 +399,7 @@
     "acacia_door": "door",
     "dark_oak_door": "door",
     "iron_door": "door",
+	"chiseled_bookshelf":"cube",
     "double_plant": "double_plant",
     "dragon_egg": "dragon_egg",
     "enchanting_table": "enchanting_table",

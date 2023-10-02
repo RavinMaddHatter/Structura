@@ -285,6 +285,15 @@
     "bone_block_top": {
       "textures": "textures/blocks/bone_block_top"
     },
+	"chiseled_bookshelf_side":{
+		"textures": "textures/blocks/chiseled_bookshelf_side"
+	},
+	"chiseled_bookshelf_front":{
+		"textures": "textures/blocks/chiseled_bookshelf_empty"
+	},
+	"chiseled_bookshelf_top":{
+		"textures": "textures/blocks/chiseled_bookshelf_top"
+	},
     "bookshelf": {
       "textures": "textures/blocks/bookshelf"
     },
