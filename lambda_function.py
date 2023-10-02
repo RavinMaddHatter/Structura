@@ -250,6 +250,8 @@ def stats_command(body):
         most_failed_block=max(block_dict, key=block_dict.get)
         block_failures=block_dict[most_failed_block]
     except:
+        most_failed_block="None"
+        block_failures=0
         pass
         
     
