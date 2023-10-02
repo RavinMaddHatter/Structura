@@ -138,14 +138,11 @@ class structura:
                 variant = blockProp[2]
                 open_bit = blockProp[3]
                 data = blockProp[4]
-                skip = blockProp[5]
                 if debug:
-                    if not skip:
-                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data, big = export_big)
+                    armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data, big = export_big)
                 else:
                     try:
-                        if not skip:
-                            armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data, big = export_big)
+                        armorstand.make_block(x, y, z, blk_name, rot = rot, top = top,variant = variant, trap_open=open_bit, data=data, big = export_big)
                     except:
                         self.unsupported_blocks.append("x:{} Y:{} Z:{}, Block:{}, Variant: {}".format(x,y,z,block["name"],variant))
                         print("There is an unsuported block in this world and it was skipped")
@@ -191,7 +188,6 @@ class structura:
         top = False
         open_bit = False
         data=0
-        skip=False
         variant="default"
         for key in nbt_def.keys():
             if nbt_def[key]== "variant" and key in block["states"].keys():
@@ -220,7 +216,7 @@ class structura:
                 if bool(block["states"]["stripped_bit"]):
                     keys+="_stripped"
                 variant = ["wood",keys]
-        return [rot, top, variant, open_bit, data, skip]
+        return [rot, top, variant, open_bit, data]
     def get_skipped(self):
         ## temp folder would be a good idea
         if len(self.unsupported_blocks)>1:
