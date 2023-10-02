@@ -38,5 +38,6 @@
 	"lever_direction":"rot",
 	"rail_direction":"rot",
 	"vine_direction_bits":"rot",
+	"height":"data",
 	"multi_face_direction_bits":"data"
 }
