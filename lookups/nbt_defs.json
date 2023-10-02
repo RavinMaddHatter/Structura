@@ -25,6 +25,7 @@
 	"weirdo_direction":"rot",
 	"upside_down_bit":"top",
 	"top_slot_bit":"top",
+	"minecraft:vertical_half":"rot",
 	"open_bit":"open_bit",
 	"repeater_delay":"data",
 	"output_subtract_bit":"data",

@@ -861,7 +861,7 @@
     "ochre_froglight": "cube",
     "verdant_froglight": "cube",
     "frog_spawn": "carpet",
-	"double_stone_block_slab3":"ignore",
+	"double_stone_block_slab3":"cube",
 	"double_stone_block_slab4":"ignore",
 	
 	"air": "ignore",
