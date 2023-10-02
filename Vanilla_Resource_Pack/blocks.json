@@ -1181,6 +1181,17 @@
       "up": "stone_slab_top_2"
     }
   },
+  "double_stone_block_slab4":{
+	 "textures": {
+      "down": "stone_slab_bottom_4",
+      "side": "stone_slab_side_4",
+      "east": "stone_slab_side_4",
+      "west": "stone_slab_side_4",
+      "north": "stone_slab_side_4",
+      "south": "stone_slab_side_4",
+      "up": "stone_slab_top_4"
+    } 
+  },
   "double_stone_block_slab3": {
     "sound": "stone",
     "textures": {

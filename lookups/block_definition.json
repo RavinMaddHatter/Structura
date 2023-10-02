@@ -862,7 +862,7 @@
     "verdant_froglight": "cube",
     "frog_spawn": "carpet",
 	"double_stone_block_slab3":"cube",
-	"double_stone_block_slab4":"ignore",
+	"double_stone_block_slab4":"cube",
 	
 	"air": "ignore",
 	"camera": "ignore",
