@@ -3493,6 +3493,36 @@
     "tuff": {
       "textures": "textures/blocks/tuff"
     },
+    "sniffer_egg_east": {
+      "textures": ["textures/blocks/sniffer_egg_not_cracked_east",
+		"textures/blocks/sniffer_egg_slightly_cracked_east",
+		"textures/blocks/sniffer_egg_very_cracked_east"]
+    },
+    "sniffer_egg_west": {
+      "textures": ["textures/blocks/sniffer_egg_not_cracked_west",
+		"textures/blocks/sniffer_egg_slightly_cracked_west",
+		"textures/blocks/sniffer_egg_very_cracked_west"]
+    },
+    "sniffer_egg_north": {
+      "textures": ["textures/blocks/sniffer_egg_not_cracked_north",
+		"textures/blocks/sniffer_egg_slightly_cracked_north",
+		"textures/blocks/sniffer_egg_very_cracked_north"]
+    },
+    "sniffer_egg_south": {
+      "textures": ["textures/blocks/sniffer_egg_not_cracked_south",
+		"textures/blocks/sniffer_egg_slightly_cracked_south",
+		"textures/blocks/sniffer_egg_very_cracked_south"]
+    },
+    "sniffer_egg_top": {
+      "textures": ["textures/blocks/sniffer_egg_not_cracked_top",
+		"textures/blocks/sniffer_egg_slightly_cracked_top",
+		"textures/blocks/sniffer_egg_very_cracked_top"]
+    },
+    "sniffer_egg_bottom": {
+      "textures": ["textures/blocks/sniffer_egg_not_cracked_bottom",
+		"textures/blocks/sniffer_egg_slightly_cracked_bottom",
+		"textures/blocks/sniffer_egg_very_cracked_bottom"]
+    },
     "turtle_egg": {
       "textures": [
         "textures/blocks/turtle_egg_not_cracked",

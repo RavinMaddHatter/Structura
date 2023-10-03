@@ -1,4 +1,10 @@
 {
+	"sculk_sensor":{
+		"south": [0, 0, 0 ],
+        "east": [0, 270, 0 ],
+        "west": [0, 90, 0 ],
+        "north": [0, 180, 0]
+	},
 	"observer": {
         "south": [0, 180, 0 ],
         "east": [0, 90, 0 ],

@@ -4133,8 +4133,8 @@
     "textures": {
       "down": "sculk_sensor_bottom",
       "east": "sculk_sensor_side",
-      "north": "sculk_sensor_side",
-      "south": "calibrated_sculk_sensor_input_side",
+      "north": "calibrated_sculk_sensor_input_side",
+      "south": "sculk_sensor_side",
       "up": "calibrated_sculk_sensor_top",
       "west": "sculk_sensor_side"
     }
