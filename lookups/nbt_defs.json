@@ -1,4 +1,5 @@
 {
+	"minecraft:direction":"rot",
 	"minecraft:facing_direction":"rot",
 	"minecraft:cardinal_direction":"rot",
 	"huge_mushroom_bits":"data",
@@ -20,7 +21,6 @@
 	"chisel_type":"variant",
 	"facing_direction":"rot",
 	"facing_block":"rot",
-	"direction":"rot",
 	"torch_facing_direction":"rot",
 	"weirdo_direction":"rot",
 	"upside_down_bit":"top",
