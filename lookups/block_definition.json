@@ -879,6 +879,7 @@
 	"spruce_log":"tree",
 	"birch_log":"tree",
 	"jungle_log":"tree",
+    "jungle_planks": "cube",
 	"acacia_log":"tree",
 	"dark_oak_log":"tree",
 	"birch_fence":"fence",

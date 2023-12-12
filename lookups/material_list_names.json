@@ -1095,6 +1095,9 @@
 	"minecraft:jungle_pressure_plate": {
 		"default": "Jungle PRessure Plate"
 	},
+	"minecraft:jungle_planks": {
+		"default": "Jungle Planks"
+	},
 	"minecraft:acacia_trapdoor": {
 		"default": "Acacia Trapdoor"
 	},

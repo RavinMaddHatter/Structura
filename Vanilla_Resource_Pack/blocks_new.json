@@ -1754,6 +1754,10 @@
       "sound" : "wood",
       "textures" : "jungle_sign"
    },
+   "jungle_planks": {
+      "sound": "wood",
+      "textures": "jungle_planks"
+   },
    "kelp" : {
       "sound" : "grass",
       "textures" : {
