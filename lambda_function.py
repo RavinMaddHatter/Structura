@@ -15,6 +15,7 @@ import requests
 import uuid
 import jwt
 import time
+import shutil
 app_id=os.environ.get('app_id')
 discord_url = "https://discord.com/api/v10/applications/{}/commands".format(app_id)
 discord_secret=os.environ.get('secret')
@@ -55,19 +56,28 @@ def update_stats(success=True,tick = 0):
 
     
 def lambda_handler(event, context):
+    try:
+        return tempLambda(event, context)
+    except:
+        return errorResponse(200,"test")
+def tempLambda(event, context):
     global tick
     tick=time.time()
     print("starting lambda handler")
-    if "structuralab" in event['headers'].keys():
-        if "token" in event['headers'].keys():
+    if "token" in event['headers'].keys():
+        try:
             token = event['headers']["token"]
             decoded = verifyCognitoToken(token)
             if decoded["auth"]:
-                response = makeStructuraLabPack(event['headers'],decoded["json"])
+                try:
+                    response = makeStructuraLabPack(event['headers'],decoded["json"])
+                except Exception as e:
+                    errorResponse(200,str(e.message))
             else:
                 response = errorResponse(401,"Failed Authentication!")
-        else:
-            response = errorResponse(401,"No token presented")
+    
+        except:
+            response = errorResponse(200,"test")
         return response
     else:
         try:
@@ -155,8 +165,13 @@ def makeStructuraLabPack(headder,userInfo):
         s3_client = boto3.client('s3')
         response = s3_client.list_objects_v2(Bucket="structuralab.com", Prefix=f"{guid}/")
         filesToConvert = {}
+        try:
+            shutil.rmtree(f"/tmp/{guid}")
+        except:
+            pass
         workingDir=f"/tmp/{guid}"
         os.mkdir(workingDir)
+        
         name=headder["name"]
         structuraFolder=f"{workingDir}/{name}"
         structura_base=structura(structuraFolder)
@@ -305,32 +320,16 @@ def help_command(body):
     pack_creation_time=float(response["Item"]['runTime'])/float(response["Item"]['packsCreated'])
     packsCreated=float(response["Item"]['packsCreated'])
     packs_per_view = pack_per_youtube_View(pack_creation_time)
-   data ={
-        "content": f"Please note that this bot is a privilege, not a right. The bot is funded by you watching Hatter's videos so please feel free to check them out. Each video that you watch pays for about {packs_per_view:0.1f} conversions.",
-        "embeds": [
-            {
-            "title": "Structura bot help",
-            "description": "Click any blue buttons to use them",
-            "color": 65474,
-            "fields": [
-                {
-                "name": "/convert",
-                "value": "Use </convert:1034773259054485504> to convert a file, if you have issues please see this: https://discord.com/channels/788256951079403542/1079777761234796684/1119644038547640431 video or see [this](https://github.com/hegehog8761/structura-tests/blob/main/errors.md) tool",
-                "inline": true
-                },
-                {
-                "name": "/convertpublic",
-                "value": "Use </convertpublic:1109535672357896243> to convert a file publicly, this allows us to see errors with the bot (white text, not red, red is a Discord bug). Use the same help tools as /convert",
-                "inline": true
-                },
-                {
-                "name": "Further help",
-                "value": "On May 20th 2023 (<t:1679313600:R>) the /convert command was changed, this may still be saved on your device causing it to not work, to resolve this close the app or restart your device and that may fix it depending on your device."
-                }
-            ]
+    help_text=f"This bot is a privlage not a right, To keep it funded do check out a few videos. Each video you watch pays for {packs_per_view:0.1f} conversions \n"
+    help_text+="Note: on may 20 2023 i changed the name of the file upload in the command. This may be cached on your device if you are an long time user fully close the app or restart your device to see if that fixes it.\n\n"
+    help_text+="/convert [file1] [file2-file6 optional]: this command creates a structura pack from a valid structure file. If the file is not valid it will not work. If you select more than 1 file the name tag will be the file name. this one is private so we dont see what is going on\n\n"
+    help_text+="/convertpublic [file1] [file2-file6 optional] : this command creates a structura pack from a valid structure file. If the file is not valid it will not work.If you select more than 1 file the name tag will be the file name. This one is public so we can see what is going on\n"
+    data={
+#            'type': 4,
+#            'data':{
+                'content':help_text 
+#                }
             }
-        ]
-    }
     send_repsonse(body,data)
     return {
             'statusCode': 200,
@@ -572,3 +571,5 @@ def make_pack_single(file_url,file_name,body,tick):
     packs_per_view = pack_per_youtube_View(pack_creation_time)
     text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}{skipped_text}"
     send_url_buttons(body,labels,urls,text=text)
+
+  

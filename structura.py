@@ -2,7 +2,7 @@ import os
 import updater
 if not(os.path.exists("lookups")):
     print("downloading lookup files")
-    updater.update("https://smgafwso25.execute-api.us-east-2.amazonaws.com/default/structuraUpdate","Structura1-6","")
+    updater.update("https://0p1rfspt5j.execute-api.us-east-2.amazonaws.com/default/structuraUpdate","Structura1-6","")
     
 import json
 from structura_core import structura
