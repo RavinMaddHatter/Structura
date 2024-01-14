@@ -59,7 +59,7 @@ def lambda_handler(event, context):
     try:
         return tempLambda(event, context)
     except:
-        return errorResponse(200,"test")
+        return errorResponse(200,"test top level")
 def tempLambda(event, context):
     global tick
     tick=time.time()
@@ -72,12 +72,22 @@ def tempLambda(event, context):
                 try:
                     response = makeStructuraLabPack(event['headers'],decoded["json"])
                 except Exception as e:
-                    errorResponse(200,str(e.message))
+                    exc_type, exc_obj, exc_tb = sys.exc_info()
+                    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                    
+                    print(exc_type, fname, exc_tb.tb_lineno)
+                    data={'content': "failed due to error processing file. Error {}, in file {}, line number {} ".format(str(e), fname, exc_tb.tb_lineno)}
+                    response = errorResponse(200,data)
             else:
                 response = errorResponse(401,"Failed Authentication!")
     
-        except:
-            response = errorResponse(200,"test")
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            
+            print(exc_type, fname, exc_tb.tb_lineno)
+            data={'content': "failed due to error processing file. Error {}, in file {}, line number {} ".format(str(e), fname, exc_tb.tb_lineno)}
+            response = errorResponse(200,data)
         return response
     else:
         try:
@@ -207,7 +217,8 @@ def makeStructuraLabPack(headder,userInfo):
                 else:
                     itemsList[item]=count
         s3_client.upload_file(created_file, "structuralab.com", f"{guid}/{name}.mcpack")
-        dynamodb = boto3.resource('dynamodb')
+        response = table.get_item(Key={'GUID': guid})
+        itemData = response["Item"]
         itemData["MaterialsList"] = itemsList
         itemData["StructuraFile"] = f"https://s3.us-east-2.amazonaws.com/structuralab.com/{guid}/{name}.mcpack"
         table.put_item(Item=itemData)
