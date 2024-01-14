@@ -26,7 +26,7 @@ def update(url,structura_version, lookup_verison):
         print("up to date")
     return updated
 if __name__ =="__main__":
-    update("https://smgafwso25.execute-api.us-east-2.amazonaws.com/default/structuraUpdate",
+    update("https://0p1rfspt5j.execute-api.us-east-2.amazonaws.com/default/structuraUpdate",
            "Structura1-6",
            "none")
     
