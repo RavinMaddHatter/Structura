@@ -2397,6 +2397,30 @@
     "sound": "wood",
     "textures": "planks"
   },
+  "spruce_planks": {
+    "sound": "wood",
+    "textures": "planks"
+  },
+  "birch_planks": {
+    "sound": "wood",
+    "textures": "planks"
+  },
+  "acacia_planks": {
+    "sound": "wood",
+    "textures": "planks"
+  },
+  "dark_oak_planks": {
+    "sound": "wood",
+    "textures": "planks"
+  },
+  "oak_planks": {
+    "sound": "wood",
+    "textures": "planks"
+  },
+  "jungle_planks": {
+    "sound": "wood",
+    "textures": "planks"
+  },
   "podzol": {
     "isotropic": {
       "down": true,
@@ -3152,6 +3176,25 @@
   "stone": {
     "sound": "stone",
     "textures": "stone"
+  },
+  "polished_granite":{
+    "textures": "polished_granite"
+  },
+  "polished_diorite":{
+    "textures": "polished_diorite"
+	  
+  },
+  "polished_andesite":{
+    "textures": "polished_andesite"
+  },
+  "granite":{
+    "textures": "granite"
+  },
+  "diorite":{
+    "textures": "diorite"
+  },
+  "andesite":{
+    "textures": "andesite"
   },
   "stone_brick_stairs": {
     "textures": "stonebrick"

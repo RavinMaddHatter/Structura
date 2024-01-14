@@ -12,6 +12,8 @@ update_package_name=f'update_package_{currentDay}-{currentMonth}-{currentYear}'
 with open("lookups/lookup_version.json","r") as file:
     old_update=json.load(file)
 old_update["version"]=update_package_name
+old_update["notes"]=""
+old_update["update_url"]=f"https://structuralookup.s3.us-east-2.amazonaws.com/{update_package_name}.zip"
 with open("lookups/lookup_version.json","w+") as file:
     json.dump(old_update,file,indent=2)
 try:
