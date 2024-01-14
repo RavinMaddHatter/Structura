@@ -13,6 +13,7 @@ from nacl.signing import VerifyKey
 from nacl.exceptions import BadSignatureError
 import requests
 import uuid
+import jwt
 import time
 app_id=os.environ.get('app_id')
 discord_url = "https://discord.com/api/v10/applications/{}/commands".format(app_id)
@@ -20,7 +21,10 @@ discord_secret=os.environ.get('secret')
 bucket=os.environ.get('bucket')
 channel=os.environ.get('channel')
 cpm=float(os.environ.get('cpm'))
-
+corsHeaders={'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': '*'
+                }
 channelpref=os.environ.get('channelpref')
 
 PUBLIC_KEY = os.environ.get('discord_key')
@@ -54,81 +58,174 @@ def lambda_handler(event, context):
     global tick
     tick=time.time()
     print("starting lambda handler")
-    try:
-        body = json.loads(event['body'])
-
-
-        
-        signature = event['headers']['x-signature-ed25519']
-        timestamp = event['headers']['x-signature-timestamp']
-
-        # validate the interaction
-
-        verify_key = VerifyKey(bytes.fromhex(PUBLIC_KEY))
-        body2 = event['body']
-    
+    if "structuralab" in event['headers'].keys():
+        if "token" in event['headers'].keys():
+            token = event['headers']["token"]
+            decoded = verifyCognitoToken(token)
+            if decoded["auth"]:
+                response = makeStructuraLabPack(event['headers'],decoded["json"])
+            else:
+                response = errorResponse(401,"Failed Authentication!")
+        else:
+            response = errorResponse(401,"No token presented")
+        return response
+    else:
         try:
-            verify_key.verify(f'{timestamp}{body2}'.encode(), bytes.fromhex(signature))
-        except BadSignatureError as e:
+            body = json.loads(event['body'])
+    
+    
+            
+            signature = event['headers']['x-signature-ed25519']
+            timestamp = event['headers']['x-signature-timestamp']
+    
+            # validate the interaction
+    
+            verify_key = VerifyKey(bytes.fromhex(PUBLIC_KEY))
+            body2 = event['body']
+        
+            try:
+                verify_key.verify(f'{timestamp}{body2}'.encode(), bytes.fromhex(signature))
+            except BadSignatureError as e:
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                raise Exception("Authentication error")
+                
+        
+            # handle the interaction
+            if body['channel']['id'] in channel :
+                
+                t = body['type']
+    
+                if t == 1:
+                    return {
+                        'statusCode': 200,
+                        'body': json.dumps({
+                        'type': 1
+                        })
+                    }
+                elif t == 2:
+                    return command_handler(body)
+                else:
+                    return {
+                        'statusCode': 400,
+                        'body': json.dumps('unhandled request type')
+                        }
+            else:
+                initial_callback(body, ephemeral=True)
+                data={'content':f"Converstion in this channel are disallowed. Please use <#{channelpref}> to convert files","flags":64}
+                send_repsonse(body,data)
+        except Exception as e:
+            print ("ERROR HANDLING")
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            raise Exception("Authentication error")
             
-    
-        # handle the interaction
-        if body['channel']['id'] in channel :
-            
-            t = body['type']
-
-            if t == 1:
-                return {
-                    'statusCode': 200,
-                    'body': json.dumps({
-                    'type': 1
-                    })
-                }
-            elif t == 2:
-                return command_handler(body)
-            else:
-                return {
-                    'statusCode': 400,
-                    'body': json.dumps('unhandled request type')
-                    }
-        else:
-            initial_callback(body, ephemeral=True)
-            data={'content':f"Converstion in this channel are disallowed. Please use <#{channelpref}> to convert files","flags":64}
-            send_repsonse(body,data)
-    except Exception as e:
-        print ("ERROR HANDLING")
-        exc_type, exc_obj, exc_tb = sys.exc_info()
-        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        
-        print(exc_type, fname, exc_tb.tb_lineno)
-        if "name" in event.keys():
-            return add_command(event)
-        else:
             print(exc_type, fname, exc_tb.tb_lineno)
-            print(body)
-            print(event["body"])
-            print(body.keys())
-            update_stats(False, tick)
-            try:
-                body = json.loads(event['body'])
-                #body = json.loads(event['body'], object_hook=ascii_encode_dict)
-                exc_type, exc_obj, exc_tb = sys.exc_info()
-                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            if "name" in event.keys():
+                return add_command(event)
+            else:
                 print(exc_type, fname, exc_tb.tb_lineno)
                 print(body)
+                print(event["body"])
                 print(body.keys())
-                data={'content': "failed due to error processing file. Error {}, in file {}, line number {} ".format(str(e), fname, exc_tb.tb_lineno)}
-                send_repsonse(body,data)
-                raise
-            except:
-                exc_type, exc_obj, exc_tb = sys.exc_info()
-                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                print(exc_type, fname, exc_tb.tb_lineno)
-                raise
+                update_stats(False, tick)
+                try:
+                    body = json.loads(event['body'])
+                    #body = json.loads(event['body'], object_hook=ascii_encode_dict)
+                    exc_type, exc_obj, exc_tb = sys.exc_info()
+                    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                    print(exc_type, fname, exc_tb.tb_lineno)
+                    print(body)
+                    print(body.keys())
+                    data={'content': "failed due to error processing file. Error {}, in file {}, line number {} ".format(str(e), fname, exc_tb.tb_lineno)}
+                    send_repsonse(body,data)
+                    raise
+                except:
+                    exc_type, exc_obj, exc_tb = sys.exc_info()
+                    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                    print(exc_type, fname, exc_tb.tb_lineno)
+                    raise
+                
+def makeStructuraLabPack(headder,userInfo):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('StructuraWebsite')
+    guid = headder["guid"]
+    response = table.get_item(Key={'GUID': guid})
+    itemData = response["Item"]
+    if userInfo["username"] == itemData["Creator"]:
+        s3_client = boto3.client('s3')
+        response = s3_client.list_objects_v2(Bucket="structuralab.com", Prefix=f"{guid}/")
+        filesToConvert = {}
+        workingDir=f"/tmp/{guid}"
+        os.mkdir(workingDir)
+        name=headder["name"]
+        structuraFolder=f"{workingDir}/{name}"
+        structura_base=structura(structuraFolder)
+        structura_base.set_opacity(20)
+        if "Contents" in response.keys():
+            for object in response['Contents']:
+                if object["Key"].endswith(".mcstructure"):
+                    fileName = object["Key"].split("/")[-1]
+                    filesToConvert[fileName]=f"{workingDir}/{fileName}"
+                    s3_client.download_file("structuralab.com", object["Key"], filesToConvert[fileName])
+        if len(list(filesToConvert.keys()))==0:
+            return errorResponse(200,f"No Files Found in {guid}")
+        
+        elif len(list(filesToConvert.keys()))==1:
+            structura_base.add_model("",filesToConvert[list(filesToConvert.keys())[0]])
+            structura_base.set_model_offset("",[0,0,0])
+        else:
+            for fileName in list(filesToConvert.keys()):
+                nameTag=fileName.split(".mcstructure")[0]
+                structura_base.add_model(nameTag,filesToConvert[fileName])
+                structura_base.set_model_offset(nameTag,[0,0,0])
+                
+        structura_base.generate_nametag_file()
+        structura_base.generate_with_nametags()
+        created_file = structura_base.compile_pack()
+        material_lists =  structura_base.make_nametag_block_lists()
+        itemsList={}
+        for _junk, structureReads in structura_base.structure_files.items():
+            structureList=structureReads["block_list"]
+            for item, count in structureList.items():
+                if item in itemsList.keys():
+                    itemsList[item]+=count
+                else:
+                    itemsList[item]=count
+        s3_client.upload_file(created_file, "structuralab.com", f"{guid}/{name}.mcpack")
+        dynamodb = boto3.resource('dynamodb')
+        itemData["MaterialsList"] = itemsList
+        itemData["StructuraFile"] = f"https://s3.us-east-2.amazonaws.com/structuralab.com/{guid}/{name}.mcpack"
+        table.put_item(Item=itemData)
+        return errorResponse(200,"Structrua pack made successfully!")
+    else:
+        return errorResponse(401,"Authentication Failed!")
+def verifyCognitoToken(token):
+    kidUrl="https://cognito-idp.us-east-2.amazonaws.com/us-east-2_F8JCwtZAa/.well-known/jwks.json" 
+    response = requests.get(kidUrl)
+    
+    keys = json.loads(response.content)["keys"]
+    
+    jwtheaders=jwt.get_unverified_header(token)
+    alg=jwtheaders["alg"]
+    unverified=jwt.decode(token,options={"verify_signature":False})
+    for key in keys:
+        if key['kid'] == jwtheaders["kid"]:
+            jwkValue=key
+    print(json.dumps(jwkValue))
+    publicKey = jwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(jwkValue))
+    try:
+        decoded=jwt.decode(token,publicKey,algorithms=[alg])
+        retVal={"json":decoded,"auth":True}
+    except:
+        retVal={"json":{},"auth":False}
+    return retVal
+def errorResponse(errorCode,event):
 
+    resp = {
+        'statusCode': errorCode,
+        'headers':corsHeaders,
+        'body': json.dumps(event)}
+    return resp
 def command_handler(body):
     command = body['data']['name']
     if command == 'help':
@@ -459,5 +556,3 @@ def make_pack_single(file_url,file_name,body,tick):
     packs_per_view = pack_per_youtube_View(pack_creation_time)
     text=f"Your File has been created. Bot Stats: Average Pack Creation Time = {pack_creation_time:0.2f}, total packs created= {packsCreated:0.0f}, Packs per Youtube View = {packs_per_view:0.2f}{skipped_text}"
     send_url_buttons(body,labels,urls,text=text)
-
-  
