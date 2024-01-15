@@ -57,7 +57,7 @@ class process_structure:
     def get_size(self):
         return self.size
 
-    def get_block_list(self, ignored_blocks=["minecraft:air"]):
+    def get_block_list(self, ignored_blocks=["minecraft:air","minecraft:structure_block"]):
         block_counter = {}
         i=-2
         block_array=array(self.blocks)

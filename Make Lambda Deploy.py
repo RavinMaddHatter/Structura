@@ -37,5 +37,5 @@ copyfile("structure_reader.py", "temp/structure_reader.py")
 copyfile("updater.py", "temp/updater.py")
 shutil.make_archive("temp", 'zip', "temp")
 shutil.rmtree("temp")
-
+print(update_package_name)
 os.rename(f'temp.zip',f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')
