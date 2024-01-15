@@ -147,7 +147,7 @@
 		"default": "Redstone Torch"
 	},
 	"minecraft:light_weighted_pressure_plate": {
-		"default": "Weighted Preasure Plate (light)"
+		"default": "Weighted Pressure Plate (light)"
 	},
 	"minecraft:daylight_detector_inverted": {
 		"default": "Daylight Sensor"
@@ -189,7 +189,7 @@
 		"default": "TNT"
 	},
 	"minecraft:heavy_weighted_pressure_plate": {
-		"default": "Weighted Preasure Plate (Heavy)"
+		"default": "Weighted Pressure Plate (Heavy)"
 	},
 	"minecraft:lever": {
 		"default": "Lever"
@@ -206,11 +206,26 @@
 	"minecraft:unpowered_comparator": {
 		"default": "Comparator"
 	},
+	"minecraft:deny": {
+		"default": "Deny"
+	},
 	"minecraft:powered_comparator": {
 		"default": "Comparator"
 	},
 	"minecraft:lectern": {
 		"default": "Lectern"
+	},
+	"minecraft:stripped_cherry_wood": {
+		"default": "Stripped Cherry Wood"
+	},
+	"minecraft:bamboo_hanging_sign": {
+		"default": "Bamboo Hanging Signs"
+	},
+	"minecraft:bamboo_fence_gate": {
+		"default": "Bamboo Fence Gate"
+	},
+	"minecraft:lit_smoker": {
+		"default": "Smoker"
 	},
 	"minecraft:smoker": {
 		"default": "Smoker"
@@ -1062,7 +1077,7 @@
 		"default": "Birch Sign"
 	},
 	"minecraft:birch_pressure_plate": {
-		"default": "Birch Preasure Plate"
+		"default": "Birch Pressure Plate"
 	},
 	"minecraft:jungle_trapdoor": {
 		"default": "Jungle Trapdoor"
@@ -1185,7 +1200,7 @@
 		"default": "Oak Sign"
 	},
 	"minecraft:wooden_pressure_plate": {
-		"default": "Oak Preassure Plate"
+		"default": "Oak Pressure Plate"
 	},
 	"minecraft:flowering_azalea": {
 		"default": "Flowering Azalea"
@@ -2247,6 +2262,12 @@
 	"minecraft:double_plant":{
 		"default": "Double Plant"
 	},
+	"minecraft:moving_block":{
+		"default": "Ignore"
+	},
+	"minecraft:stickyPistonArmCollision":{
+		"default": "Ignore"
+	},
 	"minecraft:warped_door":{
 		"default": "Warped Door"
 	},
@@ -2378,6 +2399,9 @@
 	},
 	"minecraft:cherry_wall_sign":{
 		"default": "Cherry Hanging Sign"
+	},
+	"minecraft:brewing_stand":{
+		"default": "Brewing Stand"
 	},
 	"minecraft:cherry_hanging_sign":{
 		"default": "Cherry Hanging Sign"
