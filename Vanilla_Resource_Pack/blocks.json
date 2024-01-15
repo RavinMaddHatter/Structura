@@ -2399,27 +2399,27 @@
   },
   "spruce_planks": {
     "sound": "wood",
-    "textures": "planks"
+    "textures": "spruce_planks"
   },
   "birch_planks": {
     "sound": "wood",
-    "textures": "planks"
+    "textures": "birch_planks"
   },
   "acacia_planks": {
     "sound": "wood",
-    "textures": "planks"
+    "textures": "acacia_planks"
   },
   "dark_oak_planks": {
     "sound": "wood",
-    "textures": "planks"
+    "textures": "dark_oak_planks"
   },
   "oak_planks": {
     "sound": "wood",
-    "textures": "planks"
+    "textures": "oak_planks"
   },
   "jungle_planks": {
     "sound": "wood",
-    "textures": "planks"
+    "textures": "jungle_planks"
   },
   "podzol": {
     "isotropic": {

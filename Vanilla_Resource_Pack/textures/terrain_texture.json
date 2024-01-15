@@ -2221,6 +2221,12 @@
         "textures/blocks/planks_big_oak"
       ]
     },
+	"spruce_planks":{"textures":["textures/blocks/planks_spruce"]},
+	"birch_planks":{"textures":["textures/blocks/planks_birch"]},
+	"acacia_planks":{"textures":["textures/blocks/planks_acacia"]},
+	"dark_oak_planks":{"textures":["textures/blocks/planks_big_oak"]},
+	"oak_planks":{"textures":["textures/blocks/planks_oak"]},
+	"jungle_planks":{"textures":["textures/blocks/planks_jungle"]},
     "pointed_dripstone_base": {
       "textures": [
         "textures/blocks/pointed_dripstone_down_base",
