@@ -4,6 +4,11 @@ import json
 from zipfile import ZIP_DEFLATED, ZipFile
 import os
 from datetime import datetime
+import shutil
+try:
+    shutil.rmtree("temp/")
+except:
+    pass
 
 currentDay = datetime.now().day
 currentMonth = datetime.now().month
@@ -22,6 +27,8 @@ except:
 shutil.copytree("lookups", f"temp/lookups")
 shutil.copytree("Vanilla_Resource_Pack", "temp/Vanilla_Resource_Pack")
 shutil.make_archive("temp", 'zip', "temp")
+if os.path.exists(update_package_name+".zip"):
+    os.remove(update_package_name+".zip")
 os.rename(f'temp.zip',update_package_name+".zip")
 
 copyfile("animation_class.py", "temp/animation_class.py")
@@ -38,4 +45,6 @@ copyfile("updater.py", "temp/updater.py")
 shutil.make_archive("temp", 'zip', "temp")
 shutil.rmtree("temp")
 print(update_package_name)
+if os.path.exists(update_package_name+".zip"):
+    os.remove(f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')
 os.rename(f'temp.zip',f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')
