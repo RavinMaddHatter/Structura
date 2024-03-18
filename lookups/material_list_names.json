@@ -219,7 +219,7 @@
 		"default": "Stripped Cherry Wood"
 	},
 	"minecraft:bamboo_hanging_sign": {
-		"default": "Bamboo Hanging Signs"
+		"default": "Bamboo Hanging Sign"
 	},
 	"minecraft:bamboo_fence_gate": {
 		"default": "Bamboo Fence Gate"
@@ -1145,7 +1145,7 @@
 	"minecraft:dark_oak_button": {
 		"default": "Dark Oak Button"
 	},
-	"minecraft:darkoak_standing_sign": {
+	"minecraft:dark_oak_standing_sign": {
 		"default": "Dark Oak Sign"
 	},
 	"minecraft:dark_oak_log": {
@@ -2395,10 +2395,10 @@
 		"default": "Chiseled Bookshelf"
 	},
 	"minecraft:bamboo_wall_sign":{
-		"default": "Bamboo Hanging Sign"
+		"default": "Bamboo Sign"
 	},
 	"minecraft:cherry_wall_sign":{
-		"default": "Cherry Hanging Sign"
+		"default": "Cherry Sign"
 	},
 	"minecraft:brewing_stand":{
 		"default": "Brewing Stand"
