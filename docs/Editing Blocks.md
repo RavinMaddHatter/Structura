@@ -1,5 +1,5 @@
 # How to edit blocks for Structura
-This page covers the process of editing a block to add support. This is broken into sections of adding support for rotation, changing the shape of a of a block, and editing the textures for the block. This was added in Structura 1.3.
+This page covers the process of editing a block to add support. This is broken into sections of adding support for rotation, changing the shape of a block, and editing the textures for the block. This was added in Structura 1.3.
 ## find the block common name
 Blocks that contain the same type but different names are linked in the file lookups/block_definitions.json. This allows several blocks to use the same type of rotations, block shape, and texture layout. These are strings, the entry name is as minecraft calls it internally, the value is a string that can be whatever the writer wants it to be. however this needs to match exactly the entries in the other files.
 
