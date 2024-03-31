@@ -7,6 +7,7 @@ def update(url,structura_version, lookup_verison):
     initial_check = requests.get(url,headers={"structuraVersion": structura_version,"lookupVersion":lookup_verison}).json()
     print(initial_check)
     updated=False
+    print(initial_check)
     if initial_check["info"] == 'Update Availible':
         print('Update Availible')
         print(initial_check["url"])
@@ -26,7 +27,7 @@ def update(url,structura_version, lookup_verison):
         print("up to date")
     return updated
 if __name__ =="__main__":
-    update("https://0p1rfspt5j.execute-api.us-east-2.amazonaws.com/default/structuraUpdate",
+    update("https://update.structuralab.com/structuraUpdate",
            "Structura1-6",
            "none")
     

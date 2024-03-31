@@ -1,6 +1,6 @@
 {
   "version": "update_package_31-3-2024",
   "author": "RavinMaddHatter",
-  "update_url": "https://0p1rfspt5j.execute-api.us-east-2.amazonaws.com/default/structuraUpdate",
+  "update_url": "https://update.structuralab.com/structuraUpdate",
   "notes": "Fixed 1.20.72 blocks"
 }
