@@ -1032,16 +1032,16 @@
 		"default": "Spruce Slab"
 	},
 	"minecraft:double_wooden_slab": {
-		"default": "Spruce Planks"
+		"default": "Double Wooden Slabs"
 	},
 	"minecraft:spruce_pressure_plate": {
 		"default": "Spruce Pressure Plate"
 	},
 	"minecraft:wood": {
-		"default": "Spruce Wood"
+		"default": "Oak Wood"
 	},
 	"minecraft:leaves": {
-		"default": "Spruce Leaves"
+		"default": "Oak Leaves"
 	},
 	"minecraft:planks": {
 		"default": "Spruce Planks"

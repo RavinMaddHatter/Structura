@@ -332,9 +332,11 @@ def help_command(body):
     packsCreated=float(response["Item"]['packsCreated'])
     packs_per_view = pack_per_youtube_View(pack_creation_time)
     help_text=f"This bot is a privlage not a right, To keep it funded do check out a few videos. Each video you watch pays for {packs_per_view:0.1f} conversions \n"
-    help_text+="Note: on may 20 2023 i changed the name of the file upload in the command. This may be cached on your device if you are an long time user fully close the app or restart your device to see if that fixes it.\n\n"
-    help_text+="/convert [file1] [file2-file6 optional]: this command creates a structura pack from a valid structure file. If the file is not valid it will not work. If you select more than 1 file the name tag will be the file name. this one is private so we dont see what is going on\n\n"
-    help_text+="/convertpublic [file1] [file2-file6 optional] : this command creates a structura pack from a valid structure file. If the file is not valid it will not work.If you select more than 1 file the name tag will be the file name. This one is public so we can see what is going on\n"
+    help_text+="Note: on may 20 2023 i changed the name of the file upload in the command. This may be cached on your device if you are an long time user fully close the app or restart your device to see if that fixes it.\n\r"
+    help_text+="/convert [file1] [file2-file6 optional]: this command creates a structura pack from a valid structure file. If the file is not valid it will not work. If you select more than 1 file the name tag will be the file name. this one is private so we dont see what is going on\n\r"
+    help_text+="/convertpublic [file1] [file2-file6 optional] : this command creates a structura pack from a valid structure file. If the file is not valid it will not work.If you select more than 1 file the name tag will be the file name. This one is public so we can see what is going on\n\n"
+    help_text+="if you are having trouble check <#1129115788972929095> for more information on how to use the bot.\n\n"
+    help_text+="If the Discord bot is giving you probelms consider using https://structuralab.com/ it has the same features as the bot... but a different User interface with wider compatiblity"   
     data={
 #            'type': 4,
 #            'data':{

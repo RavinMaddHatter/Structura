@@ -17,7 +17,7 @@ update_package_name=f'update_package_{currentDay}-{currentMonth}-{currentYear}'
 with open("lookups/lookup_version.json","r") as file:
     old_update=json.load(file)
 old_update["version"]=update_package_name
-old_update["notes"]="Fixed 1.20.51 blocks"
+old_update["notes"]="Fixed 1.20.72 blocks"
 with open("lookups/lookup_version.json","w+") as file:
     json.dump(old_update,file,indent=2)
 try:
@@ -46,5 +46,8 @@ shutil.make_archive("temp", 'zip', "temp")
 shutil.rmtree("temp")
 print(update_package_name)
 if os.path.exists(update_package_name+".zip"):
-    os.remove(f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')
+    try:
+        os.remove(f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')
+    except:
+        print(f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip doesnt exist')
 os.rename(f'temp.zip',f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')

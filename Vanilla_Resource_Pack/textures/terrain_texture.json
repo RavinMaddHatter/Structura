@@ -1497,6 +1497,21 @@
     "large_amethyst_bud": {
       "textures": "textures/blocks/large_amethyst_bud"
     },
+	"spruce_leaves":{
+		"textures":"textures/blocks/leaves_spruce"
+	},
+	"birch_leaves":{
+		"textures":"textures/blocks/leaves_birch"
+	},
+	"jungle_leaves":{
+		"textures":"textures/blocks/leaves_jungle"
+	},
+	"acacia_leaves":{
+		"textures":"textures/blocks/leaves_acacia"
+	},
+	"dark_oak_leaves":{
+		"textures":"textures/blocks/leaves_big_oak"
+	},
     "leaves": {
       "textures": [
         "textures/blocks/leaves_oak",
