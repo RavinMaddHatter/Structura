@@ -1,7 +1,6 @@
 from PIL import Image
 import json 
 import boto3
-import uuid
 import os
 import boto3
 import decimal 
@@ -12,7 +11,6 @@ from structura_core import structura
 from nacl.signing import VerifyKey
 from nacl.exceptions import BadSignatureError
 import requests
-import uuid
 import jwt
 import time
 import shutil

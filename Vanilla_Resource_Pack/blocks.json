@@ -780,6 +780,17 @@
     "sound": "stone",
     "textures": "cracked_polished_blackstone_bricks"
   },
+   "crafter" : {
+      "sound" : "stone",
+      "textures" : {
+         "down" : "crafter_bottom",
+         "east" : "crafter_east",
+         "north" : "crafter_north",
+         "south" : "crafter_south",
+         "up" : "crafter_top",
+         "west" : "crafter_west"
+      }
+   },
   "crafting_table": {
     "sound": "wood",
     "textures": {

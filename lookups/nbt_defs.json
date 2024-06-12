@@ -12,6 +12,7 @@
 	"prismarine_block_type":"variant",
 	"stone_brick_type":"variant",
 	"color":"variant",
+	"orientation":"rot",
 	"sand_stone_type":"variant",
 	"stone_slab_type":"variant",
 	"stone_slab_type_2":"variant",
