@@ -199,10 +199,7 @@ class armorstandgeo:
             if str(data) in self.block_shapes[block_type].keys():
                 block_shapes = self.block_shapes[block_type][str(data)]
             if block_type in self.block_rotations.keys() and rot is not None:
-                try:
-                    self.blocks[ghost_block_name]["rotation"] = copy.deepcopy(self.block_rotations[block_type][str(rot)])
-                except:
-                    print(f"rotation error on {block_name}-{block_type} - {str(rot)}")
+                self.blocks[ghost_block_name]["rotation"] = copy.deepcopy(self.block_rotations[block_type][str(rot)])
                 if big:
                     self.blocks[ghost_block_name]["rotation"][1]+=180
             else:

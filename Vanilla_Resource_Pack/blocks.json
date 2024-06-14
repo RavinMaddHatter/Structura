@@ -974,6 +974,30 @@
     "sound": "copper",
     "textures": "cut_copper"
   },
+   "waxed_copper_grate" : {
+      "sound" : "copper_grate",
+      "textures" : "copper_grate"
+   },
+   "copper_grate" : {
+      "sound" : "copper_grate",
+      "textures" : "copper_grate"
+   },
+   "waxed_exposed_copper_grate" : {
+      "sound" : "copper_grate",
+      "textures" : "exposed_copper_grate"
+   },
+   "exposed_copper_grate" : {
+      "sound" : "copper_grate",
+      "textures" : "exposed_copper_grate"
+   },
+   "waxed_weathered_copper_grate" : {
+      "sound" : "copper_grate",
+      "textures" : "weathered_copper_grate"
+   },
+   "weathered_copper_grate" : {
+      "sound" : "copper_grate",
+      "textures" : "weathered_copper_grate"
+   },
    "waxed_copper_trapdoor" : {
       "sound" : "copper",
       "textures" : "copper_trapdoor"
@@ -1904,9 +1928,9 @@
   "iron_door": {
     "sound": "metal",
     "textures": {
-      "down": "door_lower",
-      "side": "door_upper",
-      "up": "door_lower"
+      "down": "iron_door_lower",
+      "side": "iron_door_upper",
+      "up": "iron_door_lower"
     }
   },
   "iron_ore": {
@@ -4267,7 +4291,6 @@
     "textures": "planks"
   },
   "wooden_door": {
-    "sound": "wood",
     "textures": {
       "down": "door_lower",
       "side": "door_upper",

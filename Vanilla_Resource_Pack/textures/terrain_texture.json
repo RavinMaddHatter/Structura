@@ -831,6 +831,15 @@
     "bamboo_door_bottom": {
       "textures": "textures/blocks/bamboo_door_bottom"
     },
+    "copper_grate": {
+      "textures": "textures/blocks/copper_grate"
+    },
+    "exposed_copper_grate": {
+      "textures": "textures/blocks/exposed_copper_grate"
+    },
+    "weathered_copper_grate": {
+      "textures": "textures/blocks/weathered_copper_grate"
+    },
     "weathered_copper_bulb": {
       "textures": [
         "textures/blocks/weathered_copper_bulb",
@@ -1119,6 +1128,23 @@
     "dispenser_top": {
       "textures": "textures/blocks/furnace_top"
     },
+    "cherry_door_top": {
+      "textures": "textures/blocks/cherry_door_top"
+    },
+	
+    "cherry_door_bottom": {
+      "textures": "textures/blocks/cherry_door_bottom"
+    },
+	"iron_door_lower": {
+      "textures": [
+        "textures/blocks/door_iron_lower"
+		]
+	},
+	"iron_door_upper": {
+      "textures": [
+        "textures/blocks/door_iron_upper"
+		]
+	},
     "door_lower": {
       "textures": [
         "textures/blocks/door_wood_lower",
