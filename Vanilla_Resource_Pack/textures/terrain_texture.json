@@ -1189,6 +1189,16 @@
     "farmland_side": {
       "textures": "textures/blocks/dirt"
     },
+	"fern": {
+      "textures": [
+        "textures/blocks/fern"
+      ]
+    },
+	"short_grass": {
+      "textures": [
+        "textures/blocks/short_grass"
+      ]
+    },
     "fire_0": {
       "textures": "textures/blocks/fire_0"
     },
@@ -1816,6 +1826,41 @@
     },
     "mob_spawner": {
       "textures": "textures/blocks/mob_spawner"
+    },
+    "trial_spawner_top": {
+      "textures": [
+        "textures/blocks/trial_spawner_top_inactive"
+		]
+	},
+    "trial_spawner_bottom": {
+      "textures": [
+        "textures/blocks/trial_spawner_bottom"
+      ]
+    },
+    "trial_spawner_side": {
+      "textures": [
+        "textures/blocks/trial_spawner_side_inactive"
+      ]
+    },
+	
+    "spruce_sapling": {
+      "textures": "textures/blocks/sapling_spruce"
+    },
+	
+    "birch_sapling": {
+      "textures": "textures/blocks/sapling_birch"
+    },
+    "jungle_sapling": {
+      "textures": "textures/blocks/sapling_jungle"
+    },
+    "acacia_sapling": {
+      "textures": "textures/blocks/sapling_acacia"
+    },
+    "dark_oak_sapling": {
+      "textures": "textures/blocks/sapling_roofed_oak"
+    },
+    "oak_sapling": {
+      "textures": "textures/blocks/sapling_oak"
     },
     "monster_egg": {
       "textures": [
@@ -2533,6 +2578,56 @@
     "red_candle_carried": {
       "textures": "textures/items/candles/red_candle"
     },
+	"poppy": {
+      "textures": [
+		"textures/blocks/flower_rose"
+		]
+	},
+	"blue_orchid": {
+      "textures": [
+        "textures/blocks/flower_blue_orchid"
+		]
+	},
+	"allium": {
+      "textures": [
+        "textures/blocks/flower_allium"
+		]
+	},
+	"azure_bluet": {
+      "textures": [
+        "textures/blocks/flower_houstonia"
+		]
+	},
+	"cornflower": {
+      "textures": [
+        "textures/blocks/flower_cornflower"
+		]
+	},
+	"red_tulip": {
+      "textures": [
+        "textures/blocks/flower_tulip_red"
+		]
+	},
+	"orange_tulip": {
+      "textures": [
+        "textures/blocks/flower_tulip_orange"
+		]
+	},
+	"white_tulip": {
+      "textures": [
+        "textures/blocks/flower_tulip_white"
+		]
+	},
+	"pink_tulip": {
+      "textures": [
+        "textures/blocks/flower_tulip_pink"
+		]
+	},
+	"oxeye_daisy": {
+      "textures": [
+        "textures/blocks/flower_oxeye_daisy"
+		]
+	},
     "red_flower": {
       "textures": [
         "textures/blocks/flower_rose",
@@ -2789,6 +2884,69 @@
 	"dead_brain_coral":{
 		"textures":"textures/blocks/coral_plant_pink_dead"
 	},
+    "dead_brain_coral_block": {
+      "textures": "textures/blocks/coral_pink_dead"
+    },
+    "tube_coral_fan": {
+      "textures": "textures/blocks/coral_fan_blue"
+    },
+    "brain_coral_fan": {
+      "textures": "textures/blocks/coral_fan_pink"
+    },
+    "bubble_coral_fan": {
+      "textures": "textures/blocks/coral_fan_purple"
+    },
+    "fire_coral_fan": {
+      "textures": "textures/blocks/coral_fan_red"
+    },
+    "horn_coral_fan": {
+      "textures": "textures/blocks/coral_fan_yellow"
+    },
+    "dead_tube_coral_fan": {
+      "textures": "textures/blocks/coral_fan_blue_dead"
+    },
+    "dead_brain_coral_fan": {
+      "textures": "textures/blocks/coral_fan_pink_dead"
+    },
+    "dead_bubble_coral_fan": {
+      "textures": "textures/blocks/coral_fan_purple_dead"
+    },
+    "dead_fire_coral_fan": {
+      "textures": "textures/blocks/coral_fan_red_dead"
+    },
+    "dead_horn_coral_fan": {
+      "textures": "textures/blocks/coral_fan_yellow_dead"
+    },
+    "tube_coral_block": {
+      "textures": "textures/blocks/coral_blue"
+    },
+    "brain_coral_block": {
+      "textures": "textures/blocks/coral_pink"
+    },
+    "bubble_coral_block": {
+      "textures": "textures/blocks/coral_purple"
+    },
+    "fire_coral_block": {
+      "textures": "textures/blocks/coral_red"
+    },
+    "horn_coral_block": {
+      "textures": "textures/blocks/coral_yellow"
+    },
+    "dead_tube_coral_block": {
+      "textures": "textures/blocks/coral_blue_dead"
+    },
+    "dead_brain_coral_block": {
+      "textures": "textures/blocks/coral_pink_dead"
+    },
+    "dead_bubble_coral_block": {
+      "textures": "textures/blocks/coral_purple_dead"
+    },
+    "dead_fire_coral_block": {
+      "textures": "textures/blocks/coral_red_dead"
+    },
+    "dead_horn_coral_block": {
+      "textures": "textures/blocks/coral_yellow_dead"
+    },
 	"brain_coral":{
 		"textures":"textures/blocks/coral_plant_pink_dead"
 	},
@@ -3556,6 +3714,24 @@
     },
     "tuff": {
       "textures": "textures/blocks/tuff"
+    },
+    "tuff_bricks": {
+      "textures": "textures/blocks/tuff_bricks"
+    },
+    "chiseled_tuff": {
+      "textures": "textures/blocks/chiseled_tuff"
+    },
+    "chiseled_tuff_top": {
+      "textures": "textures/blocks/chiseled_tuff_top"
+    },
+    "chiseled_tuff_bricks": {
+      "textures": "textures/blocks/chiseled_tuff_bricks"
+    },
+    "chiseled_tuff_bricks_top": {
+      "textures": "textures/blocks/chiseled_tuff_bricks_top"
+    },
+    "polished_tuff": {
+      "textures": "textures/blocks/polished_tuff"
     },
     "sniffer_egg_east": {
       "textures": ["textures/blocks/sniffer_egg_not_cracked_east",

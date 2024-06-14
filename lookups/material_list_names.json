@@ -2,7 +2,6 @@
 	"minecraft:raw_iron_block": {
 		"default": "Raw Iron Block"
 	},
-	,
 	"minecraft:crafter":{
 		"default": "Crafter"
 	},
