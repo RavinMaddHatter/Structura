@@ -343,22 +343,12 @@
     },
     "bubble_column_outer": {
       "textures": [
-        "textures/blocks/bubble_column_outer_a",
-        "textures/blocks/bubble_column_outer_b",
-        "textures/blocks/bubble_column_outer_c",
-        "textures/blocks/bubble_column_outer_d",
-        "textures/blocks/bubble_column_outer_e",
-        "textures/blocks/bubble_column_outer_f",
-        "textures/blocks/bubble_column_outer_g",
-        "textures/blocks/bubble_column_outer_h"
+        "textures/blocks/bubble_column_outer_a"
       ]
     },
     "bubble_column_up_top": {
       "textures": [
-        "textures/blocks/bubble_column_up_top_a",
-        "textures/blocks/bubble_column_up_top_b",
-        "textures/blocks/bubble_column_up_top_c",
-        "textures/blocks/bubble_column_up_top_d"
+        "textures/blocks/bubble_column_up_top_a"
       ]
     },
     "budding_amethyst": {
@@ -798,6 +788,97 @@
         "textures/blocks/coral_fan_yellow_dead",
         "textures/blocks/coral_fan_yellow_dead"
       ]
+    },
+    "copper_bulb": {
+      "textures": [
+        "textures/blocks/copper_bulb",
+        "textures/blocks/copper_bulb_lit",
+        "textures/blocks/copper_bulb_powered",
+        "textures/blocks/copper_bulb_lit_powered"
+      ]
+    },
+   "exposed_copper_bulb" : {
+      "textures" : "textures/blocks/exposed_copper_bulb"
+   },
+   "exposed_copper_door" : {
+      "textures" : {
+         "down" : "textures/blocks/exposed_copper_door_bottom",
+         "side" : "textures/blocks/exposed_copper_door_top",
+         "up" : "textures/blocks/exposed_copper_door_bottom"
+      }
+   },
+    "copper_trapdoor": {
+      "textures": "textures/blocks/copper_trapdoor"
+    },
+    "exposed_copper_trapdoor": {
+      "textures": "textures/blocks/exposed_copper_trapdoor"
+    },
+    "weathered_copper_trapdoor": {
+      "textures": "textures/blocks/weathered_copper_trapdoor"
+    },
+    "oxidized_copper_trapdoor": {
+      "textures": "textures/blocks/oxidized_copper_trapdoor"
+    },
+    "copper_door_top": {
+      "textures": "textures/blocks/copper_door_top"
+    },
+    "copper_door_bottom": {
+      "textures": "textures/blocks/copper_door_bottom"
+    },
+    "bamboo_door_top": {
+      "textures": "textures/blocks/bamboo_door_top"
+    },
+    "bamboo_door_bottom": {
+      "textures": "textures/blocks/bamboo_door_bottom"
+    },
+    "weathered_copper_bulb": {
+      "textures": [
+        "textures/blocks/weathered_copper_bulb",
+        "textures/blocks/weathered_copper_bulb_lit",
+        "textures/blocks/weathered_copper_bulb_powered",
+        "textures/blocks/weathered_copper_bulb_lit_powered"
+      ]
+    },
+    "oxidized_copper_bulb": {
+      "textures": [
+        "textures/blocks/oxidized_copper_bulb",
+        "textures/blocks/oxidized_copper_bulb_lit",
+        "textures/blocks/oxidized_copper_bulb_powered",
+        "textures/blocks/oxidized_copper_bulb_lit_powered"
+      ]
+    },
+    "oxidized_copper_grate": {
+      "textures": "textures/blocks/oxidized_copper_grate"
+    },
+    "exposed_copper_door_top": {
+      "textures": "textures/blocks/exposed_copper_door_top"
+    },
+    "exposed_copper_door_bottom": {
+      "textures": "textures/blocks/exposed_copper_door_bottom"
+    },
+    "weathered_copper_door_top": {
+      "textures": "textures/blocks/weathered_copper_door_top"
+    },
+    "weathered_copper_door_bottom": {
+      "textures": "textures/blocks/weathered_copper_door_bottom"
+    },
+    "oxidized_copper_door_top": {
+      "textures": "textures/blocks/oxidized_copper_door_top"
+    },
+    "oxidized_copper_door_bottom": {
+      "textures": "textures/blocks/oxidized_copper_door_bottom"
+    },
+    "copper_trapdoor": {
+      "textures": "textures/blocks/copper_trapdoor"
+    },
+    "exposed_copper_trapdoor": {
+      "textures": "textures/blocks/exposed_copper_trapdoor"
+    },
+    "weathered_copper_trapdoor": {
+      "textures": "textures/blocks/weathered_copper_trapdoor"
+    },
+    "oxidized_copper_trapdoor": {
+      "textures": "textures/blocks/oxidized_copper_trapdoor"
     },
     "cracked_deepslate_bricks": {
       "textures": "textures/blocks/deepslate/cracked_deepslate_bricks"
