@@ -190,6 +190,8 @@ def runFromGui():
         
         structura_base=structura(packName.get())
         structura_base.set_opacity(sliderVar.get())
+        if len(icon_var.get())>0:
+            structura_base.set_icon(icon_var.get())
         if debug:
             print(models)
         

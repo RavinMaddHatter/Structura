@@ -134,13 +134,12 @@ class combined_structures:
         return self.size
     def get_block_list(self, ignored_blocks=["minecraft:air"]):
         block_counter = {}
-        i=-2
+        i=0-2
         block_array=array(self.blocks)
-        for block in self.palette:
-            i+=1
+        for i in range(len(self.palette)):
+            block = self.palette[i]
             name=block["name"]
             if not(name in ignored_blocks):
-                
                 if name in self.block_names.keys():
                     variant="default"
                     for state in block["states"].keys():

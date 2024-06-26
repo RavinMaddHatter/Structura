@@ -130,9 +130,9 @@ class armorstandgeo:
             geometries[layer_name]["description"]["visible_bounds_height"] = 5120
             geometries[layer_name]["description"]["visible_bounds_offset"] = [0, 1.5, 0]
             geometries[layer_name]["bones"]=[{"name": "ghost_blocks","pivot": [0, 0, 0]},## i am not sure this should be this value for pivot
-                                             {"name": "layer_"+str(i),"parent": "ghost_blocks","pivot": [0, 0, 0]}]## i am not sure this should be this value for pivot
+                                             {"name": layer_name,"parent": "ghost_blocks","pivot": [0, 0, 0]}]## i am not sure this should be this value for pivot
         
-        
+        ## Here is the bug....
         for key in self.blocks.keys():
             layer_name = self.blocks[key]["parent"]
             geometries[layer_name]["bones"].append(self.blocks[key])

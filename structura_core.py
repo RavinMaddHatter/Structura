@@ -56,8 +56,10 @@ class structura:
         self.structure_files[""]={}
         self.structure_files[""]["offsets"]=[0,0,0]
         self.structure_files[""]["offsets"][1]= 0
-        
-        for i in range(12):
+        layers=12
+        if (struct2make.get_size()[1]<=12):
+            layers=struct2make.get_size()[1]
+        for i in range(layers):
             self.armorstand_entity.add_model(str(i))
             self.rc.add_geometry(str(i))
         self.big_offset=offset
