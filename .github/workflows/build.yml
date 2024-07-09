@@ -1,0 +1,25 @@
+name: Build Structura
+run-name: Build Structura
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  Build:
+    runs-on: windows-latest
+    permissions: write-all
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.1
+      - name: Bundle application
+        run: |
+          pip install -r requirements.txt -U pyinstaller
+          pyinstaller --clean --onefile structura.py
+          move LICENSE dist/LICENSE
+          tree /f
+      - name: Upload as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Structura
+          path: dist
