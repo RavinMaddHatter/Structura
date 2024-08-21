@@ -1,6 +1,6 @@
 {
-  "version": "update_package_14-6-2024",
+  "version": "update_package_21-8-2024",
   "author": "RavinMaddHatter",
   "update_url": "https://update.structuralab.com/structuraUpdate",
-  "notes": "Added 1.21.0 blocks fixed issues with old blocks"
+  "notes": "Fixed 1.21.21 block update and names for 1.20.0"
 }

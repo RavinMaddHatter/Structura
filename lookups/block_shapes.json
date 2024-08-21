@@ -369,6 +369,14 @@
 			"center": [0.5, 0.5, 0.5]
 		}
 	},
+	"coral_fan_wall": {
+		"default": {
+			"size": [
+				[1, 1, 1]
+			],
+			"center": [0.5, 0.5, 0.5]
+		}
+	},
 	"cross_texture": {
 		"default": {
 			"size": [

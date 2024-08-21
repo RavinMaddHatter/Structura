@@ -2,6 +2,651 @@
 	"minecraft:raw_iron_block": {
 		"default": "Raw Iron Block"
 	},
+	"minecraft:tuff_brick_double_slab":{
+		"default": "Tuff Brick"
+	},
+	"minecraft:waxed_weathered_copper_grate":{
+		"default": "Waxed Weathered Copper Grate"
+	},
+	"minecraft:smooth_red_sandstone_double_slab":{
+		"default": "Smooth Red Sandstone"
+	},
+	"minecraft:oak_wood":{
+		"default": "Oak Wood"
+	},
+	"minecraft:polished_andesite_double_slab":{
+		"default": "Polished Andesite"
+	},
+	"minecraft:dead_tube_coral_block":{
+		"default": "Dead Tube Coral Block"
+	},
+	"minecraft:birch_leaves":{
+		"default": "Birch Leaves"
+	},
+	"minecraft:infested_stone":{
+		"default": "Infested Stone"
+	},
+	"minecraft:dead_bubble_coral_block":{
+		"default": "Dead Bubble Coral Block"
+	},
+	"minecraft:cobblestone_double_slab":{
+		"default": "Cobblestone"
+	},
+	"minecraft:exposed_copper_grate":{
+		"default": "Exposed Copper Crate"
+	},
+	"minecraft:granite_double_slab":{
+		"default": "Granite"
+	},
+	"minecraft:spruce_wood":{
+		"default": "Spruce Wood"
+	},
+	"minecraft:jungle_wood":{
+		"default": "Jungle Wood"
+	},
+	"minecraft:horn_coral_fan":{
+		"default": "Horn Coral Fan"
+	},
+	"minecraft:mossy_stone_brick_double_slab":{
+		"default": "Mossy Stone Brick"
+	},
+	"minecraft:infested_cracked_stone_bricks":{
+		"default": "Infested Cracked Stone Bricks"
+	},
+	"minecraft:tuff_bricks":{
+		"default": "Tuff Bricks"
+	},
+	"minecraft:waxed_exposed_copper_grate":{
+		"default": "Waxed Exposed Copper Crate"
+	},
+	"minecraft:dead_brain_coral_fan":{
+		"default": "Dead Brain Coral Fan"
+	},
+	"minecraft:orange_tulip":{
+		"default": "Orange Tulip"
+	},
+	"minecraft:dandelion":{
+		"default": "Dandelion"
+	},
+	"minecraft:jungle_double_slab":{
+		"default": "Jungle Planks"
+	},
+	"minecraft:dark_oak_wood":{
+		"default": "Dark Oak Wood"
+	},
+	"minecraft:oxeye_daisy":{
+		"default": "Oxeye Daisy"
+	},
+	"minecraft:horn_coral_block":{
+		"default": "Horn Coral Block"
+	},
+	"minecraft:oxidized_copper_grate":{
+		"default": "Oxidized Copper Grate"
+	},
+	"minecraft:polished_granite_double_slab":{
+		"default": "Polished Granite"
+	},
+	"minecraft:dead_horn_coral_block":{
+		"default": "Dead Horn Coral Block"
+	},
+	"minecraft:red_sandstone_double_slab":{
+		"default": "Red Sandstone"
+	},
+	"minecraft:infested_cobblestone":{
+		"default": "Infested Cobblestone"
+	},
+	"minecraft:chiseled_sandstone":{
+		"default": "Chiseled Sandstone"
+	},
+	"minecraft:cut_sandstone_double_slab":{
+		"default": "Cut Sandstone"
+	},
+	"minecraft:infested_stone_bricks":{
+		"default": "Infested Stone Bricks"
+	},
+	"minecraft:tuff_double_slab":{
+		"default": "Tuff"
+	},
+	"minecraft:polished_diorite_double_slab":{
+		"default": "Polished Diorite"
+	},
+	"minecraft:smooth_sandstone_double_slab":{
+		"default": "Smooth Sandstone"
+	},
+	"minecraft:pink_tulip":{
+		"default": "Pink Tulip"
+	},
+	"minecraft:tube_coral_block":{
+		"default": "Tube Coral Block"
+	},
+	"minecraft:dark_oak_double_slab":{
+		"default": "Dark Oak Planks"
+	},
+	"minecraft:tuff_wall":{
+		"default": "Tuff Wall"
+	},
+	"minecraft:birch_double_slab":{
+		"default": "Birch Planks"
+	},
+	"minecraft:dead_fire_coral_fan":{
+		"default": "Dead Fire Coral Fan"
+	},
+	"minecraft:chiseled_red_sandstone":{
+		"default": "Chiseled Red Sandstone"
+	},
+	"minecraft:prismarine_double_slab":{
+		"default": "Prismarine Double Slab"
+	},
+	"minecraft:oak_sapling":{
+		"default": "Oak Sapling"
+	},
+	"minecraft:prismarine_bricks":{
+		"default": "Prismarine Bricks"
+	},
+	"minecraft:quartz_double_slab":{
+		"default": "Quartz Block"
+	},
+	"minecraft:acacia_wood":{
+		"default": "Acacia Wood"
+	},
+	"minecraft:dark_prismarine":{
+		"default": "Dark Prismarine"
+	},
+	"minecraft:allium":{
+		"default": "Allium"
+	},
+	"minecraft:jungle_sapling":{
+		"default": "Jungle Sapling"
+	},
+	"minecraft:sandstone_double_slab":{
+		"default": "Sandstone"
+	},
+	"minecraft:stone_bricks":{
+		"default": "Stone Bricks"
+	},
+	"minecraft:jungle_leaves":{
+		"default": "Jungle Leaves"
+	},
+	"minecraft:spruce_double_slab":{
+		"default": "Spruce Planks"
+	},
+	"minecraft:purpur_double_slab":{
+		"default": "Purpur"
+	},
+	"minecraft:coarse_dirt":{
+		"default": "Coarse Dirt"
+	},
+	"minecraft:fire_coral_block":{
+		"default": "Fire Coral Block"
+	},
+	"minecraft:bubble_coral_fan":{
+		"default": "Bubble Coral Fan"
+	},
+	"minecraft:lilac":{
+		"default": "Lilac"
+	},
+	"minecraft:oak_slab":{
+		"default": "Oak Slab"
+	},
+	"minecraft:smooth_sandstone_slab":{
+		"default": "Smooth Sandstone Slab"
+	},
+	"minecraft:waxed_copper":{
+		"default": "Waxed Copper"
+	},
+	"minecraft:acacia_slab":{
+		"default": "Acacia Slab"
+	},
+	"minecraft:fern":{
+		"default": "Fern"
+	},
+	"minecraft:smooth_sandstone":{
+		"default": "Smooth Sandstone"
+	},
+	"minecraft:fire_coral_fan":{
+		"default": "Fire Coral fan"
+	},
+	"minecraft:smooth_stone_double_slab":{
+		"default": "Smooth Stone"
+	},
+	"minecraft:cornflower":{
+		"default": "Cornflower"
+	},
+	"minecraft:polished_tuff_double_slab":{
+		"default": "Polished Tuff Double Slab"
+	},
+	"minecraft:oak_leaves":{
+		"default": "Oak Leaves"
+	},
+	"minecraft:blue_orchid":{
+		"default": "Blue Orchid"
+	},
+	"minecraft:acacia_sapling":{
+		"default": "Acacia Sapling"
+	},
+	"minecraft:dead_tube_coral_fan":{
+		"default": "Dead Tube Coral Fan"
+	},
+	"minecraft:smooth_red_sandstone":{
+		"default": "Smooth Red Sandstone"
+	},
+	"minecraft:oak_double_slab":{
+		"default": "Oak Double Slab"
+	},
+	"minecraft:smooth_quartz_double_slab":{
+		"default": "Smooth Quartz Double Slab"
+	},
+	"minecraft:poppy":{
+		"default": "Poppy"
+	},
+	"minecraft:tube_coral_fan":{
+		"default": "Tube Coral Fan"
+	},
+	"minecraft:white_tulip":{
+		"default": "White Tulip"
+	},
+	"minecraft:red_tulip":{
+		"default": "Red Tulip"
+	},
+	"minecraft:mossy_stone_bricks":{
+		"default": "Mossy Stone Bricks"
+	},
+	"minecraft:birch_slab":{
+		"default": "Birch Slab"
+	},
+	"minecraft:diorite_slab":{
+		"default": "Diorite Slab"
+	},
+	"minecraft:stripped_oak_wood":{
+		"default": "Stripped Oak Wood"
+	},
+	"minecraft:tuff_brick_stairs":{
+		"default": "Tuff Brick Stairs"
+	},
+	"minecraft:weathered_copper_door":{
+		"default": "Weathered Copper Door"
+	},
+	"minecraft:wall_banner":{
+		"default": "Banner"
+	},
+	"minecraft:waxed_oxidized_copper_trapdoor":{
+		"default": "Waxed Oxidized Copper Trapdoor"
+	},
+	"minecraft:exposed_copper_trapdoor":{
+		"default": "Exposed Copper Trapdoor"
+	},
+	"minecraft:waxed_exposed_copper_trapdoor":{
+		"default": "Waxed Exposed Copper Trapdoor"
+	},
+	"minecraft:waxed_exposed_copper_door":{
+		"default": "Waxed Exposed Copper Door"
+	},
+	"minecraft:waxed_weathered_copper_trapdoor":{
+		"default": "Waxed Weathered Copper Trapdoor"
+	},
+	"minecraft:weathered_copper_trapdoor":{
+		"default": "Weathered Copper Trapdoor"
+	},
+	"minecraft:copper_door":{
+		"default": "Copper Door"
+	},
+	"minecraft:waxed_copper_door":{
+		"default": "Waxed Copper Door"
+	},
+	"minecraft:waxed_weathered_copper_door":{
+		"default": "Waxed Weathered Copper Door"
+	},
+	"minecraft:copper_trapdoor":{
+		"default": "Copper Trapdoor"
+	},
+	"minecraft:waxed_oxidized_copper_door":{
+		"default": "Waxed Oxidized Copper Door"
+	},
+	"minecraft:waxed_copper_trapdoor":{
+		"default": "Waxed Copper Trapdoor"
+	},
+	"minecraft:oxidized_copper_door":{
+		"default": "Oxidized Copper Door"
+	},
+	"minecraft:exposed_copper_door":{
+		"default": "Exposed Copper Door"
+	},
+	"minecraft:oxidized_copper_trapdoor":{
+		"default": "Oxidized Copper Trapdoor"
+	},
+	"minecraft:tuff_stairs":{
+		"default": "Tuff Stairs"
+	},
+	"minecraft:polished_tuff_stairs":{
+		"default": "Polished Tuff Stairs"
+	},
+	"minecraft:stripped_birch_wood":{
+		"default": "Stripped Birch Wood"
+	},
+	"minecraft:stripped_jungle_wood":{
+		"default": "Stripped Jungle Wood"
+	},
+	"minecraft:grass_block":{
+		"default": "Grass Block"
+	},
+	"minecraft:stripped_dark_oak_wood":{
+		"default": "Stripped Dark Oak Wood"
+	},
+	"minecraft:stripped_spruce_wood":{
+		"default": "Stripped Spruce Wood"
+	},
+	"minecraft:stripped_acacia_wood":{
+		"default": "Stripped Acacia Wood"
+	},
+	"minecraft:short_grass":{
+		"default": "Short Grass"
+	},
+	"minecraft:dead_horn_coral_wall_fan":{
+		"default": "Dead Horn Coral Fan"
+	},
+	"minecraft:horn_coral_wall_fan":{
+		"default": "Horn Coral Fan"
+	},
+	"minecraft:brain_coral_wall_fan":{
+		"default": "Brain Coral Wall Fan"
+	},
+	"minecraft:dead_brain_coral_wall_fan":{
+		"default": "Dead Brain Coral Fan"
+	},
+	"minecraft:dead_fire_coral_wall_fan":{
+		"default": "Dead Fire Coral Fan"
+	},
+	"minecraft:bubble_coral_wall_fan":{
+		"default": "Bubble Coral Fan"
+	},
+	"minecraft:dead_tube_coral_wall_fan":{
+		"default": "Dead Tube Coral Fan"
+	},
+	"minecraft:tube_coral_wall_fan":{
+		"default": "Tube Coral Fan"
+	},
+	"minecraft:fire_coral_wall_fan":{
+		"default": "Fire Coral Fan"
+	},
+	"minecraft:mossy_cobblestone_slab":{
+		"default": "Mossy Cobblestone Slab"
+	},
+	"minecraft:dead_bubble_coral_wall_fan":{
+		"default": "Dead Bubble Coral Fan"
+	},
+	"minecraft:jungle_slab":{
+		"default": "Jungle Slab"
+	},
+	"minecraft:exposed_copper_bulb":{
+		"default": "Exposed Copper Bulb"
+	},
+	"minecraft:sandstone_slab":{
+		"default": "Sandstone Slab"
+	},
+	"minecraft:smooth_stone_slab":{
+		"default": "Smooth Stone Slab"
+	},
+	"minecraft:end_stone_brick_slab":{
+		"default": "End Stone Brick Slab"
+	},
+	"minecraft:cobblestone_slab":{
+		"default": "Cobblestone Slab"
+	},
+	"minecraft:brick_slab":{
+		"default": "Brick Slab"
+	},
+	"minecraft:tuff_brick_slab":{
+		"default": "Tuff Brick Slab"
+	},
+	"minecraft:quartz_slab":{
+		"default": "Quartz Slab"
+	},
+	"minecraft:damaged_anvil":{
+		"default": "Damaged Anvil"
+	},
+	"minecraft:waxed_weathered_copper_bulb":{
+		"default": "Waxed Weathered Copper Bulb"
+	},
+	"minecraft:purpur_slab":{
+		"default": "Purpur Slab"
+	},
+	"minecraft:normal_stone_slab":{
+		"default": "Stone Slab"
+	},
+	"minecraft:smooth_quartz_slab":{
+		"default": "Smooth Quartz Slab"
+	},
+	"minecraft:dark_prismarine_slab":{
+		"default": "Dark Prismarine Slab"
+	},
+	"minecraft:andesite_slab":{
+		"default": "Andesite Slab"
+	},
+	"minecraft:polished_andesite_slab":{
+		"default": "Polished Andesite Slab"
+	},
+	"minecraft:polished_diorite_slab":{
+		"default": "Polished Diorite Slab"
+	},
+	"minecraft:waxed_exposed_copper_bulb":{
+		"default": "Waxed Exposed Copper Bulb"
+	},
+	"minecraft:infested_mossy_stone_bricks":{
+		"default": "Infested Mossy Stone Bricks"
+	},
+	"minecraft:chipped_anvil":{
+		"default": "Chipped Anvil"
+	},
+	"minecraft:waxed_oxidized_copper_bulb":{
+		"default": "Waxed Oxidized Copper Bulb"
+	},
+	"minecraft:polished_tuff_slab":{
+		"default": "Polished Tuff Slab"
+	},
+	"minecraft:waxed_copper_bulb":{
+		"default": "Waxed Copper Bulb"
+	},
+	"minecraft:cut_sandstone_slab":{
+		"default": "Cut Sandstone Slab"
+	},
+	"minecraft:cut_red_sandstone_slab":{
+		"default": "Cut Red Sandstone Slab"
+	},
+	"minecraft:oxidized_copper_bulb":{
+		"default": "Oxidized Copper Bulb"
+	},
+	"minecraft:spruce_slab":{
+		"default": "Spruce Slab"
+	},
+	"minecraft:dark_oak_slab":{
+		"default": "Dark Oak Slab"
+	},
+	"minecraft:prismarine_brick_slab":{
+		"default": "Prismarine Brick Slab"
+	},
+	"minecraft:nether_brick_slab":{
+		"default": "Nether Brick Slab"
+	},
+	"minecraft:red_sandstone_slab":{
+		"default": "Red Sandstone Slab"
+	},
+	"minecraft:mossy_cobblestone_double_slab":{
+		"default": "Mossy Cobblestone"
+	},
+	"minecraft:red_nether_brick_slab":{
+		"default": "Red Nether Brick Slab"
+	},
+	"minecraft:granite_slab":{
+		"default": "Granite Slab"
+	},
+	"minecraft:copper_bulb":{
+		"default": "Copper Bulb"
+	},
+	"minecraft:polished_granite_slab":{
+		"default": "Polished Granite Slab"
+	},
+	"minecraft:prismarine_slab":{
+		"default": "Prismarine Slab"
+	},
+	"minecraft:smooth_red_sandstone_slab":{
+		"default": "Smooth Red Sandstone Slab"
+	},
+	"minecraft:mossy_stone_brick_slab":{
+		"default": "Mossy Stone Brick Slab"
+	},
+	"minecraft:stone_brick_slab":{
+		"default": "Stone Brick Slab"
+	},
+	"minecraft:weathered_copper_bulb":{
+		"default": "Weathered Copper Bulb"
+	},
+	"minecraft:tuff_slab":{
+		"default": "Tuff Slab"
+	},
+	"minecraft:diorite_double_slab":{
+		"default": "Diorite"
+	},
+	"minecraft:trial_spawner":{
+		"default": "Trial Spawner"
+	},
+	"minecraft:dead_horn_coral_fan":{
+		"default": "Dead Horn Coral Fan"
+	},
+	"minecraft:chiseled_quartz_block":{
+		"default": "Chiseled Quartz Block"
+	},
+	"minecraft:dark_oak_leaves":{
+		"default": "Dark Oak Leaves"
+	},
+	"minecraft:end_stone_brick_double_slab":{
+		"default": "End Stone Brick"
+	},
+	"minecraft:dead_fire_coral_block":{
+		"default": "Dead Fire Coral Block"
+	},
+	"minecraft:cut_sandstone":{
+		"default": "Cut Sandstone"
+	},
+	"minecraft:waxed_oxidized_copper_grate":{
+		"default": "Waxed Oxidized Copper Grate"
+	},
+	"minecraft:brick_double_slab":{
+		"default": "Bricks"
+	},
+	"minecraft:spruce_leaves":{
+		"default": "Spruce Leaves"
+	},
+	"minecraft:weathered_copper_grate":{
+		"default": "Weathered Copper Grate"
+	},
+	"minecraft:spruce_sapling":{
+		"default": "Spruce Sapling"
+	},
+	"minecraft:birch_wood":{
+		"default": "Birch Wood"
+	},
+	"minecraft:copper_grate":{
+		"default": "Copper Grate"
+	},
+	"minecraft:dark_oak_sapling":{
+		"default": "Dark Oak Sapling"
+	},
+	"minecraft:brain_coral_fan":{
+		"default": "Brain Coral Fan"
+	},
+	"minecraft:dead_brain_coral_block":{
+		"default": "Dead Brain Coral Block"
+	},
+	"minecraft:acacia_leaves":{
+		"default": "Acacia Leaves"
+	},
+	"minecraft:dark_prismarine_double_slab":{
+		"default": "Dark Prismarine"
+	},
+	"minecraft:bubble_coral_block":{
+		"default": "Bubble Coral Block"
+	},
+	"minecraft:acacia_double_slab":{
+		"default": "Acacia Planks"
+	},
+	"minecraft:andesite_double_slab":{
+		"default": "Andesite"
+	},
+	"minecraft:chiseled_tuff_bricks":{
+		"default": "Chiseled Tuff Bricks"
+	},
+	"minecraft:prismarine_brick_double_slab":{
+		"default": "Prismarine Brick"
+	},
+	"minecraft:red_nether_brick_double_slab":{
+		"default": "Red Nether"
+	},
+	"minecraft:chiseled_tuff":{
+		"default": "Chiseled Tuff"
+	},
+	"minecraft:polished_tuff_wall":{
+		"default": "Polished Tuff Wall"
+	},
+	"minecraft:azure_bluet":{
+		"default": "Azure Bluet"
+	},
+	"minecraft:stone_brick_double_slab":{
+		"default": "Stone Brick"
+	},
+	"minecraft:polished_tuff":{
+		"default": "Polished Tuff"
+	},
+	"minecraft:infested_chiseled_stone_bricks":{
+		"default": "Infested Chiseled Stone Bricks"
+	},
+	"minecraft:brain_coral_block":{
+		"default": "brain Coral Block"
+	},
+	"minecraft:cut_red_sandstone_double_slab":{
+		"default": "Cut Red Sandstone"
+	},
+	"minecraft:dead_bubble_coral_fan":{
+		"default": "Dead Bubble Coral Fan"
+	},
+	"minecraft:birch_sapling":{
+		"default": "Birch Sapling"
+	},
+	"minecraft:nether_brick_double_slab":{
+		"default": "Nether Brick"
+	},
+	"minecraft:smooth_quartz":{
+		"default": "Smooth Quartz"
+	},
+	"minecraft:waxed_copper_grate":{
+		"default": "Waxed Copper Grate"
+	},
+	"minecraft:cut_red_sandstone":{
+		"default": "Cut Red Sandstone"
+	},
+	"minecraft:tuff_brick_wall":{
+		"default": "Tuff Brick Wall"
+	},
+	"minecraft:normal_stone_double_slab":{
+		"default": "Stone"
+	},
+	"minecraft:red_sand":{
+		"default": "Red Sand"
+	},
+	"minecraft:large_fern":{
+		"default": "Large Fern"
+	},
+	"minecraft:sunflower":{
+		"default": "Sunflower"
+	},
+	"minecraft:peony":{
+		"default": "Peony"
+	},
+	"minecraft:tall_grass":{
+		"default": "Tall Grass"
+	},
+	"minecraft:rose_bush":{
+		"default": "Rose Bush"
+	},
 	"minecraft:crafter":{
 		"default": "Crafter"
 	},

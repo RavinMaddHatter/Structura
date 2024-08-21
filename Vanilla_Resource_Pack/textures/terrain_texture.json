@@ -546,6 +546,9 @@
     "cobblestone_mossy": {
       "textures": "textures/blocks/cobblestone_mossy"
     },
+    "prismarine_double_slab": {
+      "textures": "textures/blocks/prismarine_rough"
+    },
     "cobblestone_wall": {
       "textures": [
         "textures/blocks/cobblestone",
@@ -1101,6 +1104,11 @@
     "dirt": {
       "textures": [
         "textures/blocks/dirt",
+        "textures/blocks/coarse_dirt"
+      ]
+    },
+    "coarse_dirt": {
+      "textures": [
         "textures/blocks/coarse_dirt"
       ]
     },
@@ -1979,6 +1987,17 @@
         "textures/blocks/stone"
       ]
     },
+	"infested_chiseled_stone_bricks":{
+      "textures": [
+        "textures/blocks/stonebrick_carved"
+      ]
+    },
+	"stonebrick_cracked":{
+      "textures": [
+        "textures/blocks/stonebrick_cracked"
+      ]
+    },
+	
     "moss_block": {
       "textures": "textures/blocks/moss_block"
     },
@@ -2603,6 +2622,17 @@
         "textures/blocks/purpur_pillar_top"
       ]
     },
+	
+    "chiseled_quartz_block_top": {
+      "textures": [
+        "textures/blocks/quartz_block_chiseled_top"
+      ]
+    },
+    "chiseled_quartz_block_side": {
+      "textures": [
+        "textures/blocks/quartz_block_chiseled"
+      ]
+    },
     "quartz_block_bottom": {
       "textures": [
         "textures/blocks/quartz_block_top",
@@ -2767,6 +2797,11 @@
         "textures/blocks/red_sandstone_top"
       ]
     },
+	"smooth_red_sandstone":{
+      "textures": [
+        "textures/blocks/red_sandstone_top"
+      ]
+	},
     "redsandstone_side": {
       "textures": [
         "textures/blocks/red_sandstone_normal",
@@ -2775,6 +2810,11 @@
         "textures/blocks/red_sandstone_top"
       ]
     },
+	"chiseled_red_sandstone":{
+		"textures":[
+			"textures/blocks/red_sandstone_carved"
+		]
+	},
     "redsandstone_top": {
       "textures": [
         "textures/blocks/red_sandstone_top",
@@ -2870,6 +2910,11 @@
         "textures/blocks/red_sand"
       ]
     },
+    "red_sand": {
+      "textures": [
+        "textures/blocks/red_sand"
+      ]
+    },
     "sandstone_bottom": {
       "textures": [
         "textures/blocks/sandstone_bottom",
@@ -2878,6 +2923,11 @@
         "textures/blocks/sandstone_top"
       ]
     },
+	"chiseled_sandstone":{
+		"textures":[
+			"textures/blocks/sandstone_carved"
+		]
+	},
     "sandstone_side": {
       "textures": [
         "textures/blocks/sandstone_normal",
@@ -2992,7 +3042,7 @@
 		"textures":"textures/blocks/coral_plant_pink_dead"
 	},
     "dead_brain_coral_block": {
-      "textures": "textures/blocks/coral_pink_dead"
+      "textures": "textures/blocks/coral_fan_pink_dead"
     },
     "tube_coral_fan": {
       "textures": "textures/blocks/coral_fan_blue"
@@ -3434,6 +3484,9 @@
     "stair_quartz_block_top": {
       "textures": "textures/blocks/quartz_block_top"
     },
+    "smooth_quartz": {
+      "textures": "textures/blocks/quartz_block_bottom"
+    },
     "stair_smooth_quartz_block": {
       "textures": "textures/blocks/quartz_block_bottom"
     },
@@ -3446,6 +3499,21 @@
     "still_water_grey": {
       "textures": "textures/blocks/water_still_grey"
     },
+	"cut_sanstone_side":{
+		"textures": [
+        "textures/blocks/sandstone_smooth"
+		]
+	},
+	"cut_red_sandstone_side":{
+		"textures": [
+        "textures/blocks/red_sandstone_smooth"
+		]
+	},
+	"endstone_bricks":{
+		"textures": [
+        "textures/blocks/end_bricks"
+		]
+	},
     "stone": {
       "textures": [
         "textures/blocks/stone",
@@ -4113,6 +4181,9 @@
       "textures": "textures/items/candles/yellow_candle"
     },
     "yellow_flower": {
+      "textures": "textures/blocks/flower_dandelion"
+    },
+    "dandelion": {
       "textures": "textures/blocks/flower_dandelion"
     },
     "yellow_glazed_terracotta": {
