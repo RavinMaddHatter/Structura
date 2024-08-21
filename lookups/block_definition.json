@@ -1096,6 +1096,7 @@
 	"jungle_wood":"cube",
 	"jungle_leaves":"cube",
 	"jungle_log":"tree",
+    "jungle_planks": "cube",
 	"acacia_log":"tree",
 	"stripped_acacia_wood":"tree",
 	"acacia_leaves":"cube",
