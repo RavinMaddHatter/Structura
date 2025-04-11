@@ -1,9 +1,9 @@
 import json
 
 
-with open("blocks19-83.json") as file:
+with open("blocks_old.json") as file:
     oldData=json.load(file)
-with open("blocks20-0.json") as file:
+with open("blocks_new.json") as file:
     newData=json.load(file)
 
 oldKeys=list(oldData.keys())
