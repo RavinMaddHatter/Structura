@@ -113,7 +113,7 @@ class structura:
             blocks=self._add_blocks_to_geo(struct2make,model_name)
             self.structure_files[model_name]["block_list"]=blocks
             ##consider temp folder
-            self.armorstand_entity.export(self.pack_name)## this may be in the wrong spot, but transfered from 1.5
+            self.armorstand_entity.export(self.pack_name)## this may be in the wrong spot, but transferred from 1.5
         
     def make_nametag_block_lists(self):
         ## consider temp file
@@ -155,7 +155,7 @@ class structura:
             update_animation=False
         for y in range(ylen):
             
-            #creates the layer for controlling. Note there is implied formating here
+            #creates the layer for controlling. Note there is implied formatting here
             #for layer names
             if y<12:
                 armorstand.make_layer(y)
