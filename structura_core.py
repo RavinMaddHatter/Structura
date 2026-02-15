@@ -1,12 +1,18 @@
-import nbtlib.nbt
-import armor_stand_geo_class as asgc
-import armor_stand_class ,structure_reader ,animation_class ,manifest ,os ,glob ,json ,shutil 
-import render_controller_class as rcc
-import big_render_controller as brc
-from shutil import copyfile
-from zipfile import ZIP_DEFLATED, ZipFile
-import time
+import json
 import os
+import shutil
+import time
+from shutil import copyfile
+
+import nbtlib.nbt
+
+import animation_class
+import armor_stand_class
+import armor_stand_geo_class as asgc
+import big_render_controller as brc
+import manifest
+import render_controller_class as rcc
+import structure_reader
 
 debug=False
 

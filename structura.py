@@ -1,25 +1,40 @@
 import os
 import argparse
 import sys
-import shutil
 import updater
 import json
 import lang_parse
 
-from turtle import color
 from numpy import array, int32, minimum
 import nbtlib
 
-from tkinter import ttk,filedialog,messagebox,OptionMenu
-from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
-from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
+from tkinter import (
+    filedialog,
+    messagebox,
+    OptionMenu,
+    Scale,
+    DoubleVar,
+    HORIZONTAL,
+    IntVar,
+    Listbox,
+    ANCHOR,
+    StringVar,
+    Button,
+    Label,
+    Entry,
+    Tk,
+    Checkbutton,
+    END,
+    ACTIVE,
+)
+
+from structura_core import structura
 
 structura_update_version = "Structura1-7"
 
 if not(os.path.exists("lookups")):
     print("getting files")
     updater.update("https://update.structuralab.com/structuraUpdate",structura_update_version,"")
-from structura_core import structura
 settings={"lang":"English"}
 if os.path.exists("settings.json"):
     with open("settings.json") as file:
