@@ -232,10 +232,8 @@ def runFromGui():
         if len(list(models.keys()))==0 and check_var.get():
             stop = True
             messagebox.showinfo(lang["Error"], lang["no structure files"])
-    if len(icon_var.get())>0:
-        pack_icon=icon_var.get()
+
     if not stop:
-        
         structura_base=structura(packName.get())
         structura_base.set_opacity(sliderVar.get())
         if len(icon_var.get())>0:
