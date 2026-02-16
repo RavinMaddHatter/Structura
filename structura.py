@@ -1,25 +1,39 @@
 import os
 import argparse
 import sys
-import shutil
 import updater
 import json
 import lang_parse
 
-from turtle import color
 from numpy import array, int32, minimum
 import nbtlib
+from tkinter import (
+    filedialog,
+    messagebox,
+    OptionMenu,
+    Scale,
+    DoubleVar,
+    HORIZONTAL,
+    IntVar,
+    Listbox,
+    ANCHOR,
+    StringVar,
+    Button,
+    Label,
+    Entry,
+    Tk,
+    Checkbutton,
+    END,
+    ACTIVE,
+)
 
-from tkinter import ttk,filedialog,messagebox
-from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
-from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
+from structura_core import structura
 
 structura_update_version = "Structura1-7"
 
 if not(os.path.exists("lookups")):
     print("getting files")
     updater.update("https://update.structuralab.com/structuraUpdate",structura_update_version,"")
-from structura_core import structura
 settings={"lang":"English"}
 if os.path.exists("settings.json"):
     with open("settings.json") as file:
@@ -212,10 +226,8 @@ def runFromGui():
         if len(list(models.keys()))==0 and check_var.get():
             stop = True
             messagebox.showinfo(lang["Error"], lang["no structure files"])
-    if len(icon_var.get())>0:
-        pack_icon=icon_var.get()
+
     if not stop:
-        
         structura_base=structura(packName.get())
         structura_base.set_opacity(sliderVar.get())
         if len(icon_var.get())>0:

@@ -1,12 +1,18 @@
-import nbtlib.nbt
-import armor_stand_geo_class as asgc
-import armor_stand_class ,structure_reader ,animation_class ,manifest ,os ,glob ,json ,shutil 
-import render_controller_class as rcc
-import big_render_controller as brc
-from shutil import copyfile
-from zipfile import ZIP_DEFLATED, ZipFile
-import time
+import json
 import os
+import shutil
+import time
+from shutil import copyfile
+
+import nbtlib.nbt
+
+import animation_class
+import armor_stand_class
+import armor_stand_geo_class as asgc
+import big_render_controller as brc
+import manifest
+import render_controller_class as rcc
+import structure_reader
 
 debug=False
 
@@ -107,7 +113,7 @@ class structura:
             blocks=self._add_blocks_to_geo(struct2make,model_name)
             self.structure_files[model_name]["block_list"]=blocks
             ##consider temp folder
-            self.armorstand_entity.export(self.pack_name)## this may be in the wrong spot, but transfered from 1.5
+            self.armorstand_entity.export(self.pack_name)## this may be in the wrong spot, but transferred from 1.5
         
     def make_nametag_block_lists(self):
         ## consider temp file
@@ -149,7 +155,7 @@ class structura:
             update_animation=False
         for y in range(ylen):
             
-            #creates the layer for controlling. Note there is implied formating here
+            #creates the layer for controlling. Note there is implied formatting here
             #for layer names
             if y<12:
                 armorstand.make_layer(y)

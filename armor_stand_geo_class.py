@@ -14,7 +14,7 @@ import re
 class armorstandgeo:
     def __init__(self, name, alpha = 0.5,offsets=[0,0,0], size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
         self.ref_resource_pack = ref_pack
-        ## we load all of these items containing the mapping of blocks to the some property that is either hidden, implied or just not clear
+        ## we load all of these items containing the mapping of blocks to some property that is either hidden, implied or just not clear
         with open("{}/blocks.json".format(self.ref_resource_pack)) as f:
             ## defines the blocks from the NBT name tells us sides vs textures
             self.blocks_def = json.load(f)
@@ -22,10 +22,10 @@ class armorstandgeo:
             ##maps textures names to texture files.
             self.terrain_texture = json.load(f)
         with open("lookups/block_rotation.json") as f:
-            ## custom look up table i wrote to help with rotations, error messages dump if somehting has undefined rotations 
+            ## custom look up table i wrote to help with rotations, error messages dump if something has undefined rotations 
             self.block_rotations = json.load(f)
         with open("lookups/variants.json") as f:
-            ## custom lookup table mapping the assume array location in the terrian texture to the relevant blocks IE log2 index 2 implies a specific wood type not captured anywhere
+            ## custom lookup table mapping the assumed array location in the terrain texture to the relevant blocks IE log2 index 2 implies a specific wood type not captured anywhere
             self.block_variants = json.load(f)
         with open("lookups/block_definition.json") as f:
             self.defs = json.load(f)
@@ -51,10 +51,10 @@ class armorstandgeo:
         self.uv_array = None
         self.pre_gen_blocks={}
         ## The stuff below is a horrible cludge that should get cleaned up. +1 karma to whomever has a better plan for this.
-        # this is how i determine if something should be thin. it is ugly, but kinda works
+        # this is how I determine if something should be thin. it is ugly, but kinda works
 
         
-        ## these blocks are either not needed, or cause issue. Grass is banned because the terrian_texture.json has a biome map in it. If someone wants to fix we can un-bann it
+        ## these blocks are either not needed, or cause issue. Grass is banned because the terrain_texture.json has a biome map in it. If someone wants to fix we can un-ban it
         self.excluded = ["air", "structure_block"]
 
     def export(self, pack_folder):
@@ -63,7 +63,7 @@ class armorstandgeo:
         self.add_blocks_to_bones()
         self.geometry["description"]["texture_height"] = len(
             self.uv_map.keys())
-        self.stand["minecraft:geometry"] = [self.geometry] ## this is insuring the geometries are imported, there is an implied refference other places.
+        self.stand["minecraft:geometry"] = [self.geometry] ## this is insuring the geometries are imported, there is an implied reference other places.
         path_to_geo = "{}/models/entity/armor_stand.ghost_blocks_{}.geo.json".format(
             pack_folder,self.name)
         os.makedirs(os.path.dirname(path_to_geo), exist_ok=True)
@@ -128,8 +128,8 @@ class armorstandgeo:
             geometries[layer_name]["description"]["visible_bounds_width"] = 5120
             geometries[layer_name]["description"]["visible_bounds_height"] = 5120
             geometries[layer_name]["description"]["visible_bounds_offset"] = [0, 1.5, 0]
-            geometries[layer_name]["bones"]=[{"name": "ghost_blocks","pivot": [0, 0, 0]},## i am not sure this should be this value for pivot
-                                             {"name": layer_name,"parent": "ghost_blocks","pivot": [0, 0, 0]}]## i am not sure this should be this value for pivot
+            geometries[layer_name]["bones"]=[{"name": "ghost_blocks","pivot": [0, 0, 0]},## I am not sure this should be this value for pivot
+                                             {"name": layer_name,"parent": "ghost_blocks","pivot": [0, 0, 0]}]## I am not sure this should be this value for pivot
         
         ## Here is the bug....
         print(self.blocks.keys())
@@ -156,13 +156,13 @@ class armorstandgeo:
 
     
     def make_layer(self, y):
-        # sets up a layer for us to refference in the animation controller later. Layers are moved during the poses 
+        # sets up a layer for us to reference in the animation controller later. Layers are moved during the poses 
         layer_name = "layer_{}".format(y)
         self.geometry["bones"].append(
             {"name": layer_name, "parent": "ghost_blocks"})#, "pivot": [-8, 0, 8]})
 
     def make_block(self, x, y, z, block_name, rot=None, top=False,data=0, trap_open=False, parent=None,variant="default", big = False):
-        # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for ledgiblity.
+        # make_block handles all the block processing, This function does need cleanup and probably should be broken into other helperfunctions for legibility.
         block_type = self.defs[block_name]
         if block_type!="ignore":
             slice_name = "slice_{}".format(y)
@@ -388,7 +388,7 @@ class armorstandgeo:
 
     def block_name_to_uv(self, block_name, variant = "",shape_variant="default",index=0,data=0):
         
-        # helper function maps the the section of the uv file to the side of the block
+        # helper function maps the section of the uv file to the side of the block
         temp_uv = {}
         if block_name not in self.excluded:  # if you dont want a block to be rendered, exclude the UV
 
