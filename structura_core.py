@@ -272,7 +272,7 @@ class structura:
 
         return count
 
-    def get_lookup_version() -> str:
+    def get_lookup_version(self) -> str:
         """
         Get the version from lookup_version.json.
         :return:

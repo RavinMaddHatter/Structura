@@ -14,6 +14,8 @@ Minecraft is a giant mess when it comes to naming, versioning, and block definit
 When adding new blocks, do not remove old block defintions. Due to the project mojang ran between 2020 and 2024 renaming all the blocks, old structures will be broken if the terrain_texture.json and blocks.json is simply copied from the new version. Instead the old and new terrain textures must be merged. This is a bit painful, but it is what it is.
 ###Adding geometry
 In 2025 when Vibrant Visuals was added, the CPU cost of rendering a bone became 50-100x more expensive. For that reason, when making new geometries, we need to be respectful of cube count. excessive use of cubes will cause excessive lag.
+###Adding Blocks to all_blocks world.
+When adding blocks it is helpful to add them to the all_blocks world so they can at least get tested each update.this helps when we need to do a big refactor. Simply add the block to the world where it makes the most sense. add every block state you can to help in the future. then remove all packs. (may need to manually removed them if they were attached to the world) and export the world and add it back into the git repo.
 
 #Recognition
 In the beginning i added the first 2 people who contributed to the manifest.json of every pack. If you stick around and help more then a few months, i may choose to do that in the future. If you fix things you will get credit in the release notes and likely in a video covering that release.

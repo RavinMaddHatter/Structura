@@ -10,6 +10,7 @@ import copy
 import os
 import time
 import re
+debug = False##used in API test to force errors and break error handler, should remain false.
 
 class armorstandgeo:
     def __init__(self, name, alpha = 0.5,offsets=[0,0,0], size=[64, 64, 64], ref_pack="Vanilla_Resource_Pack"):
@@ -131,10 +132,6 @@ class armorstandgeo:
             geometries[layer_name]["bones"]=[{"name": "ghost_blocks","pivot": [0, 0, 0]},## I am not sure this should be this value for pivot
                                              {"name": layer_name,"parent": "ghost_blocks","pivot": [0, 0, 0]}]## I am not sure this should be this value for pivot
         
-        ## Here is the bug....
-        print(self.blocks.keys())
-        
-        print(geometries.keys())
         for key in self.blocks.keys():
             layer_name = self.blocks[key]["parent"]
             if layer_name in geometries.keys():

@@ -2,7 +2,8 @@ import structura_core
 import os
 import shutil
 structura_core.debug=True
-files_to_conver={
+big_hatter_files = ["test_structures/BigHatter/1.mcstructure","test_structures/BigHatter/1-1.mcstructure","test_structures/BigHatter/2.mcstructure","test_structures/BigHatter/3.mcstructure","test_structures/BigHatter/4.mcstructure"]
+files_to_conver = {
         
         "gems":{"file":"test_structures/All Blocks World/gems and redstone.mcstructure",
                 "offset":[-32,0,-32]},
@@ -18,6 +19,10 @@ try:
     shutil.rmtree("tmp/")
 except:
     pass
+if os.path.exists("tmp/big_hatter.mcpack"):
+    os.remove("tmp/big_hatter.mcpack")
+if os.path.exists("tmp/big_hatter Nametags.txt"):
+    os.remove("tmp/big_hatter Nametags.txt")
 if os.path.exists("tmp/all_blocks.mcpack"):
     os.remove("tmp/all_blocks.mcpack")
 if os.path.exists("tmp/all_blocks Nametags.txt"):
@@ -48,4 +53,12 @@ for name_tag, info in files_to_conver.items():
 
 structura_base.make_big_model([-132,-56,-65])
 #print(structura_base.make_nametag_block_lists())
+print(structura_base.compile_pack())
+
+structura_base=structura_core.structura("tmp/bigHatter")
+structura_base.set_opacity(20)
+for file in big_hatter_files:
+    name_tag = file.split("/")[-1].replace(".mcstructure","")
+    structura_base.add_model(name_tag,file)
+print(structura_base.make_big_model([0,0,0]))
 print(structura_base.compile_pack())

@@ -565,6 +565,7 @@
     "magenta_carpet": "carpet",
     "orange_carpet": "carpet",
     "white_carpet": "carpet",
+	"chain":"chain",
     "iron_chain": "chain",
 	"copper_chain": "chain",
 	"exposed_copper_chain": "chain",
