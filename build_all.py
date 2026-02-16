@@ -1,16 +1,15 @@
-from shutil import copyfile
-import shutil
 import json
-from zipfile import ZIP_DEFLATED, ZipFile
 import os
-from datetime import datetime
 import shutil
+from datetime import datetime
+from shutil import copyfile
+
 try:
     shutil.rmtree("temp/")
 except:
     pass
+
 import PyInstaller.__main__
-import os
 
 # Define the path to your main script
 script_path = 'structura.py' 
