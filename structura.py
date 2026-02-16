@@ -10,7 +10,7 @@ from turtle import color
 from numpy import array, int32, minimum
 import nbtlib
 
-from tkinter import ttk,filedialog,messagebox,OptionMenu
+from tkinter import ttk,filedialog,messagebox
 from tkinter import StringVar, Button, Label, Entry, Tk, Checkbutton, END, ACTIVE
 from tkinter import filedialog, Scale,DoubleVar,HORIZONTAL,IntVar,Listbox, ANCHOR
 
@@ -32,7 +32,6 @@ lang = langs[settings["lang"]]
 
 # CLI Args
 parser = argparse.ArgumentParser(description="Structura app that generates Resource packs from .mcstructure files.")
-
 parser.add_argument("--structure", type=str, help=".mcstructure file")
 parser.add_argument("--pack_name", type=str, help="Name of pack")
 parser.add_argument("--opacity", type=int, help="Opacity of blocks")
@@ -41,7 +40,6 @@ parser.add_argument("--offset", type=str, help="X, Y, X")
 parser.add_argument("--overwrite", type=bool, help="Overwrite the output file.")
 parser.add_argument("--debug", "-db", action='store_true', help='Enable debug mode')
 parser.add_argument("--update", action='store_true', help='Run updater')
-
 args = parser.parse_args()
 
 def browseStruct():
@@ -70,9 +68,6 @@ def box_checked():
     r = 0
     title_text.grid(row=r, column=0, columnspan=2)
     updateButton.grid(row=r, column=2)
-    r+=1
-    lang_label.grid(row=r, column=0, columnspan=2)
-    lang_options.grid(row=r, column=2)
     if check_var.get()==0:
         modle_name_entry.grid_forget()
         modle_name_lb.grid_forget()
@@ -279,41 +274,14 @@ if args.structure and args.pack_name:
     # Exit Script
     sys.exit(0)
 
-def updateLang(value):
-    global settings
-    lang = langs[language.get()]
-    settings["lang"] = language.get()
-    with open("settings.json","w+") as file:
-        settings = json.dump(settings,file)
-    title_text.config(text = lang["title"])
-    lang_label.config(text = lang["language"])
-    modle_name_lb.config(text=lang["name tag"])
-    cord_lb.config(text=lang["offset"])
-    cord_lb_big.config(text=lang["corner"])
-    icon_lb.config(text=lang["icon"])
-    updateButton.config(text=lang["update"])
-    IconButton.config(text=lang["browse"])
-    file_lb.config(text=lang["structurefile"])
-    packName_lb.config(text=lang["packname"])
-    advanced_check.config(text=lang["advance"])
-    export_check.config(text=lang["lists"])
-    big_build_check.config(text=lang["bigbuild"])
-    deleteButton.config(text=lang["remove"])
-    saveButton.config(text=lang["makepack"])
-    modelButton.config(text=lang["addmodel"])
-    get_cords_button.config(text=lang["getcords"])
-    transparency_lb.config(text=lang["transparency"])
-    packButton.config(text=lang["browse"])
 offsetLbLoc=4
 offsets={}
 root = Tk()
-root.title(lang["title"])
+root.title(structura_update_version)
 models={}
 FileGUI = StringVar()
 packName = StringVar()
 icon_var = StringVar()
-language = StringVar()
-language.set(settings["lang"])
 icon_var.set("lookups/pack_icon.png")
 sliderVar = DoubleVar()
 model_name_var = StringVar()
@@ -328,8 +296,6 @@ big_build = IntVar()
 big_build.set(0)
 sliderVar.set(20)
 listbox=Listbox(root)
-lang_label = Label(root, text=lang["language"])
-lang_options = OptionMenu(root, language, *list(langs.keys()),command=updateLang)
 title_text = Label(root, text=lang["title"])
 file_entry = Entry(root, textvariable=FileGUI)
 packName_entry = Entry(root, textvariable=packName)
