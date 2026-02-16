@@ -52,12 +52,12 @@ try:
     os.mkdir("temp")
 except:
     print("folder exists")
-shutil.copytree("lookups", f"temp/lookups")
+shutil.copytree("lookups", "temp/lookups")
 shutil.copytree("Vanilla_Resource_Pack", "temp/Vanilla_Resource_Pack")
 shutil.make_archive("temp", 'zip', "temp")
 if os.path.exists(update_package_name+".zip"):
     os.remove(update_package_name+".zip")
-os.rename(f'temp.zip',update_package_name+".zip")
+os.rename('temp.zip', update_package_name+".zip")
 copyfile("animation_class.py", "temp/animation_class.py")
 copyfile("armor_stand_class.py", "temp/armor_stand_class.py")
 copyfile("armor_stand_geo_class.py", "temp/armor_stand_geo_class.py")
@@ -78,6 +78,6 @@ if os.path.exists(update_package_name+".zip"):
         os.remove(f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')
     except:
         print(f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip doesnt exist')
-os.rename(f'temp.zip',f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')
+os.rename('temp.zip',f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip')
 shutil.move(update_package_name+".zip",os.path.join("dist",update_package_name+".zip"))
 shutil.move(f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip',os.path.join("dist",f'lambda_package_{currentDay}-{currentMonth}-{currentYear}.zip'))
