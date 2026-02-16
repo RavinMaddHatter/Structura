@@ -76,7 +76,7 @@ As of structura 1.3 you can update the blocks manually and contribute back to th
 
 👋 **Welcome, new contributors!**
 
-Whether you're a seasoned developer or just getting started, your contributions are valuable to us. Don't hesitate to jump in, explore the project, and make an impact. To start contributing, please check out our [Contribution Guidelines](CONTRIBUTING.md). 
+Whether you're a seasoned developer or just getting started, your contributions are valuable to us. Don't hesitate to jump in, explore the project, and make an impact. To start contributing, please check out our [Contribution Guidelines](docs/CONTRIBUTING.md). 
 
 
 ## Coverage
