@@ -62,7 +62,7 @@ chmod +x start.sh && sh start.sh
 
 To run from command line
 ```bash
-python structura.py --structure path\to\build.mcstructure --pack_name CLI Pack --overwrite True
+python structura.py --structure path\to\build.mcstructure --pack_name 'CLI Pack' --overwrite True
 ```
 
 ## Updating blocks
