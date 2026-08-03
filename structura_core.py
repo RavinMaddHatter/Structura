@@ -236,7 +236,11 @@ class structura:
                     rot = str(block["states"][key])
                 
             if nbt_def[key]== "top" and key in block["states"].keys():
-                top = bool(block["states"][key])
+                top_state = block["states"][key]
+                if key == "minecraft:vertical_half":
+                    top = str(top_state).lower() == "top"
+                else:
+                    top = bool(top_state)
             if nbt_def[key]== "open_bit" and "open_bit" in block["states"].keys():
                 open_bit = bool(block["states"][key])
             if nbt_def[key]== "data" and key in block["states"].keys():
@@ -283,4 +287,3 @@ class structura:
                 version_data = json.load(file)
                 return version_data["version"]
         return "No version found"
-
