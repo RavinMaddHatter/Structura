@@ -2,7 +2,7 @@ import csv
 import os 
 def parse():
     values = {}
-    with open(os.path.join('lookups','langs.csv'), 'r', newline='') as csvfile:
+    with open(os.path.join('lookups','langs.csv'), 'r', newline='', encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
         header = next(reader)
         for i in range(len(header)-1):
