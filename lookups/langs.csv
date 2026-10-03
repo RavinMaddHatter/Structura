@@ -1,25 +1,25 @@
-﻿Lookup,English,Українська,Español,简体中文,Test
-title,Structura,Structura,Structura,Structura,test
-error,Error,Помилка,Error,错误,test
-browse file,You need to browse for a structure file!,Вам потрібно вибрати файл структури!,¡Necesitas encontrar un archivo de estructura!,请浏览并选择结构文件！,test
-unique tag,The Name Tag mut be unique,Іменний тег має бути унікальним,La etiqueta debe ser única,命名牌必须唯一,test
-pack name error,Pack already exists or pack name is empty,Пакунок уже існує або назва порожня,El paquete ya existe o el nombre del paquete está vacío,包已存在或包名为空,test
-no pack name,You need a Name,Вам потрібна назва,Necesitas un nombre,需填写包名,test
-no structure files,You need to add some structures,Вам потрібно додати структури,Necesitas añadir varias estructuras,请添加结构,test
-name tag,Name Tag,Іменний тег,Nombre De La Etiqueta,命名牌,test
-offset,Offset,Зсув,Desplazamiento,偏移量,test
-corner,Corner,Кут,Esquina,角落,test
-icon,Icon File,Файл піктограми,Archivo de icono,图标文件,test
-update,Update,Оновити,Actualizar,更新,test
-browse,Browse,Вибрати,Buscar,浏览,test
-packname,Pack Name,Назва пакунку,Nombre Del Paquete,包名,test
-advance,Advanced,Просунуті,Avanzado,高级设置,test
-lists,Make Block Lists,Створити список блоків,Crear Lista De Bloques,生成方块清单,test
-bigbuild,Big Build Mode,Режим масштабного будівництва,Modo De Construcción Grande,大建筑模式,test
-remove,Remove Model,Прибрати модель,Remover Modelo,移除模型,test
-makepack,Make Pack,Зробити пакунок,Crear Paquete,制作包,test
-addmodel,Add Model,Додати модель,Añadir Modelo,添加模型,test
-getcords,Get Global Cords,Встановити глобальні координати,Obtener Coordenadas Globales,获取全局坐标,test
-transparency,Transparency,Прозорість,Transparencia,透明度,test
-structurefile,Structure file,Файл структури,Archivo de estructura,结构文件,test
-language,Language,Мова,idioma,语言,test
+﻿Lookup,English,Українська,Español,Italiano,简体中文,Test
+title,Structura,Structura,Structura,Structura,Structura,test
+error,Error,Помилка,Error,Errore,错误,test
+browse file,You need to browse for a structure file!,Вам потрібно вибрати файл структури!,¡Necesitas encontrar un archivo de estructura!,Bisogna selezionare un file struttura!,请浏览并选择结构文件！,test
+unique tag,The Name Tag mut be unique,Іменний тег має бути унікальним,La etiqueta debe ser única,La Targhetta deve essere univoca,命名牌必须唯一,test
+pack name error,Pack already exists or pack name is empty,Пакунок уже існує або назва порожня,El paquete ya existe o el nombre del paquete está vacío,Il pacchetto esiste già o il nome del pacchetto è vuoto,包已存在或包名为空,test
+no pack name,You need a Name,Вам потрібна назва,Necesitas un nombre,Bisogna inserire un nome,需填写包名,test
+no structure files,You need to add some structures,Вам потрібно додати структури,Necesitas añadir varias estructuras,Bisogna aggiungere delle strutture,请添加结构,test
+name tag,Name Tag,Іменний тег,Nombre De La Etiqueta,Targhetta,命名牌,test
+offset,Offset,Зсув,Desplazamiento,Scostamento,偏移量,test
+corner,Corner,Кут,Esquina,Angolo,角落,test
+icon,Icon File,Файл піктограми,Archivo de icono,File Icona,图标文件,test
+update,Update,Оновити,Actualizar,Aggiorna,更新,test
+browse,Browse,Вибрати,Buscar,Cerca,浏览,test
+packname,Pack Name,Назва пакунку,Nombre Del Paquete,Nome Pacchetto,包名,test
+advance,Advanced,Просунуті,Avanzado,Avanzato,高级设置,test
+lists,Make Block Lists,Створити список блоків,Crear Lista De Bloques,Genera Lista di Materiali,生成方块清单,test
+bigbuild,Big Build Mode,Режим масштабного будівництва,Modo De Construcción Grande,Modalità Costruzione Grande,大建筑模式,test
+remove,Remove Model,Прибрати модель,Remover Modelo,Rimuovi Modello,移除模型,test
+makepack,Make Pack,Зробити пакунок,Crear Paquete,Crea Pacchetto,制作包,test
+addmodel,Add Model,Додати модель,Añadir Modelo,Aggiungi Modello,添加模型,test
+getcords,Get Global Cords,Встановити глобальні координати,Obtener Coordenadas Globales,Ottieni coordinate globali,获取全局坐标,test
+transparency,Transparency,Прозорість,Transparencia,Trasparenza,透明度,test
+structurefile,Structure file,Файл структури,Archivo de estructura,File Struttura,结构文件,test
+language,Language,Мова,idioma,Lingua,语言,test
