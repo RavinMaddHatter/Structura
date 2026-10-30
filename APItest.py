@@ -54,11 +54,12 @@ for name_tag, info in files_to_conver.items():
 structura_base.make_big_model([-132,-56,-65])
 #print(structura_base.make_nametag_block_lists())
 print(structura_base.compile_pack())
-
-structura_base=structura_core.structura("tmp/bigHatter")
-structura_base.set_opacity(20)
-for file in big_hatter_files:
-    name_tag = file.split("/")[-1].replace(".mcstructure","")
-    structura_base.add_model(name_tag,file)
-print(structura_base.make_big_model([0,0,0]))
-print(structura_base.compile_pack())
+test_big_hatter=False
+if test_big_hatter:
+    structura_base=structura_core.structura("tmp/bigHatter")
+    structura_base.set_opacity(20)
+    for file in big_hatter_files:
+        name_tag = file.split("/")[-1].replace(".mcstructure","")
+        structura_base.add_model(name_tag,file)
+    print(structura_base.make_big_model([0,0,0]))
+    print(structura_base.compile_pack())

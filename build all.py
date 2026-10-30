@@ -14,7 +14,6 @@ import os
 
 # Define the path to your main script
 script_path = 'structura.py' 
-
 # Define the output directory (optional)
 output_dir = 'dist' 
 
@@ -69,7 +68,6 @@ copyfile("structura.py", "temp/structura.py")
 copyfile("structura_core.py", "temp/structura_core.py")
 copyfile("structure_reader.py", "temp/structure_reader.py")
 copyfile("updater.py", "temp/updater.py")
-copyfile("log_config.py", "temp/log_config.py")
 shutil.make_archive("temp", 'zip', "temp")
 shutil.rmtree("temp")
 print(update_package_name)
